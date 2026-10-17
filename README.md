@@ -7,6 +7,8 @@ Faultline is a proposed, opt-in **test-strength audit for existing coding agents
 The starting point is a **small standalone agent skill**, not a new agent controller, proof system, or mutation-testing engine. It will use tools already available in the developer's environment and operate only in a properly isolated, disposable work area. A separate CLI is a future option **only if measured usefulness justifies building one**.
 
 > **Status: design only.** This repository currently contains the project documents and license, not an implemented audit skill or executable product. Nothing here implies that an audit has run, that a mutation has been tested, or that any implementation is verified.
+>
+> **Value is unproven.** Faultline has not yet shown that it improves independently judged delivery quality or finds material test gaps more efficiently than simply asking the coding agent to review boundary and negative cases.
 
 [Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md)
 
@@ -24,6 +26,14 @@ Mutation testing explores this gap by deliberately changing *implementation code
 Faultline's question is deliberately narrower than “Is this code correct?”:
 
 **Would the selected tests detect these specific, plausible incorrect behaviors?**
+
+## When to use it — and when to skip it
+
+Faultline is an **optional escalation for risk-relevant changes**, not a default coding step or a mandatory stage of a multi-skill workflow. It is most plausible for authorization and trust boundaries, negative validation, state transitions, error handling, compatibility obligations, and other failures that a green suite could conceal.
+
+**Skip it** for documentation, formatting, routine mechanical changes, and low-risk work where the cost of an audit is unlikely to pay back. Before mutating code, let the *same agent* examine requirements and tests and propose a few concrete boundary/negative assertions **without mutation tooling**. If an obvious useful test can be added directly, prefer that cheaper path. Try a mutant only when it can answer a remaining material uncertainty.
+
+Start with **one targeted mutation**, expanding only if warranted, to at most three in a first audit. Ten minutes is a **proposed maximum for explicit authorization**, not a duration target or permission to execute. Stop early when setup cost, equivalent-mutant noise, or poor evidence outweighs useful findings.
 
 ## What the first skill will do
 
@@ -89,7 +99,7 @@ The initial target is **Python repositories**, because both companion projects a
 
 ## What happens next?
 
-Read [IMPLEMENTATION.md](IMPLEMENTATION.md) for the staged work: write and qualify one portable `faultline-audit` skill; test it against controlled correct/defective Python examples; run a small comparison against ordinary agent practice; and only then decide whether a deterministic CLI would earn its maintenance cost.
+Read [IMPLEMENTATION.md](IMPLEMENTATION.md) for the staged work: qualify one small `faultline-audit` skill, test its mechanics on controlled Python examples, and compare **ordinary agent self-testing**, **focused boundary-test review without mutations**, and **optional Faultline** on fresh tasks under the same end-to-end time/tool budget. Measure independently verified missed behavior, final task correctness, noise, and total overhead. **If Faultline cannot beat the simpler review at an acceptable cost, simplify or stop** rather than building a CLI or another process.
 
 There is **no install command yet**. When the skill exists, this README will be updated with a verified installation and first-use walkthrough, not a speculative command.
 
