@@ -72,15 +72,18 @@ The important outcome is a reproducible *counterexample to test strength*, not a
 
 Faultline is not trying to replace mature mutation, coverage, or duplication tools. It aims to **select useful questions, orchestrate a small authorized experiment, and report evidence honestly**.
 
-## Relationship to Intentline and Proofline
+## Neighboring projects
 
-All three projects can be used independently.
+Faultline is a standalone, design-only proposal. No sibling is required or automatically invoked.
 
-| Project | Responsibility |
+| Project | Question it owns |
 | --- | --- |
-| [Intentline](https://github.com/grove/intentline) | Capture what was requested and propose source-grounded acceptance criteria and evidence boundaries. |
-| **Faultline** | Probe whether tests would detect selected plausible defects; distinguish observed test strength from unknown behavior. |
-| [Proofline](https://github.com/grove/proofline) | Run expressly selected checks against a frozen candidate within its supported protected boundary, preserving native receipts. |
+| [Intentline](https://github.com/grove/intentline) | What was requested, and what acceptance draft follows? |
+| [Proofline](https://github.com/grove/proofline) | What did selected checks establish about an identified candidate? |
+| **Faultline** | Would selected tests detect particular plausible wrong behaviors? |
+| [Gapline](https://github.com/grove/gapline) | Which consequential weaknesses can this investigation substantiate? |
+
+An optional exchange must retain source identity, scope, and uncertainty. A generated plan remains advisory; a passing check establishes only its limited claim; a surviving mutation does not establish a defect in the original candidate. No shared schema or runtime is required.
 
 **No integration is required for the first skill.** If an agent already has an Intentline plan, it may use proposed boundaries and R IDs as *advisory inputs*. Those plans do not become verified test oracles.
 
