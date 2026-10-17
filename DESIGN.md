@@ -12,7 +12,7 @@ This is a **test-strength investigation**, not an implementation-correctness pro
 - **Coding agents and developers**: audit a particular change before handing it off.
 - **Verification-tool maintainers**: deliberately challenge their own tests for evidence integrity, source continuity, sandbox boundaries, and other critical invariants.
 
-The product should reduce **material undetected defects**, not maximize mutation counts, test counts, CRAP scores, or workflow ceremonies.
+The product should reduce **material undetected defects**, not maximize mutation counts, test counts, CRAP scores, or workflow ceremonies. It must also justify its **incremental time and tool cost** against a simpler, focused test-review prompt to the same agent. Default to **not running Faultline** on low-risk changes.
 
 ### Non-goals
 
@@ -61,6 +61,16 @@ For an executable audit, the agent must identify or obtain:
 5. **Optional advisory intent**: original request, relevant boundaries, or an already available Intentline contract/export. These are hypotheses to assess, not established test oracles or execution permissions.
 
 When an input is unavailable, a read-only scoping/report step may still be useful, but the skill must **not quietly proceed to unprotected execution**. Do not install tools, fetch dependencies, dispatch a new model, or grant external access without explicit authorization.
+
+### Selective invocation and cheaper-first decision
+
+This is an **opt-in diagnostic**, not a stage required by every coding task, every change, or any Intentline/Proofline flow.
+
+- **Consider a small audit** where negative/edge-case behavior matters: authorization, data validation, state transitions, error handling, compatibility, or critical invariants, especially when existing tests appear superficially adequate.
+- **Prefer ordinary testing or a direct boundary-test review** for low-risk edits, obvious missing assertions, and work where the expected audit setup cost exceeds the likely benefit. Ask the same agent which important negative cases or requirements are untested **without mutating code**. If a concrete assertion is already evident, the agent can propose it directly; do not manufacture a mutation experiment.
+- **Only escalate** if a plausible behavioral mutant would answer a specific, unresolved question about test strength. Start with one targeted candidate, increase to at most three in the first trial only when worthwhile, and stop early if findings are immaterial, equivalent, or expensive.
+
+The skill may output **SKIPPED — LOW EXPECTED VALUE** as a recommendation, but that is not a mutation result and must not be counted in the `KILLED`/`SURVIVED` denominator. Safety requirements remain mandatory for any actual execution.
 
 ### Baseline first
 
@@ -160,13 +170,15 @@ Neither companion project imports Faultline. Faultline does not require their pr
 
 The first supported investigation should be on **Python projects only**, using available local tooling and existing agent/host permissions. No network installs or hidden environment preparation. Add another language only after an observed, repeatable need.
 
-The skill is valuable only if it discovers **material, actionable test gaps** at an acceptable cost and does not create false confidence, unsafe execution, or excessive test noise.
+The skill is valuable only if it discovers **material, actionable test gaps that the simpler alternative misses** at an acceptable end-to-end cost and does not create false confidence, unsafe execution, or excessive test noise. A raw mutation score or a longer report is not incremental value.
 
 Before any runtime/CLI, agent automation, compulsory CI gate, or schema is added:
 
 1. Show that the skill handles controlled correct/defective cases, including at least one **green-baseline / genuine missed-behavior** control, without incorrectly classifying innocuous alternatives.
-2. Compare against ordinary developer/agent testing on **fresh, independently prepared, withheld** examples, with full time and tool costs.
+2. Compare three matched approaches on **fresh, independently prepared, withheld** examples: (A) ordinary agent self-testing; (B) the same agent explicitly reviewing negative/boundary tests **without mutation tooling**; (C) the same agent with optional Faultline. Count all work under the **same total task time/tool budget**, including setup, baseline, experiments, corrections, reports, blocked attempts, and skipped audits.
 3. Record false alarms, inconclusive/unavailable executions, test flakiness, and safety stops; never drop bad attempts from denominators.
-4. Make an explicit **KEEP SKILL / SIMPLIFY / OPTIONAL / STOP** decision. Add a deterministic CLI only if clearly identified problems require one and its benefit outweighs maintenance/security cost.
+4. Predeclare acceptable overhead and stop criteria before the pilot. Prefer **SIMPLIFY** or **STOP** if the inexpensive negative-case review finds equivalent useful gaps with less cost; choose **KEEP SKILL / OPTIONAL** only with independently verified incremental benefit. Mark underpowered or ceiling-limited findings **INCONCLUSIVE**. Add a CLI only if a specific, observed shortcoming of the skill requires one and its benefit outweighs maintenance/security cost.
+
+A small pilot is a **go/no-go learning exercise**, not evidence that Faultline generally improves software quality. Keep the existing optional, Python-first scope and defer Rust, Java, integrations, and runtime machinery unless follow-up evidence supports them.
 
 [IMPLEMENTATION.md](IMPLEMENTATION.md) contains the bounded build and evaluation sequence.
