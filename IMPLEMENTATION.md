@@ -1,215 +1,193 @@
-# Faultline — implementation plan
+# Faultline — proposed implementation plan
 
-**Status:** Proposed; no audit implementation exists yet.  
-**First release target:** one useful, safe, optional `faultline-audit` agent skill for small Python changes.  
-**Admission rule:** a runtime/CLI is **not** in scope unless a bounded evaluation shows the skill is useful and identifies an execution problem worth solving.
+**Status:** Proposed; no installed skill, executable challenge tool, qualified isolation environment, or published effectiveness results exist.
 
-Read [README.md](README.md) for the public introduction and [DESIGN.md](DESIGN.md) for the governing scope, trust boundaries, and observation definitions.
+**Product decision pending:** [#9](https://github.com/grove/faultline/issues/9) proposes repositioning Faultline as a **skill-first adversarial correctness challenger**. The initial distinctive hypothesis is **controlled failure-path testing of an unchanged implementation**; targeted mutation testing remains optional for *test strength*. See [README](README.md) and [DESIGN](DESIGN.md).
 
-## 0. Product decision and starting state
+**Rule:** Build the smallest useful **portable AI skill**, not a new model runner, mutation engine, chaos framework, CLI, or mandatory integration. Extra execution machinery is conditional on observed shortcomings and measured incremental value.
 
-The first job is **not to build a comprehensive quality platform**. It is to find out whether a small, repeatable test-strength audit finds material gaps beyond what ordinary agents and **a cheap, focused negative-case test review by the same agent** can find, at a worthwhile end-to-end cost.
+## 0. Decision gate — agree on a small, testable hypothesis
 
-Existing options already provide mutation engines, coverage collection, complexity analysis, and clone detection. Prefer using properly installed tools over replacing them. CRAP and DRY are optional prioritization hints; **mutation experiments with meaningful, verified outcomes are the core**.
+**Issue:** [#9](https://github.com/grove/faultline/issues/9).
 
-The repository initially contains only the Apache-2.0 license and these three documents. There is no working installation procedure, CLI, test runner, benchmark result, completed skill, integration, or published release. No future milestone below should be described as complete until verified.
+First establish the product boundary and the difference between two results:
 
-### Default constraints for all milestones
+- **Behavior challenge:** fault-inject a dependency, state or input **without modifying the production implementation** and look for a reproducible violation of a real guarantee.
+- **Mutation challenge:** intentionally change production behavior **in a disposable mutant copy** and see whether selected tests detect that particular wrong behavior.
 
-- Python 3.11+ for authored reference fixtures and simple offline development tests; **no required Faultline runtime dependency** in the first release.
-- The skill runs within an existing user's coding agent; no extra model, runner, network installer, or online account is required by Faultline.
-- Actual mutation test commands need explicit host/user authorization and a **verified isolated execution boundary**. A copied directory alone is insufficient. If unavailable, **do not run mutations**.
-- Keep original candidate, private inputs, tests, and any Proofline snapshots untouched. Generated disposable mutant copies are separate from audit records.
-- Baseline must pass on the same selected test commands before comparing mutations. Do not infer killed/survived from failing, incomplete, or flaky baselines.
-- Preserve negative results, refusals, unknowns, and time spent. Never call a green suite or a high mutation score complete proof.
-- Avoid creating an obligatory stage in Intentline or Proofline.
-- Default to **skipping** Faultline on routine/low-risk changes. Prefer adding an obvious boundary assertion directly; invoke mutations only when they could resolve a material remaining doubt about selected test strength.
+One may demonstrate an implementation defect; the other may demonstrate weak selected tests. Neither certifies correctness. Avoid building a second broad Gapline audit: Gapline already inspects test quality and other risks read-only.
 
-## 1. Milestone A — make one small skill usable
+**Required decision record:**
+- One-sentence product promise, skill-first interface and two modes: `PLAN` (read-only) and `CHALLENGE` (only if authorized and isolated).
+- Named, source-grounded first invariant and the smallest experiment that could refute it.
+- Explicit non-goals, exit/stop criteria, limits and relationship to Intentline/Gapline/Proofline.
+- Issue-by-issue disposition of #1–#8. Existing work must not silently become an approved roadmap because documentation changed.
+- **GO / NARROW / STOP** for the first small prototype. A decision is not a successful audit run.
 
-**Deliverables**
+**Stop if:** the proposed challenge cannot be distinguished from cheaper negative-case review or requires a general-purpose runner to demonstrate even a tiny case.
 
-- `faultline-audit/SKILL.md` — the **single canonical portable root-level skill**. Start with minimal frontmatter (`name: faultline-audit` and an accurate description) and simple direct-file instructions for hosts that do not auto-discover skills.
-- README update with a **verified** skill installation or manual invocation example (not before actually testing it).
-- `tests/test_skill.py` or a similarly small standard-library regression test for skill discoverability, required safety language, and link/path validity. Tests of text alone are **not** proof of safe agent execution.
+## 1. Milestone A — one usable, small, optional skill (read-only first)
 
-**Required skill behavior**
+**Reuse/rescope:** [#3](https://github.com/grove/faultline/issues/3). The working name `faultline-challenge` is **provisional** until a real skill and verified installation exist; do not claim the older `faultline-audit` name is a shipped interface.
 
-1. Decide whether this **opt-in** audit is worth the overhead. For low-risk/routine changes, recommend skipping. First ask which important negative/boundary cases are missing **without mutations**; if an actionable assertion is obvious, propose that instead.
-2. For a worthwhile audit, ask/confirm target, selected authorized commands, allowable scope, isolation method, resource budget, and intended output. Do not ask for an unnecessary acceptance ceremony.
-3. Propose **one targeted mutant first**, adding more only if useful (maximum three), and **at most ten minutes** for caller confirmation; this is a ceiling, not a target or implicit permission.
-4. Read the changed code and existing tests. If complexity/coverage tools are installed, use their output as explicitly scoped advisory prioritization; do not install anything automatically.
-5. Verify isolated disposable workspace before executing any baseline or mutated check. If this is impossible, explain the blocker and offer only a **non-executing** audit plan.
-6. Capture a reproducible pristine candidate identity and approved command list; run unchanged baseline.
-7. Select plausible, requirement-relevant mutations, one per fresh/reset mutant copy, keeping test code fixed; record exact diffs.
-8. Classify observed results using the states in [DESIGN.md](DESIGN.md), including `INVALID`, `INCONCLUSIVE`, `UNAVAILABLE`, and `NOT_RUN`. Keep all denominators; **skipped decisions are not mutant outcomes**.
-9. Return a short report focused on the most material survivor and smallest relevant additional assertion, including why it might be equivalent or unexercised. Report actual setup/check/report overhead, even when the audit stops early.
-
-**Acceptance tests**
-
-- The instructions do not authorize themselves to run commands, install dependencies, write to the original source, or publish code.
-- Every proposed mutation is attributable to a named candidate/test scope; no global correctness grades.
-- Baseline fail, timeout, lack of sandbox, tool unavailable, malformed mutant, suspected equivalent, and exhausted budget each receive an honest result.
-- Agent can perform an **entirely read-only** review when execution is not authorized.
-- The skill can **skip** low-value work or recommend an obvious missing test directly, without calling a skip a mutation outcome or demanding a mutation experiment.
-- The skill adds no dependencies or behavior changes to Intentline or Proofline.
-
-**Stop if:** the skill cannot distinguish a safe, bounded executable audit from advice-only analysis. Fix that first; do not add more features.
-
-## 2. Milestone B — qualify mechanics with authored controls
-
-Use tiny public Python fixtures under `tests/fixtures/` (or `evaluation/fixtures/` if a separate experiment corpus is warranted). Keep them independently editable without altering the original repo during a run.
-
-Minimum controls, each with an explicit expected observation:
-
-| Control | Baseline and mutation | Expected behavior |
-| --- | --- | --- |
-| Detectable boundary defect | Passing baseline; change a threshold where a targeted assertion exists | `KILLED` and a named observed failing test |
-| Green-suite blind spot | Passing baseline; change an untested edge while selected tests remain green | `SURVIVED`, actionable test suggestion, **not** a claim the original is wrong |
-| Alternate valid implementation | Different correct implementation for the same contract | Avoid a false correctness or duplication failure; discuss behavior, not syntax alone |
-| Invalid mutation | Introduce a mutation causing invalid syntax or unsupported execution | `INVALID`, excluded from meaningful killed/survived denominator |
-| Failing/flaky baseline | Tests are already failing or observably unstable | Refuse meaningful mutation verdict; `INCONCLUSIVE`/`UNAVAILABLE` |
-| Missing execution protection | Isolation negative canary cannot establish required separation | `UNAVAILABLE`; no unsafe fallback |
-| Timeout or missing tool | No meaningful execution receipt | `UNAVAILABLE` with consumed budget preserved |
-| Changed candidate mid-audit | Original candidate identity no longer matches scope | Treat older evidence as stale; restart or report `INCONCLUSIVE` |
-
-**Execution qualification** is essential: on the actual intended host, run disposable **negative controls** showing that a test process cannot modify the original candidate or protected report location, read private sentinel files, or perform unwanted network effects. Record precisely what was observed and what remains unqualified. If the host cannot enforce those boundaries, mutation execution is **NO-GO**; fixture expectations must not be passed off as actual protection.
-
-Do not commit secrets, private requests, uncontrolled test receipts, or any external source captures.
-
-**Acceptance:** a fresh qualified host run produces accurate classifications for the controls and retains the complete candidate/mutant/test identity. Expected fixture labels do not themselves constitute observed outcomes. Python unit tests and skill instructions are necessary, but not sufficient, to establish the host security boundary.
-
-## 3. Milestone C — focused dogfooding
-
-Only after Milestone B execution controls qualify, test the skill against real, approved candidate snapshots, with clearly bounded commands. Good initial targets are:
-
-- [Proofline: `checks/promise_evidence.py`](https://github.com/grove/proofline/blob/main/checks/promise_evidence.py) and its tests: R-to-check attribution and `NOT DEMONSTRATED` versus linked passing checks.
-- [Proofline: `checks/intentline_advisory.py`](https://github.com/grove/proofline/blob/main/checks/intentline_advisory.py) and its tests: source identity, canonical JSON, and export tampering.
-- [Intentline: `intentline/contracts.py`](https://github.com/grove/intentline/blob/main/intentline/contracts.py) and its tests: exact source citation validation and contract records.
-- [Intentline: `intentline/continuity.py`](https://github.com/grove/intentline/blob/main/intentline/continuity.py) and its tests: changed obligations, lineage, and adoption boundary semantics.
-
-Treat these as **candidate audit targets**, not as known defects. Obtain permission for exact commands and disposable host runs. Their tests already contain substantial negative coverage; finding no substantive survivor may be a valid outcome.
-
-For each audit, retain a compact case note:
-
-```text
-Original candidate/ref:
-Selected source behavior:
-Selected tests and exact argv:
-Isolation and boundary evidence:
-Approved time/mutation budget:
-Cheaper direct boundary-test review considered? Finding / none / NOT_ASSESSED
-Audit decision: RUN / SKIP (reason):
-Baseline: PASSED / FAILED / UNAVAILABLE / INCONCLUSIVE / NOT_RUN
-Mutations: proposed / executed / killed / survived / invalid / inconclusive / unavailable / not-run
-Material gap with exact observation (if any):
-New test suggested and later independently run? YES / NO / NOT OBSERVED
-Time/tool overhead:
-Known omissions and other unassessed behavior:
-```
-
-**Acceptance:** at least one complete evidence packet (including an honest no-findings result if applicable), with stable identities and no mutation of original projects.
-
-**Stop/adjust if:** command setup or report overhead overwhelms a few controlled mutations, the skill repeatedly proposes trivial/equivalent mutants, the same useful gap was already obvious from direct test review, or isolation cannot be demonstrated. Record no-findings and skipped cases; they are valid results.
-
-## 4. Milestone D — measure incremental value against a cheaper review
-
-Dogfooding is not evidence that Faultline helps coding agents generally. Conduct a **small, predeclared feasibility comparison**, not a product-efficacy claim, after mechanics are reproducible and any model/tool expenditure is authorized.
-
-### Before any worker attempt
-
-- Select **four to six fresh, realistic Python tasks** for a pilot: high-risk negative/compatibility cases where Faultline could plausibly help, plus a low-risk control where it should rationally skip. A sample this small cannot establish general superiority.
-- Freeze source requests, base commits, tests, host/tools, model/agent settings, total task time/tool budgets, access permissions, and stopping rules. Predeclare **how much incremental overhead is acceptable** and which independently verified gain would justify it; avoid a post-hoc success metric.
-- Prepare **independently authored withheld** behavioral oracles and valid-alternative/defective controls. Qualify the grader before a worker attempt; grade full request fulfillment, not simply which tests a mutant kills.
-- Ensure source permission, environment isolation, and external model spend are authorized. Do not silently retry failed attempts; record missing data as `UNKNOWN`.
-
-### Three arms; same agent and total budget
-
-| Arm | Workflow |
-| --- | --- |
-| **A. Ordinary** | Existing coding agent implements and self-tests using its normal practice. |
-| **B. Cheap direct review** | The same agent implements, then explicitly reviews requirements and existing tests for up to three important negative/boundary cases and proposes/runs appropriate approved assertions **without mutation tooling**. |
-| **C. Optional Faultline** | The same agent implements, then may invoke the skill **only if risk warrants it**. Count skips, isolation/setup, baseline, mutations, test follow-up, and reporting. |
-
-Use matched fresh snapshots and the **same total time/tool budget per arm**, not extra time for Faultline. Prevent task, answer, and withheld-grader leakage between episodes; randomize run order where practical. Predeclare each arm's allowed tooling and capture all blocked/unfinished assignments. Do not treat the cheap-review arm as costless: count its additional tests, review, and tool use too.
-
-### Measures and decision
-
-**Primary measure:** independently satisfactory final delivery of the **whole original request** across every assigned episode, including valid alternative implementations. Distinguish false acceptance, correct-but-blocked results, and unknown outcomes.
-
-**Secondary measures:** material test gaps independently confirmed *beyond both A and B*; useful tests later verified; false alarms, suspected equivalent mutants, and wasted investigation; end-to-end elapsed time and tool/model cost, including setup, safety stops, correction, and reports. Show task-level results and denominators rather than using an aggregate mutation score as a success metric.
-
-- **Ceiling stop:** when ordinary and direct-review arms already satisfy the independently graded tasks and no material missed behavior can be confirmed, report `INCONCLUSIVE` rather than claiming Faultline added value. Preserve all not-run assignments.
-- **Prefer SIMPLIFY / STOP:** if C finds no independently meaningful additional gaps compared with B, or its extra overhead and noise exceed the predeclared tolerance. Keep useful direct review practices without a mutation ritual.
-- **Consider OPTIONAL / KEEP SKILL:** only if C repeatedly finds consequential gaps the cheap arm misses, the extra work fits the predeclared budget, and no dangerous false confidence or safety failures occur. Repeat on **fresh unseen holdout tasks** before broader claims.
-- **Report INCONCLUSIVE:** if the pilot is underpowered, blocked, or ceiling-limited; it does not justify a CLI or automatic workflow.
-
-Record an explicit decision (`KEEP SKILL` / `OPTIONAL` / `SIMPLIFY` / `STOP` / `INCONCLUSIVE`) plus the smallest next action. A positive skill-only result is **not** authorization to build a runtime.
-
-## 5. Milestone E — conditional CLI, only after a positive decision
-
-**Not committed work.** Build only if the previous milestones demonstrate a specific mechanical failure of skill-only operation: for example, non-reproducible mutant reset, unstructured receipts, unsafe mutation scope, or report identity drift that a small local tool would solve.
-
-If a CLI is admitted, the **smallest** reasonable interface is a local, opt-in audit against an explicitly authorized candidate and existing tests, with bounded mutations and concise receipts. Before defining flags or a public schema, require:
-
-- Exact original/candidate/mutant identities and immutable or separately stored test observations.
-- Host-qualified execution isolation, no unsafe fallback, no original worktree writes.
-- One mutation per isolated reset state, stable approved command argv, finite budget and explicit tool/environment provenance.
-- Distinct observations for killed/survived/invalid/inconclusive/unavailable/not-run; invalid/suspected-equivalent cases cannot inflate a score.
-- Evidence review without needing Intentline/Proofline, model accounts, network, or publishing permission.
-- A measured benefit versus the skill using existing tools, not merely attractive architecture.
-
-If the skill is enough, **never build this CLI**. No new runtime does not mean project failure.
-
-## 6. Minimum project structure
-
-**Now (documentation stage)**
+**Proposed files after decision:**
 
 ```text
 faultline/
-  LICENSE
   README.md
   DESIGN.md
   IMPLEMENTATION.md
-```
-
-**After Milestone A, only when verified**
-
-```text
-faultline/
-  faultline-audit/
+  LICENSE
+  faultline-challenge/
     SKILL.md
+    references/
+      challenges.md            # only if a short optional reference helps
   tests/
-    test_skill.py
+    test_skill.py              # portable packaging/instruction checks
 ```
 
-**After Milestone B, only as needed**
+Start with **one canonical root-level skill** and minimal frontmatter so existing agent hosts can discover it. No extra model, runtime Python package, always-on process, downloaded dependencies or cross-project installation. Optional references must be lean, not a catalogue of mandatory checks.
 
-```text
-  tests/
-    fixtures/
-      ...
-```
+### Skill behavior
 
-Keep one canonical skill file. Avoid duplicated installed-skill copies, an upfront Python package, speculative config, benchmark machinery, or a fixed report schema.
+1. Determine whether there is a consequential unresolved correctness guarantee; identify the source/caller and exact candidate. For trivial or obvious cases, recommend **SKIP / DIRECT TEST**.
+2. Prefer a cheap direct negative/boundary assertion or requirement clarification before proposing an injected failure.
+3. For a remaining material uncertainty, name **one** fault condition, how the existing test hook reaches it, a valid alternative outcome, and the observable distinguishing result. Source ground the invariant; mark missing authority **UNKNOWN**.
+4. Default to **PLAN / PROPOSED — NOT RUN** when execution is unapproved or the host boundary unqualified.
+5. Offer `CHALLENGE` steps **only conditionally**: exact authorized commands, stable snapshot, actually qualified isolation, bound resources, unchanged control, one perturbation and evidence recording. A skill cannot enforce these conditions.
+6. Return a short report with identity, what was proposed/observed, raw bounded evidence if present, caveats, actual work/cost and the smallest useful next test. No auto-fix, publication, or unsupported assurance.
 
-## 7. Practical acceptance checklist for the first usable version
+### Acceptance checks
 
-- [ ] One discoverable portable skill with honest status and direct-file usage.
-- [ ] No additional inference dispatch or external service requirement.
-- [ ] Explicit caller-authorized commands, budget, and actual isolated execution controls.
-- [ ] Original source and tests unchanged; one reset disposable copy per mutation.
-- [ ] Baseline before mutations; failing/unavailable baseline never yields a success score.
-- [ ] At least one observed `KILLED`, one `SURVIVED`, and one intentionally unavailable/inconclusive control in qualified disposable fixtures.
-- [ ] Mutation results retain source/test/candidate identity and all outcomes, not just favorable ones.
-- [ ] One concise report with a reproducible surviving-mutant counterexample and an actionable next test.
-- [ ] README install/use instructions verified on an actual supported host.
-- [ ] Honest limitations and explicit **no correctness certification** language throughout.
+- [ ] Real skills-CLI install/discovery or documented direct-file invocation **actually checked** on a named host; installation alone is not proof an agent invoked the skill.
+- [ ] Portable instructions and links are valid; no speculative install command in public README.
+- [ ] Honest read-only operation is useful even when isolation/commands are unavailable.
+- [ ] The skill does not authorize commands, dependency installs, network, file writes, secondary model calls or publishing merely by being loaded.
+- [ ] Correct distinction: actual unchanged-code failure versus mutation survivor versus test/harness/setup failure.
+- [ ] Low-risk work, unknown contract, unreachable injection, and obviously missing assertion produce a cheap skip or scoped plan, not an experiment ritual.
+- [ ] No required new schema, score, multi-agent step, Gapline/Intentline/Proofline adapter or platform.
 
-## 8. Work ordering and stop rule
+**Stop if:** the skill cannot describe an actionable, discriminating failure scenario without fabricating authority or claiming it ran tests.
 
-Suggested sequence: **docs → minimal canonical skill with cheap-review/skip path → authored fixtures + isolation qualification → one small approved dogfood audit → independently graded three-arm value pilot → explicit stop/simplify/keep decision**.
+## 2. Milestone B — qualify one real execution boundary
 
-Do not open feature branches for a general CLI, integrations, automatic test writing, CI enforcement, code duplication refactoring, or multi-language mutation until there is evidence of a specific need. Quality-of-evidence improvements are welcome; feature count is not a success metric.
+**Required before any live challenge:** [#2](https://github.com/grove/faultline/issues/2). **This issue and this plan do not authorize running tests.**
 
-**First next task:** implement only Milestone A, then demonstrate the Milestone B isolation gate and controls *before* claiming an executable mutation audit.
+Running normal tests or injected-failure harnesses can execute arbitrary project code. A copy, worktree, container label or instruction file is **not** sufficient isolation.
+
+On the **specific intended agent host**, independently qualify:
+
+- Protection against modifying the source candidate, retained evidence and unrelated files.
+- Denial of access to private files, real credentials and disallowed network/external effects.
+- Handling of symlinks, submodules, package scripts, discovery hooks, test fixtures, caches, child processes and path escape attempts.
+- Finite wall-clock/process/output budgets, deterministic setup/reset, cleanup restricted to created artifacts, and safe treatment of tool absence.
+- Explicit authorizations for candidate selection, exact argv/working directory, fixture reads, writes, output destination, resources, any model/tool expense and network effects.
+
+Run **benign synthetic negative controls** using host-observed receipts, never real secrets or actual external payment/services. Record allowed/denied behavior and telemetry gaps rather than claiming a sandbox because the tests passed.
+
+**Fail-closed invariant:** if isolation or authorized commands cannot be demonstrated, execute **nothing** and return `UNAVAILABLE` with the read-only challenge plan. No unprotected shell fallback.
+
+**Gate:** complete host-specific safety qualification or **NO GO** for executable Milestone C. Packaging tests do not substitute for this gate.
+
+## 3. Milestone C — deterministic Python fault-injection spike
+
+**Issue:** [#10](https://github.com/grove/faultline/issues/10). Start with **one** local Python fixture, not a general injection framework.
+
+### Contract and controls
+
+- Source-grounded invariant for the authored fixture: **the same logical payment/order operation identifier causes at most one external effect**, even if a post-commit acknowledgement is lost and the caller retries.
+- Use an in-memory fake ledger/service; no real money, private data, payment API, network fault injection or production system.
+- Freeze **two intentionally different implementations** before the experiment: one valid idempotent path and one deliberately defective double-application path. Keep an independently authored oracle withheld from worker contexts during comparative evaluation.
+- A deterministic test hook loses the acknowledgement **after** the first effect is committed. Retry with the same key; inspect the actual recorded effects, not merely the returned status.
+- Verify unchanged normal/control behavior; run the failure scenario against the **unchanged source for each fixture**. Fault injection may modify the test harness/environment, **not** the implementation being judged.
+- Prefer one bounded challenge, expanding only when a second independent hypothesis is justified. No sleeps/races as a substitute for a controlled synchronization mechanism.
+
+### Required honest controls
+
+| Control | Correct reporting |
+| --- | --- |
+| Defective fixture yields two effects under the injected failure | `VIOLATION_OBSERVED`, attributable to this qualified scenario only |
+| Valid fixture yields one effect under identical failure | `NO_VIOLATION_OBSERVED`, not universal correctness |
+| Caller contract unclear or fixture cannot reach commit/ack boundary | `INCONCLUSIVE` or `NOT_RUN` with the missing assumption |
+| Baseline already broken/flaky, hook fails, receipt incomplete | `INCONCLUSIVE` / `UNAVAILABLE`; no verdict based on noise |
+| Isolation missing or permission not provided | `UNAVAILABLE`; **no execution** |
+| Obvious direct assertion or low-risk scenario needs no injection | `SKIPPED` decision, not a mutation/test outcome |
+
+For any executed case retain exact original bytes/identity, authorization, commands, verified safety boundary, injection configuration, baseline, observed side-effect sequence, meaningful opposite result, elapsed/tool cost and original-source post-check. Count not-run attempts and failures; do not silently discard inconvenient episodes.
+
+### Acceptance
+
+- [ ] Authored expected controls and source/oracle frozen **before** running any agent evaluation.
+- [ ] Real execution permitted only after #2 qualifies that actual host.
+- [ ] A completed, qualified run (if authorized) distinguishes a violation from a valid implementation **without changing the production candidate**.
+- [ ] An observed result is never inferred from a fixture label or an imagined transcript; every claim links to a genuine receipt.
+- [ ] Advice-only `NOT_RUN` and fail-closed `UNAVAILABLE` are meaningful deliverables if execution is not qualified.
+- [ ] No hidden build/install, public deployment, auto-remediation, network call, or new fault-injection engine.
+
+**Stop/adjust if:** setup dominates the value, oracle relies on the implementation being tested, the environment cannot be qualified, or normal direct review would already supply the same useful assertion for less cost.
+
+## 4. Milestone D — prove extra value over simpler agent testing
+
+**Reuse the framework in [#6](https://github.com/grove/faultline/issues/6)**, but update the primary hypothesis from mutation scores/test-gap hunting to independently confirmed **behavioral correctness** improvement. A planted failure in Milestone C establishes mechanics, **not** general usefulness.
+
+Run a small **predeclared feasibility** comparison on fresh, independently prepared Python cases (e.g. four to six initial tasks, including low-risk skip and contract-consistent clean controls). Keep independent grader/oracle and valid alternatives hidden from workers.
+
+| Arm | Same total end-to-end budget |
+| --- | --- |
+| **A — ordinary** | Same coding agent with ordinary development and self-testing. |
+| **B — cheap direct review** | Same agent plus explicit negative/failure-path review and applicable direct tests, no injected faults. |
+| **C — optional Faultline** | Same agent plus selective `PLAN`/`CHALLENGE`, counting all isolation/setup, baselines, injected tests, corrections, reporting, stops and skips. |
+
+Freeze original request, source bytes, host/model/settings, command permissions, environment, allowed time/tool cost, grading protocol, **acceptable extra overhead** and stop criteria before launches. Randomize order where feasible, do not allow oracle leakage or silent reruns, and include all assigned cases and incomplete attempts.
+
+**Primary:** independent judgment of satisfactory final outcome for the **whole original task**, including valid alternative solutions.
+
+**Secondary:** material implementation defects or durable regression checks C adds *beyond B*, false alarms or valid-design accusations, inconclusive setup, isolation failures, time, tool/model cost, and human verification effort where measured. Keep useful refutations/no findings. Do not use number of scenarios, mutation counts, or report length as substitutes for value.
+
+**Decision:**
+- **KEEP OPTIONAL / CONTINUE** only if experiments repeatedly reveal consequential otherwise-missed problems at reasonable total cost with no unsafe effects; expand carefully on fresh holdout tasks.
+- **NARROW / SIMPLIFY / STOP** if direct review gives equivalent useful evidence more cheaply or equivalent outcomes create excessive noise.
+- **INCONCLUSIVE** if blocked, underpowered, ceiling-limited, or unsafe; do not claim superiority.
+- Explicitly label simulated/seeded defects as controls, not production discoveries.
+
+No benchmark result automatically authorizes a custom CLI or runtime.
+
+## 5. Milestone E — dogfood and conditional additional techniques
+
+After qualification and positive evidence, consider **one** approved small real-project snapshot with a maintainer-specified guarantee. See [#5](https://github.com/grove/faultline/issues/5) for older mutation-oriented candidate targets; **re-scope before use**. Get separate source, commands, isolation and budget authorization. Never treat these candidate areas as known defects.
+
+Only then assess techniques **one at a time**:
+
+1. **Property/metamorphic challenges:** input transformation with a source-grounded relation and valid-alternative controls.
+2. **Differential/compatibility challenges:** before/after comparison with explicit allowance for intentional differences and legacy data.
+3. **Stateful transition sequences or incident replay:** deterministic reproduction, genuine invariant and resettable test setup.
+4. **Focused mutation testing:** reuse existing backends only if a concrete test-strength question remains after cheap review; see [#1](https://github.com/grove/faultline/issues/1) and [#4](https://github.com/grove/faultline/issues/4).
+
+Environment/configuration tests, service-contract challenges, language expansion, integrations, and broader chaos-style testing are **ideas, not committed backlog or supported modes**. [Rust #7](https://github.com/grove/faultline/issues/7) and [Java #8](https://github.com/grove/faultline/issues/8) remain deferred until an actual Python benefit and host fit exist.
+
+Each proposed addition needs independent tests of correctness, valid alternatives, false alarms, safety, and **additional value over the existing skill and cheaper workflow**. One negative study is a legitimate reason not to add features.
+
+## 6. Only-if-needed implementation helpers
+
+**Default:** no new runtime, shell utility, orchestration server, persistent schema, CLI, CI gate or automatic PR workflow. Use existing host tools and independently selected test hooks.
+
+Consider a tiny helper **only** if measured skill-only trials reveal a *specific* repeated failure—e.g. nondeterministic replay, unsafe state reset, missing provenance or incorrect attribution—that a small deterministic component would solve. Before building it require a separate threat model, isolated negative controls, measured cost/benefit, and an explicit go decision. More features or cleaner architecture alone are not sufficient.
+
+## 7. Current state and issue map
+
+**Current repository** contains only `README.md`, `DESIGN.md`, `IMPLEMENTATION.md` and `LICENSE`. Documentation changes **do not complete** any milestone.
+
+| Issue | Current treatment under the proposed pivot |
+| --- | --- |
+| [#9](https://github.com/grove/faultline/issues/9) | Product direction decision: do first |
+| [#10](https://github.com/grove/faultline/issues/10) | One deterministic Python failure-path challenge: first experiment |
+| [#2](https://github.com/grove/faultline/issues/2) | Safety gate mandatory for any executable work |
+| [#3](https://github.com/grove/faultline/issues/3) | One portable skill: rescope conditionally rather than duplicate |
+| [#6](https://github.com/grove/faultline/issues/6) | Reuse value-comparison protocol; extend scope only if justified |
+| [#1](https://github.com/grove/faultline/issues/1), [#4](https://github.com/grove/faultline/issues/4) | Mutation tooling and classifications: defer |
+| [#5](https://github.com/grove/faultline/issues/5) | Approved real-project dogfood: defer and rescope |
+| [#7](https://github.com/grove/faultline/issues/7), [#8](https://github.com/grove/faultline/issues/8) | Other languages: defer |
+
+**Next smallest action:** resolve #9, specify #10's authoritative fixture/oracle, and qualify #2 for the actual host before any proposed challenge is described as executed. If these gates fail, retain the useful read-only plan or stop rather than broadening scope.
+
+[README](README.md) · [Design](DESIGN.md)
