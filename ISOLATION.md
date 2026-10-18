@@ -64,7 +64,17 @@ VM exists anywhere on the host. Docker's own [security documentation](https://do
 describes the daemon's authority; client presence alone supplies no boundary
 evidence. No Docker control socket is offered to a worker.
 The retained help also reports `debug`/`init` plugin metadata failures despite
-exit zero; plugin discovery is not a runtime health check.
+exit zero; plugin discovery is not a runtime health check. **The `docker --help`
+command may invoke Docker CLI plugin binaries to obtain their metadata.** The
+failures are consistent with attempted plugin discovery but do not establish
+which helper processes actually started, what they did, or whether they caused
+side effects. No independent process/side-effect telemetry was collected. Thus
+**zero boundary launches** and **zero synthetic challenge children** mean only
+that no VM/sandbox qualification experiment was launched; they do **not**
+establish zero subprocesses or a fully side-effect-free host inspection.
+"Read-only preflight" describes the intended scope (no requested changes), not
+a verified OS-level read-only execution guarantee. The retained JSON contains
+the original observations; this clarification does not reclassify them.
 
 Apple's [project requirements](https://github.com/apple/container#requirements)
 describe Apple silicon and macOS 26 support, but do not establish compatibility
