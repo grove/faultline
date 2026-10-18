@@ -17,6 +17,12 @@ all twelve native sandbox launches failed before a child started. The retained
 protected-file or network denials. No execution is enabled; closing an issue or
 copying the skill cannot qualify a host.
 
+The subsequent [Apple Container preflight](ISOLATION.md#next-candidate-apple-container--unavailable-before-setup)
+selects one next candidate but finds no installed CLI; setup and synthetic launches
+remain unapproved. Its [inspection receipt](qualification/2026-10-18-apple-container-preflight.json)
+records **UNAVAILABLE**, zero boundary launches and all controls **NOT RUN**.
+Docker client/app presence is not qualification. #2 remains open.
+
 ## Use the skill
 
 No runtime dependency or installation is required. Ask your existing agent:

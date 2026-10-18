@@ -84,6 +84,12 @@ Original synthetic source/tests/receipt hashes remained unchanged after every
 attempt. Actual effect denial, descendant containment and resource limits remain
 unestablished; no project execution or Milestone C authorization follows.
 
+**Next #2 iteration:** [Apple Container preflight](ISOLATION.md#next-candidate-apple-container--unavailable-before-setup)
+selects one next candidate, with [read-only inspection evidence](qualification/2026-10-18-apple-container-preflight.json).
+The CLI is not found; setup and synthetic launches are unapproved. Zero new
+boundary launches; all controls NOT RUN / UNQUALIFIED. Keep #2 open and obtain
+exact host/setup approval before a separately authorized synthetic protocol.
+
 **Required before any live challenge:** [#2](https://github.com/grove/faultline/issues/2). **This issue and this plan do not authorize running tests.**
 
 Running normal tests or injected-failure harnesses can execute arbitrary project code. A copy, worktree, container label or instruction file is **not** sufficient isolation.
