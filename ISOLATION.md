@@ -1,8 +1,10 @@
 # Execution gate: observed host qualification
 
 **Decision on 2026-10-18: NO_GO / UNAVAILABLE. No qualified execution host.**
-The [actual-host receipt](qualification/2026-10-18-macos.json) records failed
-native boundary launches, not successful denials of the requested effects.
+The [native receipt](qualification/2026-10-18-macos.json) records failed
+boundary launches. The subsequent [Apple Container prerequisite inspection](qualification/2026-10-18-apple-container-preflight.json)
+records a missing CLI and unapproved setup; no new boundary launch was attempted.
+Neither record establishes successful denials of the requested effects.
 The advice-only [skill](faultline-audit/SKILL.md) remains advice-only even if
 [#2](https://github.com/grove/faultline/issues/2) closes. Nothing here enables
 project imports, test discovery, tests, mutants or injected-failure harnesses.
@@ -35,7 +37,111 @@ evidence elsewhere. Verify both immutable originals and unchanged test copies
 after every step; drift stops the run and invalidates attribution. Do not repair
 drift by silently restoring bytes and continuing.
 
-## One concrete host mechanism, and its limits
+## Next candidate: Apple Container — UNAVAILABLE before setup
+
+The read-only follow-up for [#2](https://github.com/grove/faultline/issues/2)
+selects **Apple Container only** for the next qualification. It does not implement
+a runner or select another backend when prerequisites fail. **Keep #2 open:**
+the required positive child and independently observed protections remain missing.
+
+**Recorded host:** `faultline-mac-codex-workspace-write-2026-10-18`, a local
+session label, not a hardware attestation. Actual observations are macOS 27.0.1
+build 26A434, Darwin 27.0.0, arm64, with the existing restricted-network and
+workspace-write Codex configuration. The `sysctl` prerequisite query returned
+`Operation not permitted`; virtualization availability and resource capacity
+remain **UNKNOWN**. No query was retried with weaker host restrictions.
+
+| Option inspected | Evidence and selection |
+| --- | --- |
+| **Apple Container — selected** | No `container` on the recorded search path or at `/usr/local/bin/container`, `/opt/homebrew/bin/container`, `/usr/bin/container`. CLI/version/image digest and version-matched help are **UNAVAILABLE**. Installation is not authorized. |
+| Installed Docker | CLI 29.9.1, build `dfc520dcc2`, and `/Applications/Docker.app` present. Retained `--version` and `--help` are client-only evidence. No daemon, image, socket, context or confinement inspection; not selected. |
+| Separately provisioned disposable VM — deferred fallback | No provisioned VM identified by this bounded inspection; no VM is started. Would require a different, explicitly approved host/configuration with only fixture inputs and no sensitive shared folders. |
+| Native `sandbox-exec` — historical evidence only | Prior twelve launches failed before child startup. No retry; deprecated launcher and missing containment/resource evidence do not qualify it. |
+
+The inventory also checks named alternative CLIs and common app locations; a
+missing result means **not found in those locations**, not proof that no copy or
+VM exists anywhere on the host. Docker's own [security documentation](https://docs.docker.com/engine/security/)
+describes the daemon's authority; client presence alone supplies no boundary
+evidence. No Docker control socket is offered to a worker.
+The retained help also reports `debug`/`init` plugin metadata failures despite
+exit zero; plugin discovery is not a runtime health check. **The `docker --help`
+command may invoke Docker CLI plugin binaries to obtain their metadata.** The
+failures are consistent with attempted plugin discovery but do not establish
+which helper processes actually started, what they did, or whether they caused
+side effects. No independent process/side-effect telemetry was collected. Thus
+**zero boundary launches** and **zero synthetic challenge children** mean only
+that no VM/sandbox qualification experiment was launched; they do **not**
+establish zero subprocesses or a fully side-effect-free host inspection.
+"Read-only preflight" describes the intended scope (no requested changes), not
+a verified OS-level read-only execution guarantee. The retained JSON contains
+the original observations; this clarification does not reclassify them.
+
+Apple's [project requirements](https://github.com/apple/container#requirements)
+describe Apple silicon and macOS 26 support, but do not establish compatibility
+with this exact host. Its [command reference](https://github.com/apple/container/blob/main/docs/command-reference.md)
+was reviewed on 2026-10-18 as **current-branch research**, not version-matched
+installed behavior. It documents root `--read-only`, separate read-only mounts,
+CPU/memory settings and networking. Root read-only mode does not by itself
+protect other mounts. `--internal` is host-only networking; `--no-dns` only omits
+DNS configuration. Neither establishes full network denial. No proposed launch
+argv is supplied: exact flags must first be verified against a pinned installed
+CLI and matching release documentation. CLI, image and init/kernel provenance
+remain unpinned because nothing was installed or retrieved.
+
+### Permissions and retained evidence
+
+The current request authorizes this inspection, repository edits and PR creation.
+It does **not** authorize installation, image/kernel retrieval, service startup,
+host changes, synthetic VM launches or network probes. None was attempted.
+Read-only documentation access and GitHub publication are distinct from runtime
+network authority. No target-project or #10 code ran; the native canary coordinator
+was not rerun. No executable skill behavior is enabled.
+
+The [preflight JSON](qualification/2026-10-18-apple-container-preflight.json)
+retains UTC time, source commit and SHA-256 identities **before these documentation
+edits**, bounded lookup paths/results, exact inspection argv/cwd/environment,
+exit/stdout/stderr with documented path redaction, elapsed command/inspection time,
+permission gaps and every
+unrun control. It was collected by trusted standard-library host inspection,
+outside any worker; no worker exists in this attempt. The cwd is redacted as
+`<faultline-checkout>` and the Docker help's home prefix as `<host-home>` (with
+the original stdout SHA-256 retained); no machine serial, credential configuration, environment
+dump or authentication material was collected. The elapsed field covers the
+recorded local inspection only; documentation research and PR work are separate
+and unmetered. No runtime objects, fixtures or writable host mounts were created,
+so there is no VM/fixture cleanup to claim and no descendant cleanup evidence.
+The earlier native receipt is retained unchanged. Zero boundary-child counts
+refer to this preflight, not the separate maintainer checks documented in README.
+
+### Required next controls — all NOT RUN / UNQUALIFIED
+
+After separate setup approval, review and approve **one** synthetic protocol with
+exact CLI/image/fixture hashes, argv, cwd, allowlisted environment, scratch and
+host-owned receipt destinations, observer identities, inert endpoints, finite
+budgets and identity-scoped cleanup. This is a review checklist, not launch
+authority or an executable command template:
+
+| Control | Required independent evidence before a qualified decision |
+| --- | --- |
+| Positive smoke test first | Approved Python child actually starts, reads immutable input and writes only disposable scratch; host observes startup, expected output and unchanged protected manifest. Stop if this fails. |
+| Protected files and private paths | Actually attempt source/test/receipt writes and renames, synthetic credential/private reads and unrelated-directory access. Capture explicit policy denials and trusted before/after manifests of bytes, kinds, modes and links after **each** attempt. Unchanged hashes alone do not prove denial. |
+| Alias and mount protection | Probe symlinks, hard links, `..`, source identity and read-only inputs with fresh state for each attempt. No retained writable host bind mounts, home/keychain/SSH/cloud/daemon sockets, forwarded agents or inherited sensitive descriptors. |
+| Outbound and host-facing network | Approved inert sinks and an independent host observer for TCP/UDP, relevant IPv4/IPv6, DNS, gateway/host-only routes, local service/proxy/socket paths. A timeout, refusal, absent DNS or guest message is insufficient. No real production endpoints. |
+| Host-owned lifetime and limits | Bound time, memory, processes, CPU and output; exercise children and detached descendants. Independently observe VM termination and no lingering descendants after normal completion, timeout and interrupted cleanup. A process-group kill is insufficient. |
+| State, receipts and cleanup | Fresh immutable candidate and scratch per attempt; verify originals/protected receipt identities after every control. Keep authoritative evidence outside worker writes; clean only created identities without following worker links. Stop on drift or incomplete observation. |
+
+Unavailable or unsafe controls remain **UNAVAILABLE / UNQUALIFIED**, never PASS.
+Even successful synthetic qualification would apply only to its exact host,
+versions and configuration, require independent review, and would not enable
+`faultline-audit`, mutations, project tests or the #10 experiment.
+
+**Decision: NO_GO / UNAVAILABLE.** Smallest next action: obtain approval for a
+named separately provisioned development host and exact pinned Apple Container
+setup effects, then separately approve the reviewed synthetic protocol. This PR
+does not request blanket installation or experiment authority. Do not escape the
+current Codex restrictions or install a substitute runtime to complete a receipt.
+
+## Historical native mechanism, and its limits
 
 The considered mechanism is macOS's **native Seatbelt launcher,
 `/usr/bin/sandbox-exec`**, with a default-deny host policy. It delegates enforcement

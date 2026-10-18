@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "kind": "READ_ONLY_PREREQUISITE_INSPECTION",
+  "observed_at_utc": "2026-10-18T18:03:53.250786+00:00",
+  "host_id": "faultline-mac-codex-workspace-write-2026-10-18",
+  "host_identity_scope": "Local session label, not a hardware serial or reusable host attestation.",
+  "source_commit": "c8c14725e9356fcc7d5981f82046d21dca398e1b",
+  "source_sha256": {
+    "ISOLATION.md": "d86dccbf6de93776373cae016e394ffc7eac10cfb98e073096450ca5dea2f9b2",
+    "qualification/macos_canaries.py": "df7916ab26fe7ce0499b2a76ff80366e1a4b6ae0aef7764122b1916621e63049",
+    "qualification/2026-10-18-macos.json": "7993892a631482c5181f403dbb04e3f0dea98a98f9be2f1c61cc8d8cf50407fe",
+    "experiments/lost-acknowledgement.md": "d7e7f30eeedf8e71671934c0b816a9bf1ec8f95e9d40b08966a28708bd755131",
+    "faultline-audit/SKILL.md": "d94cfa4a3484d527c88966a2fd4ed27bd6e1f19c53e16bada3fb158f1f7b4d2b"
+  },
+  "restrictions": {
+    "source": "Declared Codex session permissions; not independently attested.",
+    "filesystem": "workspace-write; repository .git read-only inside sandbox",
+    "network": "restricted",
+    "escalation_for_qualification": "NOT_AUTHORIZED; no host restriction relaxed"
+  },
+  "tool_search_path": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+  "tools_on_search_path": {
+    "container": null,
+    "docker": "/opt/homebrew/bin/docker",
+    "podman": null,
+    "colima": null,
+    "limactl": null,
+    "qemu-system-aarch64": null,
+    "vfkit": null,
+    "tart": null,
+    "utm": null,
+    "prlctl": null,
+    "VBoxManage": null,
+    "multipass": null,
+    "sandbox-exec": "/usr/bin/sandbox-exec"
+  },
+  "checked_install_paths": {
+    "/usr/local/bin/container": false,
+    "/opt/homebrew/bin/container": false,
+    "/usr/bin/container": false,
+    "/Applications/Docker.app": true,
+    "/Applications/OrbStack.app": false,
+    "/Applications/UTM.app": false,
+    "/Applications/VirtualBuddy.app": false,
+    "/Applications/Parallels Desktop.app": false
+  },
+  "observations": [
+    {
+      "argv": [
+        "/usr/bin/uname",
+        "-srm"
+      ],
+      "cwd": "<faultline-checkout>",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "LC_ALL": "C"
+      },
+      "returncode": 0,
+      "stdout": "Darwin 27.0.0 arm64\n",
+      "stderr": "",
+      "elapsed_seconds": 0.003
+    },
+    {
+      "argv": [
+        "/usr/bin/sw_vers"
+      ],
+      "cwd": "<faultline-checkout>",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "LC_ALL": "C"
+      },
+      "returncode": 0,
+      "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434\n",
+      "stderr": "",
+      "elapsed_seconds": 0.012
+    },
+    {
+      "argv": [
+        "/usr/sbin/sysctl",
+        "hw.optional.arm64",
+        "hw.logicalcpu",
+        "hw.memsize",
+        "kern.hv_support"
+      ],
+      "cwd": "<faultline-checkout>",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "LC_ALL": "C"
+      },
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted\n",
+      "elapsed_seconds": 0.003
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "--version"
+      ],
+      "cwd": "<faultline-checkout>",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "LC_ALL": "C"
+      },
+      "returncode": 0,
+      "stdout": "Docker version 29.9.1, build dfc520dcc2\n",
+      "stderr": "",
+      "elapsed_seconds": 0.079
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "--help"
+      ],
+      "cwd": "<faultline-checkout>",
+      "environment": {
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "LC_ALL": "C"
+      },
+      "returncode": 0,
+      "stdout": "Usage:  docker [OPTIONS] COMMAND\n\nA self-sufficient runtime for containers\n\nCommon Commands:\n  run         Create and run a new container from an image\n  exec        Execute a command in a running container\n  ps          List containers\n  build       Build an image from a Dockerfile\n  bake        Build from a file\n  pull        Download an image from a registry\n  push        Upload an image to a registry\n  images      List images\n  login       Authenticate to a registry\n  logout      Log out from a registry\n  search      Search Docker Hub for images\n  version     Show the Docker version information\n  info        Display system-wide information\n\nManagement Commands:\n  agent*      Docker AI Agent Runner\n  ai*         Docker AI Agent - Ask Gordon\n  builder     Manage builds\n  buildx*     Docker Buildx\n  checkpoint  Manage checkpoints\n  compose*    Docker Compose\n  container   Manage containers\n  context     Manage contexts\n  desktop*    Docker Desktop commands\n  dhi*        CLI for managing Docker Hardened Images\n  extension*  Manages Docker extensions\n  image       Manage images\n  manifest    Manage Docker image manifests and manifest lists\n  mcp*        Docker MCP Plugin\n  model*      Docker Model Runner\n  network     Manage networks\n  offload*    Docker Offload\n  pass*       Docker Pass Secrets Manager Plugin (beta)\n  plugin      Manage plugins\n  scout*      Docker Scout\n  system      Manage Docker\n  volume      Manage volumes\n\nSwarm Commands:\n  config      Manage Swarm configs\n  node        Manage Swarm nodes\n  secret      Manage Swarm secrets\n  service     Manage Swarm services\n  stack       Manage Swarm stacks\n  swarm       Manage Swarm\n\nCommands:\n  attach      Attach local standard input, output, and error streams to a running container\n  commit      Create a new image from a container's changes\n  cp          Copy files/folders between a container and the local filesystem\n  create      Create a new container\n  diff        Inspect changes to files or directories on a container's filesystem\n  events      Get real time events from the server\n  export      Export a container's filesystem as a tar archive\n  history     Show the history of an image\n  import      Import the contents from a tarball to create a filesystem image\n  inspect     Return low-level information on Docker objects\n  kill        Kill one or more running containers\n  load        Load an image from a tar archive or STDIN\n  logs        Fetch the logs of a container\n  pause       Pause all processes within one or more containers\n  port        List port mappings or a specific mapping for the container\n  rename      Rename a container\n  restart     Restart one or more containers\n  rm          Remove one or more containers\n  rmi         Remove one or more images\n  save        Save one or more images to a tar archive (streamed to STDOUT by default)\n  start       Start one or more stopped containers\n  stats       Display a live stream of container(s) resource usage statistics\n  stop        Stop one or more running containers\n  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE\n  top         Display the running processes of a container\n  unpause     Unpause all processes within one or more containers\n  update      Update configuration of one or more containers\n  wait        Block until one or more containers stop, then print their exit codes\n\nInvalid Plugins:\n  debug       failed to fetch metadata: exit status 1\n  init        failed to fetch metadata: exit status 2\n\nGlobal Options:\n      --config string      Location of client config files (default\n                           \"<host-home>/.docker\")\n  -c, --context string     Name of the context to use to connect to the\n                           daemon (overrides DOCKER_HOST env var and\n                           default context set with \"docker context use\")\n  -D, --debug              Enable debug mode\n  -H, --host string        Daemon socket to connect to\n  -l, --log-level string   Set the logging level (\"debug\", \"info\",\n                           \"warn\", \"error\", \"fatal\") (default \"info\")\n      --tls                Use TLS; implied by --tlsverify\n      --tlscacert string   Trust certs signed only by this CA (default\n                           \"<host-home>/.docker/ca.pem\")\n      --tlscert string     Path to TLS certificate file (default\n                           \"<host-home>/.docker/cert.pem\")\n      --tlskey string      Path to TLS key file (default\n                           \"<host-home>/.docker/key.pem\")\n      --tlsverify          Use TLS and verify the remote\n  -v, --version            Print version information and quit\n\nRun 'docker COMMAND --help' for more information on a command.\n\nFor more help on how to use Docker, head to https://docs.docker.com/go/guides/\n",
+      "stderr": "",
+      "elapsed_seconds": 0.557,
+      "stdout_before_redaction_sha256": "ae6714b615c9fd748b874cfcc0df2cf60ad5b3aeaece1e05f4a3d06eaddd7391"
+    }
+  ],
+  "selected_candidate": {
+    "name": "Apple Container",
+    "cli_version": null,
+    "image_digest": null,
+    "status": "UNAVAILABLE",
+    "reason": "CLI not found on the recorded search path or checked standard install paths.",
+    "version_matched_help": "UNAVAILABLE; no installed CLI",
+    "configuration": "NOT_CREATED; no VM, mounts, network, image or service configured"
+  },
+  "permissions": {
+    "read_only_host_and_cli_inspection": "AUTHORIZED by issue #2 implementation request",
+    "repository_changes_and_pr": "AUTHORIZED by current user request",
+    "installation_download_image_pull_service_start_host_changes": "NOT_AUTHORIZED; NOT_RUN",
+    "synthetic_boundary_launches_and_network_probes": "NOT_AUTHORIZED; NOT_RUN",
+    "target_project_and_issue_10_execution": "NOT_AUTHORIZED; NOT_RUN"
+  },
+  "controls": [
+    {
+      "name": "positive-child-read-immutable-write-scratch",
+      "status": "NOT_RUN",
+      "qualification": "UNQUALIFIED",
+      "reason": "Selected runtime unavailable; no synthetic execution permission."
+    },
+    {
+      "name": "forbidden-write-rename-source-tests-receipts",
+      "status": "NOT_RUN",
+      "qualification": "UNQUALIFIED",
+      "reason": "Selected runtime unavailable; no synthetic execution permission."
+    },
+    {
+      "name": "synthetic-private-read-and-unrelated-directory-access",
+      "status": "NOT_RUN",
+      "qualification": "UNQUALIFIED",
+      "reason": "Selected runtime unavailable; no synthetic execution permission."
+    },
+    {
+      "name": "symlink-hardlink-dotdot-source-identity",
+      "status": "NOT_RUN",
+      "qualification": "UNQUALIFIED",
+      "reason": "Selected runtime unavailable; no synthetic execution permission."
+    },
+    {
+      "name": "outbound-and-host-facing-ipv4-ipv6-dns-local-proxy",
+      "status": "NOT_RUN",
+      "qualification": "UNQUALIFIED",
+      "reason": "Selected runtime unavailable; no synthetic execution permission."
+    },
+    {
+      "name": "timeout-cpu-memory-process-output-limits",
+      "status": "NOT_RUN",
+      "qualification": "UNQUALIFIED",
+      "reason": "Selected runtime unavailable; no synthetic execution permission."
+    },
+    {
+      "name": "detached-descendants-vm-termination-and-host-observed-cleanup",
+      "status": "NOT_RUN",
+      "qualification": "UNQUALIFIED",
+      "reason": "Selected runtime unavailable; no synthetic execution permission."
+    },
+    {
+      "name": "fresh-attempt-state-and-protected-before-after-manifests",
+      "status": "NOT_RUN",
+      "qualification": "UNQUALIFIED",
+      "reason": "Selected runtime unavailable; no synthetic execution permission."
+    }
+  ],
+  "boundary_launches": 0,
+  "synthetic_child_starts": 0,
+  "project_execution": "NOT_RUN",
+  "issue_10_execution": "NOT_RUN",
+  "network_and_process_observer": "NOT_ESTABLISHED",
+  "cleanup": "No runtime, service, fixture, image, network or writable bind mount created.",
+  "decision": "UNAVAILABLE",
+  "qualification_granted": false,
+  "issue_must_remain_open": true,
+  "limitations": [
+    "PATH and named installation paths are a bounded inventory, not a whole-host software search.",
+    "sysctl prerequisite query denied; hardware virtualization availability remains unknown.",
+    "Docker CLI/app presence does not attest daemon availability, confinement or image provenance.",
+    "No new positive control, protected manifest, independent denial or containment evidence.",
+    "This receipt retains inspection output only; the prior native receipt is not rerun or reclassified.",
+    "Docker --help reported debug/init plugin metadata failures despite exit 0; plugin discovery is not a daemon or runtime health check."
+  ],
+  "next_action": "Obtain approval for a separately provisioned development host and exact pinned Apple Container setup effects; then separately approve a reviewed synthetic canary protocol.",
+  "elapsed_seconds": 0.669,
+  "redactions": {
+    "cwd": "<faultline-checkout>",
+    "docker_help_home_prefix": "<host-home>"
+  }
+}
