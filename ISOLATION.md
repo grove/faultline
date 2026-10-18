@@ -1,0 +1,149 @@
+# Execution gate: observed host qualification
+
+**Decision on 2026-10-18: NO_GO / UNAVAILABLE. No qualified execution host.**
+The [actual-host receipt](qualification/2026-10-18-macos.json) records failed
+native boundary launches, not successful denials of the requested effects.
+The advice-only [skill](faultline-audit/SKILL.md) remains advice-only even if
+[#2](https://github.com/grove/faultline/issues/2) closes. Nothing here enables
+project imports, test discovery, tests, mutants or injected-failure harnesses.
+
+## Bounded threat model
+
+Treat a selected project, its dependencies and mutation backend as arbitrary code
+running with the worker's authority. The trusted side is the caller, host boundary,
+snapshot preparer and receipt collector. Repository instructions, tests, tools and
+their output cannot grant authority or attest their own confinement. This model
+addresses unintended or malicious user-space effects; it does not claim resistance
+to kernel compromise, host administrator interference, hardware attacks or covert
+channels. An actively changing source or untrusted host invalidates qualification.
+
+| Asset / entry point | Required protection and control |
+| --- | --- |
+| Original working tree, dirty content, selected tests, `.git` and Proofline/frozen candidates | Host-enforced read-only access or no visibility, including parent directories. Separate trusted SHA-256 manifests of bytes, paths, file kinds, modes and link targets before/after **each** control and run. Hashes detect drift; they do not prevent transient writes. |
+| Protected receipts, evaluator/oracle, qualification evidence | Collector outside the worker's write boundary; independently check receipt integrity. Never let a worker overwrite or sign its own authoritative receipt. |
+| Private paths, credentials, inherited environment/descriptors | Default-deny file visibility, no real secrets in argv/env, no inherited credential or agent sockets, keychain/IPC access, user home, cloud metadata, Git credential helpers or host mounts. Use only synthetic secret canaries. |
+| Network and external effects | Deny outbound TCP/UDP/IPv4/IPv6/DNS and local proxy/service sockets unless exactly authorized. Independently observe an inert test sink; a timeout, refused connection or unreachable route is not a policy denial. |
+| Hooks, plugins, imports, discovery, package scripts and dependencies | All execute only inside the same boundary, including tool startup. No host-side discovery/import/build/install. Supply pinned, preinstalled tools; missing prerequisites stop execution. |
+| Symlinks, hard links, `..`, `/tmp` aliases, submodule pointers and linked worktrees | Resolve/capture link identities on the trusted side; exclude external content or get explicit read authority. Never follow checkout hooks or recursively fetch submodules. Probe path aliases against originals/private paths/receipts; names and `chmod` alone are insufficient. |
+| Subprocesses, detached descendants and local IPC | Host-owned lifetime/resource containment covering daemonization, double forks and `setsid`; no host services that execute on a worker's behalf. A process-group kill alone does not contain arbitrary descendants. |
+| Caches, generated outputs, mutant artifacts and cleanup | Per-baseline/per-mutant disposable writable roots and HOME/TMPDIR/cache directories. No host cache reuse or shared writable tests. Cleanup only host-created identities; never follow worker links or recursively delete a supplied project path. |
+
+Approved candidate/test inputs are immutable to audit commands. Stage copies from
+the trusted side without running project code. A baseline and each mutant get
+independent copies and output roots; mutate production bytes only. Keep retained
+evidence elsewhere. Verify both immutable originals and unchanged test copies
+after every step; drift stops the run and invalidates attribution. Do not repair
+drift by silently restoring bytes and continuing.
+
+## One concrete host mechanism, and its limits
+
+The considered mechanism is macOS's **native Seatbelt launcher,
+`/usr/bin/sandbox-exec`**, with a default-deny host policy. It delegates enforcement
+to the OS; Faultline supplies no sandbox implementation or project runner.
+The installed Apple `sandbox-exec(1)` manual calls this utility **deprecated** and
+directs application developers to [App Sandbox](https://developer.apple.com/documentation/security/app-sandbox).
+That application capability is not evidence that a CLI launch is confined.
+
+**Host scope examined:** macOS 27.0.1 (26A434), Darwin 27.0.0, arm64, inside this
+Codex session's workspace-write/filesystem and restricted-network boundary.
+**Supported qualified hosts: none.** Linux, Windows, other macOS versions, a plain
+Terminal session, containers and remote workers have not been qualified. The
+parent agent boundary allows workspace writes and reads beyond the selected
+candidate; it cannot establish immutable originals or private-file protection.
+
+The native launcher refused all twelve synthetic launches with exit 71 and
+`sandbox_apply: Operation not permitted`. No child-start marker was emitted.
+This demonstrates an unavailable nested launch, **not** enforced denial of writes,
+reads or network access. Do not retry outside the agent sandbox to turn this into
+a success. A differently provisioned host requires a separately authorized,
+fresh qualification with its own receipts.
+
+Seatbelt alone also supplies no demonstrated aggregate CPU/memory/process/output
+quota or trusted descendant cleanup in this experiment. Its policy must be
+reviewed on the specific host; these probe rules are deliberately **not an
+approved policy for arbitrary project code**. Host changes, toolchain changes,
+policy changes, mounts, inherited handles or network allowances invalidate any
+prior qualification. No portable safety claim follows from these observations.
+
+## Reproduce the bounded synthetic controls
+
+This is maintainer qualification work, outside the advice-only skill. Read the
+[probe](qualification/macos_canaries.py) first. It accepts no project path or test
+command and uses only the standard library and installed native tools. Prerequisites
+are macOS, Python 3.10+ for the coordinator, `/usr/bin/python3` for synthetic
+children and `/usr/bin/sandbox-exec`; install nothing automatically.
+
+With caller authority for synthetic temporary files, these exact synthetic argv
+and a **new** local receipt destination, from the Faultline checkout:
+
+```sh
+python3 -B qualification/macos_canaries.py > /tmp/faultline-isolation-receipt.json
+```
+
+Choose a fresh destination to avoid overwriting a retained receipt. This is not an
+invocation path from the skill, and the probe always returns `UNAVAILABLE`; it
+does not issue a reusable execution grant. The coordinator creates a fresh
+disposable root with `original`, `protected`, `private`, `baseline` and `mutant`
+siblings. Only baseline/mutant are writable in the proposed native policy; the
+private synthetic token is unreadable. No private target repository is accessed.
+The JSON records exact profile/argv/environment, probe identity, host, each native
+exit/stdout/stderr, timing and original candidate/test/receipt/private hashes.
+Each command is the recorded `argv_prefix` plus that control's `argv_suffix`;
+its working directory is `<synthetic_root>/mutant`. Standard input is closed to
+the child, and only the recorded environment is passed.
+Its temporary artifacts are removed separately from the retained JSON.
+
+| Control | Required observation | This host |
+| --- | --- | --- |
+| Read original / write mutant output (positive controls) | Child started and intended access succeeded | UNAVAILABLE; launcher failed |
+| Write original source, selected tests and protected receipt | Child started; explicit access-policy denial; each original unchanged | UNAVAILABLE; launcher failed |
+| Read synthetic private token | Child started; explicit access-policy denial | UNAVAILABLE; launcher failed |
+| Write/read through symlinks, hard-linked receipt, `..` | Explicit denial, originals unchanged after each | UNAVAILABLE; launcher failed |
+| Outbound TCP to documentation-only `192.0.2.1:9` | Explicit policy denial; independent network observer sees no effect | UNAVAILABLE; launcher failed; no observer established |
+| Ten-second sleeper under two-second deadline | Timeout, host-owned cleanup and independently observed absence of descendants | UNAVAILABLE; sleeper never started |
+
+Twelve boundary-launch attempts, zero synthetic child starts, zero project test
+or mutant executions. All four protected synthetic file hashes matched after
+every attempt; the disposable root was removed. This is unchanged-source evidence
+for failed launches only. No protected-read or network denial was established.
+
+The coordinator has a 30-second scheduling budget, two seconds per launch and a
+one-second cleanup wait; it kills/reaps its created process group. Maintainer
+checks demonstrate killing a cooperative synthetic sleeper, **not** arbitrary
+descendant confinement. Captured output is retained up to 4096 bytes per stream;
+the fixed synthetic probes have bounded output. Pipe capture is not a memory/output
+limit for untrusted code. Detached descendants, fork/output/resource exhaustion,
+DNS/UDP/IPv6/local socket effects, keychain/credential IPC, submodule traversal,
+cache aliases, file replacement/rename/mode changes and transient write/restore
+attacks remain **UNESTABLISHED**. A future host must supply limits and corresponding
+negative controls before any project launch. Do not treat passing this small
+probe set as sufficient qualification.
+
+## Qualification and effect authorization are separate
+
+Before a future execution release, an independent host operator must record a
+reviewable qualification for the exact boundary and commands. Positive controls
+must work; protected operations must actually be attempted and denied. Collect
+host telemetry rather than trusting worker claims. Verify manifests and absence
+of descendants after each control, including timeout and interrupted cleanup.
+Expand the controls above for every unestablished required protection. Any allowed
+forbidden effect, ambiguous result, missing prerequisite or telemetry gap fails
+qualification. Requalify on drift; never weaken a policy merely to make tests run.
+
+| Effect | Necessary caller/host authority |
+| --- | --- |
+| Qualification canaries | Exact synthetic launches, disposable file read/write/cleanup and inert network probes on the specified host; no real credentials/services. |
+| External tool installation | Separate explicit tool/version/source, destination, install/build scripts, network and cost authority. An executable in a plan is not install permission. |
+| Read source or fixtures | Exact candidate, relevant dirty content, selected files and any submodule/link targets; no implied home/private repository access. |
+| Run tests/mutants/harnesses | Future execution-enabled release **and** current qualification, exact approved executable argv/cwd, versions, snapshot, effects and finite budgets. Opting into advice is insufficient. |
+| Write reports/artifacts | Authorized destination, retention/privacy limits and cleanup scope. Conversation advice alone needs no disk write. |
+| Network, paid models, publication, PR, push, merge | Separate authority for the particular effect and data destination. Qualification, PR creation and merge readiness never authorize merging. |
+
+**Fail closed:** no verified isolation means `NO_GO / UNAVAILABLE` for execution.
+Provide an advice-only plan with candidate/source identities (or UNKNOWN), the
+selected question/test path, proposed argv marked NOT_RUN, smallest direct
+assertion, missing protections and required authority. Do not fall back to an
+unprotected shell with a warning. Permission failures and missing tools are
+`UNAVAILABLE`; timeouts, broken baselines, interrupted cleanup or ambiguous
+attribution are `INCONCLUSIVE`. None is a test-strength success, KILLED mutant,
+SURVIVED mutant, observed implementation violation or correctness certificate.

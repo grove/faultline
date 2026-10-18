@@ -77,6 +77,13 @@ denominators and actual overhead requirements in a **non-executing** protocol.
 
 ## 2. Milestone B — qualify one real execution boundary
 
+**Observed #2 result:** [host qualification and threat model](ISOLATION.md), with
+[native receipts](qualification/2026-10-18-macos.json). This macOS agent host
+refused every native sandbox launch before child startup: **UNAVAILABLE**.
+Original synthetic source/tests/receipt hashes remained unchanged after every
+attempt. Actual effect denial, descendant containment and resource limits remain
+unestablished; no project execution or Milestone C authorization follows.
+
 **Required before any live challenge:** [#2](https://github.com/grove/faultline/issues/2). **This issue and this plan do not authorize running tests.**
 
 Running normal tests or injected-failure harnesses can execute arbitrary project code. A copy, worktree, container label or instruction file is **not** sufficient isolation.
@@ -202,7 +209,7 @@ Consider a tiny helper **only** if measured skill-only trials reveal a *specific
 
 ## 7. Current state and issue map
 
-**Current repository** contains the four original documents/license, one canonical `faultline-audit/SKILL.md`, and `tests/test_skill.py`. #3 implements advice-only test-strength review; it does not complete safety or value milestones. #9's **NARROW recommendation** remains the historical experimental direction. The following future dispositions are proposals; existing issue bodies, states and evidence are unchanged.
+**Current repository** contains the design documents/license, one canonical `faultline-audit/SKILL.md`, packaging checks, and #2's host-specific threat model, synthetic maintainer probes and failed-launch receipt. #3 implements advice-only test-strength review; no host has qualified for execution. #9's **NARROW recommendation** remains the historical experimental direction. The following future dispositions are proposals; existing issue bodies and states are unchanged.
 
 | Issue | Disposition and retained scope |
 | --- | --- |

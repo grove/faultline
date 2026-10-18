@@ -10,6 +10,13 @@ The broader proposed direction is to test **an unchanged implementation under co
 
 [Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md) · [Issue #9: product decision](https://github.com/grove/faultline/issues/9) · [Issue #10: first experiment](https://github.com/grove/faultline/issues/10)
 
+[#2's host qualification](ISOLATION.md) supplies the bounded threat model,
+permissions and synthetic negative controls. On the actual macOS agent host,
+all twelve native sandbox launches failed before a child started. The retained
+[receipt](qualification/2026-10-18-macos.json) establishes **UNAVAILABLE**, not
+protected-file or network denials. No execution is enabled; closing an issue or
+copying the skill cannot qualify a host.
+
 ## Use the skill
 
 No runtime dependency or installation is required. Ask your existing agent:
@@ -61,8 +68,9 @@ Maintainer packaging regression checks (Python standard library only):
 python3 -B -m unittest discover -s tests -v
 ```
 
-These inspect metadata, links, copying, and critical instruction boundaries. They
-do not run target-project code or qualify [#2](https://github.com/grove/faultline/issues/2).
+These inspect metadata, links, copying, critical instruction boundaries and the
+synthetic probe's failure classification/finite leader timeout. They do not run
+target-project code or qualify [#2](https://github.com/grove/faultline/issues/2).
 
 ## Why would I use it?
 
