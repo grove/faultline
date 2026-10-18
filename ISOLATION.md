@@ -76,13 +76,18 @@ manifest from registry metadata only; no image layers were downloaded.
 
 The [positive review evidence](qualification/2026-10-18-apple-container-positive-review.json)
 records strict installed-CLI signature verification failure in this session and
-a denied capacity query, both needing normal-Terminal corroboration. Matching
-source also predicts that `--cpus 1 --memory 256M` sizes a 2-vCPU / 384-MiB VM,
+a denied capacity query. The later
+[operator-provided normal-Terminal results](qualification/2026-10-18-apple-container-terminal-prerequisites.json)
+report valid Apple-signed code, a matching embedded CDHash, arm64, 10 logical CPUs,
+32 GiB RAM and hardware virtualization support. The earlier restricted-session
+results remain context-specific observations, not evidence of tampering. Matching
+source predicts that `--cpus 1 --memory 256M` sizes a 2-vCPU / 384-MiB VM,
 including overhead, exceeding the earlier proposed whole-VM ceiling. No ceiling
 increase is approved. Local artifact identities, aggregate enforcement, calibrated
 observers, independent tmpfs-marker retention and cleanup remain unavailable.
-The smallest next authorization is only the supplement's exact read-only
-normal-Terminal signature/capacity checks; no positive launch is ready for approval.
+The approved normal-Terminal prerequisite checks are completed as reported; no
+repeat collection or reapproval is needed. No positive launch is ready for approval
+while artifact, enforcement, independent-observation and cleanup gaps remain.
 No canary, service, image/init/kernel retrieval or project code was executed.
 Preparation/observer unit checks are not qualification; all 33 runtime controls
 remain **NOT_RUN**.

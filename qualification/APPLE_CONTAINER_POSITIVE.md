@@ -62,8 +62,10 @@ worker image. It deliberately has **no complete runnable launch sequence**:
 `--init-image` digest, `--kernel` path/hash and host environment remain unresolved.
 Do not concatenate its components or allow implicit default artifact selection.
 Installed CLI SHA-256 was independently read and matches the operator's earlier
-report, but strict signature verification failed; source/version matching does not
-establish that this binary is trustworthy.
+report. Strict signature verification failed in the restricted Codex context;
+the later operator-provided normal-Terminal output reports valid code under Apple's
+certificate chain. Preserve both observations; the restricted result is not evidence
+of tampering. Neither result establishes runtime containment.
 
 | Item | Proposed value and unresolved evidence |
 | --- | --- |
@@ -137,12 +139,14 @@ Its cwd is `/Users/grove/projects/faultline`. It writes a new host-only
 `evidence/positive.json` and remains UNAVAILABLE even if unchanged. It has not
 been run: writing that control receipt now would misrepresent the stage.
 
-## Exact next authorization request
+## Approved prerequisite checks — operator completed
 
-**Authorize only the following read-only signature/capacity checks in normal macOS
-Terminal, cwd `/`, and return all stdout/stderr and exit statuses.** This compares
-a different host context with this session's failed verification/denied query.
-It invokes neither Container nor a service, downloads nothing and launches no guest.
+The user approved only the following three read-only checks. Computer-use access
+to iTerm2 was denied for safety reasons; no UI or host-execution route bypassed
+that denial. The operator then ran the approved commands directly and returned
+their output. They invoke neither Container nor a service, download nothing and
+launch no guest. **Do not ask for approval or run them again merely to repeat
+this completed prerequisite collection.**
 
 ```sh
 /usr/bin/env -i PATH=/usr/bin:/bin LC_ALL=C /usr/bin/codesign --verify --strict --verbose=2 /usr/local/bin/container
@@ -150,13 +154,24 @@ It invokes neither Container nor a service, downloads nothing and launches no gu
 /usr/bin/env -i PATH=/usr/bin:/bin LC_ALL=C /usr/sbin/sysctl hw.optional.arm64 hw.logicalcpu hw.memsize kern.hv_support
 ```
 
-The same minimal-environment checks here returned strict codesign exit 1 with
+The [normal-Terminal transcript](2026-10-18-apple-container-terminal-prerequisites.json)
+reports `valid on disk` and satisfaction of the Designated Requirement, with
+Apple's Developer ID Application / Developer ID Certification Authority / Apple
+Root CA chain and TeamIdentifier `UPBK2H6LZM`. The embedded CDHash matches the
+earlier display. It reports arm64, **10 logical CPUs**, **34359738368 bytes
+(32 GiB)** of RAM and `kern.hv_support: 1`. Numerical command exit statuses,
+raw-file hash and run timestamp were not supplied; none is invented. The prompt
+shows the Faultline checkout rather than requested cwd `/`; all approved commands
+use absolute paths and no cwd-dependent inputs.
+
+The same minimal-environment checks in the restricted session returned codesign exit 1 with
 `invalid signature`, display exit 0 with authority unavailable, and sysctl exit 1
 with `Operation not permitted`. These observations do not by themselves establish
 tampering or failure in normal Terminal. No re-signing, quarantine removal,
 security bypass, reinstall, setup or launch is authorized to resolve them.
 
-Even successful normal-Terminal checks leave the artifact, VM-budget, aggregate-limit,
+The completed normal-Terminal checks resolve the reported signature/capacity
+prerequisite uncertainty. They leave the artifact, VM-budget, aggregate-limit,
 network, observer, marker-retention and cleanup blockers above. **There is no
 positive-container execution authorization request ready yet.** Keep PR #17 draft,
 issue #2 open and the Faultline skill advice-only.

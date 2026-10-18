@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "kind": "OPERATOR_REPORTED_NORMAL_TERMINAL_PREREQUISITES",
+  "received_at_utc": "2026-10-18T20:42:28.727643+00:00",
+  "provenance": "Transcribed from operator-pasted combined Terminal output after explicit approval of only the three read-only checks. Not captured through Codex Terminal access.",
+  "operator_run_time": null,
+  "operator_raw_file_sha256": null,
+  "command_returncodes": null,
+  "returncode_note": "Not printed in supplied transcript; successful diagnostic messages are retained without inventing numeric exit statuses.",
+  "requested_cwd": "/",
+  "observed_cwd": "Operator shell prompt identifies Faultline checkout; commands use absolute paths and no cwd-dependent inputs.",
+  "commands": [
+    [
+      "/usr/bin/env",
+      "-i",
+      "PATH=/usr/bin:/bin",
+      "LC_ALL=C",
+      "/usr/bin/codesign",
+      "--verify",
+      "--strict",
+      "--verbose=2",
+      "/usr/local/bin/container"
+    ],
+    [
+      "/usr/bin/env",
+      "-i",
+      "PATH=/usr/bin:/bin",
+      "LC_ALL=C",
+      "/usr/bin/codesign",
+      "--display",
+      "--verbose=4",
+      "/usr/local/bin/container"
+    ],
+    [
+      "/usr/bin/env",
+      "-i",
+      "PATH=/usr/bin:/bin",
+      "LC_ALL=C",
+      "/usr/sbin/sysctl",
+      "hw.optional.arm64",
+      "hw.logicalcpu",
+      "hw.memsize",
+      "kern.hv_support"
+    ]
+  ],
+  "outputs": {
+    "codesign_verify": "/usr/local/bin/container: valid on disk\n/usr/local/bin/container: satisfies its Designated Requirement\n",
+    "codesign_display": "Executable=/usr/local/bin/container\nIdentifier=com.apple.container.cli\nFormat=Mach-O thin (arm64)\nCodeDirectory v=20500 size=530275 flags=0x10000(runtime) hashes=16565+2 location=embedded\nVersionPlatform=1\nVersionMin=983040\nVersionSDK=1705216\nHash type=sha256 size=32\nCandidateCDHash sha256=786e32c0fbbaf5e93e266bf6070c8f640f4fe327\nCandidateCDHashFull sha256=786e32c0fbbaf5e93e266bf6070c8f640f4fe327429487ac6a35b61b53997f49\nHash choices=sha256\nCMSDigest=786e32c0fbbaf5e93e266bf6070c8f640f4fe327429487ac6a35b61b53997f49\nCMSDigestType=2\nExecutable Segment base=0\nExecutable Segment limit=24723456\nExecutable Segment flags=0x1\nPage size=4096\nCDHash=786e32c0fbbaf5e93e266bf6070c8f640f4fe327\nSignature size=9078\nAuthority=Developer ID Application: Apple Inc. - Containerization (UPBK2H6LZM)\nAuthority=Developer ID Certification Authority\nAuthority=Apple Root CA\nTimestamp=29 Sep 2026 at 04:46:49\nInfo.plist=not bound\nTeamIdentifier=UPBK2H6LZM\nRuntime Version=26.5.0\nSealed Resources=none\nInternal requirements count=1 size=184\nTotal signatures=1\nChosen signature=1\n",
+    "sysctl": "hw.optional.arm64: 1\nhw.logicalcpu: 10\nhw.memsize: 34359738368\nkern.hv_support: 1\n"
+  },
+  "assessment": {
+    "signature_validity_reported": true,
+    "signing_identifier": "com.apple.container.cli",
+    "team_identifier": "UPBK2H6LZM",
+    "authority_chain": [
+      "Developer ID Application: Apple Inc. - Containerization (UPBK2H6LZM)",
+      "Developer ID Certification Authority",
+      "Apple Root CA"
+    ],
+    "cdhash": "786e32c0fbbaf5e93e266bf6070c8f640f4fe327",
+    "cdhash_matches_restricted_session_display": true,
+    "arm64": true,
+    "logical_cpus": 10,
+    "memory_bytes": 34359738368,
+    "memory_gib": 32,
+    "hardware_virtualization_support": true,
+    "scope": "Normal-Terminal signature validity and host capability reported. Does not establish daemon readiness, local artifact presence, resource enforcement, networking, marker extraction or cleanup.",
+    "restricted_session_result": "Earlier codesign/sysctl failures remain preserved as context-specific observations. The output difference alone does not identify their cause and is not evidence of binary tampering."
+  },
+  "approval_boundary": "Read-only codesign verify/display and sysctl only; no setup, artifacts, services, containers, canaries, budget increase, merge or issue closure authorized.",
+  "remaining_blockers": [
+    "Worker manifest/config identified remotely, but local image layers and interpreter file are unverified. Default image store absent in this context.",
+    "Pinned local vminit digest and actual extracted kernel path/hash missing; source defaults do not attest installed artifacts.",
+    "Proposed --cpus 1 --memory 256M produces source-predicted 2-vCPU/384-MiB VM, exceeding the unchanged proposed VM ceiling.",
+    "Aggregate PID/storage/output/wall caps and independent VM lifetime containment not established.",
+    "Runtime network-none policy and absence of forwarded host/control/Unix sockets not independently verified.",
+    "Exact calibrated observer commands and normal/timeout/interruption cleanup proof missing.",
+    "Independent scratch-marker retention before VM/tmpfs teardown unimplemented.",
+    "Actual host/guest environment allowlists, installed runtime configuration and service readiness unverified; no service contact authorized."
+  ],
+  "decision": "UNAVAILABLE",
+  "execution": "NO_GO",
+  "qualification_granted": false,
+  "boundary_launches": 0,
+  "runtime_controls": "All 33 NOT_RUN."
+}
