@@ -44,6 +44,15 @@ drift by silently restoring bytes and continuing.
 
 ## Current preparation: Apple Container 1.5.0 — UNAVAILABLE pending controls
 
+The latest [staged authorization proposal](qualification/APPLE_CONTAINER_NEXT.md)
+adds a frozen positive-v2 fixture with host acknowledgement before tmpfs teardown,
+fresh preparation and a separately authorized service-inventory command. It
+proposes a 2-vCPU / 512-MiB VM ceiling with a 1-CPU / 256-MiB workload (predicted
+VM allocation 2 vCPUs / 384 MiB). No budget change, service contact, retrieval or
+execution has been approved or performed. Positive execution still needs verified
+artifacts and independent host-owned VM deadline/termination; a successful smoke
+test would not qualify the sandbox. Prior records below remain historical.
+
 Review the [implementation and exact Terminal procedure](qualification/APPLE_CONTAINER.md)
 and [operator-provided Terminal inspection](qualification/2026-10-18-apple-container-terminal.json).
 It reports Container **1.5.0 / d265d66** at `/usr/local/bin/container`, SHA-256

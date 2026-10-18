@@ -1,0 +1,71 @@
+{
+  "before": {
+    "inputs": {
+      ".": {
+        "device": 16777233,
+        "inode": 141394197,
+        "kind": "directory",
+        "links": 4,
+        "mode": 493
+      },
+      "./positive-v2.py": {
+        "bytes": 1004,
+        "device": 16777233,
+        "inode": 141394201,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "bb20d238a7834551147efc6f3e15fc3ea56f844a5c506ad6aeaa2a0ffb752412"
+      },
+      "./test_candidate.txt": {
+        "bytes": 24,
+        "device": 16777233,
+        "inode": 141394200,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "f5773301b62d21d78fa932af611c3d284830456cb1032279f4ffaebf96be6401"
+      }
+    },
+    "original": {
+      ".": {
+        "device": 16777233,
+        "inode": 141394196,
+        "kind": "directory",
+        "links": 3,
+        "mode": 493
+      },
+      "./candidate.txt": {
+        "bytes": 17,
+        "device": 16777233,
+        "inode": 141394199,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "f411dcca00abd8af2a0c1d450e8755fcf83edb3fdcb6b8d7dab8f45f462672ac"
+      }
+    }
+  },
+  "boundary_launches": 0,
+  "directory": "/private/tmp/faultline-apple-positive-v2",
+  "kind": "POSITIVE_V2_PREPARED_NOT_EXECUTED",
+  "negative_controls": "NOT_RUN",
+  "observed_at_utc": "2026-10-18T20:54:39.360281+00:00",
+  "positive": "NOT_RUN",
+  "previous_prepared_sha256": "3349e3c1e401afa9c32de55ecd385cd65afc46b01fcfbb7660d1c0f763f4426d",
+  "qualification_granted": false,
+  "schema": 2,
+  "source_sha256": {
+    "experiments/lost-acknowledgement.md": "d7e7f30eeedf8e71671934c0b816a9bf1ec8f95e9d40b08966a28708bd755131",
+    "faultline-audit/SKILL.md": "d94cfa4a3484d527c88966a2fd4ed27bd6e1f19c53e16bada3fb158f1f7b4d2b",
+    "qualification/2026-10-18-apple-container-preflight.json": "639cd38adf4556f81970886ffc40633c790c28c63a9dec1261b9ed1461c6713a",
+    "qualification/2026-10-18-macos.json": "7993892a631482c5181f403dbb04e3f0dea98a98f9be2f1c61cc8d8cf50407fe",
+    "qualification/APPLE_CONTAINER.md": "f148a6054a96e2174650ce1c4a9ac99d4f067c7486fa6331062abd5617d555e0",
+    "qualification/APPLE_CONTAINER_NEXT.md": "e86052bea060c50eb19131dc737c9d0bc5b482614f4cc985b6f5bdca8dad7ba1",
+    "qualification/apple_container.py": "36a3feca2572f4b5dc9b3bff779cdd0c9812578f23653e6e3d91ad0fa6c4b0a8",
+    "qualification/apple_container_guest.py": "44f3b9b9f220e47bdb7e73e0a742caaa5669f29ed05e4834f8b52b96e48e9e7b",
+    "qualification/apple_container_positive_v2.py": "bb20d238a7834551147efc6f3e15fc3ea56f844a5c506ad6aeaa2a0ffb752412",
+    "qualification/apple_container_smoke.py": "f501a352b37323fd792bca055c5adf8b9a85ba1f3f37cc1f4fbc73f2aaa03cb7",
+    "qualification/macos_canaries.py": "df7916ab26fe7ce0499b2a76ff80366e1a4b6ae0aef7764122b1916621e63049"
+  }
+}

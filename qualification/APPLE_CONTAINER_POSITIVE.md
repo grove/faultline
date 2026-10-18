@@ -1,5 +1,13 @@
 # Positive Apple Container smoke review — BLOCKED / NOT RUN
 
+**Latest action:** see [the staged setup/positive authorization](APPLE_CONTAINER_NEXT.md).
+The prerequisite checks below are complete; the next requested approval is
+service inventory only. This supplement retains the earlier review context.
+The new `/private/tmp/faultline-apple-positive-v2` bundle has been prepared without
+guest execution. Its [unaltered receipt](2026-10-18-apple-container-positive-v2-prepared.json)
+SHA-256 is `5c2c360a9b025de6fce372a4129b365580b94eb68503b8017fa2c4cd7331f385`.
+Only `prepared-v2.json` exists in its evidence directory; inventory awaits approval.
+
 Latest supplement for draft [PR #17](https://github.com/grove/faultline/pull/17)
 and [issue #2](https://github.com/grove/faultline/issues/2). **Execution NO_GO;
 qualification UNAVAILABLE.** No container, canary or observer has been launched.
