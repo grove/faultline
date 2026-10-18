@@ -1,0 +1,318 @@
+{
+  "before": {
+    "inputs": {
+      ".": {
+        "device": 16777233,
+        "inode": 141244730,
+        "kind": "directory",
+        "links": 9,
+        "mode": 493
+      },
+      "./candidate.txt": {
+        "bytes": 17,
+        "device": 16777233,
+        "inode": 141244738,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "f411dcca00abd8af2a0c1d450e8755fcf83edb3fdcb6b8d7dab8f45f462672ac"
+      },
+      "./guest.py": {
+        "bytes": 1829,
+        "device": 16777233,
+        "inode": 141244744,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "44f3b9b9f220e47bdb7e73e0a742caaa5669f29ed05e4834f8b52b96e48e9e7b"
+      },
+      "./private-link": {
+        "device": 16777233,
+        "inode": 141244741,
+        "kind": "symlink",
+        "links": 1,
+        "mode": 493,
+        "target": "/private/tmp/faultline-apple-review-01/private/token.txt"
+      },
+      "./source-hardlink": {
+        "bytes": 17,
+        "device": 16777233,
+        "inode": 141244732,
+        "kind": "file",
+        "links": 2,
+        "mode": 420,
+        "sha256": "f411dcca00abd8af2a0c1d450e8755fcf83edb3fdcb6b8d7dab8f45f462672ac"
+      },
+      "./source-link": {
+        "device": 16777233,
+        "inode": 141244740,
+        "kind": "symlink",
+        "links": 1,
+        "mode": 493,
+        "target": "/original/candidate.txt"
+      },
+      "./targets.json": {
+        "bytes": 238,
+        "device": 16777233,
+        "inode": 141244745,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "6f5b69c91879a49176d661147e39a63664921a28014d5aebc14eb91a7c9c57be"
+      },
+      "./test_candidate.txt": {
+        "bytes": 24,
+        "device": 16777233,
+        "inode": 141244739,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "f5773301b62d21d78fa932af611c3d284830456cb1032279f4ffaebf96be6401"
+      }
+    },
+    "original": {
+      ".": {
+        "device": 16777233,
+        "inode": 141244726,
+        "kind": "directory",
+        "links": 5,
+        "mode": 493
+      },
+      "./.git": {
+        "bytes": 28,
+        "device": 16777233,
+        "inode": 141244734,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "1d4d3b3753317a9f8a4a0e335597d242a4efed7d04dedd5cb56ef8dce9e9d85d"
+      },
+      "./candidate.txt": {
+        "bytes": 17,
+        "device": 16777233,
+        "inode": 141244732,
+        "kind": "file",
+        "links": 2,
+        "mode": 420,
+        "sha256": "f411dcca00abd8af2a0c1d450e8755fcf83edb3fdcb6b8d7dab8f45f462672ac"
+      },
+      "./test_candidate.txt": {
+        "bytes": 24,
+        "device": 16777233,
+        "inode": 141244733,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "f5773301b62d21d78fa932af611c3d284830456cb1032279f4ffaebf96be6401"
+      }
+    },
+    "private": {
+      ".": {
+        "device": 16777233,
+        "inode": 141244728,
+        "kind": "directory",
+        "links": 3,
+        "mode": 493
+      },
+      "./token.txt": {
+        "bytes": 24,
+        "device": 16777233,
+        "inode": 141244736,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "f408902346dd81fa21d85d4d8c6a097f3473d423e8548713746272bb4498d14c"
+      }
+    },
+    "protected": {
+      ".": {
+        "device": 16777233,
+        "inode": 141244727,
+        "kind": "directory",
+        "links": 3,
+        "mode": 493
+      },
+      "./receipt.txt": {
+        "bytes": 28,
+        "device": 16777233,
+        "inode": 141244735,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "36fc8ca5909eba0a9001916488b2ae739f75e4bfc804b4d33816b612f163ab97"
+      }
+    },
+    "unrelated": {
+      ".": {
+        "device": 16777233,
+        "inode": 141244729,
+        "kind": "directory",
+        "links": 3,
+        "mode": 493
+      },
+      "./token.txt": {
+        "bytes": 26,
+        "device": 16777233,
+        "inode": 141244737,
+        "kind": "file",
+        "links": 1,
+        "mode": 420,
+        "sha256": "ef928483346c55fd89cc1bfc205ed4e388a650847a7f6600e425d46de8e30db5"
+      }
+    }
+  },
+  "blockers": [
+    "Installed version/help and matching documentation not reviewed.",
+    "No independently observed network denial or resource/lifetime containment."
+  ],
+  "controls": [
+    {
+      "name": "positive",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "source-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "test-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "source-rename",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "receipt-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "private-read",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "unrelated-read",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "symlink-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "symlink-read",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "hardlink-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "dotdot-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "root-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-tcp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-udp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-tcp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-udp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "dns-udp",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "dns-tcp",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-tcp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-udp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-tcp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-udp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-unix-socket",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "memory",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "cpu",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "process-count",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "output",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "storage",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "timeout",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "detached-descendants",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "normal-cleanup",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "timeout-cleanup",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "interrupt-cleanup",
+      "status": "NOT_RUN"
+    }
+  ],
+  "decision": "UNAVAILABLE",
+  "directory": "/private/tmp/faultline-apple-review-01",
+  "kind": "PREPARED_NOT_EXECUTED",
+  "observed_at_utc": "2026-10-18T20:30:03.686375+00:00",
+  "qualification_granted": false,
+  "schema": 1,
+  "source_sha256": {
+    "experiments/lost-acknowledgement.md": "d7e7f30eeedf8e71671934c0b816a9bf1ec8f95e9d40b08966a28708bd755131",
+    "faultline-audit/SKILL.md": "d94cfa4a3484d527c88966a2fd4ed27bd6e1f19c53e16bada3fb158f1f7b4d2b",
+    "qualification/2026-10-18-apple-container-preflight.json": "639cd38adf4556f81970886ffc40633c790c28c63a9dec1261b9ed1461c6713a",
+    "qualification/2026-10-18-macos.json": "7993892a631482c5181f403dbb04e3f0dea98a98f9be2f1c61cc8d8cf50407fe",
+    "qualification/APPLE_CONTAINER.md": "f148a6054a96e2174650ce1c4a9ac99d4f067c7486fa6331062abd5617d555e0",
+    "qualification/apple_container.py": "36a3feca2572f4b5dc9b3bff779cdd0c9812578f23653e6e3d91ad0fa6c4b0a8",
+    "qualification/apple_container_guest.py": "44f3b9b9f220e47bdb7e73e0a742caaa5669f29ed05e4834f8b52b96e48e9e7b",
+    "qualification/macos_canaries.py": "df7916ab26fe7ce0499b2a76ff80366e1a4b6ae0aef7764122b1916621e63049"
+  }
+}

@@ -64,12 +64,28 @@ environment, aggregate resource/output/deadline limits, calibrated independent
 denial/VM/process observers and cleanup remain unverified. Runtime argv is incomplete
 and **NOT AUTHORIZED**; even positive startup is blocked.
 
-The smallest next authorization is the protocol's exact **fixture preparation and
-receipt-hash commands only**, creating `/private/tmp/faultline-apple-review-01`.
-No named bundle, canary, service, image/init/kernel retrieval or project code was
-executed for this update. Preparation/observer unit checks are not qualification;
-all 33 runtime controls remain **NOT_RUN**. No synthetic execution approval is
-requested while required isolation controls lack independent verification.
+The operator has now prepared `/private/tmp/faultline-apple-review-01`. Its
+[unaltered receipt](qualification/2026-10-18-apple-container-prepared.json) matches
+the separately supplied SHA-256
+`3349e3c1e401afa9c32de55ecd385cd65afc46b01fcfbb7660d1c0f763f4426d`;
+all eight source hashes and five protected-tree manifests match. The hashed protocol
+and fixture remain unchanged. Follow the latest
+[positive-smoke supplement](qualification/APPLE_CONTAINER_POSITIVE.md), rather than
+repeating the historical preparation instructions. It pins a candidate worker
+manifest from registry metadata only; no image layers were downloaded.
+
+The [positive review evidence](qualification/2026-10-18-apple-container-positive-review.json)
+records strict installed-CLI signature verification failure in this session and
+a denied capacity query, both needing normal-Terminal corroboration. Matching
+source also predicts that `--cpus 1 --memory 256M` sizes a 2-vCPU / 384-MiB VM,
+including overhead, exceeding the earlier proposed whole-VM ceiling. No ceiling
+increase is approved. Local artifact identities, aggregate enforcement, calibrated
+observers, independent tmpfs-marker retention and cleanup remain unavailable.
+The smallest next authorization is only the supplement's exact read-only
+normal-Terminal signature/capacity checks; no positive launch is ready for approval.
+No canary, service, image/init/kernel retrieval or project code was executed.
+Preparation/observer unit checks are not qualification; all 33 runtime controls
+remain **NOT_RUN**.
 **Keep #2 open; execution remains NO_GO / UNAVAILABLE.** The earlier records below
 describe their original host context and are not reclassified by the operator's
 subsequent installation report.

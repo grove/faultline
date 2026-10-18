@@ -1,0 +1,397 @@
+{
+  "schema": 1,
+  "kind": "POSITIVE_SMOKE_REVIEW_NOT_EXECUTION",
+  "observed_at_utc": "2026-10-18T20:36:20.668404+00:00",
+  "prepared_receipt": {
+    "path": "/private/tmp/faultline-apple-review-01/evidence/prepared.json",
+    "repository_copy": "qualification/2026-10-18-apple-container-prepared.json",
+    "sha256": "3349e3c1e401afa9c32de55ecd385cd65afc46b01fcfbb7660d1c0f763f4426d",
+    "raw_bytes_preserved": true,
+    "all_eight_source_hashes_match": true,
+    "all_five_tree_manifests_match": true,
+    "evidence_entries": [
+      "prepared.json"
+    ],
+    "source_commit_not_in_receipt": true,
+    "generic_version_review_blocker_in_receipt": "Preserved literally; version-matched source review is recorded separately, without changing this receipt."
+  },
+  "host": {
+    "cli_sha256_observed": "8cc619377e8978a0ce9f22a3e864dcd4445f2bc38fb64c5197bb69a1bab42463",
+    "checks": {
+      "observed_at_utc": "2026-10-18T20:35:03.585239+00:00",
+      "observations": [
+        {
+          "argv": [
+            "/usr/sbin/sysctl",
+            "hw.optional.arm64",
+            "hw.logicalcpu",
+            "hw.memsize",
+            "kern.hv_support"
+          ],
+          "cwd": "/",
+          "environment": {
+            "PATH": "/usr/bin:/bin",
+            "LC_ALL": "C"
+          },
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted\n",
+          "truncated": false
+        },
+        {
+          "argv": [
+            "/usr/bin/codesign",
+            "--verify",
+            "--strict",
+            "--verbose=2",
+            "/usr/local/bin/container"
+          ],
+          "cwd": "/",
+          "environment": {
+            "PATH": "/usr/bin:/bin",
+            "LC_ALL": "C"
+          },
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "/usr/local/bin/container: invalid signature (code or signature have been modified)\nIn architecture: arm64\n",
+          "truncated": false
+        },
+        {
+          "argv": [
+            "/usr/bin/codesign",
+            "--display",
+            "--verbose=4",
+            "/usr/local/bin/container"
+          ],
+          "cwd": "/",
+          "environment": {
+            "PATH": "/usr/bin:/bin",
+            "LC_ALL": "C"
+          },
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "Executable=/usr/local/bin/container\nIdentifier=com.apple.container.cli\nFormat=Mach-O thin (arm64)\nCodeDirectory v=20500 size=530275 flags=0x10000(runtime) hashes=16565+2 location=embedded\nVersionPlatform=1\nVersionMin=983040\nVersionSDK=1705216\nHash type=sha256 size=32\nCandidateCDHash sha256=786e32c0fbbaf5e93e266bf6070c8f640f4fe327\nCandidateCDHashFull sha256=786e32c0fbbaf5e93e266bf6070c8f640f4fe327429487ac6a35b61b53997f49\nHash choices=sha256\nCMSDigest=786e32c0fbbaf5e93e266bf6070c8f640f4fe327429487ac6a35b61b53997f49\nCMSDigestType=2\nExecutable Segment base=0\nExecutable Segment limit=24723456\nExecutable Segment flags=0x1\nPage size=4096\nCDHash=786e32c0fbbaf5e93e266bf6070c8f640f4fe327\nSignature size=9078\nAuthority=(unavailable)\nInfo.plist=not bound\nTeamIdentifier=UPBK2H6LZM\nRuntime Version=26.5.0\nSealed Resources=none\nInternal requirements count=1 size=184\nTotal signatures=1\nChosen signature=1\n",
+          "truncated": false
+        }
+      ]
+    },
+    "default_app_root": "/Users/grove/Library/Application Support/com.apple.container",
+    "default_app_root_exists": false,
+    "custom_app_root": "Operator reports none.",
+    "installed_image_availability": "UNAVAILABLE; default store not visible; no daemon contacted.",
+    "signature_assessment": "Strict verification failed in this session. Corroborate in normal Terminal; not a conclusion that tampering occurred."
+  },
+  "candidate_image": {
+    "reference": "docker.io/library/python@sha256:55432fc4ef6d07e33c10449312f0ec00071bbb310bb9bd7ba626a31fbbc2cb0d",
+    "platform": "linux/arm64/v8",
+    "discovery_tag": "3.13-slim-bookworm",
+    "tag_metadata_url": "https://hub.docker.com/v2/repositories/library/python/tags/3.13-slim-bookworm",
+    "tag_metadata_sha256": "b31e3678393904c12bc030c5b7325a1eab2462f03b4f5663bebbf7a3a6c45828",
+    "manifest_url": "https://registry-1.docker.io/v2/library/python/manifests/sha256:55432fc4ef6d07e33c10449312f0ec00071bbb310bb9bd7ba626a31fbbc2cb0d",
+    "manifest_sha256": "sha256:55432fc4ef6d07e33c10449312f0ec00071bbb310bb9bd7ba626a31fbbc2cb0d",
+    "manifest": {
+      "schemaVersion": 2,
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "config": {
+        "mediaType": "application/vnd.oci.image.config.v1+json",
+        "digest": "sha256:da841a7026abc0089180121604f6d0ba4324998e2d133eccae13f22707055dc1",
+        "size": 5553
+      },
+      "layers": [
+        {
+          "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "digest": "sha256:c75f989a229d12b2d2613a5997de9ff3546f664c22da9248720033a2410220f6",
+          "size": 28137179
+        },
+        {
+          "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "digest": "sha256:aa08835651e777794bde3e8c99bee012c418f60d0d164df22497fa01dc72aca5",
+          "size": 3176232
+        },
+        {
+          "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "digest": "sha256:7b2df2902dddd1a4510670c4d3a6d61b4458fa3e7c1ae0b262d75bde1349ab14",
+          "size": 14748696
+        },
+        {
+          "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "digest": "sha256:32020fed7f2a057b9cee7fdbfa3ea9fc394149118d7a951c462c7055c3cd3f56",
+          "size": 250
+        }
+      ],
+      "annotations": {
+        "com.docker.official-images.bashbrew.arch": "arm64v8",
+        "org.opencontainers.image.base.digest": "sha256:a1b86db52ce3daef089e45aabe36dfec4091f82464c25c1fdcf03de197cbe82a",
+        "org.opencontainers.image.base.name": "debian:bookworm-slim",
+        "org.opencontainers.image.created": "2026-10-06T01:59:14Z",
+        "org.opencontainers.image.revision": "d2a898cb88e46203577eabc62cdcf6e92aaee176",
+        "org.opencontainers.image.source": "https://github.com/docker-library/python.git#d2a898cb88e46203577eabc62cdcf6e92aaee176:3.13/slim-bookworm",
+        "org.opencontainers.image.url": "https://hub.docker.com/_/python",
+        "org.opencontainers.image.version": "3.13.16-slim-bookworm"
+      }
+    },
+    "config_url": "https://registry-1.docker.io/v2/library/python/blobs/sha256:da841a7026abc0089180121604f6d0ba4324998e2d133eccae13f22707055dc1",
+    "config_sha256": "sha256:da841a7026abc0089180121604f6d0ba4324998e2d133eccae13f22707055dc1",
+    "config": {
+      "Env": [
+        "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+        "PYTHON_VERSION=3.13.16",
+        "PYTHON_SHA256=f4b1bfb3c79b5bb11b8d228a12504163b4c0dab4d679828d8f5f26b6cb6ab35d"
+      ],
+      "Cmd": [
+        "python3"
+      ]
+    },
+    "python_version_from_metadata": "3.13.16",
+    "interpreter_path_candidate": "/usr/local/bin/python3",
+    "interpreter_file_not_independently_verified": true,
+    "layer_payloads_fetched": 0,
+    "compressed_layer_bytes": 46062357,
+    "publisher_build_or_signature_attestation_verified": false,
+    "local_presence_verified": false
+  },
+  "additional_source_references": [
+    {
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/ContainerAPIService/Client/ClientImage.swift",
+      "sha256": "97917ba5f8494c21f29263ddd00078c9c091c95c1d26fa4705a6898a1bc61fc0",
+      "bytes": 22904
+    },
+    {
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerPlugin/ApplicationRoot.swift",
+      "sha256": "30ec9176d84a99bb32305f2bb0cb4e571cb18d9e4da4d777b7742c019779f23e",
+      "bytes": 2175
+    },
+    {
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Plugins/CoreImages/ImagesHelper.swift",
+      "sha256": "8845d064182d2d2de5aa43b26aff63b37460dc0f79dba6fefdc0bcce3c05c122",
+      "bytes": 6825
+    },
+    {
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerPersistence/ContainerSystemConfig.swift",
+      "sha256": "4a5547eadba50e57da6db681c86ed857508b7bc7484fd98085efb0976a124c17",
+      "bytes": 9913
+    },
+    {
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/RuntimeLinux/Server/RuntimeService.swift",
+      "sha256": "fe3e959e5d60a093ad78d36d6549839aa24464f007862bd70db804913db2aecd",
+      "bytes": 65659
+    },
+    {
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerResource/Container/ContainerConfiguration.swift",
+      "sha256": "a0a1fedcb23ab456252e38f4a75e7c8671b6edcc257ae14e2b124c386199113c",
+      "bytes": 8782
+    },
+    {
+      "url": "https://github.com/apple/containerization/blob/bc994b88df46207fad7775b0eabc51947e315881/Sources/Containerization/VMResources.swift",
+      "sha256": "4518dc447f0257939c8dbaad5bcad1cf7ae6d31ad6ec6f6c1f081a3aa339dff1",
+      "bytes": 1728
+    },
+    {
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerPersistence/Measurement+Parse.swift",
+      "sha256": "791a6d982e7f36d862c24bae2a831eec5c71de013f918f06489518d26a6e05e0",
+      "bytes": 2832
+    }
+  ],
+  "positive_scope": {
+    "fixture_sha256": "44f3b9b9f220e47bdb7e73e0a742caaa5669f29ed05e4834f8b52b96e48e9e7b",
+    "action": "positive",
+    "source_read": "/original/candidate.txt",
+    "test_read": "/inputs/test_candidate.txt",
+    "only_requested_write": "/scratch/output.txt",
+    "expected_marker_hex": "73796e7468657469632d617070726f7665642d6f75747075740a",
+    "guest_argv": [
+      "/usr/local/bin/python3",
+      "-I",
+      "-S",
+      "-B",
+      "/inputs/guest.py",
+      "positive"
+    ],
+    "adverse_controls_authorized": false
+  },
+  "runtime_draft": {
+    "authorized": false,
+    "complete_sequence": false,
+    "base_review": "qualification/2026-10-18-apple-container-review.json",
+    "fixed_run_prefix": [
+      "/usr/local/bin/container",
+      "run",
+      "--name",
+      "faultline-apple-review-01-positive",
+      "--arch",
+      "arm64",
+      "--os",
+      "linux",
+      "--read-only",
+      "--mount",
+      "type=virtiofs,source=/private/tmp/faultline-apple-review-01/original,target=/original,readonly",
+      "--mount",
+      "type=virtiofs,source=/private/tmp/faultline-apple-review-01/inputs,target=/inputs,readonly",
+      "--tmpfs",
+      "/scratch:size=16m,mode=0700,uid=65534,gid=65534",
+      "--uid",
+      "65534",
+      "--gid",
+      "65534",
+      "--cap-drop",
+      "ALL",
+      "--cpus",
+      "1",
+      "--memory",
+      "256M",
+      "--network",
+      "none",
+      "--no-dns",
+      "--workdir",
+      "/scratch",
+      "--entrypoint",
+      "/usr/local/bin/python3"
+    ],
+    "required_artifact_arguments": [
+      {
+        "flag": "--init-image",
+        "value": null
+      },
+      {
+        "flag": "--kernel",
+        "value": null
+      }
+    ],
+    "image_argument": "docker.io/library/python@sha256:55432fc4ef6d07e33c10449312f0ec00071bbb310bb9bd7ba626a31fbbc2cb0d",
+    "arguments_after_image": [
+      "-I",
+      "-S",
+      "-B",
+      "/inputs/guest.py",
+      "positive"
+    ],
+    "cwd": "/",
+    "host_environment": null,
+    "guest_environment_from_image": [
+      "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+      "PYTHON_VERSION=3.13.16",
+      "PYTHON_SHA256=f4b1bfb3c79b5bb11b8d228a12504163b4c0dab4d679828d8f5f26b6cb6ab35d"
+    ],
+    "stdin": "closed",
+    "unrelated_descriptors": "closed",
+    "inspect_argv": [
+      "/usr/local/bin/container",
+      "inspect",
+      "faultline-apple-review-01-positive"
+    ],
+    "stop_argv": [
+      "/usr/local/bin/container",
+      "stop",
+      "--time",
+      "1",
+      "faultline-apple-review-01-positive"
+    ],
+    "delete_stopped_argv": [
+      "/usr/local/bin/container",
+      "delete",
+      "faultline-apple-review-01-positive"
+    ],
+    "post_stop_manifest_check_argv": [
+      "python3",
+      "-I",
+      "-B",
+      "qualification/apple_container.py",
+      "verify",
+      "/private/tmp/faultline-apple-review-01",
+      "positive",
+      "--expected-prepared-sha256",
+      "3349e3c1e401afa9c32de55ecd385cd65afc46b01fcfbb7660d1c0f763f4426d"
+    ]
+  },
+  "resource_review": {
+    "required_limits_unchanged": {
+      "vms": 1,
+      "vm_cpus": 1,
+      "vm_memory_mib": 256,
+      "pids": 16,
+      "total_writable_mib": 16,
+      "output_bytes": 65536,
+      "seconds_per_control": 10,
+      "seconds_per_session": 360
+    },
+    "candidate_cli_flags": {
+      "cpus": 1,
+      "memory": "256M",
+      "scratch": "size=16m"
+    },
+    "version_matched_source_prediction": {
+      "container_cpu_cgroup": 1,
+      "container_memory_cgroup_mib": 256,
+      "vm_vcpus": 2,
+      "vm_memory_before_alignment_mib": 384,
+      "basis": "RuntimeService adds Resources.cpuOverhead (default 1) and VMResources.guestMemoryOverhead (128 MiB)."
+    },
+    "decision": "Does not satisfy proposed whole-VM ceiling. No budget increase or policy weakening is authorized. Aggregate PID/storage/output/deadline enforcement also unavailable."
+  },
+  "independent_observers": {
+    "preparation": "Host manifest/source comparison completed; no denial/startup evidence.",
+    "runtime_configuration_and_owned_vm_process_mapping": null,
+    "calibrated_network_denial_observer": null,
+    "aggregate_limits_and_lifetime_observer": null,
+    "scratch_marker_extraction": null,
+    "scratch_marker_limitation": "The fixed positive fixture returns after writing tmpfs. Runtime onContainerExit cleans up the VM. No reviewed independent marker-extraction path exists before teardown; guest stdout is insufficient.",
+    "normal_timeout_interrupt_cleanup_observer": null
+  },
+  "next_authorization": {
+    "scope": "Normal-Terminal read-only signature and capacity checks only, no installed Container executable or service invocation.",
+    "cwd": "/",
+    "commands": [
+      [
+        "/usr/bin/env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "LC_ALL=C",
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "--verbose=2",
+        "/usr/local/bin/container"
+      ],
+      [
+        "/usr/bin/env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "LC_ALL=C",
+        "/usr/bin/codesign",
+        "--display",
+        "--verbose=4",
+        "/usr/local/bin/container"
+      ],
+      [
+        "/usr/bin/env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "LC_ALL=C",
+        "/usr/sbin/sysctl",
+        "hw.optional.arm64",
+        "hw.logicalcpu",
+        "hw.memsize",
+        "kern.hv_support"
+      ]
+    ],
+    "authorized": false
+  },
+  "remaining_blockers": [
+    "Strict installed-CLI signature verification failed; normal-Terminal corroboration and trusted installation provenance needed.",
+    "Worker manifest/config identified remotely, but local image layers and interpreter file are unverified. Default image store absent in this context.",
+    "Pinned local vminit digest and actual extracted kernel path/hash missing; source defaults do not attest installed artifacts.",
+    "Proposed --cpus 1 --memory 256M produces source-predicted 2-vCPU/384-MiB VM, exceeding the unchanged proposed VM ceiling.",
+    "Aggregate PID/storage/output/wall caps and independent VM lifetime containment not established.",
+    "Runtime network-none policy and absence of forwarded host/control/Unix sockets not independently verified.",
+    "Exact calibrated observer commands and normal/timeout/interruption cleanup proof missing.",
+    "Independent scratch-marker retention before VM/tmpfs teardown unimplemented.",
+    "Normal-Terminal capacity, host environment allowlist and effective runtime configuration unverified."
+  ],
+  "decision": "UNAVAILABLE",
+  "execution": "NO_GO",
+  "qualification_granted": false,
+  "boundary_launches": 0,
+  "runtime_controls": "All 33 NOT_RUN; preparation only."
+}
