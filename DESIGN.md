@@ -1,6 +1,6 @@
 # Faultline — proposed skill-first design
 
-**Status:** Design only; [#9 recommendation: NARROW](IMPLEMENTATION.md#0-decision-record--narrow) to one Python feasibility experiment. No implemented skill, fault-injection runner, qualified execution host, or demonstrated effectiveness; skill implementation remains deferred.
+**Status:** [faultline-audit](faultline-audit/SKILL.md) implements #3's advice-only test-strength scope. Execution remains NO_GO: no qualified host/backend or demonstrated effectiveness. The broader correctness-challenge proposal and [#9 NARROW recommendation](IMPLEMENTATION.md#0-decision-record--narrow) below remain conditional; this release does not implement behavioral fault injection.
 
 **Thesis:** **Challenge your code before reality does.** Help an existing AI coding agent identify one important, source-grounded guarantee and select the **smallest controlled experiment** that could falsify it. Run the experiment only with explicit authorization and a verified isolated host; otherwise provide an honest, read-only plan.
 
@@ -30,7 +30,7 @@ No sibling is required, invoked automatically, or given authority through a file
 
 ## 2. Two modes, one portable skill
 
-A single portable agent skill is the preferred interface; `faultline-challenge` is a **working name**, not an existing installable skill. Rescope existing [skill issue #3](https://github.com/grove/faultline/issues/3) rather than building a second competing skill.
+A single portable agent skill is the interface: `faultline-audit`, read-only in this release. `faultline-challenge` was a working name for the broader deferred proposal, not a second skill. Any future rescope must update the canonical skill rather than ship a competing copy. The modes below describe that future proposal, not enabled execution modes.
 
 ### Mode A: INVESTIGATE / NOT RUN — source-grounded and non-executing
 
@@ -92,6 +92,15 @@ Start with a passing unchanged baseline and selected tests. Change **one product
 - `SURVIVED`: tests pass against both original and mutant; an **indication of a possible blind spot**, not an original implementation defect.
 - `INVALID`: malformed or unexercisable mutant, excluded from meaningful scored outcomes.
 - `INCONCLUSIVE`, `UNAVAILABLE`, `NOT_RUN`: insufficient attribution, safe execution, or actual attempt. Do not imply a result.
+
+For reporting, count **proposed** mutants, **attempted** mutant processes, and
+**completed determinate** outcomes (KILLED + SURVIVED), with every per-proposal
+status and its denominator. Reconcile statuses against proposals; report setup and
+baseline attempts separately. Blocked and stopped proposals remain visible;
+SKIP/direct-review decisions are outside mutation denominators. Zero execution
+means no mutation rate. Native survivors with equivalent/uncertain behavior must be
+flagged separately, not presented as demonstrated weak assertions. Timeouts,
+baseline failures, drift and budget exhaustion are INCONCLUSIVE, never KILLED.
 
 Equivalent mutants and valid alternate implementations are important controls. No mutation ratio is a correctness or acceptance verdict. Existing mutation tooling may eventually implement this technique; **Faultline is not a mutation engine**.
 
@@ -160,12 +169,12 @@ Decide **KEEP SKILL / NARROW / SIMPLIFY / STOP / INCONCLUSIVE**. If C adds no co
 
 ## 8. Recommendation and issue disposition
 
-**NARROW:** retain the skill-first hypothesis, but commission no skill implementation yet. A controlled, attributable counterexample could differentiate Faultline from Gapline's read-only investigation; existing proposal text and seeded examples do not establish that it adds value over direct negative-case review. Full GO is unsupported; STOP becomes appropriate if the cheaper approach supplies the same useful result.
+**Historical #9 recommendation — NARROW:** retain the skill-first hypothesis while deferring implementation pending evidence. The subsequent #3 implementation request selects its permitted advice-only scope; it does not establish execution safety or incremental value. A controlled, attributable counterexample could differentiate Faultline from Gapline's read-only investigation; existing proposal text and seeded examples do not establish that advantage. Full GO is unsupported; STOP becomes appropriate if the cheaper approach supplies the same useful result.
 
-The [decision record and issue-by-issue table](IMPLEMENTATION.md#7-current-state-and-issue-map) retain #1–#8 without duplicate work. #2 remains a hard execution prerequisite, #3 stays the sole deferred skill issue, and #4/#6 retain their mutation evidence rather than being silently repurposed. These are proposed dispositions, not tracker edits.
+The [decision record and issue-by-issue table](IMPLEMENTATION.md#7-current-state-and-issue-map) retain #1–#8 without duplicate work. #2 remains a hard execution prerequisite, #3 supplies the sole advice-only skill, and #4/#6 retain their mutation scope rather than being silently repurposed. Future issue dispositions are proposals, not tracker edits.
 
 [Gapline #17](https://github.com/grove/gapline/issues/17) and [#18](https://github.com/grove/gapline/issues/18) remain independent, **read-only** explorations, not dependencies.
 
-**Next action:** design #10's single retry experiment using the [fixed-budget comparison](IMPLEMENTATION.md#bounded-first-comparison-proposed--not-run), then qualify #2 before any execution. Stop or retain direct-test guidance if no incremental value emerges. A positive seeded control alone cannot approve #3; fresh independently judged cases under #6 must justify it.
+**Next experimental action:** design #10's single retry experiment using the [fixed-budget comparison](IMPLEMENTATION.md#bounded-first-comparison-proposed--not-run), then qualify #2 before any execution. Stop or retain advice-only direct-test guidance if no incremental value emerges. A positive seeded control alone cannot justify enabling experiments; fresh independently judged cases under #6 must justify the broader executable skill.
 
 [README](README.md) · [Implementation plan](IMPLEMENTATION.md)
