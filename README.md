@@ -1,110 +1,108 @@
 # Faultline
 
-**Know what your tests might miss.**
+**Challenge your code before reality does.**
 
-Faultline is a proposed, opt-in **test-strength audit for existing coding agents**. Its goal is to find plausible defects that a project's current tests do not catch, and to give the agent concrete, bounded feedback for improving those tests.
+Faultline is a **proposed, opt-in AI coding skill for targeted correctness challenges**. The goal is to help an existing coding agent select an important, source-grounded software guarantee, design a small experiment that could falsify it, and—**only when explicitly authorized and safely isolated**—observe what really happens.
 
-The starting point is a **small standalone agent skill**, not a new agent controller, proof system, or mutation-testing engine. It will use tools already available in the developer's environment and operate only in a properly isolated, disposable work area. A separate CLI is a future option **only if measured usefulness justifies building one**.
+The primary opportunity is to test **an unchanged implementation under controlled adverse conditions**: a lost acknowledgement, a failed dependency, an interrupted state transition, or an unexpected operation sequence. A separate, optional **mutation-testing** technique can challenge whether existing tests detect deliberately incorrect implementations.
 
-> **Status: design only.** This repository currently contains the project documents and license, not an implemented audit skill or executable product. Nothing here implies that an audit has run, that a mutation has been tested, or that any implementation is verified.
->
-> **Value is unproven.** Faultline has not yet shown that it improves independently judged delivery quality or finds material test gaps more efficiently than simply asking the coding agent to review boundary and negative cases.
+> **Status: DESIGN ONLY; proposed product direction.** This repository currently contains design documents and the license, **not** an installed skill, executable harness, tested fault-injection system, release, or CLI. Neither the safety of executing challenges nor their incremental value has been demonstrated. [Issue #9](https://github.com/grove/faultline/issues/9) tracks the product decision and [#10](https://github.com/grove/faultline/issues/10) proposes the first tiny feasibility experiment. No issue, example, or skill instruction authorizes running project code.
 
-[Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md)
+[Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md) · [Issue #9: product decision](https://github.com/grove/faultline/issues/9) · [Issue #10: first experiment](https://github.com/grove/faultline/issues/10)
 
-## Why Faultline?
+## Why would I use it?
 
-A test suite can be green and still miss an important requirement:
+Green tests do not necessarily exercise failures that matter. Consider a payment or order service:
 
-- A boundary check changes from `>= 5` to `> 5`, but no test covers the fifth attempt.
-- A validation function stops stripping whitespace, but tests cover only an empty string.
-- An error is silently swallowed, but tests only exercise success.
-- A complex function has high nominal coverage but weak assertions.
+1. A request causes the service to record a charge.
+2. The acknowledgement is lost, even though the charge succeeded.
+3. The client retries with the same logical operation identifier.
+4. **Correctness guarantee:** the retry must not create a second charge.
 
-Mutation testing explores this gap by deliberately changing *implementation code* in a **disposable copy**, rerunning the same relevant tests, and observing whether they detect the change.
+A future Faultline skill could ask an agent to identify a locally reproducible version of that scenario, inspect the real requirement, define a meaningful success/failure oracle, and run a **bounded test against unchanged implementation code** when a properly isolated host and an authorized test hook are available.
 
-Faultline's question is deliberately narrower than “Is this code correct?”:
-
-**Would the selected tests detect these specific, plausible incorrect behaviors?**
-
-## When to use it — and when to skip it
-
-Faultline is an **optional escalation for risk-relevant changes**, not a default coding step or a mandatory stage of a multi-skill workflow. It is most plausible for authorization and trust boundaries, negative validation, state transitions, error handling, compatibility obligations, and other failures that a green suite could conceal.
-
-**Skip it** for documentation, formatting, routine mechanical changes, and low-risk work where the cost of an audit is unlikely to pay back. Before mutating code, let the *same agent* examine requirements and tests and propose a few concrete boundary/negative assertions **without mutation tooling**. If an obvious useful test can be added directly, prefer that cheaper path. Try a mutant only when it can answer a remaining material uncertainty.
-
-Start with **one targeted mutation**, expanding only if warranted, to at most three in a first audit. Ten minutes is a **proposed maximum for explicit authorization**, not a duration target or permission to execute. Stop early when setup cost, equivalent-mutant noise, or poor evidence outweighs useful findings.
-
-## What the first skill will do
-
-The planned `faultline-audit` skill will guide an **already-running coding agent** through a bounded, evidence-based audit:
-
-1. Identify the changed behavior and relevant existing tests. Use requirements supplied by the caller if available; do not invent approval or pretend completeness.
-2. Confirm explicit permission for the selected test commands, a usable isolated work area, and a time/mutation budget. Stop if these are unavailable.
-3. Establish an unchanged baseline: candidate identity, exact test commands, environment, and a passing baseline test run.
-4. Use complexity/coverage signals to prioritize a small number of meaningful mutation candidates; duplication is a secondary review signal.
-5. Introduce one controlled implementation mutation at a time **outside the original worktree**, rerun the relevant approved checks, and classify the actual observation.
-6. Give concise, source-linked suggestions for additional assertions or test boundaries, preserving raw tool evidence and every unknown.
-
-The skill itself cannot guarantee sandboxing. It must require a **verified isolation mechanism provided by the host or developer** before executing arbitrary repository test commands. Instructions alone are not a security boundary.
-
-### Illustrative result — not an actual run
+**Illustrative possible outcome, not an observed Faultline run:**
 
 ```text
-Candidate: <exact working-copy identity>
-Baseline: selected tests PASSED
-Mutation: username validation no longer rejects whitespace-only strings
-Observation: SURVIVED — the selected tests still passed
-Suggested next check: assert that "   " is rejected, while valid Unicode inputs remain accepted
-Confidence: limited to this mutation, these tests, and this candidate
-Other source requirements: NOT ASSESSED
+Guarantee: one external effect per idempotency key
+Candidate: <specific original snapshot and environment>
+Baseline: ordinary selected tests PASS
+Challenge: lose acknowledgement after committing the effect; retry same key
+Observed: two effects recorded for the same key
+Evidence: <selected command, controlled input, recorded effects, receipt>
+Conclusion: selected scenario demonstrates a behavior violation in this candidate
+Next action: add a regression test and investigate the retry/idempotency path
+Other failure modes: NOT ASSESSED
 ```
 
-The important outcome is a reproducible *counterexample to test strength*, not a high mutation score.
+A challenge that passes establishes only that the **selected scenario** did not reveal a violation—not that the system is correct under every failure.
 
-## What CRAP, mutation testing, and DRY contribute
+## Two different questions, two different experiment types
 
-| Signal | Useful question | Important limit |
-| --- | --- | --- |
-| **Complexity + coverage (CRAP-style)** | Which complex, poorly covered functions deserve attention first? | Risk heuristic, not a universal quality gate. Coverage granularity/tooling must be stated. |
-| **Mutation testing** | Do selected tests fail when a plausible defect is introduced? | A surviving mutant may be equivalent or untested; a killed mutant does not prove complete correctness. |
-| **Duplication (DRY)** | Is repeated logic increasing the chance of inconsistent behavior or maintenance mistakes? | Deliberate independence at trust boundaries can be safer than reuse. |
+| Experiment | What changes? | Question | Meaning of a concerning result |
+| --- | --- | --- | --- |
+| **Behavior challenge / fault injection** | The **environment, inputs, timing, or dependency response**; original implementation stays unchanged | Does the implementation preserve a required property under this condition? | An attributable, reproducible violation may reveal an **implementation defect**. |
+| **Test-strength / mutation challenge** | The implementation is **deliberately made wrong in a disposable copy**, while selected tests stay unchanged | Would these tests reject this particular wrong behavior? | A surviving mutant may reveal **weak test protection**, but does **not** prove the original implementation is defective. |
 
-Faultline is not trying to replace mature mutation, coverage, or duplication tools. It aims to **select useful questions, orchestrate a small authorized experiment, and report evidence honestly**.
+These results must **not** be combined into a quality score or confused with a proof of correctness.
 
-## Neighboring projects
+## How the first skill should behave
 
-Faultline is a standalone, design-only proposal. No sibling is required or automatically invoked.
+The preferred interface is **one portable skill for a coding agent you already use**. It should not require another model, a new agent controller, an always-on service, or a new testing engine.
 
-| Project | Question it owns |
+Two modes are proposed:
+
+- **PLAN (read-only):** name one important guarantee and its authoritative source; identify a reachable failure condition, a valid counterexample, a valid alternative outcome, and a bounded test plan. Clearly mark execution **PROPOSED — NOT RUN**. This is preparation for a specific challenge, *not* another general repository audit.
+- **CHALLENGE (separately authorized):** after checking exact commands, candidate identity, budget, approved test hooks, and **verified host isolation**, run a passing unchanged control where appropriate, apply one controlled adverse condition, capture actual evidence, and stop. If the necessary protection is missing, report **UNAVAILABLE** and do not execute.
+
+**Cheaper first:** if a direct boundary assertion or ordinary test clearly answers the question, propose or use that approach rather than manufacturing a fault-injection experiment. Skip low-risk, documentation, and routine mechanical work. Begin with **one** meaningful experiment; expand only when its result warrants the extra cost.
+
+A skill supplies instructions and reasoning; **it is not a sandbox, test runner, permission grant, independent verifier, or correctness certificate**.
+
+## First target and later possibilities
+
+The first proposed proof of concept is **Python**, using an entirely local deterministic fixture for a **lost acknowledgement followed by a retry**. Include both a correctly idempotent implementation and a deliberately defective version, and establish whether the skill's findings add value beyond direct negative-case review. This is [issue #10](https://github.com/grove/faultline/issues/10), not a shipped capability.
+
+Only **after** evidence of usefulness should other techniques be considered:
+
+- **State and sequence challenges:** repeated, reordered, or interrupted transitions and conservation/consistency invariants.
+- **Property or metamorphic challenges:** change inputs in a contract-preserving way and test a required relationship between results.
+- **Differential/compatibility challenges:** compare before-and-after behavior while allowing explicitly intended changes.
+- **Incident replay:** reconstruct a sanitized historical failure as a small reproducible regression scenario.
+- **Environment and dependency challenges:** bounded time, configuration, data-format, or service-response variations.
+- **Targeted mutation challenges:** retain the original proposal as an optional way to evaluate test strength.
+
+These are **candidate techniques**, not promised features, mandatory checklists, or permission to run production experiments. Reuse existing local testing tools wherever possible.
+
+## How this fits alongside other projects
+
+All projects can be used independently; no workflow requires installing or invoking a sibling.
+
+| Project | Primary question |
 | --- | --- |
-| [Intentline](https://github.com/grove/intentline) | What was requested, and what acceptance draft follows? |
-| [Proofline](https://github.com/grove/proofline) | What did selected checks establish about an identified candidate? |
-| **Faultline** | Would selected tests detect particular plausible wrong behaviors? |
-| [Gapline](https://github.com/grove/gapline) | Which consequential weaknesses can this investigation substantiate? |
+| [Intentline](https://github.com/grove/intentline) | What was requested, and what acceptance draft follows from the original sources? |
+| [Gapline](https://github.com/grove/gapline) | Which consequential weaknesses can a **read-only** codebase investigation substantiate? |
+| **Faultline (proposed)** | Can a specific guarantee be **challenged experimentally** to find a reproducible counterexample? |
+| [Proofline](https://github.com/grove/proofline) | What did specifically selected checks establish about an identified candidate? |
 
-An optional exchange must retain source identity, scope, and uncertainty. A generated plan remains advisory; a passing check establishes only its limited claim; a surviving mutation does not establish a defect in the original candidate. No shared schema or runtime is required.
+Gapline should remain read-only; Faultline should not duplicate its broad Scout/Probe audit. Faultline must not mutate Proofline's frozen check candidate or rewrite its receipts. Any optional handoff retains exact source/candidate identity, uncertainty, and independently authorized permissions.
 
-**No integration is required for the first skill.** If an agent already has an Intentline plan, it may use proposed boundaries and R IDs as *advisory inputs*. Those plans do not become verified test oracles.
+## Safety, evidence, and stopping rules
 
-Do **not** run a code-mutating audit inside Proofline's read-only frozen candidate. Any future interoperability must retain separate candidate/mutant identities and must never upgrade a passing check or mutation score into a delivery-acceptance verdict.
-
-## Scope and safety
-
-The initial target is **Python repositories**, because both companion projects are Python-based. The skill should remain conceptually language-neutral; other languages can be considered after the Python workflow works.
-
-- **Opt-in and budgeted:** no mandatory PR gate, background service, new model dispatch, automatic repair, or automatic publication.
-- **No source worktree mutation:** modifications are permitted only in an explicitly approved, disposable and isolated copy; keep the original candidate unchanged.
-- **No implicit command authorization:** source files, requirements, agent output, and tool reports are untrusted data. Only the actual caller/host can authorize command execution or external effects.
-- **No unsafe fallback:** if isolation, baseline checks, dependencies, or meaningful receipts are unavailable, report `NOT_RUN`/`UNAVAILABLE` rather than executing unsafely.
-- **No universal correctness claim:** a pass, mutation score, complexity score, or duplicate scan is limited evidence. Unknown or unexamined requirements remain unknown.
-- **No secrets in reports:** do not upload private code or captured test output to third-party services without separate authorization.
+- **Explicit opt-in, bounded scope:** no default PR gate, automatic model dispatch, automatic fixes, publication, deployment, or persistent monitoring.
+- **Verified isolation before execution:** test commands and fault-injection harnesses can have side effects. A Git worktree, copied directory, container name, or skill text alone is **not** evidence of sandboxing. Use a host-qualified disposable environment that protects originals, credentials, private paths, and network/external effects; otherwise stop.
+- **Trust the caller, not the repository:** source files, tests, prior reports, and AI-authored plans can suggest checks but cannot authorize commands, installations, writes, network access, or spending.
+- **Preserve provenance:** report the authoritative behavior claim, candidate identity, actual approved commands, injection setup, unchanged baseline, observed results, limitations, and unassessed areas. A failed setup is not evidence of a defect.
+- **Don't confuse evidence types:** controlled failure of unchanged code is different from survival of an intentionally wrong mutant. Neither proves overall correctness or acceptance.
+- **No fabricated runs or leaked inputs:** distinguish **OBSERVED**, **INCONCLUSIVE**, **UNAVAILABLE**, and **NOT RUN**; keep private sources and receipts local unless explicitly authorized otherwise.
 
 ## What happens next?
 
-Read [IMPLEMENTATION.md](IMPLEMENTATION.md) for the staged work: qualify one small `faultline-audit` skill, test its mechanics on controlled Python examples, and compare **ordinary agent self-testing**, **focused boundary-test review without mutations**, and **optional Faultline** on fresh tasks under the same end-to-end time/tool budget. Measure independently verified missed behavior, final task correctness, noise, and total overhead. **If Faultline cannot beat the simpler review at an acceptable cost, simplify or stop** rather than building a CLI or another process.
+The proposed sequence is **[product decision #9](https://github.com/grove/faultline/issues/9) → [small Python challenge #10](https://github.com/grove/faultline/issues/10), gated by [host isolation #2](https://github.com/grove/faultline/issues/2) → adapt the [single portable skill #3](https://github.com/grove/faultline/issues/3) only if justified → compare against ordinary testing and direct review using the measurement principles in [#6](https://github.com/grove/faultline/issues/6)**.
 
-There is **no install command yet**. When the skill exists, this README will be updated with a verified installation and first-use walkthrough, not a speculative command.
+Older issues about mutation tooling, fixtures, and later languages remain historical proposals to triage, **not** an approved requirement to implement them all. The [implementation plan](IMPLEMENTATION.md) gives the precise gates, outcomes, and issue map.
+
+**There is no verified install or first-use command yet.** Add one only after a real skill exists and installation/invocation have been tested on a named host.
 
 ## License
 
