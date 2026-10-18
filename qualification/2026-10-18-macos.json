@@ -1,0 +1,307 @@
+{
+  "schema": 1,
+  "decision": "UNAVAILABLE",
+  "project_execution": "NOT_RUN",
+  "observed_at_utc": "2026-10-18T17:41:17.441554+00:00",
+  "coordinator_python": "3.15.0",
+  "host": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "macos": "27.0.1",
+    "machine": "arm64"
+  },
+  "probe_sha256": "df7916ab26fe7ce0499b2a76ff80366e1a4b6ae0aef7764122b1916621e63049",
+  "limits": {
+    "per_probe_seconds": 2,
+    "cleanup_wait_seconds": 1,
+    "total_seconds": 30,
+    "retained_output_bytes_per_stream": 4096
+  },
+  "controls": [
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.01,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "positive-read",
+      "argv_suffix": [
+        "read",
+        "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/original/candidate.py"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.01,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "positive-write",
+      "argv_suffix": [
+        "write",
+        "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant/output.txt"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.009,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "source-write",
+      "argv_suffix": [
+        "write",
+        "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/original/candidate.py"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.009,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "test-write",
+      "argv_suffix": [
+        "write",
+        "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/original/test_candidate.py"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.01,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "receipt-write",
+      "argv_suffix": [
+        "write",
+        "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/protected/receipt.txt"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.01,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "private-read",
+      "argv_suffix": [
+        "read",
+        "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/private/token.txt"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.009,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "symlink-write",
+      "argv_suffix": [
+        "write",
+        "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant/source-alias"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.01,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "symlink-read",
+      "argv_suffix": [
+        "read",
+        "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant/private-alias"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.009,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "hardlink-write",
+      "argv_suffix": [
+        "write",
+        "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant/receipt-hardlink"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.009,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "dotdot-write",
+      "argv_suffix": [
+        "write",
+        "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant/../original/candidate.py"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.009,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "outbound-tcp",
+      "argv_suffix": [
+        "network",
+        "192.0.2.1:9"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    },
+    {
+      "status": "OBSERVED",
+      "returncode": 71,
+      "timed_out": false,
+      "elapsed_seconds": 0.01,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "effect_status": "UNAVAILABLE",
+      "name": "timeout",
+      "argv_suffix": [
+        "timeout",
+        "unused"
+      ],
+      "after": {
+        "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+        "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+        "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+        "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+      },
+      "protected_unchanged": true
+    }
+  ],
+  "qualification_granted": false,
+  "synthetic_root": "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z",
+  "profile": "(version 1)\n(deny default)\n(allow process-exec)\n(allow sysctl-read)\n(allow file-read*\n    (subpath \"/System\") (subpath \"/usr\")\n    (subpath \"/Library/Developer/CommandLineTools\")\n    (subpath \"/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/original\")\n    (subpath \"/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/baseline\") (subpath \"/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant\"))\n(allow file-write* (subpath \"/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/baseline\") (subpath \"/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant\"))\n",
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant",
+    "TMPDIR": "/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant"
+  },
+  "before": {
+    "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+    "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+    "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+    "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+  },
+  "argv_prefix": [
+    "/usr/bin/sandbox-exec",
+    "-p",
+    "(version 1)\n(deny default)\n(allow process-exec)\n(allow sysctl-read)\n(allow file-read*\n    (subpath \"/System\") (subpath \"/usr\")\n    (subpath \"/Library/Developer/CommandLineTools\")\n    (subpath \"/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/original\")\n    (subpath \"/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/baseline\") (subpath \"/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant\"))\n(allow file-write* (subpath \"/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/baseline\") (subpath \"/private/var/folders/vq/593qxcm57l90w1dlpywl_7nw0000gn/T/faultline-issue2-6yp3qk9z/mutant\"))\n",
+    "/usr/bin/python3",
+    "-I",
+    "-S",
+    "-B",
+    "-c",
+    "\nimport errno, json, os, socket, sys, time\nfrom pathlib import Path\nprint(json.dumps({\"started\": True}), flush=True)\naction, target = sys.argv[1:]\ntry:\n    if action == \"read\":\n        Path(target).read_bytes()\n    elif action == \"write\":\n        Path(target).write_text(\"changed\\n\")\n    elif action == \"network\":\n        with socket.socket() as connection:\n            connection.settimeout(0.2)\n            connection.connect((\"192.0.2.1\", 9))\n    elif action == \"timeout\":\n        time.sleep(10)\n    print(json.dumps({\"effect\": \"allowed\"}))\nexcept OSError as error:\n    print(json.dumps({\"effect\": \"error\", \"errno\": error.errno}))\n"
+  ],
+  "after": {
+    "candidate": "25a92d95b1e7147cc1201e23ab3737b4b9d60d9afb01a5f8d46dbafad5260911",
+    "tests": "5eba3fa868c014cafb42ed4994aa9a51ef7fb89efc9c005873cf542a601caa83",
+    "receipt": "e723184c63969bb086f9e88411d22b9b9aef88475d153144653fee040321c3c7",
+    "private": "b17f8071ccfa20e851d99a7fdee2bdd4f9c413d3ef5e81ecd90ccf9f7d2a211a"
+  },
+  "reason": "No execution grant: require positive controls, observed denials, immutable originals, network telemetry and host-owned descendant/resource containment. This probe does not establish all of these; see ISOLATION.md.",
+  "synthetic_root_removed": true
+}
