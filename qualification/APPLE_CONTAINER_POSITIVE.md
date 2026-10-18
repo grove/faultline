@@ -1,5 +1,9 @@
 # Positive Apple Container smoke review — BLOCKED / NOT RUN
 
+**Stage 1a has now stopped at unregistered.** Follow the
+[Stage 1b setup request](APPLE_CONTAINER_SERVICE_SETUP.md); preserve the original
+inventory receipt. Setup/startup and its pinned-init retrieval are not approved yet.
+
 **Latest action:** see [the staged setup/positive authorization](APPLE_CONTAINER_NEXT.md).
 The prerequisite checks below are complete; the next requested approval is
 service inventory only. This supplement retains the earlier review context.

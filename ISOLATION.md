@@ -44,6 +44,14 @@ drift by silently restoring bytes and continuing.
 
 ## Current preparation: Apple Container 1.5.0 — UNAVAILABLE pending controls
 
+The operator's approved Stage 1a returned `unregistered` before image listing or
+kernel inspection. Its original receipt is preserved, with current helper bytes
+matched independently to PR head `9ad0f52`; execution-time bytes were not captured
+by the receipt and remain operator-corroborated. The next proposed effect is
+[dedicated service setup](qualification/APPLE_CONTAINER_SERVICE_SETUP.md), including
+the pinned init download intrinsic to startup, with kernel installation disabled.
+No startup or guest execution is authorized by the completed inventory approval.
+
 The latest [staged authorization proposal](qualification/APPLE_CONTAINER_NEXT.md)
 adds a frozen positive-v2 fixture with host acknowledgement before tmpfs teardown,
 fresh preparation and a separately authorized service-inventory command. It

@@ -1,0 +1,34 @@
+{
+  "authority": {
+    "qualification_granted": false,
+    "stage_1a": "Approved and executed by operator; completed at unregistered.",
+    "stage_1b": "Not authorized. Prepared proposal only.",
+    "synthetic_execution": "Not authorized.",
+    "worker_or_kernel_retrieval": "Not authorized."
+  },
+  "inventory": {
+    "bytes": 672,
+    "copy_preserves_current_raw_bytes": true,
+    "execution_and_timestamp": "Operator-supplied; not independently observed at execution time.",
+    "operator_path": "/private/tmp/faultline-apple-positive-v2/evidence/inventory.json",
+    "repeat": "Operator reports FileExistsError before subprocess loop; not rerun by this review.",
+    "repository_copy": "qualification/2026-10-18-apple-container-inventory.json",
+    "result": "Status exited 1 with unregistered; image list and kernel read not reached.",
+    "sha256": "801d606d2816c1ca63658edc1259edb71e7f7b83e741a16c605955c1e5f3f2b9"
+  },
+  "kind": "OPERATOR_INVENTORY_AND_CURRENT_SOURCE_REVIEW",
+  "reviewed_at_utc": "2026-10-18T21:06:21.933651+00:00",
+  "schema": 1,
+  "source": {
+    "checkout_reset_or_cleaned": false,
+    "current_bytes_equal_reviewed_commit": true,
+    "current_file_sha256": "f501a352b37323fd792bca055c5adf8b9a85ba1f3f37cc1f4fbc73f2aaa03cb7",
+    "current_workspace_head": "ad4b3db108fa9e7c5c5035a0d26f4c09eb9647c6",
+    "limitation": "No invocation-time script hash or commit in raw inventory. Current byte equality corroborates but cannot independently attest executed bytes.",
+    "matches_prepared_v2_source_hash": true,
+    "operator_checkout_head": "ad4b3db108fa9e7c5c5035a0d26f4c09eb9647c6",
+    "path": "qualification/apple_container_smoke.py",
+    "reviewed_file_sha256": "f501a352b37323fd792bca055c5adf8b9a85ba1f3f37cc1f4fbc73f2aaa03cb7",
+    "reviewed_pr_head": "9ad0f52ad58ceda935d5ba7dd4b8d9ddbece007a"
+  }
+}
