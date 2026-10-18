@@ -18,9 +18,21 @@ host/context. The historical receipts are preserved unchanged.
 
 ## First Terminal evidence: client inspection only
 
-From the reviewed Faultline checkout, in the normal macOS Terminal, review and
-authorize this exact command. It reads host/CLI identity and client help, writes
-nothing, and does not contact the container service:
+In the normal macOS Terminal, confirm the checkout belongs to draft PR #17:
+
+```sh
+cd /Users/grove/projects/faultline
+git branch --show-current
+git rev-parse HEAD
+```
+
+The branch must be `issue-2/apple-container-qualification`; compare the commit
+with PR #17's current head. Stop on a mismatch rather than checking out another
+branch over local changes. Retain the commit alongside the inspection JSON.
+Then run this exact command from that directory. It requests host/CLI identity
+and client help, with no intentional file writes, service startup, downloads or
+runtime operations. **Possible CLI-internal service contact, helper processes
+and side effects are not independently observed or excluded.**
 
 ```sh
 python3 -I -B qualification/apple_container.py inspect
@@ -37,6 +49,10 @@ capture assumes trusted installed client help has finite output, not an output
 quota for arbitrary code. Retain the complete JSON locally; inspect it before
 sharing paths. An absent CLI, timeout, truncated help or failed help command
 blocks the next stage. Do not install, start or pull to fix an inspection failure.
+Paste the complete JSON or provide the saved JSON file after reviewing paths and
+identifiers. Keep the raw original locally; publish only a reviewed copy with
+redactions identified and the raw file's SHA-256 retained. Do not replace any
+historical receipt or relabel this inspection as execution-safety qualification.
 
 Use the **observed** release version to select Apple's tagged command reference,
 release notes and corresponding Containerization dependency, then pin their commit
@@ -46,6 +62,14 @@ the installed `run`, `inspect`, `stop`, `delete`, and `image inspect` help captu
 by the tool. Record discrepancies as blockers. No runtime flags are asserted in
 this change: inventing a launch command before obtaining that version would make
 the protocol misleading.
+
+For each proposed flag, record the exact installed-help excerpt, matching tagged
+documentation URL/commit/hash, intended enforcement and independent observation.
+Compare root and bind-mount read-only settings, entrypoint/environment, network
+attachments, resource limits and identity-scoped stop/delete behavior. Report an
+absent or conflicting flag as a blocker. In particular, neither `--internal`
+(host-only networking) nor `--no-dns` establishes denial of all external and
+host-facing networking. Do not infer that an unconfigured network means no network.
 
 ## Prepare a fresh synthetic bundle (separate review/authorization)
 
@@ -104,6 +128,29 @@ bytes. This preparation PR does not ask for blanket execution approval.
 | Independent network and VM/process observers with calibrated positive controls | UNAVAILABLE |
 | Exact finite inert sink IPs/ports/protocols, capture interfaces and scope | NOT SELECTED; no production/public test destination or broad capture |
 | Exact owned VM/container identities, termination and interruption recovery commands | BLOCKED pending runtime version; never delete by name pattern or all-containers flags |
+| Working directories | Inspection/preparation/host verification: `/Users/grove/projects/faultline`; proposed guest cwd: `/scratch`; runtime/observer/cleanup cwd must be fixed after version review |
+| Expected filesystem effects | Read only `original`/`inputs`; write only fresh guest scratch; host collector alone writes evidence. Setup may persist images/kernel/init separately; no writable host bind |
+| Expected network effects | No worker external or host-facing traffic permitted; only separately approved calibration markers at exact inert sinks. Setup downloads are a different permission |
+| Enforced resource budgets | Proposed: one VM/CPU, 256 MiB memory, 16 PIDs, 16 MiB scratch, 64 KiB output, 10 s/control, 360 s/session; enforcement UNAVAILABLE |
+| Evidence/log destinations for first positive attempt | Proposed host-only `/private/tmp/faultline-apple-review-01/evidence/`: `prepared.json`, `positive.json`, `authorization.txt`, `cli.stdout`, `cli.stderr`, `host-observer.json`, `network-observer.json`; use exclusive creation and a fresh bundle for every later control |
+| Exact cleanup commands and recovery | UNAVAILABLE; no approved runtime identities/stop/delete semantics yet. Do not launch until exact normal/timeout/interruption cleanup commands and host observations are reviewed |
+
+This is a **blocked authorization sheet**, not an executable command sequence or
+a request for synthetic execution approval. No required image/digest, installed
+version, denial observer, enforced limits or exact cleanup commands are verified.
+**UNAVAILABLE / NO_GO** applies even to the positive startup until those gaps are
+resolved. No `container run` example is supplied before the installed CLI evidence.
+
+Keep these permissions separate; approval must name exact commands and effects:
+
+| Permission | Current authority |
+| --- | --- |
+| Normal-Terminal client inspection and preparation review/tests | Authorized by this request; operator must supply Terminal JSON |
+| Software installation or upgrade | NOT AUTHORIZED; require exact version/source/destination and install effects |
+| Image/kernel/init downloads | NOT AUTHORIZED; require source, independently verified digest, destination, network/storage effects |
+| Container service startup | NOT AUTHORIZED; require exact command, persistent service effects and any implicit downloads |
+| Synthetic startup, adverse controls, observers/sinks and cleanup | NOT AUTHORIZED; require completed sheet, reviewed enforcement and exact scoped commands |
+| Later Faultline/project/#10 challenges | NOT AUTHORIZED; separate task after qualification and independent review |
 
 Service startup may fetch kernel/init artifacts. Image retrieval is network access
 and persistent storage. They each require separately approved exact commands,
@@ -163,6 +210,14 @@ SIGTERM, coordinator death and observation failure before any launch is approved
 
 ## Decisions and validation in this PR
 
+Review of the retained receipts establishes only: twelve historical native
+launch failures before child startup; a later missing-CLI prerequisite inspection;
+and a preparation inspection with `cli: null` and all 33 controls `NOT_RUN`.
+None contains the operator's normal-Terminal CLI version/help or successful
+Apple Container startup. The filesystem fixture and host manifest observer are
+implemented; network, resource, descendant and cleanup probes are not. Retained
+receipt source hashes identify their historical sources, not subsequent edits.
+
 **GO FOR THE EXACT SYNTHETIC SCOPE** requires every required protection, successful
 positive controls, independently observed denials/limits/descendant cleanup, intact
 originals and protected evidence, complete provenance and independent review.
@@ -173,6 +228,10 @@ The preparation tool deliberately has no GO path or external-result importer.
 
 Maintainer tests exercise only fixture preparation, manifest comparison, receipt
 integrity and syntax. They do not launch a canary, runtime, sink, sleeper or guest.
+Installed-CLI inspection checks mock every subprocess call: they verify the exact
+version/help-only argv, closed stdin, minimal environment, timeouts, retained-output
+cap and failure reporting. Even successful mocked help retains `UNAVAILABLE` and
+all controls `NOT_RUN`; these checks provide no installed-CLI or host safety evidence.
 Use `python3 -I -B -m unittest discover -s tests -p test_apple_container.py -v`.
 The existing full suite includes a host sleeper; do not run that test under the
 current no-canary authority. No #10 code, project tests or skill execution is

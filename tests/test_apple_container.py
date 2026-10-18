@@ -85,6 +85,62 @@ class ApplePreparationTests(unittest.TestCase):
     def test_guest_is_syntax_checked_only(self):
         ast.parse((ROOT / "qualification/apple_container_guest.py").read_text())
 
+    def test_installed_cli_inspection_requests_only_version_and_help(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            cli = Path(temporary) / "container"
+            cli.write_bytes(b"synthetic CLI identity; never executed")
+            with patch.object(probe.shutil, "which", return_value=str(cli)), \
+                    patch.object(probe.platform, "system", return_value="Darwin"), \
+                    patch.object(probe.subprocess, "run", return_value=
+                        probe.subprocess.CompletedProcess([], 0, b"synthetic help", b"")) as run:
+                result = probe.inspect_host()
+            self.assertEqual(result["cli_sha256"], probe.digest(cli))
+        commands = [["/usr/bin/sw_vers"]] + [[str(cli), *args] for args in (
+            ["--version"], ["run", "--help"], ["inspect", "--help"],
+            ["stop", "--help"], ["delete", "--help"], ["image", "inspect", "--help"],
+        )]
+        self.assertEqual([call.args[0] for call in run.call_args_list], commands)
+        for call in run.call_args_list:
+            self.assertEqual(call.kwargs, {
+                "cwd": "/", "env": {"PATH": "/usr/bin:/bin", "LC_ALL": "C"},
+                "stdin": probe.subprocess.DEVNULL, "capture_output": True, "timeout": 5,
+            })
+        self.assertEqual([o["argv"] for o in result["observations"]], commands)
+        self.assertEqual(result["decision"], "UNAVAILABLE")
+        self.assertFalse(result["qualification_granted"])
+        self.assertEqual(result["boundary_launches"], 0)
+        self.assertTrue(all(c["status"] == "NOT_RUN" for c in result["controls"]))
+
+    def test_inspection_retains_failures_and_caps_help_without_granting_go(self):
+        for failure in ("exit", "truncated", "timeout", "oserror"):
+            with self.subTest(failure=failure), tempfile.TemporaryDirectory() as temporary:
+                cli = Path(temporary) / "container"
+                cli.write_bytes(b"never executed")
+                response = {
+                    "exit": probe.subprocess.CompletedProcess([], 2, b"", b"failed help"),
+                    "truncated": probe.subprocess.CompletedProcess([], 0, b"x" * 65537, b"y" * 65537),
+                    "timeout": probe.subprocess.TimeoutExpired([str(cli)], 5),
+                    "oserror": OSError("synthetic failure"),
+                }[failure]
+                with patch.object(probe.shutil, "which", return_value=str(cli)), \
+                        patch.object(probe.platform, "system", return_value="Test"), \
+                        patch.object(probe.subprocess, "run", side_effect=[response] * 6):
+                    result = probe.inspect_host()
+                self.assertEqual(len(result["observations"]), 6)
+                observation = result["observations"][1]
+                if failure == "exit":
+                    self.assertEqual(observation["returncode"], 2)
+                    self.assertEqual(observation["stderr"], "failed help")
+                elif failure == "truncated":
+                    self.assertTrue(observation["truncated"])
+                    self.assertEqual(observation["stdout"], "x" * 65536)
+                    self.assertEqual(observation["stderr"], "y" * 65536)
+                else:
+                    self.assertEqual(observation["error"], type(response).__name__)
+                self.assertEqual(result["decision"], "UNAVAILABLE")
+                self.assertFalse(result["qualification_granted"])
+                self.assertTrue(all(c["status"] == "NOT_RUN" for c in result["controls"]))
+
 
 if __name__ == "__main__":
     unittest.main()

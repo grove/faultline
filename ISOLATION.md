@@ -51,6 +51,15 @@ The preparation/observer unit checks are not boundary qualification. Runtime
 launch commands are blocked until the actual installed version/help, matching
 documentation and required host enforcement/observers can be reviewed. No guessed
 Docker-compatible flags or current-branch documentation stand in for that evidence.
+The next action is the exact `python3 -I -B qualification/apple_container.py inspect`
+command in the operator's normal Terminal at the verified PR #17 checkout, then
+return its reviewed JSON. It intentionally requests only host identity and CLI
+version/help, not service startup or runtime operations; CLI-internal service
+contact, helper processes and side effects are not independently observed or
+excluded. Inspection is not execution-safety qualification. The protocol's
+authorization sheet remains blocked until versions, image digest, enforcement,
+independent observers and exact cleanup commands are available; no synthetic
+execution approval is requested yet.
 **Keep #2 open; execution remains NO_GO / UNAVAILABLE.** The earlier records below
 describe their original host context and are not reclassified by the operator's
 subsequent installation report.
