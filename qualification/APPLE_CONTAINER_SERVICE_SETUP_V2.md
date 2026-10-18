@@ -1,4 +1,10 @@
-# Stage 1b setup-v2 — new one-attempt approval required
+# Stage 1b setup-v2 — consumed attempt, recovery pending
+
+**Do not run the startup command below.** The authorized setup-v2 attempt started
+services, then failed Faultline's path comparison and recovery checks. Its receipt
+is preserved unchanged. Only the [separate recovery proposal](APPLE_CONTAINER_RECOVERY.md)
+is current; a startup retry requires a fresh identity and separate approval after
+recovery is resolved. The remaining text records the consumed setup-v2 proposal.
 
 The operator's setup-v1 receipt is [preserved byte for byte](2026-10-18-apple-container-setup-v1.json),
 SHA-256 `e2fa363740ca780bd736f0daec8ed8f2e0c8bcf3621d0cbb5e9195a2b5ecfb1a`.
@@ -46,7 +52,7 @@ rechecks them. Missing/inaccessible domains block, including a headless host wit
 no readable GUI domain; this version does not add a fallback for other hosts.
 Raw launchd dumps/environments are discarded, with only Container names retained.
 
-## Exact next command
+## Historical setup-v2 command — authorization consumed
 
 Working directory: `/Users/grove/projects/faultline`. Approve one execution of:
 

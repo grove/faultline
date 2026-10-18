@@ -1,24 +1,18 @@
 # Positive Apple Container smoke review — BLOCKED / NOT RUN
 
-**Current next request:** [domain-aware setup-v2](APPLE_CONTAINER_SERVICE_SETUP_V2.md).
-The setup-v1 receipt is preserved; that attempt stopped before startup and its
-authorization is consumed. A new attempt requires separate approval.
+**Current next request:** [identity-scoped setup-v2 recovery](APPLE_CONTAINER_RECOVERY.md).
+The authorized setup-v2 attempt started four services in `user/501`; Faultline
+rejected trailing-slash paths and could not complete recovery. Services may
+remain active. The original receipt is preserved; no VM or canary ran.
+No further startup, provisioning or execution is authorized.
 
-**Stage 1a has now stopped at unregistered.** Follow the
-[Stage 1b setup request](APPLE_CONTAINER_SERVICE_SETUP.md); preserve the original
-inventory receipt. Setup/startup and its pinned-init retrieval are not approved yet.
-
-**Latest action:** see [the staged setup/positive authorization](APPLE_CONTAINER_NEXT.md).
-The prerequisite checks below are complete; the next requested approval is
-service inventory only. This supplement retains the earlier review context.
-The new `/private/tmp/faultline-apple-positive-v2` bundle has been prepared without
-guest execution. Its [unaltered receipt](2026-10-18-apple-container-positive-v2-prepared.json)
-SHA-256 is `5c2c360a9b025de6fce372a4129b365580b94eb68503b8017fa2c4cd7331f385`.
-Only `prepared-v2.json` exists in its evidence directory; inventory awaits approval.
+The historical preparation and setup proposals below are retained as context.
+All prerequisite checks and Stage 1a are complete; do not repeat them or reuse
+any consumed attempt identity.
 
 Latest supplement for draft [PR #17](https://github.com/grove/faultline/pull/17)
 and [issue #2](https://github.com/grove/faultline/issues/2). **Execution NO_GO;
-qualification UNAVAILABLE.** No container, canary or observer has been launched.
+qualification UNAVAILABLE.** No VM or canary has been launched; read-only host observations are recorded separately.
 This document does not authorize setup, execution, a budget change or cleanup.
 
 ## Preparation verified

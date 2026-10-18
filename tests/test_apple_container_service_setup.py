@@ -16,7 +16,8 @@ SPEC = importlib.util.spec_from_file_location("service_setup", ROOT / "qualifica
 service = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(service)
 API = "com.apple.container.apiserver"
-IMAGE = "com.apple.container.core.container-core-images"
+IMAGE = "com.apple.container.container-core-images"
+NETWORK = "com.apple.container.container-network-vmnet.default"
 DOMAINS = ("system", "user/501", "gui/501")
 
 
@@ -30,7 +31,7 @@ def domain_output(domain, labels=(), endpoints=()):
 
 class ServiceSetupTests(unittest.TestCase):
     def attempt(self, manager="Background", failure=None, collision=None, foreign=False, drift=False,
-                domain_error=False, bootout_error=False):
+                domain_error=False, bootout_error=False, trailing=False, network=False, wrong_program=False):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         bundle = Path(temporary.name).resolve()
@@ -48,6 +49,11 @@ class ServiceSetupTests(unittest.TestCase):
         domain = "gui/501" if manager == "Aqua" else "user/501"
         live = {}
         inspections = {}
+        programs = {}
+        for label in (API, IMAGE, NETWORK):
+            program = bundle / (label + ".executable")
+            program.write_bytes(b"synthetic executable identity; never executed")
+            programs[label] = str(program)
 
         def respond(argv, **kwargs):
             output = b""
@@ -69,9 +75,12 @@ class ServiceSetupTests(unittest.TestCase):
                 copied = setup / "runtime/config"
                 copied.mkdir(parents=True)
                 (copied / "config.toml").write_bytes((service.HERE / "apple-container-service.toml").read_bytes())
-                for label in (API, IMAGE):
+                for label in (API, NETWORK if network else IMAGE):
                     path = setup / "runtime" / (label + ".plist")
-                    path.write_bytes(plistlib.dumps({"Label": label, "EnvironmentVariables": env}))
+                    roots = {**env, "CONTAINER_APP_ROOT": env["CONTAINER_APP_ROOT"] + ("/" if trailing else ""),
+                             "CONTAINER_INSTALL_ROOT": "/usr/local/" if trailing else "/usr/local"}
+                    path.write_bytes(plistlib.dumps({"Label": label, "EnvironmentVariables": roots,
+                                                    "ProgramArguments": [programs[label], "start"]}))
                     live[label] = path
                 if isinstance(failure, Exception):
                     raise failure
@@ -88,7 +97,8 @@ class ServiceSetupTests(unittest.TestCase):
                     config = plistlib.loads(path.read_bytes())
                     config["changed"] = True
                     path.write_bytes(plistlib.dumps(config))
-                output = (target + " = {\n\tpath = " + str(path) + "\n}\n").encode()
+                program = "/bin/sh" if wrong_program else programs[label]
+                output = (target + " = {\n\tpath = " + str(path) + "\n\tprogram = " + program + "\n}\n").encode()
             elif argv[:2] == ["/bin/launchctl", "bootout"]:
                 if bootout_error:
                     code = 1
@@ -96,7 +106,8 @@ class ServiceSetupTests(unittest.TestCase):
                     del live[argv[2].rsplit("/", 1)[1]]
             elif argv == [service.CLI, "system", "status", "--format", "json"]:
                 output = json.dumps({"status": "running", "paths": {
-                    "appRoot": env["CONTAINER_APP_ROOT"], "installRoot": "/usr/local"},
+                    "appRoot": env["CONTAINER_APP_ROOT"] + ("/" if trailing else ""),
+                    "installRoot": "/usr/local/" if trailing else "/usr/local"},
                     "server": {"version": "1.5.0", "commit": "d265d66"}}).encode()
             elif argv == [service.CLI, "image", "inspect", service.INIT]:
                 output = b"[{}]"
@@ -107,7 +118,7 @@ class ServiceSetupTests(unittest.TestCase):
         with ExitStack() as stack:
             for name, value in (("BUNDLE", bundle), ("SETUP", setup), ("PLUGIN_ROOT", plugins),
                                 ("PLUGIN_CONFIGS", pins), ("CUSTOM_PLUGINS", bundle / "no-custom-plugins"),
-                                ("ENV", env), ("START", start)):
+                                ("ENV", env), ("START", start), ("SERVICE_PROGRAMS", programs)):
                 stack.enter_context(patch.object(service, name, value))
             stack.enter_context(patch.object(service.os, "getuid", return_value=501))
             run = stack.enter_context(patch.object(service.subprocess, "run", side_effect=respond))
@@ -185,6 +196,17 @@ class ServiceSetupTests(unittest.TestCase):
     def test_endpoint_names_with_spaces_are_preserved_as_names(self):
         text = domain_output("user/501", endpoints=("locale unrelated-endpoint", API)).decode()
         self.assertEqual(service.domain_names(text, "user/501")["endpoints"], [API])
+
+    def test_trailing_status_and_network_root_slashes_keep_strict_identity(self):
+        code, _, report, _ = self.attempt(trailing=True, network=True)
+        self.assertEqual(code, 0)
+        self.assertIn(NETWORK, report["owned_services"])
+
+    def test_foreign_live_executable_is_not_removed(self):
+        code, calls, report, _ = self.attempt(failure="nonzero", wrong_program=True)
+        self.assertEqual(code, 1)
+        self.assertIn("INCOMPLETE", report["recovery"])
+        self.assertFalse(any(c[1] == "bootout" for c in calls))
 
 
 if __name__ == "__main__":

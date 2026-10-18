@@ -32,6 +32,19 @@ ENV = {"HOME": "/Users/grove", "PATH": "/usr/bin:/bin", "LC_ALL": "C",
        "CONTAINER_INSTALL_ROOT": "/usr/local"}
 START = [CLI, "system", "start", "--app-root", ENV["CONTAINER_APP_ROOT"],
          "--install-root", "/usr/local", "--disable-kernel-install", "--timeout", "15"]
+SERVICE_PROGRAMS = {
+    "com.apple.container.apiserver": "/usr/local/bin/container-apiserver",
+    "com.apple.container.machine-apiserver": "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver",
+    "com.apple.container.container-core-images": "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images",
+    "com.apple.container.container-network-vmnet.default": "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet",
+}
+
+
+def same_path(left, right):
+    try:
+        return Path(left).is_absolute() and Path(right).is_absolute() and Path(left).samefile(right)
+    except (OSError, TypeError, ValueError):
+        return False
 
 
 def domain_names(text, domain):
@@ -64,7 +77,8 @@ def domain_names(text, domain):
 def owned_plist(text, target):
     lines = text.splitlines()
     paths = [line.removeprefix("\tpath = ") for line in lines if line.startswith("\tpath = ")]
-    if not lines or lines[0] != target + " = {" or len(paths) != 1:
+    programs = [line.removeprefix("\tprogram = ") for line in lines if line.startswith("\tprogram = ")]
+    if not lines or lines[0] != target + " = {" or len(paths) != 1 or len(programs) != 1:
         raise ValueError("Cannot identify launchd service origin")
     path = Path(paths[0])
     if path.is_symlink() or not path.resolve(strict=True).is_relative_to(SETUP / "runtime"):
@@ -75,11 +89,16 @@ def owned_plist(text, target):
         raise ValueError("Service plist exceeds setup budget")
     config = plistlib.loads(data)
     env = config.get("EnvironmentVariables", {})
-    if (config.get("Label") != target.rsplit("/", 1)[1] or
-            env.get("CONTAINER_APP_ROOT") != ENV["CONTAINER_APP_ROOT"] or
-            env.get("CONTAINER_INSTALL_ROOT") != "/usr/local"):
+    label = target.rsplit("/", 1)[1]
+    arguments = config.get("ProgramArguments", [])
+    expected = SERVICE_PROGRAMS.get(label)
+    if (config.get("Label") != label or config.get("Program") is not None or not arguments or
+            not same_path(env.get("CONTAINER_APP_ROOT"), ENV["CONTAINER_APP_ROOT"]) or
+            not same_path(env.get("CONTAINER_INSTALL_ROOT"), "/usr/local") or
+            not same_path(arguments[0], expected) or not same_path(programs[0], expected)):
         raise ValueError("Service ownership differs; leave it untouched")
-    return {"path": str(path), "sha256": hashlib.sha256(data).hexdigest()}
+    return {"path": str(path.resolve(strict=True)), "sha256": hashlib.sha256(data).hexdigest(),
+            "executable": str(Path(expected).resolve(strict=True))}
 
 
 def setup():
@@ -150,9 +169,9 @@ def setup():
             report["startup_attempted"] = True
             run(START, 120)
             status = json.loads(run([CLI, "system", "status", "--format", "json"], 15))
-            if status.get("status") != "running" or status["paths"]["appRoot"] != ENV["CONTAINER_APP_ROOT"]:
+            if status.get("status") != "running" or not same_path(status["paths"]["appRoot"], ENV["CONTAINER_APP_ROOT"]):
                 raise ValueError("Unexpected post-start service state/root")
-            if (status["paths"]["installRoot"] != "/usr/local" or
+            if (not same_path(status["paths"]["installRoot"], "/usr/local") or
                     status["server"]["version"] != "1.5.0" or
                     not status["server"]["commit"].startswith("d265d66")):
                 raise ValueError("Service installation/source identity differs")

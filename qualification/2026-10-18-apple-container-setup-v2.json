@@ -1,0 +1,186 @@
+{
+  "boundary_launches_requested": 0,
+  "cwd": "/",
+  "elapsed_seconds": 4.0541702909977175,
+  "environment": {
+    "CONTAINER_APP_ROOT": "/private/tmp/faultline-apple-positive-v2/setup-v2/runtime",
+    "CONTAINER_INSTALL_ROOT": "/usr/local",
+    "HOME": "/Users/grove",
+    "LC_ALL": "C",
+    "PATH": "/usr/bin:/bin",
+    "XDG_CONFIG_HOME": "/private/tmp/faultline-apple-positive-v2/setup-v2/config-home"
+  },
+  "error": "ValueError: Unexpected post-start service state/root",
+  "kind": "SERVICE_SETUP_ONLY",
+  "launchd_domain": "user/501",
+  "manager": "Background",
+  "observations": [
+    {
+      "argv": [
+        "/bin/launchctl",
+        "managername"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Background\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/local/bin/container",
+        "system",
+        "start",
+        "--app-root",
+        "/private/tmp/faultline-apple-positive-v2/setup-v2/runtime",
+        "--install-root",
+        "/usr/local",
+        "--disable-kernel-install",
+        "--timeout",
+        "15"
+      ],
+      "returncode": 0,
+      "stderr": "Launching container-apiserver...\nTesting access to container-apiserver...\nVerifying machine API server is running...\n",
+      "stdout": "",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/usr/local/bin/container",
+        "system",
+        "status",
+        "--format",
+        "json"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"client\":{\"appName\":\"container\",\"build\":\"release\",\"commit\":\"d265d669ecae041bf338cb3b39c4118316d138f0\",\"version\":\"1.5.0\"},\"host\":{\"architecture\":\"arm64\",\"cpus\":10,\"operatingSystem\":\"Version 27.0.1 (Build 26A434)\"},\"paths\":{\"appRoot\":\"/private/tmp/faultline-apple-positive-v2/setup-v2/runtime/\",\"installRoot\":\"/usr/local/\"},\"resources\":{\"containersRunning\":0,\"containersTotal\":0,\"images\":0},\"server\":{\"appName\":\"container-apiserver\",\"build\":\"release\",\"commit\":\"d265d669ecae041bf338cb3b39c4118316d138f0\",\"version\":\"1.5.0\"},\"status\":\"running\"}\n",
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      "observed": {
+        "endpoints": [
+          "com.apple.container.network.container-network-vmnet.default",
+          "com.apple.container.core.container-core-images",
+          "com.apple.container.apiserver",
+          "com.apple.container.core.machine-apiserver"
+        ],
+        "services": [
+          "com.apple.container.container-network-vmnet.default",
+          "com.apple.container.container-core-images",
+          "com.apple.container.machine-apiserver",
+          "com.apple.container.apiserver"
+        ]
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.container-network-vmnet.default"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    }
+  ],
+  "plugin_config_sha256": {
+    "container-core-images": "89ebf5415177298d36f4c67c8c03db26fac1377b428f30a5ccf96407d8f63f9d",
+    "container-network-vmnet": "7ec0d522dcf9c9bc78b1e0843916bd0a98cfec45ef5b35f04fb8407ecda3db3e",
+    "container-runtime-linux": "d609af652f3e0224cb7f0cef315f873081506d010d2d1a8ff33508980e3427a7",
+    "k8s": "4b190947dd6fdadb9463b0210d19c25b1d086ddff00a0685027d29e99facab95",
+    "machine-apiserver": "819edb0d3c20517e8a56e11a9623b3804c6821d3920da3fa66d989f766103b6a"
+  },
+  "qualification_granted": false,
+  "recovery": "INCOMPLETE_STOP_AND_REVIEW: Service ownership differs; leave it untouched",
+  "result": "FAILED",
+  "source_sha256": {
+    "apple-container-service.toml": "ec039793064339b1c438630aaa4a81b03717d96a6ca6b7a19a945c6f85c0883e",
+    "apple_container_service_setup.py": "8c01df30a82fc4f5b5c1d6eb734e61f5a9ca31932acbc854de203c0e8c4098a7"
+  },
+  "startup_attempted": true
+}

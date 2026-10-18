@@ -44,27 +44,22 @@ drift by silently restoring bytes and continuing.
 
 ## Current preparation: Apple Container 1.5.0 — UNAVAILABLE pending controls
 
-The operator's setup-v1 attempt stopped before startup because Faultline's guard
-required Aqua. Apple's pinned service manager also supports Background in
-`user/<uid>`. The corrected [setup-v2 request](qualification/APPLE_CONTAINER_SERVICE_SETUP_V2.md)
-checks system/user/GUI collision namespaces and limits recovery to exact services
-whose live plist belongs to the new setup root. The v1 receipt is unchanged and
-its one-attempt authority is consumed; no new startup is authorized yet.
-
-The operator's approved Stage 1a returned `unregistered` before image listing or
-kernel inspection. Its original receipt is preserved, with current helper bytes
-matched independently to PR head `9ad0f52`; execution-time bytes were not captured
-by the receipt and remain operator-corroborated. The next proposed effect is
-[dedicated service setup](qualification/APPLE_CONTAINER_SERVICE_SETUP.md), including
-the pinned init download intrinsic to startup, with kernel installation disabled.
-No startup or guest execution is authorized by the completed inventory approval.
+The authorized setup-v2 attempt started four services in `user/501`, then failed
+Faultline's raw path comparisons. API roots had no trailing slash; plugin roots
+did. The original receipt is preserved byte for byte, and independent read-only
+launchd/plist inspection identifies all four services in the dedicated setup-v2
+root. See the [separate recovery proposal](qualification/APPLE_CONTAINER_RECOVERY.md).
+**Recovery approval is the next action; do not retry startup or provision images.**
+No cleanup or VM execution has run. Setup-v1, setup-v2 and Stage 1a authority are
+consumed. Earlier preparation/inventory receipts and frozen source identities
+remain unchanged; execution-time inventory code identity remains operator-corroborated.
 
 The latest [staged authorization proposal](qualification/APPLE_CONTAINER_NEXT.md)
 adds a frozen positive-v2 fixture with host acknowledgement before tmpfs teardown,
 fresh preparation and a separately authorized service-inventory command. It
 proposes a 2-vCPU / 512-MiB VM ceiling with a 1-CPU / 256-MiB workload (predicted
-VM allocation 2 vCPUs / 384 MiB). No budget change, service contact, retrieval or
-execution has been approved or performed. Positive execution still needs verified
+VM allocation 2 vCPUs / 384 MiB). The consumed setup-v2 approval allowed service startup and pinned-init retrieval;
+no VM budget change or guest execution has been approved or performed. Positive execution still needs verified
 artifacts and independent host-owned VM deadline/termination; a successful smoke
 test would not qualify the sandbox. Prior records below remain historical.
 
@@ -219,9 +214,9 @@ Even successful synthetic qualification would apply only to its exact host,
 versions and configuration, require independent review, and would not enable
 `faultline-audit`, mutations, project tests or the #10 experiment.
 
-**Decision: NO_GO / UNAVAILABLE.** Smallest next action: obtain approval for a
-named separately provisioned development host and exact pinned Apple Container
-setup effects, then separately approve the reviewed synthetic protocol. This PR
+**Decision: NO_GO / UNAVAILABLE.** Smallest next action: separately approve
+identity-scoped recovery of the existing setup-v2 services. Further startup,
+provisioning and the reviewed synthetic protocol require later authorization. This PR
 does not request blanket installation or experiment authority. Do not escape the
 current Codex restrictions or install a substitute runtime to complete a receipt.
 
