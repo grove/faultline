@@ -44,6 +44,13 @@ drift by silently restoring bytes and continuing.
 
 ## Current preparation: Apple Container 1.5.0 — UNAVAILABLE pending controls
 
+The operator's setup-v1 attempt stopped before startup because Faultline's guard
+required Aqua. Apple's pinned service manager also supports Background in
+`user/<uid>`. The corrected [setup-v2 request](qualification/APPLE_CONTAINER_SERVICE_SETUP_V2.md)
+checks system/user/GUI collision namespaces and limits recovery to exact services
+whose live plist belongs to the new setup root. The v1 receipt is unchanged and
+its one-attempt authority is consumed; no new startup is authorized yet.
+
 The operator's approved Stage 1a returned `unregistered` before image listing or
 kernel inspection. Its original receipt is preserved, with current helper bytes
 matched independently to PR head `9ad0f52`; execution-time bytes were not captured

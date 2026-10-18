@@ -1,0 +1,41 @@
+{
+  "boundary_launches_requested": 0,
+  "cwd": "/",
+  "elapsed_seconds": 0.010101457999553531,
+  "environment": {
+    "CONTAINER_APP_ROOT": "/private/tmp/faultline-apple-positive-v2/setup-v1/runtime",
+    "CONTAINER_INSTALL_ROOT": "/usr/local",
+    "HOME": "/Users/grove",
+    "LC_ALL": "C",
+    "PATH": "/usr/bin:/bin",
+    "XDG_CONFIG_HOME": "/private/tmp/faultline-apple-positive-v2/setup-v1/config-home"
+  },
+  "error": "ValueError: Use the approved normal Terminal session; no domain fallback",
+  "kind": "SERVICE_SETUP_ONLY",
+  "observations": [
+    {
+      "argv": [
+        "/bin/launchctl",
+        "managername"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Background\n",
+      "timeout_seconds": 5
+    }
+  ],
+  "plugin_config_sha256": {
+    "container-core-images": "89ebf5415177298d36f4c67c8c03db26fac1377b428f30a5ccf96407d8f63f9d",
+    "container-network-vmnet": "7ec0d522dcf9c9bc78b1e0843916bd0a98cfec45ef5b35f04fb8407ecda3db3e",
+    "container-runtime-linux": "d609af652f3e0224cb7f0cef315f873081506d010d2d1a8ff33508980e3427a7",
+    "k8s": "4b190947dd6fdadb9463b0210d19c25b1d086ddff00a0685027d29e99facab95",
+    "machine-apiserver": "819edb0d3c20517e8a56e11a9623b3804c6821d3920da3fa66d989f766103b6a"
+  },
+  "qualification_granted": false,
+  "result": "FAILED",
+  "source_sha256": {
+    "apple-container-service.toml": "ec039793064339b1c438630aaa4a81b03717d96a6ca6b7a19a945c6f85c0883e",
+    "apple_container_service_setup.py": "6d8e6060b64ebab3913ad5730bf6f0d13c7d18ee7efce91e645133385f266d20"
+  },
+  "startup_attempted": false
+}

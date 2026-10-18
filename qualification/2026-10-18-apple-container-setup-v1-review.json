@@ -1,0 +1,80 @@
+{
+  "authority": {
+    "guest_or_project_execution_authorized": false,
+    "qualification_granted": false,
+    "setup_v1": "Consumed one-attempt authorization. Never overwrite or rerun.",
+    "setup_v2": "Pending separate approval; fresh identity, directory and receipt. No setup-v2 attempt performed."
+  },
+  "independent_comparisons": {
+    "new_helper_sha256": "8c01df30a82fc4f5b5c1d6eb734e61f5a9ca31932acbc854de203c0e8c4098a7",
+    "raw_copy_byte_identical": true,
+    "reviewed_source_comparison": [
+      {
+        "matches_operator_receipt": true,
+        "path": "qualification/apple_container_service_setup.py",
+        "reviewed_commit": "2c5b33baf9d5041b1618acc4ff5e89db82837361",
+        "sha256": "6d8e6060b64ebab3913ad5730bf6f0d13c7d18ee7efce91e645133385f266d20"
+      },
+      {
+        "matches_operator_receipt": true,
+        "path": "qualification/apple-container-service.toml",
+        "reviewed_commit": "2c5b33baf9d5041b1618acc4ff5e89db82837361",
+        "sha256": "ec039793064339b1c438630aaa4a81b03717d96a6ca6b7a19a945c6f85c0883e"
+      }
+    ]
+  },
+  "kind": "FAILED_SETUP_V1_AND_DOMAIN_REVIEW",
+  "operator_evidence": {
+    "exit_status_reported": 1,
+    "limitation": "Operator execution is not independently witnessed; current raw receipt hash matches the separately supplied hash.",
+    "manager_reported": "Background",
+    "path": "/private/tmp/faultline-apple-positive-v2/evidence/setup-v1.json",
+    "repository_copy": "qualification/2026-10-18-apple-container-setup-v1.json",
+    "result_reported": "FAILED",
+    "sha256": "e2fa363740ca780bd736f0daec8ed8f2e0c8bcf3621d0cbb5e9195a2b5ecfb1a",
+    "startup_attempted_reported": false
+  },
+  "pinned_source_review": {
+    "container_commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+    "files": [
+      "Sources/ContainerPlugin/ServiceManager.swift",
+      "Sources/ContainerCommands/System/SystemStart.swift",
+      "Sources/ContainerCommands/System/SystemStop.swift"
+    ],
+    "manager_mapping": {
+      "Aqua": "gui/<uid>",
+      "Background": "user/<uid>"
+    },
+    "registration": "ServiceManager uses that domain for bootstrap; SystemStart plist permits both session types.",
+    "shutdown": "SystemStop may stop all reachable containers and enumerates prefix-matching services; replaced with owned-service bootout in v2."
+  },
+  "read_only_calibration": {
+    "all_returncodes": 0,
+    "commands": [
+      [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ]
+    ],
+    "context": "Current Codex host; no setup() call or Container invocation.",
+    "initial_parser_gap": "Endpoint names can contain spaces; corrected split preserves the complete name and has a regression test.",
+    "limitations": "Current observation only; rechecked at the authorized attempt. launchctl print is documented as unstable diagnostic output; unknown shape blocks.",
+    "local_launchctl_manpage_sha256": "cf8752dd8eb8c3370c7d03b333430aa68a665c907c475ea407cb1b6542083ae2",
+    "parsed_container_endpoints": [],
+    "parsed_container_services": [],
+    "raw_domain_environments_retained": false
+  },
+  "reviewed_at_utc": "2026-10-18T21:26:44.426446+00:00",
+  "schema": 1
+}

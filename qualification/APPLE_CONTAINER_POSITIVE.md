@@ -1,5 +1,9 @@
 # Positive Apple Container smoke review — BLOCKED / NOT RUN
 
+**Current next request:** [domain-aware setup-v2](APPLE_CONTAINER_SERVICE_SETUP_V2.md).
+The setup-v1 receipt is preserved; that attempt stopped before startup and its
+authorization is consumed. A new attempt requires separate approval.
+
 **Stage 1a has now stopped at unregistered.** Follow the
 [Stage 1b setup request](APPLE_CONTAINER_SERVICE_SETUP.md); preserve the original
 inventory receipt. Setup/startup and its pinned-init retrieval are not approved yet.
