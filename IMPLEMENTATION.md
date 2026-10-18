@@ -1,6 +1,6 @@
 # Faultline — proposed implementation plan
 
-**Status:** #3's advice-only [faultline-audit](faultline-audit/SKILL.md) is implemented, with verified copying/discovery and packaging checks. No executable challenge tool, qualified isolation environment/backend, or published effectiveness results exist.
+**Status:** #3's advice-only [faultline-audit](faultline-audit/SKILL.md) is implemented, with verified copying/discovery and packaging checks. [#10's frozen fixture/protocol design](experiments/lost-acknowledgement.md) is delivered **UNAVAILABLE / NOT RUN**. No executable challenge tool, qualified isolation environment/backend, or published effectiveness results exist.
 
 **Product recommendation for [#9](https://github.com/grove/faultline/issues/9): NARROW.** Retain the skill-first correctness-challenge hypothesis, limited to one Python feasibility experiment. The subsequent #3 implementation request selects its explicitly permitted advice-only scope; executable skill work remains deferred until safety and independent value are demonstrated. Targeted mutation testing remains optional for *test strength*. See [README](README.md) and [DESIGN](DESIGN.md).
 
@@ -107,6 +107,16 @@ Run **benign synthetic negative controls** using host-observed receipts, never r
 
 **Issue:** [#10](https://github.com/grove/faultline/issues/10). Start with **one** local Python fixture, not a general injection framework.
 
+**Design delivered:** [lost-acknowledgement v1](experiments/lost-acknowledgement.md)
+freezes exact source blocks and hashes, the authored contract, transport hook,
+oracle/contrary outcomes, proposed argv, receipts, budgets and decision gate.
+These blocks are data, not executed fixtures. The #2 host remains UNAVAILABLE;
+all baselines, injections and assessments are NOT RUN. Current recommendation is
+NARROW: direct same-key review already identifies the seeded regression, and no
+independent practical advantage over B has been measured. The historical proposed
+comparison below is retained; its public seeded pair can establish mechanics
+only. Fresh withheld cases and independent judgments are required for value.
+
 ### Contract and controls
 
 - Source-grounded invariant for the authored fixture: **the same logical payment/order operation identifier causes at most one external effect**, even if a post-commit acknowledgement is lost and the caller retries.
@@ -131,7 +141,7 @@ For any executed case retain exact original bytes/identity, authorization, comma
 
 ### Acceptance
 
-- [ ] Authored expected controls and source/oracle frozen **before** running any agent evaluation.
+- [x] Authored expected controls and source/oracle frozen in the [v1 design](experiments/lost-acknowledgement.md) **before** any agent evaluation; no evaluation attempted.
 - [ ] Real execution permitted only after #2 qualifies that actual host.
 - [ ] A completed, qualified run (if authorized) distinguishes a violation from a valid implementation **without changing the production candidate**.
 - [ ] An observed result is never inferred from a fixture label or an imagined transcript; every claim links to a genuine receipt.
@@ -209,7 +219,7 @@ Consider a tiny helper **only** if measured skill-only trials reveal a *specific
 
 ## 7. Current state and issue map
 
-**Current repository** contains the design documents/license, one canonical `faultline-audit/SKILL.md`, packaging checks, and #2's host-specific threat model, synthetic maintainer probes and failed-launch receipt. #3 implements advice-only test-strength review; no host has qualified for execution. #9's **NARROW recommendation** remains the historical experimental direction. The following future dispositions are proposals; existing issue bodies and states are unchanged.
+**Current repository** contains the design documents/license, one canonical `faultline-audit/SKILL.md`, packaging checks, #10's frozen NOT RUN fixture/protocol design, and #2's host-specific threat model, synthetic maintainer probes and failed-launch receipt. #3 implements advice-only test-strength review; no host has qualified for execution. #9's **NARROW recommendation** remains the historical experimental direction. The following future dispositions are proposals; existing issue bodies and states are unchanged.
 
 | Issue | Disposition and retained scope |
 | --- | --- |
@@ -222,10 +232,10 @@ Consider a tiny helper **only** if measured skill-only trials reveal a *specific
 | [#7](https://github.com/grove/faultline/issues/7) | **DEFER** Rust tooling discovery/execution until useful Python evidence and separately approved host/scope/budget. No automatic language expansion. |
 | [#8](https://github.com/grove/faultline/issues/8) | **DEFER** Java discovery/execution; retain Python-value and Rust-feasibility prerequisites. No current Java work. |
 | [#9](https://github.com/grove/faultline/issues/9) | **NARROW recommendation delivered** by this historical design record; no experimental effectiveness or execution approval follows from the later advice-only #3 implementation. |
-| [#10](https://github.com/grove/faultline/issues/10) | **NARROW** to the single costed Python scenario above; first mechanics/comparison proposal, no execution permission or claimed result. |
+| [#10](https://github.com/grove/faultline/issues/10) | **DESIGN DELIVERED / NARROW** in the [frozen spike](experiments/lost-acknowledgement.md); execution UNAVAILABLE / NOT RUN. No independent value demonstrated or execution enabled. |
 
 None of #1–#8 needs a duplicate or automatic closure. The standalone mutation-first roadmap becomes redundant as the default path; its optional test-strength work and evidence remain useful. [Gapline #17](https://github.com/grove/gapline/issues/17) and [#18](https://github.com/grove/gapline/issues/18) remain independent read-only ideas, with no dependency or automatic integration.
 
-**Next smallest action:** review this NARROW recommendation, then specify #10's authoritative fixture/oracle and qualify #2 on an independently authorized host. If the costed comparison finds no advantage over direct review, stop the skill path. No new runtime or language work follows automatically.
+**Next smallest action:** review the frozen #10 design; qualify #2 on an independently authorized host before any experiment. If the costed comparison finds no advantage over direct review, stop the skill path. No new runtime or language work follows automatically.
 
 [README](README.md) · [Design](DESIGN.md)

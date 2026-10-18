@@ -8,7 +8,7 @@ The broader proposed direction is to test **an unchanged implementation under co
 
 > **Status: advice-only skill; execution NO_GO.** [#3](https://github.com/grove/faultline/issues/3) permits this read-only release before safety qualification. No qualified host, mutation backend, executable harness, CLI, or demonstrated incremental effectiveness is supplied. The earlier [#9 NARROW recommendation](IMPLEMENTATION.md#0-decision-record--narrow) remains the historical basis for deferring experiments and the broader product. No issue, example, installation, or skill instruction authorizes running project code.
 
-[Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md) · [Issue #9: product decision](https://github.com/grove/faultline/issues/9) · [Issue #10: first experiment](https://github.com/grove/faultline/issues/10)
+[Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md) · [Issue #9: product decision](https://github.com/grove/faultline/issues/9) · [#10 frozen spike design — NOT RUN](experiments/lost-acknowledgement.md)
 
 [#2's host qualification](ISOLATION.md) supplies the bounded threat model,
 permissions and synthetic negative controls. On the actual macOS agent host,
@@ -68,8 +68,9 @@ Maintainer packaging regression checks (Python standard library only):
 python3 -B -m unittest discover -s tests -v
 ```
 
-These inspect metadata, links, copying, critical instruction boundaries and the
-synthetic probe's failure classification/finite leader timeout. They do not run
+These inspect metadata, links, copying, critical instruction boundaries, frozen
+spike source hashes/syntax and the synthetic probe's failure classification/finite
+leader timeout. They do not execute the spike's fenced source blocks or run
 target-project code or qualify [#2](https://github.com/grove/faultline/issues/2).
 
 ## Why would I use it?
@@ -127,7 +128,7 @@ A skill supplies instructions and reasoning; **it is not a sandbox, test runner,
 
 ## First target and later possibilities
 
-The first proposed proof of concept is **Python**, using an entirely local deterministic fixture for a **lost acknowledgement followed by a retry**. Include both a correctly idempotent implementation and a deliberately defective version, and establish whether the skill's findings add value beyond direct negative-case review. This is [issue #10](https://github.com/grove/faultline/issues/10), not a shipped capability.
+The first proposed proof of concept is **Python**, using an entirely local deterministic fixture for a **lost acknowledgement followed by a retry**. [Issue #10's frozen design](experiments/lost-acknowledgement.md) supplies exact correct/defective source blocks, a transport hook, independent expected outcomes and a bounded execution/comparison plan. Execution is **UNAVAILABLE / NOT RUN**; the known seeded pair already has an obvious direct regression assertion. Incremental value beyond negative-case review remains unmeasured. This is a design deliverable, not a shipped challenge capability.
 
 Only **after** evidence of usefulness should other techniques be considered:
 
@@ -164,7 +165,7 @@ Gapline should remain read-only; Faultline should not duplicate its broad Scout/
 
 ## What happens next?
 
-The earlier **NARROW** recommendation remains relevant to executable correctness challenges: no execution safety or incremental value has been established. This release implements only #3's explicitly permitted advice-only scope. Specify [#10](https://github.com/grove/faultline/issues/10), qualify [#2](https://github.com/grove/faultline/issues/2) before execution, and compare against ordinary testing and direct review within the [costed protocol](IMPLEMENTATION.md#bounded-first-comparison-proposed--not-run). Independent value on fresh Python cases under [#6](https://github.com/grove/faultline/issues/6) would be needed to justify the broader executable skill.
+The earlier **NARROW** recommendation remains relevant to executable correctness challenges: no execution safety or incremental value has been established. This release implements #3's explicitly permitted advice-only scope and [#10's NOT RUN design](experiments/lost-acknowledgement.md). Qualify [#2](https://github.com/grove/faultline/issues/2) before execution, and compare against ordinary testing and direct review within the [costed protocol](IMPLEMENTATION.md#bounded-first-comparison-proposed--not-run). Independent value on fresh Python cases under [#6](https://github.com/grove/faultline/issues/6) would be needed to justify the broader executable skill.
 
 Older issues about mutation tooling, fixtures, and later languages remain historical proposals to triage, **not** an approved requirement to implement them all. The [implementation plan](IMPLEMENTATION.md) gives the precise gates, outcomes, and issue map.
 

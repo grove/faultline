@@ -175,6 +175,6 @@ The [decision record and issue-by-issue table](IMPLEMENTATION.md#7-current-state
 
 [Gapline #17](https://github.com/grove/gapline/issues/17) and [#18](https://github.com/grove/gapline/issues/18) remain independent, **read-only** explorations, not dependencies.
 
-**Next experimental action:** design #10's single retry experiment using the [fixed-budget comparison](IMPLEMENTATION.md#bounded-first-comparison-proposed--not-run), then qualify #2 before any execution. Stop or retain advice-only direct-test guidance if no incremental value emerges. A positive seeded control alone cannot justify enabling experiments; fresh independently judged cases under #6 must justify the broader executable skill.
+**Next experimental action:** review [#10's frozen retry design — NOT RUN](experiments/lost-acknowledgement.md) and qualify #2 before any execution using the [fixed-budget comparison](IMPLEMENTATION.md#bounded-first-comparison-proposed--not-run). Stop or retain advice-only direct-test guidance if no incremental value emerges. A positive seeded control alone cannot justify enabling experiments; fresh independently judged cases under #6 must justify the broader executable skill.
 
 [README](README.md) · [Implementation plan](IMPLEMENTATION.md)
