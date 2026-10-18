@@ -1,0 +1,369 @@
+{
+  "schema": 1,
+  "kind": "VERSION_MATCHED_REVIEW_NOT_EXECUTION",
+  "reviewed_at_utc": "2026-10-18T20:26:45.042631+00:00",
+  "inspection": "qualification/2026-10-18-apple-container-terminal.json",
+  "inspection_provenance": {
+    "source": "Operator-pasted JSON in this conversation; not recollected by Codex.",
+    "reserialized": true,
+    "redactions": [],
+    "operator_raw_file_sha256": null,
+    "source_commit": null,
+    "all_eight_source_hashes_matched_pre_edit_workspace": true,
+    "hardware_attestation": false,
+    "vendor_signature_or_binary_release_match_verified": false
+  },
+  "container": {
+    "version": "1.5.0",
+    "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+    "installed_reported_commit": "d265d66",
+    "cli": "/usr/local/bin/container",
+    "cli_sha256": "8cc619377e8978a0ce9f22a3e864dcd4445f2bc38fb64c5197bb69a1bab42463"
+  },
+  "containerization": {
+    "version": "0.47.0",
+    "commit": "bc994b88df46207fad7775b0eabc51947e315881",
+    "basis": "Container 1.5.0 Package.resolved; not measurement of installed helpers."
+  },
+  "release": {
+    "url": "https://github.com/apple/container/releases/tag/1.5.0",
+    "published_at": "2026-09-29T02:33:21Z",
+    "body_sha256": "618c3cd484edb8b647f0e36fc2cdfc4fd039ccb96780bcb5d1af65517a3c8587"
+  },
+  "references": [
+    {
+      "repository": "apple/container",
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "path": "docs/command-reference.md",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/docs/command-reference.md",
+      "sha256": "14783aeeeebfcd181a809378227f8514b3c6f8793c1dc6053d91637b6413dae2",
+      "bytes": 53708
+    },
+    {
+      "repository": "apple/container",
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "path": "Package.resolved",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Package.resolved",
+      "sha256": "4548e87c06cc989a47fdd0bbb34864df2f44170697edd65c2e08e89fae216274",
+      "bytes": 9857
+    },
+    {
+      "repository": "apple/container",
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "path": "Sources/Services/ContainerAPIService/Client/Flags.swift",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/ContainerAPIService/Client/Flags.swift",
+      "sha256": "ef3aaa86fa2ad600c82d9284934f71d74cc3ff13ce5f6531ff8fa0bd9403d21d",
+      "bytes": 14673
+    },
+    {
+      "repository": "apple/container",
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "path": "Sources/Services/ContainerAPIService/Client/Parser.swift",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/ContainerAPIService/Client/Parser.swift",
+      "sha256": "5a7d2e5d07c1155a49b418cbefb8a74f57721a6d2f7ded517a0cfa5f962bbd83",
+      "bytes": 44836
+    },
+    {
+      "repository": "apple/container",
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "path": "Sources/Services/ContainerAPIService/Client/Utility.swift",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/ContainerAPIService/Client/Utility.swift",
+      "sha256": "038a8795f5d493e41911d66510704404c458fe5ef76241710e04d7bab069129c",
+      "bytes": 16780
+    },
+    {
+      "repository": "apple/container",
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "path": "Sources/Services/ContainerAPIService/Client/NetworkClient.swift",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/ContainerAPIService/Client/NetworkClient.swift",
+      "sha256": "fb34191e5861c0c650ebf7145ec807a047ca34f4e3885d8f0abc1af4fc074325",
+      "bytes": 6412
+    },
+    {
+      "repository": "apple/container",
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "path": "Sources/ContainerCommands/Container/ContainerRun.swift",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerCommands/Container/ContainerRun.swift",
+      "sha256": "0a7db1f306e58403ca279ec7710ce150f4e43bc9e4c61b66ddcde2f237ffe4a3",
+      "bytes": 6723
+    },
+    {
+      "repository": "apple/container",
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "path": "Sources/ContainerCommands/Container/ContainerStop.swift",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerCommands/Container/ContainerStop.swift",
+      "sha256": "bf18b60762db0f6285beed1728cb61b054acae2d7b3c113982765125523e35c3",
+      "bytes": 3797
+    },
+    {
+      "repository": "apple/container",
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "path": "Sources/ContainerCommands/Container/ContainerDelete.swift",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerCommands/Container/ContainerDelete.swift",
+      "sha256": "63f9785fac9b9fe997bd746a9f5f8d7cb40fc8c3d2004a3c1e08d4757d9ee65b",
+      "bytes": 3559
+    },
+    {
+      "repository": "apple/container",
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "path": "docs/ulimits.md",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/docs/ulimits.md",
+      "sha256": "e7a8a28026ba4abccba7d6d7cfb6a0434cf82daf369df72f8ab805462fe43f6e",
+      "bytes": 2752
+    },
+    {
+      "repository": "apple/containerization",
+      "commit": "bc994b88df46207fad7775b0eabc51947e315881",
+      "path": "README.md",
+      "url": "https://github.com/apple/containerization/blob/bc994b88df46207fad7775b0eabc51947e315881/README.md",
+      "sha256": "c4eef297ac079ea4bfae590279d7ad08b7d507a2f1abd6d5096bd83bc547f4d4",
+      "bytes": 9289
+    },
+    {
+      "repository": "apple/containerization",
+      "commit": "bc994b88df46207fad7775b0eabc51947e315881",
+      "path": "Sources/Containerization/LinuxContainer.swift",
+      "url": "https://github.com/apple/containerization/blob/bc994b88df46207fad7775b0eabc51947e315881/Sources/Containerization/LinuxContainer.swift",
+      "sha256": "f9b771370d335c644f21686bcdf11d434bb9b9ccc9e4efd2ece1db9d83f28161",
+      "bytes": 73155
+    }
+  ],
+  "next_authorization": {
+    "scope": "Fixture preparation and receipt hash only; no guest or runtime operation.",
+    "cwd": "/Users/grove/projects/faultline",
+    "commands": [
+      [
+        "python3",
+        "-I",
+        "-B",
+        "qualification/apple_container.py",
+        "prepare",
+        "/private/tmp/faultline-apple-review-01"
+      ],
+      [
+        "/usr/bin/shasum",
+        "-a",
+        "256",
+        "/private/tmp/faultline-apple-review-01/evidence/prepared.json"
+      ]
+    ],
+    "authorized": false
+  },
+  "blocked_runtime_review": {
+    "authorized": false,
+    "executable_sequence_available": false,
+    "cwd": "/",
+    "host_environment": null,
+    "stdin": "closed",
+    "unrelated_descriptors": "closed",
+    "argv_prefix_before_unresolved_artifacts": [
+      "/usr/local/bin/container",
+      "run",
+      "--name",
+      "faultline-apple-review-01-positive",
+      "--arch",
+      "arm64",
+      "--os",
+      "linux",
+      "--read-only",
+      "--mount",
+      "type=virtiofs,source=/private/tmp/faultline-apple-review-01/original,target=/original,readonly",
+      "--mount",
+      "type=virtiofs,source=/private/tmp/faultline-apple-review-01/inputs,target=/inputs,readonly",
+      "--tmpfs",
+      "/scratch:size=16m,mode=0700,uid=65534,gid=65534",
+      "--uid",
+      "65534",
+      "--gid",
+      "65534",
+      "--cap-drop",
+      "ALL",
+      "--cpus",
+      "1",
+      "--memory",
+      "256M",
+      "--network",
+      "none",
+      "--no-dns",
+      "--workdir",
+      "/scratch"
+    ],
+    "image_by_verified_digest": null,
+    "init_image_by_verified_digest": null,
+    "kernel_path_and_digest": null,
+    "entrypoint_verified_interpreter_path": null,
+    "argv_after_image": [
+      "-I",
+      "-S",
+      "-B",
+      "/inputs/guest.py",
+      "positive"
+    ],
+    "inspect_argv": [
+      "/usr/local/bin/container",
+      "inspect",
+      "faultline-apple-review-01-positive"
+    ],
+    "stop_argv": [
+      "/usr/local/bin/container",
+      "stop",
+      "--time",
+      "1",
+      "faultline-apple-review-01-positive"
+    ],
+    "delete_stopped_argv": [
+      "/usr/local/bin/container",
+      "delete",
+      "faultline-apple-review-01-positive"
+    ],
+    "cleanup_preconditions": "Independently bind name to owned runtime/VM/helper identities. Observe normal, timeout and interruption termination before metadata deletion. Name alone and CLI exit are insufficient. No --all, --force, auto-remove or host-wide kill.",
+    "blockers": [
+      "No independently verified isolation controls, including network-none behavior and host/Unix-socket denial.",
+      "No pinned existing image, interpreter, init or kernel identities; run source can fetch artifacts implicitly.",
+      "Image-config environment is merged with explicit --env; full effective allowlist unverified.",
+      "CPU/memory settings and scratch-size syntax have not been observed as enforced aggregate limits.",
+      "16-PID aggregate cap, 16-MiB total writable storage, 64-KiB output and 10-s/control/360-s/session host deadlines not established; per-process ulimit is insufficient.",
+      "Calibrated independent filesystem-denial, network, process and VM observers and finite inert endpoints not selected.",
+      "Normal, timeout, coordinator-death and interruption cleanup not independently verified.",
+      "Normal-Terminal virtualization/resource capacity, source commit and raw inspection file hash not supplied."
+    ]
+  },
+  "decision": "UNAVAILABLE",
+  "execution": "NO_GO",
+  "qualification_granted": false,
+  "boundary_launches": 0,
+  "controls": [
+    {
+      "name": "positive",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "source-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "test-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "source-rename",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "receipt-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "private-read",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "unrelated-read",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "symlink-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "symlink-read",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "hardlink-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "dotdot-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "root-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-tcp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-udp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-tcp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-udp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "dns-udp",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "dns-tcp",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-tcp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-udp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-tcp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-udp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-unix-socket",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "memory",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "cpu",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "process-count",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "output",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "storage",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "timeout",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "detached-descendants",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "normal-cleanup",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "timeout-cleanup",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "interrupt-cleanup",
+      "status": "NOT_RUN"
+    }
+  ]
+}

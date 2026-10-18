@@ -7,14 +7,26 @@ GO override, installation, image retrieval, service startup or automatic cleanup
 Only the fixed filesystem fixture is implemented. Network, resource and lifetime
 controls are specified below and remain unavailable, not passing placeholders.
 
-The operator reports installing Apple Container and attempting a Terminal smoke
-test. The version, command and outcome have **not** been observed here. Both the
-session lookup and an explicitly requested host-shell lookup found no CLI on PATH
-or at `/usr/local/bin/container`, `/opt/homebrew/bin/container`, `/usr/bin/container`.
-The normal Terminal UI (iTerm2) is blocked by the computer-use tool's safety policy.
-No alternative UI or weakened Codex boundary was used to bypass that block.
-This bounded lookup does not disprove the operator's installation on another
-host/context. The historical receipts are preserved unchanged.
+The operator supplied normal-Terminal inspection JSON at
+`2026-10-18T20:22:22.245494+00:00`, retained as
+[client evidence](2026-10-18-apple-container-terminal.json). It reports Container
+**1.5.0**, release commit **d265d66**, at `/usr/local/bin/container`, SHA-256
+`8cc619377e8978a0ce9f22a3e864dcd4445f2bc38fb64c5197bb69a1bab42463`.
+The host reports macOS **27.0.1 / 26A434**, Darwin **27.0.0**, **arm64**,
+Python **3.15.0**. All seven host/version/help observations exited zero, with
+empty stderr and no truncation. This confirms the operator-reported client
+identity and supported help syntax; vendor signature, binary-to-release match,
+hardware identity, service state and runtime behavior are not attested.
+
+The JSON was transcribed from the operator's pasted report and reserialized,
+without path redaction. The original local file hash and checkout commit were
+not supplied; no original-byte hash is claimed. All eight reported source hashes
+matched the workspace before these edits, including this protocol's then-current
+`100561772b591cf0c665103730bf6a8b88f40de829bdfaffb5a0b1a3c04e9774`.
+Later protocol edits do not invalidate that historical identity. The earlier
+missing-CLI receipts describe the restricted Codex context and remain unchanged.
+The reported past smoke test still has no retained command or outcome. All 33
+qualification controls remain **NOT_RUN**; no boundary launch is recorded.
 
 ## First Terminal evidence: client inspection only
 
@@ -54,14 +66,8 @@ identifiers. Keep the raw original locally; publish only a reviewed copy with
 redactions identified and the raw file's SHA-256 retained. Do not replace any
 historical receipt or relabel this inspection as execution-safety qualification.
 
-Use the **observed** release version to select Apple's tagged command reference,
-release notes and corresponding Containerization dependency, then pin their commit
-and content hashes. Do not substitute `main` or the latest release. The references
-are not version-matched until that comparison has actually happened. Also review
-the installed `run`, `inspect`, `stop`, `delete`, and `image inspect` help captured
-by the tool. Record discrepancies as blockers. No runtime flags are asserted in
-this change: inventing a launch command before obtaining that version would make
-the protocol misleading.
+For subsequent inspections retain the same provenance. The supplied inspection
+has now been compared with the observed release's sources, as recorded below.
 
 For each proposed flag, record the exact installed-help excerpt, matching tagged
 documentation URL/commit/hash, intended enforcement and independent observation.
@@ -70,6 +76,49 @@ attachments, resource limits and identity-scoped stop/delete behavior. Report an
 absent or conflicting flag as a blocker. In particular, neither `--internal`
 (host-only networking) nor `--no-dns` establishes denial of all external and
 host-facing networking. Do not infer that an unconfigured network means no network.
+
+## Version-matched review and blocked command specification
+
+Apple's [1.5.0 release](https://github.com/apple/container/releases/tag/1.5.0)
+resolves to `d265d669ecae041bf338cb3b39c4118316d138f0`, matching the CLI's
+reported short commit. Its
+[command reference](https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/docs/command-reference.md)
+matches the captured run/inspect/stop/delete/image-inspect syntax used below.
+The tagged and commit-pinned reference and `Package.resolved` bytes were compared
+and matched. The lock pins Containerization **0.47.0**, revision
+`bc994b88df46207fad7775b0eabc51947e315881`; this is a source dependency identity,
+not an observation of installed helper binaries. See the
+[review record](2026-10-18-apple-container-review.json) for immutable URLs,
+SHA-256/content lengths of twelve reviewed documents/source files, release-body
+hash, exact candidate argument arrays and every unresolved field. Documentation
+retrieval downloaded text only, with no image, init or kernel artifact retrieval.
+
+| Installed-help evidence | Matching source and review result | Required independent evidence |
+| --- | --- | --- |
+| `--read-only`: root filesystem read-only; `--mount`: `type=<>,source=<>,target=<>,readonly` | `Flags.swift`, `Parser.mount`, `Utility.containerConfigFromFlags`: separate read-only root and two `virtiofs` mounts, only synthetic `original` and `inputs` | Actual mount/namespace/inode configuration, calibrated denial observations and protected manifests; unavailable |
+| `--network <network>`; `--no-dns` | `NetworkClient.noNetworkName` is `none`; Utility maps that sole network argument to zero attachments. Omitted network selects the default. Generic help/reference do not describe this reserved value; pinned source supplies that detail | Verify actual zero network devices/routes and denied IPv4/IPv6 TCP/UDP/DNS/host/Unix-socket effects with calibrated observers; unavailable |
+| `--cpus <cpus>`; `--memory <memory>` | One CPU and `256M` are proposed values; locked `LinuxContainer.swift` configures CPU/memory cgroup limits, separately from VM sizing | Inspect actual VM and aggregate limits; neither allocation text nor source proves installed enforcement |
+| `--tmpfs <tmpfs>` | Parser accepts `destination:comma-separated-options`; proposed `/scratch:size=16m,mode=0700,uid=65534,gid=65534` is a guest mount, with no writable host bind | Verify effective ownership/options and cap all writable guest storage, including default runtime mounts; unavailable |
+| `--uid`, `--gid`, `--cap-drop` | Proposed UID/GID `65534`, capabilities `ALL` dropped, no privileged additions | Verify effective identity/capabilities and readable synthetic inputs; image not selected |
+| `--ulimit <limit>` | Tagged `docs/ulimits.md` describes init-process Linux rlimits. `nproc`, `cpu`, `fsize` do not establish the required aggregate PID, wall-time or total-storage/output ceilings | Aggregate 16 PIDs, 64 KiB output, total storage and host-owned deadlines remain unavailable; no invented `--pids-limit`, `--timeout`, `--pull=never` or output flag |
+| `--entrypoint <cmd>`, `--workdir <dir>`, `--env <env>` | Explicit interpreter and `/scratch` required. Parser merges image environment with explicit values; bare env names inherit host values | Pinned image/interpreter and complete effective environment allowlist missing; explicit `--env` alone does not clear image variables |
+| `inspect <container-ids>`, `stop --time <time> <container-ids>`, `delete <container-ids>` | Candidate ID `faultline-apple-review-01-positive`; one-second stop grace; delete only after independently observed stop | First establish exact owned VM/helper identities and absence of a pre-existing name; normal/timeout/interruption recovery unverified. No `--all`, `--force` or auto-remove |
+
+The review record deliberately stores an **incomplete argv specification**, not
+an executable launcher: image/init/kernel digests, interpreter path, host environment,
+independent observer commands and enforced aggregate limits are null/unavailable.
+Its fixed positive tail is `-I -S -B /inputs/guest.py positive`; it must never be
+run on the host. Each adverse filesystem control would need a fresh bundle and
+new owned identity; the network/resource/lifetime controls remain unimplemented.
+The candidate inspect/stop/delete arrays are also **NOT AUTHORIZED**, including
+service contact. They are not proof of full descendant termination or recovery.
+
+`ContainerRun.swift` calls the artifact-resolution path in `Utility.swift`, which
+can fetch image/init content. A digest alone would not make startup offline;
+there is no captured no-pull option. Existing image, init and kernel availability
+and no implicit retrieval must be independently established before any launch.
+No safe complete synthetic launch sequence can be issued while these gaps remain.
+**Do not fill nulls by guessing, run the prefix, or approve runtime execution yet.**
 
 ## Prepare a fresh synthetic bundle (separate review/authorization)
 
@@ -119,16 +168,16 @@ bytes. This preparation PR does not ask for blanket execution approval.
 
 | Required item | Current state |
 | --- | --- |
-| Host label, normal-Terminal OS/build, architecture, virtualization capacity | Terminal evidence pending; Codex observations are a different context |
-| Installed CLI version/path/hash and matched docs commit/content hashes | UNAVAILABLE |
+| Host label, normal-Terminal OS/build, architecture, virtualization capacity | Operator-provided Terminal report: macOS 27.0.1 / 26A434, arm64; no hardware attestation or capacity verification |
+| Installed CLI version/path/hash and matched docs commit/content hashes | Reported 1.5.0 / d265d66 and executable SHA-256 retained; version-matched source review complete; binary/helper provenance not independently verified |
 | Existing image by immutable digest, Linux arm64 interpreter/version, init/kernel digests | UNAVAILABLE; no image selected or retrieved |
 | Exact setup argv and effects | NOT AUTHORIZED; no setup needed merely to prepare fixtures |
-| Exact launch/inspect/stop/delete argv, cwd, explicit entrypoint, allowlisted environment | BLOCKED pending installed help and enforcement review |
+| Exact launch/inspect/stop/delete argv, cwd, explicit entrypoint, allowlisted environment | Help-matched candidate arrays retained in review record; complete launch BLOCKED by missing artifacts, environment, enforcement and observers |
 | Enforced network denial including host routes, CPU/memory/PID/storage/output/wall limits | UNAVAILABLE; do not assume similarly named Docker flags exist |
 | Independent network and VM/process observers with calibrated positive controls | UNAVAILABLE |
 | Exact finite inert sink IPs/ports/protocols, capture interfaces and scope | NOT SELECTED; no production/public test destination or broad capture |
-| Exact owned VM/container identities, termination and interruption recovery commands | BLOCKED pending runtime version; never delete by name pattern or all-containers flags |
-| Working directories | Inspection/preparation/host verification: `/Users/grove/projects/faultline`; proposed guest cwd: `/scratch`; runtime/observer/cleanup cwd must be fixed after version review |
+| Exact owned VM/container identities, termination and interruption recovery commands | Candidate identity-scoped stop/delete syntax reviewed; actual owned VM/helper identities and recovery observations missing |
+| Working directories | Inspection/preparation/host verification: `/Users/grove/projects/faultline`; candidate runtime CLI cwd `/`, guest `/scratch`; observer cwd missing |
 | Expected filesystem effects | Read only `original`/`inputs`; write only fresh guest scratch; host collector alone writes evidence. Setup may persist images/kernel/init separately; no writable host bind |
 | Expected network effects | No worker external or host-facing traffic permitted; only separately approved calibration markers at exact inert sinks. Setup downloads are a different permission |
 | Enforced resource budgets | Proposed: one VM/CPU, 256 MiB memory, 16 PIDs, 16 MiB scratch, 64 KiB output, 10 s/control, 360 s/session; enforcement UNAVAILABLE |
@@ -136,16 +185,18 @@ bytes. This preparation PR does not ask for blanket execution approval.
 | Exact cleanup commands and recovery | UNAVAILABLE; no approved runtime identities/stop/delete semantics yet. Do not launch until exact normal/timeout/interruption cleanup commands and host observations are reviewed |
 
 This is a **blocked authorization sheet**, not an executable command sequence or
-a request for synthetic execution approval. No required image/digest, installed
-version, denial observer, enforced limits or exact cleanup commands are verified.
-**UNAVAILABLE / NO_GO** applies even to the positive startup until those gaps are
-resolved. No `container run` example is supplied before the installed CLI evidence.
+a request for synthetic execution approval. Installed client/help and matching
+sources are recorded; image/init/kernel identities, independent denial observers,
+enforced limits and demonstrated cleanup remain missing. **UNAVAILABLE / NO_GO**
+applies even to positive startup. The smallest next authorization is only the two
+fixture-preparation/hash commands above, not any runtime operation. No bundle has
+been created at that named destination by this work.
 
 Keep these permissions separate; approval must name exact commands and effects:
 
 | Permission | Current authority |
 | --- | --- |
-| Normal-Terminal client inspection and preparation review/tests | Authorized by this request; operator must supply Terminal JSON |
+| Normal-Terminal client inspection and preparation review/tests | Inspection supplied and reviewed; preparation/observer unit checks allowed; creation of the named operator bundle still awaits separate approval |
 | Software installation or upgrade | NOT AUTHORIZED; require exact version/source/destination and install effects |
 | Image/kernel/init downloads | NOT AUTHORIZED; require source, independently verified digest, destination, network/storage effects |
 | Container service startup | NOT AUTHORIZED; require exact command, persistent service effects and any implicit downloads |
@@ -213,8 +264,10 @@ SIGTERM, coordinator death and observation failure before any launch is approved
 Review of the retained receipts establishes only: twelve historical native
 launch failures before child startup; a later missing-CLI prerequisite inspection;
 and a preparation inspection with `cli: null` and all 33 controls `NOT_RUN`.
-None contains the operator's normal-Terminal CLI version/help or successful
-Apple Container startup. The filesystem fixture and host manifest observer are
+Those historical receipts contain neither normal-Terminal CLI version/help nor
+successful startup. The new operator-provided inspection adds client identity/help
+only; its separate review adds pinned documentation and blocked argv. Neither
+adds runtime evidence. The filesystem fixture and host manifest observer are
 implemented; network, resource, descendant and cleanup probes are not. Retained
 receipt source hashes identify their historical sources, not subsequent edits.
 

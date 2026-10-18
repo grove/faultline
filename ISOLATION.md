@@ -42,24 +42,34 @@ evidence elsewhere. Verify both immutable originals and unchanged test copies
 after every step; drift stops the run and invalidates attribution. Do not repair
 drift by silently restoring bytes and continuing.
 
-## Current preparation: Apple Container — UNAVAILABLE pending version and controls
+## Current preparation: Apple Container 1.5.0 — UNAVAILABLE pending controls
 
 Review the [implementation and exact Terminal procedure](qualification/APPLE_CONTAINER.md)
-and [new client-inspection receipt](qualification/2026-10-18-apple-container-preparation.json).
-No canary, service, image retrieval or project code was executed for this change.
-The preparation/observer unit checks are not boundary qualification. Runtime
-launch commands are blocked until the actual installed version/help, matching
-documentation and required host enforcement/observers can be reviewed. No guessed
-Docker-compatible flags or current-branch documentation stand in for that evidence.
-The next action is the exact `python3 -I -B qualification/apple_container.py inspect`
-command in the operator's normal Terminal at the verified PR #17 checkout, then
-return its reviewed JSON. It intentionally requests only host identity and CLI
-version/help, not service startup or runtime operations; CLI-internal service
-contact, helper processes and side effects are not independently observed or
-excluded. Inspection is not execution-safety qualification. The protocol's
-authorization sheet remains blocked until versions, image digest, enforcement,
-independent observers and exact cleanup commands are available; no synthetic
-execution approval is requested yet.
+and [operator-provided Terminal inspection](qualification/2026-10-18-apple-container-terminal.json).
+It reports Container **1.5.0 / d265d66** at `/usr/local/bin/container`, SHA-256
+`8cc619377e8978a0ce9f22a3e864dcd4445f2bc38fb64c5197bb69a1bab42463`,
+on macOS **27.0.1 / 26A434**, arm64. All version/help requests succeeded,
+untruncated. This is a reserialized pasted report, not independent host or vendor
+attestation; original-file hash and checkout commit were not supplied. All eight
+source hashes matched the pre-edit workspace. Possible CLI-internal service contact,
+helpers and side effects were not independently observed or excluded.
+
+The [version-matched review](qualification/2026-10-18-apple-container-review.json)
+pins Container source `d265d669ecae041bf338cb3b39c4118316d138f0`, its locked
+Containerization 0.47.0 dependency, and reviewed document/source content hashes.
+It retains help-matched candidate argv, including source-supported `--network none`
+(zero attachments); omitted networking selects the default. That is source review,
+not evidence of installed enforcement. Image/init/kernel provenance, effective
+environment, aggregate resource/output/deadline limits, calibrated independent
+denial/VM/process observers and cleanup remain unverified. Runtime argv is incomplete
+and **NOT AUTHORIZED**; even positive startup is blocked.
+
+The smallest next authorization is the protocol's exact **fixture preparation and
+receipt-hash commands only**, creating `/private/tmp/faultline-apple-review-01`.
+No named bundle, canary, service, image/init/kernel retrieval or project code was
+executed for this update. Preparation/observer unit checks are not qualification;
+all 33 runtime controls remain **NOT_RUN**. No synthetic execution approval is
+requested while required isolation controls lack independent verification.
 **Keep #2 open; execution remains NO_GO / UNAVAILABLE.** The earlier records below
 describe their original host context and are not reclassified by the operator's
 subsequent installation report.
