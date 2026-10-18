@@ -1,12 +1,16 @@
 # Faultline — proposed implementation plan
 
-**Status:** Proposed; no installed skill, executable challenge tool, qualified isolation environment, or published effectiveness results exist.
+**Status:** #3's advice-only [faultline-audit](faultline-audit/SKILL.md) is implemented, with verified copying/discovery and packaging checks. No executable challenge tool, qualified isolation environment/backend, or published effectiveness results exist.
 
-**Product recommendation for [#9](https://github.com/grove/faultline/issues/9): NARROW.** Retain the skill-first correctness-challenge hypothesis, limited to one Python feasibility experiment. Defer skill implementation until safety and independent value are demonstrated. Targeted mutation testing remains optional for *test strength*. See [README](README.md) and [DESIGN](DESIGN.md).
+**Product recommendation for [#9](https://github.com/grove/faultline/issues/9): NARROW.** Retain the skill-first correctness-challenge hypothesis, limited to one Python feasibility experiment. The subsequent #3 implementation request selects its explicitly permitted advice-only scope; executable skill work remains deferred until safety and independent value are demonstrated. Targeted mutation testing remains optional for *test strength*. See [README](README.md) and [DESIGN](DESIGN.md).
 
 **Rule:** Build the smallest useful **portable AI skill**, not a new model runner, mutation engine, chaos framework, CLI, or mandatory integration. Extra execution machinery is conditional on observed shortcomings and measured incremental value.
 
 ## 0. Decision record — NARROW
+
+**Historical record:** this section preserves #9's recommendation and evidence at
+that decision. The later #3 advice-only implementation does not complete any
+safety, mechanics, or independent-value milestone or authorize experiments.
 
 **Issue:** [#9](https://github.com/grove/faultline/issues/9). **Recommendation date:** 2026-10-18. **Evidence state:** design inspection only; experiments **NOT RUN**, execution qualification **UNAVAILABLE** in this repository. This recommendation does not approve a product pivot, skill build or experiment execution.
 
@@ -24,11 +28,11 @@
 
 ## 1. Milestone A — one usable, small, optional skill (read-only first)
 
-**Deferred:** do not implement this milestone unless #10's mechanics and a fresh independent comparison using #6 justify it. A read-only protocol can be designed without shipping a skill.
+**Implemented narrowly under #3:** a read-only test-strength skill can ship before safety qualification. This does not implement the broader INVESTIGATE/CHALLENGE product proposed below. Executable expansion still requires #10's mechanics and a fresh independent comparison using #6, plus #2 host qualification and explicit effect authorization.
 
-**Reuse/rescope:** [#3](https://github.com/grove/faultline/issues/3). The working name `faultline-challenge` is **provisional** until a real skill and verified installation exist; do not claim the older `faultline-audit` name is a shipped interface.
+**Canonical interface:** [#3](https://github.com/grove/faultline/issues/3), `faultline-audit/SKILL.md`. The earlier `faultline-challenge` working name is not an additional skill.
 
-**Proposed files after decision:**
+**Current files:**
 
 ```text
 faultline/
@@ -36,17 +40,21 @@ faultline/
   DESIGN.md
   IMPLEMENTATION.md
   LICENSE
-  faultline-challenge/
+  faultline-audit/
     SKILL.md
-    references/
-      challenges.md            # only if a short optional reference helps
   tests/
     test_skill.py              # portable packaging/instruction checks
 ```
 
 Start with **one canonical root-level skill** and minimal frontmatter so existing agent hosts can discover it. No extra model, runtime Python package, always-on process, downloaded dependencies or cross-project installation. Optional references must be lean, not a catalogue of mandatory checks.
 
-### Skill behavior
+### Broader future skill behavior (conditional)
+
+The current skill stops at advice: up to three concrete direct assertions or a
+useful SKIP; one targeted mutation plan only for material remaining uncertainty;
+NO_GO / UNAVAILABLE for execution. It preserves the production-only mutation,
+unchanged baseline/test identities, independent reset, six outcome categories,
+denominators and actual overhead requirements in a **non-executing** protocol.
 
 1. Determine whether there is a consequential unresolved correctness guarantee; identify the source/caller and exact candidate. For trivial or obvious cases, recommend **SKIP / DIRECT TEST**.
 2. Prefer a cheap direct negative/boundary assertion or requirement clarification before proposing an injected failure.
@@ -57,8 +65,8 @@ Start with **one canonical root-level skill** and minimal frontmatter so existin
 
 ### Acceptance checks
 
-- [ ] Real skills-CLI install/discovery or documented direct-file invocation **actually checked** on a named host; installation alone is not proof an agent invoked the skill.
-- [ ] Portable instructions and links are valid; no speculative install command in public README.
+- [x] Byte-identical copy and Codex CLI 0.163.0 app-server discovery checked on macOS 27.0.1 arm64; direct-file reading and documentation-only SKIP checked by the existing agent. No new model turn. Discovery alone is not proof an agent invoked the skill.
+- [x] Standalone links, metadata, copying and critical instruction boundaries have standard-library regression checks; verified copy and first-use guidance is in README.
 - [ ] Honest read-only operation is useful even when isolation/commands are unavailable.
 - [ ] The skill does not authorize commands, dependency installs, network, file writes, secondary model calls or publishing merely by being loaded.
 - [ ] Correct distinction: actual unchanged-code failure versus mutation survivor versus test/harness/setup failure.
@@ -194,19 +202,19 @@ Consider a tiny helper **only** if measured skill-only trials reveal a *specific
 
 ## 7. Current state and issue map
 
-**Current repository** contains only `README.md`, `DESIGN.md`, `IMPLEMENTATION.md` and `LICENSE`. This records #9's **NARROW recommendation**, not completion of any implementation/safety/value milestone. The following are proposed dispositions; existing issue bodies, states and evidence are unchanged.
+**Current repository** contains the four original documents/license, one canonical `faultline-audit/SKILL.md`, and `tests/test_skill.py`. #3 implements advice-only test-strength review; it does not complete safety or value milestones. #9's **NARROW recommendation** remains the historical experimental direction. The following future dispositions are proposals; existing issue bodies, states and evidence are unchanged.
 
 | Issue | Disposition and retained scope |
 | --- | --- |
 | [#1](https://github.com/grove/faultline/issues/1) | **DEFER** mutation-backend/metrics selection; unnecessary for the first behavior experiment. Keep read-only research and later optional test-strength tooling scope. |
 | [#2](https://github.com/grove/faultline/issues/2) | **RETAIN / EXTEND** the hard actual-host gate to injected-failure hooks, fakes, retries and cleanup as well as mutation tools. No execution until observed qualification and caller authorization. |
-| [#3](https://github.com/grove/faultline/issues/3) | **DEFER / PROPOSE RESCOPE** the sole portable skill to INVESTIGATE/CHALLENGE only after #10 mechanics and fresh #6 value evidence. No duplicate skill issue or premature advice-only build. |
+| [#3](https://github.com/grove/faultline/issues/3) | **ADVICE-ONLY IMPLEMENTED** at `faultline-audit/SKILL.md`; no execution. A broader executable rescope still requires qualified safety, #10 mechanics and fresh #6 value evidence. |
 | [#4](https://github.com/grove/faultline/issues/4) | **RETAIN / DEFER** mutation qualification and native outcome evidence; it is not replaced by #10 and is not required for unchanged-code experiments. |
 | [#5](https://github.com/grove/faultline/issues/5) | **DEFER** real-project dogfood until safety/mechanics/value are established; rescope one guarantee later. Listed Proofline/Intentline areas are proposed targets, not known defects or access permission. |
 | [#6](https://github.com/grove/faultline/issues/6) | **RETAIN / PROPOSE EXTENSION** of the same-budget independent comparison to behavior challenges. Preserve mutation results; revise dependencies explicitly for that track rather than require deferred #4/#5 before a synthetic value check. |
 | [#7](https://github.com/grove/faultline/issues/7) | **DEFER** Rust tooling discovery/execution until useful Python evidence and separately approved host/scope/budget. No automatic language expansion. |
 | [#8](https://github.com/grove/faultline/issues/8) | **DEFER** Java discovery/execution; retain Python-value and Rust-feasibility prerequisites. No current Java work. |
-| [#9](https://github.com/grove/faultline/issues/9) | **NARROW recommendation delivered** by this design record; skill implementation remains unapproved. |
+| [#9](https://github.com/grove/faultline/issues/9) | **NARROW recommendation delivered** by this historical design record; no experimental effectiveness or execution approval follows from the later advice-only #3 implementation. |
 | [#10](https://github.com/grove/faultline/issues/10) | **NARROW** to the single costed Python scenario above; first mechanics/comparison proposal, no execution permission or claimed result. |
 
 None of #1–#8 needs a duplicate or automatic closure. The standalone mutation-first roadmap becomes redundant as the default path; its optional test-strength work and evidence remain useful. [Gapline #17](https://github.com/grove/gapline/issues/17) and [#18](https://github.com/grove/gapline/issues/18) remain independent read-only ideas, with no dependency or automatic integration.
