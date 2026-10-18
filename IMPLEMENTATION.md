@@ -2,31 +2,29 @@
 
 **Status:** Proposed; no installed skill, executable challenge tool, qualified isolation environment, or published effectiveness results exist.
 
-**Product decision pending:** [#9](https://github.com/grove/faultline/issues/9) proposes repositioning Faultline as a **skill-first adversarial correctness challenger**. The initial distinctive hypothesis is **controlled failure-path testing of an unchanged implementation**; targeted mutation testing remains optional for *test strength*. See [README](README.md) and [DESIGN](DESIGN.md).
+**Product recommendation for [#9](https://github.com/grove/faultline/issues/9): NARROW.** Retain the skill-first correctness-challenge hypothesis, limited to one Python feasibility experiment. Defer skill implementation until safety and independent value are demonstrated. Targeted mutation testing remains optional for *test strength*. See [README](README.md) and [DESIGN](DESIGN.md).
 
 **Rule:** Build the smallest useful **portable AI skill**, not a new model runner, mutation engine, chaos framework, CLI, or mandatory integration. Extra execution machinery is conditional on observed shortcomings and measured incremental value.
 
-## 0. Decision gate — agree on a small, testable hypothesis
+## 0. Decision record — NARROW
 
-**Issue:** [#9](https://github.com/grove/faultline/issues/9).
+**Issue:** [#9](https://github.com/grove/faultline/issues/9). **Recommendation date:** 2026-10-18. **Evidence state:** design inspection only; experiments **NOT RUN**, execution qualification **UNAVAILABLE** in this repository. This recommendation does not approve a product pivot, skill build or experiment execution.
 
-First establish the product boundary and the difference between two results:
+**Purpose:** Faultline helps an existing coding agent seek a reproducible counterexample to one source-grounded correctness guarantee through a bounded, separately authorized experiment against unchanged implementation code.
 
-- **Behavior challenge:** fault-inject a dependency, state or input **without modifying the production implementation** and look for a reproducible violation of a real guarantee.
-- **Mutation challenge:** intentionally change production behavior **in a disposable mutant copy** and see whether selected tests detect that particular wrong behavior.
+**Why NARROW:** an observed failure under a controlled adverse condition could add evidence beyond Gapline's read-only investigation. No observed host qualification or independent comparison currently demonstrates that advantage. GO for a skill is premature; STOP is warranted if ordinary testing/direct review supplies the same actionable regression more cheaply. The existing [#10](https://github.com/grove/faultline/issues/10) is sufficient to investigate; no new build issue or runtime is needed.
 
-One may demonstrate an implementation defect; the other may demonstrate weak selected tests. Neither certifies correctness. Avoid building a second broad Gapline audit: Gapline already inspects test quality and other risks read-only.
+**Smallest exchange:** one candidate identity, authoritative guarantee and reachable caller/test path in; one source-linked plan or skip reason out. `INVESTIGATE / NOT RUN` (formerly `PLAN`) is non-executing. `CHALLENGE` additionally requires independent caller/host effect authorization, exact commands, passing unchanged controls and observed #2 isolation qualification; output adds a bounded receipt and small reproducer. Missing protection means **UNAVAILABLE**, never shell fallback. Skip low-risk work, obvious direct assertions, unknown contracts and unreachable or disproportionately costly setups.
 
-**Required decision record:**
-- One-sentence product promise, skill-first interface and two modes: `PLAN` (read-only) and `CHALLENGE` (only if authorized and isolated).
-- Named, source-grounded first invariant and the smallest experiment that could refute it.
-- Explicit non-goals, exit/stop criteria, limits and relationship to Intentline/Gapline/Proofline.
-- Issue-by-issue disposition of #1–#8. Existing work must not silently become an approved roadmap because documentation changed.
-- **GO / NARROW / STOP** for the first small prototype. A decision is not a successful audit run.
+**Evidence distinction:** an attributable invariant violation in unchanged code can demonstrate a selected behavior failure. A deliberately wrong mutant surviving selected unchanged tests shows only weak detection of that difference, after considering equivalence and reachability. Neither certifies correctness. The [README examples](README.md#two-different-questions-two-different-experiment-types) are illustrative, **NOT RUN**; mutation is not a mandatory second step.
 
-**Stop if:** the proposed challenge cannot be distinguished from cheaper negative-case review or requires a general-purpose runner to demonstrate even a tiny case.
+**Source basis:** the [#9 request](https://github.com/grove/faultline/issues/9), [repository proposal at `00c9834`](https://github.com/grove/faultline/tree/00c9834e45962d44ee85855935040bac973c0dc2), and the current #1–#8/#10 issue bodies inform this recommendation. They supply design requirements, not observed effectiveness or execution authority. Preserve Gapline's read-only scope and Proofline's frozen candidates/receipts; no sibling integration or changes.
+
+**Proposed order:** specify #10 → qualify #2 → one bounded comparison → fresh independent value check using #6 → reconsider #3. The numbered milestones below describe conditional work, not permission or build order. No skill, harness, dependencies, extra model dispatch, project-code execution or tracker edits are part of #9.
 
 ## 1. Milestone A — one usable, small, optional skill (read-only first)
+
+**Deferred:** do not implement this milestone unless #10's mechanics and a fresh independent comparison using #6 justify it. A read-only protocol can be designed without shipping a skill.
 
 **Reuse/rescope:** [#3](https://github.com/grove/faultline/issues/3). The working name `faultline-challenge` is **provisional** until a real skill and verified installation exist; do not claim the older `faultline-audit` name is a shipped interface.
 
@@ -53,7 +51,7 @@ Start with **one canonical root-level skill** and minimal frontmatter so existin
 1. Determine whether there is a consequential unresolved correctness guarantee; identify the source/caller and exact candidate. For trivial or obvious cases, recommend **SKIP / DIRECT TEST**.
 2. Prefer a cheap direct negative/boundary assertion or requirement clarification before proposing an injected failure.
 3. For a remaining material uncertainty, name **one** fault condition, how the existing test hook reaches it, a valid alternative outcome, and the observable distinguishing result. Source ground the invariant; mark missing authority **UNKNOWN**.
-4. Default to **PLAN / PROPOSED — NOT RUN** when execution is unapproved or the host boundary unqualified.
+4. Default to **INVESTIGATE / PROPOSED — NOT RUN** when execution is unapproved or the host boundary unqualified.
 5. Offer `CHALLENGE` steps **only conditionally**: exact authorized commands, stable snapshot, actually qualified isolation, bound resources, unchanged control, one perturbation and evidence recording. A skill cannot enforce these conditions.
 6. Return a short report with identity, what was proposed/observed, raw bounded evidence if present, caveats, actual work/cost and the smallest useful next test. No auto-fix, publication, or unsupported assurance.
 
@@ -80,6 +78,7 @@ On the **specific intended agent host**, independently qualify:
 - Protection against modifying the source candidate, retained evidence and unrelated files.
 - Denial of access to private files, real credentials and disallowed network/external effects.
 - Handling of symlinks, submodules, package scripts, discovery hooks, test fixtures, caches, child processes and path escape attempts.
+- Injected-failure hooks and fakes themselves: post-commit acknowledgement suppression, exceptions, retry/reset paths and cleanup must not escape the boundary, alter protected source/receipts or contact real services.
 - Finite wall-clock/process/output budgets, deterministic setup/reset, cleanup restricted to created artifacts, and safe treatment of tool absence.
 - Explicit authorizations for candidate selection, exact argv/working directory, fixture reads, writes, output destination, resources, any model/tool expense and network effects.
 
@@ -126,9 +125,29 @@ For any executed case retain exact original bytes/identity, authorization, comma
 
 **Stop/adjust if:** setup dominates the value, oracle relies on the implementation being tested, the environment cannot be qualified, or normal direct review would already supply the same useful assertion for less cost.
 
+### Bounded first comparison (PROPOSED — NOT RUN)
+
+Use **only the lost-acknowledgement/retry scenario**, with the two frozen authored implementations above. #10 supplies the fixture's intended guarantee; an independent preparer must fix the actual fixture contract before any run. Observe ledger entries for one key: normal first request yields one effect for both candidates; commit then lose acknowledgement and retry yields one effect for the valid candidate, two for the defective candidate. A rejected retry that preserves one effect is also valid; a harness error is not a violation. No mutation, second state-transition case or production target is needed.
+
+Compare three isolated assessments of the **same pair**, using the same existing agent/host/model settings and source access, without sharing answers between arms. This specifies future assessments, not additional worker/model dispatch now:
+
+| Arm | Selected work; 15 minutes and 12 tool calls total per arm, including both candidates |
+| --- | --- |
+| A | Ordinary testing and normal agent review. |
+| B | Explicit focused negative/retry-case review and ordinary direct assertions; no injected fault. This is the cheaper comparator. |
+| C | A short proposed INVESTIGATE/CHALLENGE protocol, not an installed skill; at most one deterministic injected condition per candidate, only if cheaper review leaves uncertainty. |
+
+Predeclare a **two-hour / 60-tool-call ceiling** for the whole pilot: at most 45 minutes/12 calls for independent fixture/oracle preparation and #2 qualification, 45 minutes/36 calls for A/B/C together, and 30 minutes/12 calls for independent validation/reporting. Report shared preparation separately; charge all arm-specific setup (including C's hook work), baselines, selection/skips, executions, corrections and reporting to that arm's equal cap. Within each arm, cap challenge execution at ten minutes and each test process at five seconds, with host-enforced cleanup. Use installed stdlib Python tools; no installs, extra models or paid services. Exact commands/host still need separate authorization. If qualification or preparation cannot fit, stop **UNAVAILABLE**; do not silently move cost outside the budget. Any later study needs a new explicit budget.
+
+Before assessment, freeze candidate bytes, fixture contract, expected normal/fault outcomes, valid alternatives, host/tool settings, command permissions, hidden evaluator oracle and grader. Hide variant labels/expected answers from assessment contexts; keep preparation and independent grading separate from the assessed work. Six candidate assessments are assigned (two per arm), **not six independent scenarios**. Retain all six denominators, including skips, blocked, timed-out, NOT_RUN and inconclusive results; no favorable reruns or extra time for C.
+
+Each executed receipt must retain source/requirement identity, exact injected post-commit condition, command/argv/tool/version/host, passing unchanged baseline, actual effect sequence, reset/repeat details, original-source post-check, elapsed time/tool calls and limitations. Validate any claimed violation with a small replay against the same unchanged candidate; a useful regression must distinguish the defective path and accept the valid path. Preauthored expectations remain **NOT RUN** until evidenced.
+
+**Falsifier / decision threshold:** if B already identifies the same consequential failure and sufficient regression assertion, C supplies no demonstrated incremental value: **STOP the dedicated skill path or NARROW to direct-test guidance**. If C alone provides an independently validated failure/reproducer and useful regression, accepts the valid control, produces no unsupported defect claim, and stays within the same cap, proceed only to fresh withheld Python cases under #6. A planted success establishes mechanics, not product effectiveness and not approval for #3. Safety/setup failure or ambiguous attribution is **INCONCLUSIVE / UNAVAILABLE**, not evidence for GO. A general runner requirement or cost beyond the cap is a reason to stop this spike.
+
 ## 4. Milestone D — prove extra value over simpler agent testing
 
-**Reuse the framework in [#6](https://github.com/grove/faultline/issues/6)**, but update the primary hypothesis from mutation scores/test-gap hunting to independently confirmed **behavioral correctness** improvement. A planted failure in Milestone C establishes mechanics, **not** general usefulness.
+**Proposed extension to [#6](https://github.com/grove/faultline/issues/6):** retain its mutation comparison and evidence; separately evaluate independently confirmed **behavioral correctness** improvement before approving #3. Its current mutation-specific dependencies (#4/#5) remain attached to that track; a behavioral comparison would instead require #2/#10 mechanics, independent fixture/oracle preparation and separate authorization. This is a proposed scope/dependency revision, not a tracker change or permission to run a study. A planted failure in Milestone C establishes mechanics, **not** general usefulness.
 
 Run a small **predeclared feasibility** comparison on fresh, independently prepared Python cases (e.g. four to six initial tasks, including low-risk skip and contract-consistent clean controls). Keep independent grader/oracle and valid alternatives hidden from workers.
 
@@ -136,7 +155,7 @@ Run a small **predeclared feasibility** comparison on fresh, independently prepa
 | --- | --- |
 | **A — ordinary** | Same coding agent with ordinary development and self-testing. |
 | **B — cheap direct review** | Same agent plus explicit negative/failure-path review and applicable direct tests, no injected faults. |
-| **C — optional Faultline** | Same agent plus selective `PLAN`/`CHALLENGE`, counting all isolation/setup, baselines, injected tests, corrections, reporting, stops and skips. |
+| **C — optional Faultline** | Same agent plus selective `INVESTIGATE`/`CHALLENGE` guidance, counting all isolation/setup, baselines, injected tests, corrections, reporting, stops and skips. |
 
 Freeze original request, source bytes, host/model/settings, command permissions, environment, allowed time/tool cost, grading protocol, **acceptable extra overhead** and stop criteria before launches. Randomize order where feasible, do not allow oracle leakage or silent reruns, and include all assigned cases and incomplete attempts.
 
@@ -175,19 +194,23 @@ Consider a tiny helper **only** if measured skill-only trials reveal a *specific
 
 ## 7. Current state and issue map
 
-**Current repository** contains only `README.md`, `DESIGN.md`, `IMPLEMENTATION.md` and `LICENSE`. Documentation changes **do not complete** any milestone.
+**Current repository** contains only `README.md`, `DESIGN.md`, `IMPLEMENTATION.md` and `LICENSE`. This records #9's **NARROW recommendation**, not completion of any implementation/safety/value milestone. The following are proposed dispositions; existing issue bodies, states and evidence are unchanged.
 
-| Issue | Current treatment under the proposed pivot |
+| Issue | Disposition and retained scope |
 | --- | --- |
-| [#9](https://github.com/grove/faultline/issues/9) | Product direction decision: do first |
-| [#10](https://github.com/grove/faultline/issues/10) | One deterministic Python failure-path challenge: first experiment |
-| [#2](https://github.com/grove/faultline/issues/2) | Safety gate mandatory for any executable work |
-| [#3](https://github.com/grove/faultline/issues/3) | One portable skill: rescope conditionally rather than duplicate |
-| [#6](https://github.com/grove/faultline/issues/6) | Reuse value-comparison protocol; extend scope only if justified |
-| [#1](https://github.com/grove/faultline/issues/1), [#4](https://github.com/grove/faultline/issues/4) | Mutation tooling and classifications: defer |
-| [#5](https://github.com/grove/faultline/issues/5) | Approved real-project dogfood: defer and rescope |
-| [#7](https://github.com/grove/faultline/issues/7), [#8](https://github.com/grove/faultline/issues/8) | Other languages: defer |
+| [#1](https://github.com/grove/faultline/issues/1) | **DEFER** mutation-backend/metrics selection; unnecessary for the first behavior experiment. Keep read-only research and later optional test-strength tooling scope. |
+| [#2](https://github.com/grove/faultline/issues/2) | **RETAIN / EXTEND** the hard actual-host gate to injected-failure hooks, fakes, retries and cleanup as well as mutation tools. No execution until observed qualification and caller authorization. |
+| [#3](https://github.com/grove/faultline/issues/3) | **DEFER / PROPOSE RESCOPE** the sole portable skill to INVESTIGATE/CHALLENGE only after #10 mechanics and fresh #6 value evidence. No duplicate skill issue or premature advice-only build. |
+| [#4](https://github.com/grove/faultline/issues/4) | **RETAIN / DEFER** mutation qualification and native outcome evidence; it is not replaced by #10 and is not required for unchanged-code experiments. |
+| [#5](https://github.com/grove/faultline/issues/5) | **DEFER** real-project dogfood until safety/mechanics/value are established; rescope one guarantee later. Listed Proofline/Intentline areas are proposed targets, not known defects or access permission. |
+| [#6](https://github.com/grove/faultline/issues/6) | **RETAIN / PROPOSE EXTENSION** of the same-budget independent comparison to behavior challenges. Preserve mutation results; revise dependencies explicitly for that track rather than require deferred #4/#5 before a synthetic value check. |
+| [#7](https://github.com/grove/faultline/issues/7) | **DEFER** Rust tooling discovery/execution until useful Python evidence and separately approved host/scope/budget. No automatic language expansion. |
+| [#8](https://github.com/grove/faultline/issues/8) | **DEFER** Java discovery/execution; retain Python-value and Rust-feasibility prerequisites. No current Java work. |
+| [#9](https://github.com/grove/faultline/issues/9) | **NARROW recommendation delivered** by this design record; skill implementation remains unapproved. |
+| [#10](https://github.com/grove/faultline/issues/10) | **NARROW** to the single costed Python scenario above; first mechanics/comparison proposal, no execution permission or claimed result. |
 
-**Next smallest action:** resolve #9, specify #10's authoritative fixture/oracle, and qualify #2 for the actual host before any proposed challenge is described as executed. If these gates fail, retain the useful read-only plan or stop rather than broadening scope.
+None of #1–#8 needs a duplicate or automatic closure. The standalone mutation-first roadmap becomes redundant as the default path; its optional test-strength work and evidence remain useful. [Gapline #17](https://github.com/grove/gapline/issues/17) and [#18](https://github.com/grove/gapline/issues/18) remain independent read-only ideas, with no dependency or automatic integration.
+
+**Next smallest action:** review this NARROW recommendation, then specify #10's authoritative fixture/oracle and qualify #2 on an independently authorized host. If the costed comparison finds no advantage over direct review, stop the skill path. No new runtime or language work follows automatically.
 
 [README](README.md) · [Design](DESIGN.md)
