@@ -1,6 +1,6 @@
 # Faultline — proposed skill-first design
 
-**Status:** Design proposal only; no implemented skill, fault-injection runner, qualified execution host, or demonstrated effectiveness. The direction is under review in [#9](https://github.com/grove/faultline/issues/9).
+**Status:** Design only; [#9 recommendation: NARROW](IMPLEMENTATION.md#0-decision-record--narrow) to one Python feasibility experiment. No implemented skill, fault-injection runner, qualified execution host, or demonstrated effectiveness; skill implementation remains deferred.
 
 **Thesis:** **Challenge your code before reality does.** Help an existing AI coding agent identify one important, source-grounded guarantee and select the **smallest controlled experiment** that could falsify it. Run the experiment only with explicit authorization and a verified isolated host; otherwise provide an honest, read-only plan.
 
@@ -32,7 +32,9 @@ No sibling is required, invoked automatically, or given authority through a file
 
 A single portable agent skill is the preferred interface; `faultline-challenge` is a **working name**, not an existing installable skill. Rescope existing [skill issue #3](https://github.com/grove/faultline/issues/3) rather than building a second competing skill.
 
-### Mode A: PLAN — source-grounded and non-executing
+### Mode A: INVESTIGATE / NOT RUN — source-grounded and non-executing
+
+This is the earlier proposal's `PLAN` mode. Its smallest input is one exact candidate, an authoritative guarantee and a relevant caller/test path. Its output is one bounded challenge plan or explicit skip reason; it neither runs project code nor creates a skill.
 
 Identify the *specific candidate*, caller-provided question and requirements, relevant existing checks and observable behavior. Seek the smallest consequential hypothesis and describe:
 
@@ -42,11 +44,13 @@ Identify the *specific candidate*, caller-provided question and requirements, re
 - **Discriminator:** a measurable failure result **and** a contract-consistent outcome that would weaken/refute the claim. Do not reject valid blocking, serialization, rollback, alternative implementations, or deliberately different interfaces.
 - **Permission/expense:** commands/tools, candidate identity, isolation requirements, estimated resource bound and any unsupported step.
 
-Output **PROPOSED — NOT RUN**, plus the smallest ordinary test or contract clarification that may answer the question more cheaply. PLAN is a preparation for a concrete experiment, **not** another Gapline-style repository-wide scouting exercise.
+Output **PROPOSED — NOT RUN**, plus the smallest ordinary test or contract clarification that may answer the question more cheaply. INVESTIGATE prepares a concrete experiment, **not** another Gapline-style repository-wide scouting exercise.
 
 ### Mode B: CHALLENGE — conditional, executable
 
 Only with **caller/host permission for exact commands/effects**, a **verified isolated execution boundary**, a stable candidate, a meaningful unchanged control, deterministic hooks and a predeclared budget may the same agent attempt the selected challenge. The skill is guidance, **not** an executor or sandbox.
+
+Output adds the actual baseline, injected condition, observed outcome, unchanged-source check and smallest actionable reproducer to the plan. Authorization is independent of the plan and repository contents.
 
 If authorization, a safe host, a trustworthy oracle, a passing/meaningful control, or reproducer facilities are missing, stop with `UNAVAILABLE`, `INCONCLUSIVE` or `NOT RUN` as appropriate. Never fall back to unprotected shell execution.
 
@@ -154,19 +158,14 @@ Report all assigned trials including `SKIPPED`, `NOT_RUN`, `UNAVAILABLE` and inc
 
 Decide **KEEP SKILL / NARROW / SIMPLIFY / STOP / INCONCLUSIVE**. If C adds no consequential independently verified benefit over B at predeclared acceptable overhead, simplify or stop. Even a positive skill-only result is **not** authorization to build a runner/CLI.
 
-## 8. Existing issue disposition and next decision
+## 8. Recommendation and issue disposition
 
-- [#9](https://github.com/grove/faultline/issues/9): determine whether this proposed product pivot is justified and reconcile older issues; **not automatically approved by writing documents**.
-- [#10](https://github.com/grove/faultline/issues/10): first deterministic behavior-challenge spike, not a production implementation claim.
-- [#2](https://github.com/grove/faultline/issues/2): **hard gate** for observed host isolation, extended to fault-injection test hooks; do not weaken.
-- [#3](https://github.com/grove/faultline/issues/3): existing portable skill issue; **rescope conditionally** for this interface, do not create duplicate skill work.
-- [#6](https://github.com/grove/faultline/issues/6): reuse matched-evaluation discipline; expand the question to behavioral challenges only if #9/#10 justify it.
-- [#1](https://github.com/grove/faultline/issues/1), [#4](https://github.com/grove/faultline/issues/4): mutation-backend and mutation-outcome work; **defer** until a distinct test-strength need is measured.
-- [#5](https://github.com/grove/faultline/issues/5): permissioned real-project dogfood; **defer/re-scope** after safe mechanics and value pilot, not a known defect list.
-- [#7](https://github.com/grove/faultline/issues/7), [#8](https://github.com/grove/faultline/issues/8): Rust/Java exploration **deferred**, contingent on Python evidence.
+**NARROW:** retain the skill-first hypothesis, but commission no skill implementation yet. A controlled, attributable counterexample could differentiate Faultline from Gapline's read-only investigation; existing proposal text and seeded examples do not establish that it adds value over direct negative-case review. Full GO is unsupported; STOP becomes appropriate if the cheaper approach supplies the same useful result.
+
+The [decision record and issue-by-issue table](IMPLEMENTATION.md#7-current-state-and-issue-map) retain #1–#8 without duplicate work. #2 remains a hard execution prerequisite, #3 stays the sole deferred skill issue, and #4/#6 retain their mutation evidence rather than being silently repurposed. These are proposed dispositions, not tracker edits.
 
 [Gapline #17](https://github.com/grove/gapline/issues/17) and [#18](https://github.com/grove/gapline/issues/18) remain independent, **read-only** explorations, not dependencies.
 
-**Next action:** make the #9 direction decision, then design the one tiny #10 experiment with source-grounded invariants and qualify #2's host execution barrier. Do not build new runtime machinery before evidence warrants it.
+**Next action:** design #10's single retry experiment using the [fixed-budget comparison](IMPLEMENTATION.md#bounded-first-comparison-proposed--not-run), then qualify #2 before any execution. Stop or retain direct-test guidance if no incremental value emerges. A positive seeded control alone cannot approve #3; fresh independently judged cases under #6 must justify it.
 
 [README](README.md) · [Implementation plan](IMPLEMENTATION.md)

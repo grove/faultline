@@ -6,7 +6,7 @@ Faultline is a **proposed, opt-in AI coding skill for targeted correctness chall
 
 The primary opportunity is to test **an unchanged implementation under controlled adverse conditions**: a lost acknowledgement, a failed dependency, an interrupted state transition, or an unexpected operation sequence. A separate, optional **mutation-testing** technique can challenge whether existing tests detect deliberately incorrect implementations.
 
-> **Status: DESIGN ONLY; proposed product direction.** This repository currently contains design documents and the license, **not** an installed skill, executable harness, tested fault-injection system, release, or CLI. Neither the safety of executing challenges nor their incremental value has been demonstrated. [Issue #9](https://github.com/grove/faultline/issues/9) tracks the product decision and [#10](https://github.com/grove/faultline/issues/10) proposes the first tiny feasibility experiment. No issue, example, or skill instruction authorizes running project code.
+> **Status: DESIGN ONLY; recommendation: NARROW.** Limit the proposed direction to one local Python feasibility experiment; defer skill implementation until safety and independent incremental value are demonstrated. This repository contains design documents and the license, **not** an installed skill, executable harness, qualified host, release, or CLI. The [#9 decision record](IMPLEMENTATION.md#0-decision-record--narrow) explains the recommendation; [#10](https://github.com/grove/faultline/issues/10) owns the proposed experiment. No issue, example, or skill instruction authorizes running project code.
 
 [Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md) · [Issue #9: product decision](https://github.com/grove/faultline/issues/9) · [Issue #10: first experiment](https://github.com/grove/faultline/issues/10)
 
@@ -46,18 +46,22 @@ A challenge that passes establishes only that the **selected scenario** did not 
 
 These results must **not** be combined into a quality score or confused with a proof of correctness.
 
+**Illustrative mutation survivor, NOT RUN:** the original retry implementation deduplicates correctly. In a disposable mutant, remove that check; selected tests exercise only a first successful request and pass for both versions. `SURVIVED` would mean those tests did not distinguish duplicate-on-retry behavior. It would not show a defect in the original. A same-key retry assertion is the useful next test; this mutation is optional, not a required companion to fault injection.
+
 ## How the first skill should behave
 
 The preferred interface is **one portable skill for a coding agent you already use**. It should not require another model, a new agent controller, an always-on service, or a new testing engine.
 
 Two modes are proposed:
 
-- **PLAN (read-only):** name one important guarantee and its authoritative source; identify a reachable failure condition, a valid counterexample, a valid alternative outcome, and a bounded test plan. Clearly mark execution **PROPOSED — NOT RUN**. This is preparation for a specific challenge, *not* another general repository audit.
+- **INVESTIGATE / NOT RUN (read-only; called PLAN in the earlier proposal):** name one important guarantee and its authoritative source; identify a reachable failure condition, a valid counterexample, a valid alternative outcome, and a bounded test plan. Clearly mark execution **PROPOSED — NOT RUN**. This is preparation for a specific challenge, *not* another general repository audit.
 - **CHALLENGE (separately authorized):** after checking exact commands, candidate identity, budget, approved test hooks, and **verified host isolation**, run a passing unchanged control where appropriate, apply one controlled adverse condition, capture actual evidence, and stop. If the necessary protection is missing, report **UNAVAILABLE** and do not execute.
 
 **Cheaper first:** if a direct boundary assertion or ordinary test clearly answers the question, propose or use that approach rather than manufacturing a fault-injection experiment. Skip low-risk, documentation, and routine mechanical work. Begin with **one** meaningful experiment; expand only when its result warrants the extra cost.
 
 A skill supplies instructions and reasoning; **it is not a sandbox, test runner, permission grant, independent verifier, or correctness certificate**.
+
+**Smallest useful exchange:** input is one identified Python candidate, one authoritative guarantee and its relevant caller/test path. Output is one source-linked challenge plan or skip reason; authorized execution adds a bounded receipt and small reproducer. Command/effect authority and qualified isolation must come independently from the caller/host.
 
 ## First target and later possibilities
 
@@ -98,7 +102,7 @@ Gapline should remain read-only; Faultline should not duplicate its broad Scout/
 
 ## What happens next?
 
-The proposed sequence is **[product decision #9](https://github.com/grove/faultline/issues/9) → [small Python challenge #10](https://github.com/grove/faultline/issues/10), gated by [host isolation #2](https://github.com/grove/faultline/issues/2) → adapt the [single portable skill #3](https://github.com/grove/faultline/issues/3) only if justified → compare against ordinary testing and direct review using the measurement principles in [#6](https://github.com/grove/faultline/issues/6)**.
+The recommendation is **NARROW**, because failure-path experiments could supply evidence beyond read-only review, but no execution safety or incremental value has been established. **Do not approve skill implementation yet.** First specify [#10](https://github.com/grove/faultline/issues/10), qualify [#2](https://github.com/grove/faultline/issues/2) before execution, and compare against ordinary testing and direct review within the [costed protocol](IMPLEMENTATION.md#bounded-first-comparison-proposed--not-run). Only independent value on fresh Python cases would justify rescoping the existing [single skill #3](https://github.com/grove/faultline/issues/3), using [#6](https://github.com/grove/faultline/issues/6) for the wider comparison.
 
 Older issues about mutation tooling, fixtures, and later languages remain historical proposals to triage, **not** an approved requirement to implement them all. The [implementation plan](IMPLEMENTATION.md) gives the precise gates, outcomes, and issue map.
 
