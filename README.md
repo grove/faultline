@@ -23,6 +23,13 @@ remain unapproved. Its [inspection receipt](qualification/2026-10-18-apple-conta
 records **UNAVAILABLE**, zero boundary launches and all controls **NOT RUN**.
 Docker client/app presence is not qualification. #2 remains open.
 
+The [Apple Container preparation procedure](qualification/APPLE_CONTAINER.md)
+provides fixed filesystem fixtures and a host manifest observer. The operator now
+reports installation in normal Terminal, but that CLI/version remains inaccessible
+here. No runtime launch is implemented; network, resource and descendant controls
+remain unavailable. The procedure lists exact inspection/preparation commands for
+separate review and authorization. Execution remains **NO_GO / UNAVAILABLE**.
+
 ## Use the skill
 
 No runtime dependency or installation is required. Ask your existing agent:

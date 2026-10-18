@@ -1,0 +1,185 @@
+{
+  "observed_at_utc": "2026-10-18T18:25:50.831405+00:00",
+  "kind": "CLIENT_INSPECTION_ONLY",
+  "schema": 1,
+  "invocation": [
+    "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python",
+    "-I",
+    "-B",
+    "qualification/apple_container.py",
+    "inspect"
+  ],
+  "cwd": "/Users/grove/projects/faultline",
+  "source_sha256": {
+    "qualification/apple_container.py": "36a3feca2572f4b5dc9b3bff779cdd0c9812578f23653e6e3d91ad0fa6c4b0a8",
+    "qualification/apple_container_guest.py": "44f3b9b9f220e47bdb7e73e0a742caaa5669f29ed05e4834f8b52b96e48e9e7b",
+    "qualification/APPLE_CONTAINER.md": "77ffa7bbbc447a1b76e21213f13dce7d08686ed4da9f7b715332bc3d24367f06",
+    "qualification/macos_canaries.py": "df7916ab26fe7ce0499b2a76ff80366e1a4b6ae0aef7764122b1916621e63049",
+    "qualification/2026-10-18-macos.json": "7993892a631482c5181f403dbb04e3f0dea98a98f9be2f1c61cc8d8cf50407fe",
+    "qualification/2026-10-18-apple-container-preflight.json": "639cd38adf4556f81970886ffc40633c790c28c63a9dec1261b9ed1461c6713a",
+    "faultline-audit/SKILL.md": "d94cfa4a3484d527c88966a2fd4ed27bd6e1f19c53e16bada3fb158f1f7b4d2b",
+    "experiments/lost-acknowledgement.md": "d7e7f30eeedf8e71671934c0b816a9bf1ec8f95e9d40b08966a28708bd755131"
+  },
+  "host": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "macos": "27.0.1",
+    "machine": "arm64"
+  },
+  "python": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "cli": null,
+  "observations": [
+    {
+      "argv": [
+        "/usr/bin/sw_vers"
+      ],
+      "cwd": "/",
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "LC_ALL": "C"
+      },
+      "returncode": 0,
+      "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434\n",
+      "stderr": "",
+      "truncated": false
+    }
+  ],
+  "decision": "UNAVAILABLE",
+  "qualification_granted": false,
+  "boundary_launches": 0,
+  "controls": [
+    {
+      "name": "positive",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "source-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "test-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "source-rename",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "receipt-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "private-read",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "unrelated-read",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "symlink-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "symlink-read",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "hardlink-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "dotdot-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "root-write",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-tcp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-udp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-tcp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "external-udp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "dns-udp",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "dns-tcp",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-tcp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-udp4",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-tcp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-udp6",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "host-unix-socket",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "memory",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "cpu",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "process-count",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "output",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "storage",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "timeout",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "detached-descendants",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "normal-cleanup",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "timeout-cleanup",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "interrupt-cleanup",
+      "status": "NOT_RUN"
+    }
+  ],
+  "reason": "Client inspection only; version-matched review and runtime controls pending."
+}

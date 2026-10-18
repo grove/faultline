@@ -5,6 +5,11 @@ The [native receipt](qualification/2026-10-18-macos.json) records failed
 boundary launches. The subsequent [Apple Container prerequisite inspection](qualification/2026-10-18-apple-container-preflight.json)
 records a missing CLI and unapproved setup; no new boundary launch was attempted.
 Neither record establishes successful denials of the requested effects.
+The subsequent [preparation protocol](qualification/APPLE_CONTAINER.md) adds a
+synthetic fixture builder and trusted host manifest observer, **not a runtime
+launcher**. The operator reports installation in normal Terminal; that context's
+CLI version and smoke outcome remain unavailable to this session. Required
+network/resource/descendant and independent denial evidence is still missing.
 The advice-only [skill](faultline-audit/SKILL.md) remains advice-only even if
 [#2](https://github.com/grove/faultline/issues/2) closes. Nothing here enables
 project imports, test discovery, tests, mutants or injected-failure harnesses.
@@ -37,7 +42,22 @@ evidence elsewhere. Verify both immutable originals and unchanged test copies
 after every step; drift stops the run and invalidates attribution. Do not repair
 drift by silently restoring bytes and continuing.
 
+## Current preparation: Apple Container — UNAVAILABLE pending version and controls
+
+Review the [implementation and exact Terminal procedure](qualification/APPLE_CONTAINER.md)
+and [new client-inspection receipt](qualification/2026-10-18-apple-container-preparation.json).
+No canary, service, image retrieval or project code was executed for this change.
+The preparation/observer unit checks are not boundary qualification. Runtime
+launch commands are blocked until the actual installed version/help, matching
+documentation and required host enforcement/observers can be reviewed. No guessed
+Docker-compatible flags or current-branch documentation stand in for that evidence.
+**Keep #2 open; execution remains NO_GO / UNAVAILABLE.** The earlier records below
+describe their original host context and are not reclassified by the operator's
+subsequent installation report.
+
 ## Next candidate: Apple Container — UNAVAILABLE before setup
+
+Historical prerequisite inspection, retained for the original host context:
 
 The read-only follow-up for [#2](https://github.com/grove/faultline/issues/2)
 selects **Apple Container only** for the next qualification. It does not implement
