@@ -116,6 +116,9 @@ Keep the skill unchanged rather than invent a fix. Future evidence can justify
 a narrow change and a fresh audit of the failing case. No new runner, evaluation
 platform, Docker behavior, or execution capability is required.
 
+The next proposed step is a [four-repository read-only pilot](../real-repository-evaluation-plan.md)
+with independent grading and true end-to-end timing. It has not been run.
+
 ## Focused validation
 
 Seven maintainer checks passed: four skill packaging/instruction checks, the
