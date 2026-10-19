@@ -1,0 +1,53 @@
+{
+  "approval_order": [
+    "Separate exact stopped v3 guardian recovery approval, or independently positive absence",
+    "Separate source-pinned host-fixture v4 calibration approval",
+    "Only after success: review separate VM stage and missing enforcement guarantees; no automatic VM effect"
+  ],
+  "execution": "NO_GO / UNAVAILABLE",
+  "frozen_v3_hashes_match": true,
+  "historical_preservation_checks": 28,
+  "historical_root_cause": "UNDETERMINED; initial/subsequent coordinator identities, poll/returncode, streams and parent observation time not retained",
+  "issue_10": "FROZEN_NOT_RUN",
+  "issue_2": "OPEN",
+  "kind": "V3_ORIGINAL_EVIDENCE_REVIEW_AND_SEPARATELY_APPROVABLE_RECOVERY_AND_V4_PREPARATION",
+  "limits": [
+    "trusted fixtures only, no hostile same-UID replacement guarantee",
+    "ps birth precision and identity/action not atomic",
+    "filesystem/launchd scheduling is not hard real time",
+    "remaining trusted metadata commands use post-capture output bound",
+    "no VM auxiliaries/descendants/vmnet teardown evidence",
+    "no file/private/network/aggregate resource canary qualification"
+  ],
+  "original_files_preserved": 11,
+  "parent_commit": "f588c37c4350abf0e3f70f124520118a689f50a1",
+  "pr_17": "DRAFT",
+  "prior_published_files_changed": false,
+  "qualification_granted": false,
+  "recovery_status": "PREPARED_NOT_AUTHORIZED_NOT_RUN",
+  "source_correction": "Bind only after sealed exact coordinator startup identity, retain exact checks after binding; durable unconditional identity/poll and bounded raw streams; original deadline unchanged",
+  "source_sha256": {
+    "qualification/2026-10-19-apple-container-guardian-calibration-v3-current-state.json": "2af90c6bdd0741be0700a6eff0f4f4cc832b7dde2e046a950ba4f1b7af9fe75f",
+    "qualification/2026-10-19-apple-container-guardian-calibration-v3-original-manifest.json": "ecad961b9adff940d15d1be59a3dc683c0abc4d4cc015819d1ff913317dc9545",
+    "qualification/2026-10-19-apple-container-guardian-calibration-v3-outcome.json": "2e9925a4c6612a2ad6d0dd4bdfcdc1030394d33b7e7cb591fab54ce430bc52df",
+    "qualification/2026-10-19-apple-container-qualification-preservation.json": "c8b22c35c22b3ac73ffa54782d7cd1b076d7b7c2cc1536db6c11c14919168f33",
+    "qualification/APPLE_CONTAINER_CALIBRATION_V3_RECOVERY.md": "dad01dc40979b32db36961ad9a9e8b70a880c4d2467dfa593609a9f3b80dd482",
+    "qualification/APPLE_CONTAINER_GUARDIAN_CALIBRATION_V4.md": "f714d8b09e77515435dc0ffd14e6f5b32309816183849c7a2627034e72c5ac36",
+    "qualification/apple_container_calibration_v3_recovery.py": "001c1768021e30d3c0fe9a1877e838ffbf0e052916215d4fde384371208071c9",
+    "qualification/apple_container_guardian_calibration_v4.py": "522c8b79c86edb5b48e087b848a029b4a88b1f1ef23f498597f2561ce10cbc1c",
+    "tests/test_apple_container_calibration_v3_recovery.py": "e9bbfb5d8097d6a5a1ce61f6afa0473b756f2cc301a1f71ea80859a8dc3415f8",
+    "tests/test_apple_container_guardian_calibration_v4.py": "f6b64507e986df127b3e1cd87f85ccc9a18994337b7df34ef972f3687fbcd686"
+  },
+  "v3_status": "CONSUMED_FAILURE_DO_NOT_REPEAT",
+  "v4_status": "PREPARED_NOT_AUTHORIZED_NOT_RUN",
+  "validation": {
+    "command": "/opt/homebrew/bin/python3 -B -m unittest discover -s tests",
+    "live_launchd_tests": false,
+    "passed": 131,
+    "recovery_tests": 4,
+    "synthetic_processes_only": true,
+    "v4_tests": 18,
+    "whitespace_check": "PASS excluding byte-preserved raw ls xattr output, whose original trailing spaces are retained"
+  },
+  "vm_status": "NOT_AUTHORIZED_NOT_RUN"
+}

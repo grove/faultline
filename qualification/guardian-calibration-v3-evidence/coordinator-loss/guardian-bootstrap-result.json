@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/bin/launchctl",
+    "bootstrap",
+    "user/501",
+    "/private/tmp/faultline-guardian-calibration-v3/coordinator-loss/dev.faultline.guardian-calibration-v3.coordinator-loss.guardian.plist"
+  ],
+  "finished_monotonic": 71428.32195825,
+  "output_bytes_observed": 0,
+  "output_limit": false,
+  "returncode": 0,
+  "start_error": null,
+  "started_monotonic": 71428.316754125,
+  "stderr_base64": "",
+  "stdout_base64": "",
+  "timeout": false
+}

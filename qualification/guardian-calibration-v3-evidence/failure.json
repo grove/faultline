@@ -1,0 +1,5 @@
+{
+  "error": "Coordinator identity changed",
+  "result": "INCOMPLETE_STOP_AND_REVIEW",
+  "retry": false
+}

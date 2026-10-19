@@ -1,0 +1,22 @@
+drwx------@  5 grove  wheel  -  160 Oct 19 14:00 /private/tmp/faultline-guardian-calibration-v3
+	com.apple.provenance	  11 
+drwx------@ 11 grove  wheel  -  352 Oct 19 14:00 /private/tmp/faultline-guardian-calibration-v3/coordinator-loss
+	com.apple.provenance	  11 
+-r--------@  1 grove  wheel  - 1155 Oct 19 14:00 /private/tmp/faultline-guardian-calibration-v3/coordinator-loss/dev.faultline.guardian-calibration-v3.coordinator-loss.fixture.plist
+	com.apple.provenance	  11 
+-r--------@  1 grove  wheel  - 1286 Oct 19 14:00 /private/tmp/faultline-guardian-calibration-v3/coordinator-loss/dev.faultline.guardian-calibration-v3.coordinator-loss.guardian.plist
+	com.apple.provenance	  11 
+-r--------@  1 grove  wheel  - 6813 Oct 19 14:00 /private/tmp/faultline-guardian-calibration-v3/coordinator-loss/fixture-bootstrap-intent.json
+	com.apple.provenance	  11 
+-r--------@  1 grove  wheel  -  458 Oct 19 14:00 /private/tmp/faultline-guardian-calibration-v3/coordinator-loss/fixture-bootstrap-result.json
+	com.apple.provenance	  11 
+-r--------@  1 grove  wheel  - 6815 Oct 19 14:00 /private/tmp/faultline-guardian-calibration-v3/coordinator-loss/guardian-bootstrap-intent.json
+	com.apple.provenance	  11 
+-r--------@  1 grove  wheel  -  458 Oct 19 14:00 /private/tmp/faultline-guardian-calibration-v3/coordinator-loss/guardian-bootstrap-result.json
+	com.apple.provenance	  11 
+-rw-------@  1 grove  wheel  - 1626 Oct 19 14:01 /private/tmp/faultline-guardian-calibration-v3/coordinator-loss/guardian.jsonl
+	com.apple.provenance	  11 
+-r--------@  1 grove  wheel  - 1124 Oct 19 14:00 /private/tmp/faultline-guardian-calibration-v3/coordinator-loss/plan.json
+	com.apple.provenance	  11 
+-r--------@  1 grove  wheel  -   88 Oct 19 14:00 /private/tmp/faultline-guardian-calibration-v3/coordinator-loss/ready.json
+	com.apple.provenance	  11 
