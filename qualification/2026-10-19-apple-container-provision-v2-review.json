@@ -1,0 +1,145 @@
+{
+  "approval_command": [
+    "/usr/bin/env",
+    "-i",
+    "HOME=/Users/grove",
+    "PATH=/usr/bin:/bin",
+    "LC_ALL=C",
+    "TZ=Europe/Oslo",
+    "/opt/homebrew/bin/python3",
+    "-I",
+    "-B",
+    "-c",
+    "\nimport hashlib\nfrom pathlib import Path\npath = Path(\"/Users/grove/projects/faultline/qualification/apple_container_provision_v2.py\")\nsource = path.read_bytes()\nif hashlib.sha256(source).hexdigest() != \"b14ae16b36e3f2dd198eac4558384711a60e00103668db9741e417511d7c8d8c\":\n    raise SystemExit(\"provision-v2 source hash mismatch\")\nexec(compile(source, str(path), \"exec\"), {\"__name__\": \"__main__\", \"__file__\": str(path)})\n",
+    "provision-v2"
+  ],
+  "approval_cwd": "/Users/grove/projects/faultline",
+  "archive": {
+    "bytes": 696573576,
+    "independently_verified": true,
+    "path": "/private/tmp/faultline-apple-positive-v2/provision-v1/kata-static-3.32.0-arm64.tar.zst",
+    "retrieval_requested": false,
+    "sha256": "8736c054d9223974735394f822000823baef509e1c33405ec798240fa9b6e4b5"
+  },
+  "budget": {
+    "archive_bytes": 696573576,
+    "headroom_after_max_kernel_bytes": 530270115,
+    "max_allocated_bytes": 8589934592,
+    "max_depth": 16,
+    "max_entries": 8192,
+    "max_extracted_kernel_bytes": 134217728,
+    "max_logical_bytes": 552977039360,
+    "minimum_free_bytes": 17179869184,
+    "observed_setup_including_worker_logical_bytes": 551615977941,
+    "observed_worker_growth_logical_bytes": 550875626653,
+    "phase_checks_not_hard_live_quota": true,
+    "pre_extraction_reserve_applies_to": "logical, allocated and free bytes",
+    "prior_cap_bytes": 551903297536,
+    "projected_max_logical_bytes": 552446769245,
+    "remaining_after_worker_bytes": 287319595,
+    "setup_before_worker_logical_bytes": 740351288
+  },
+  "current_storage": {
+    "allocated_bytes": 2345254912,
+    "free_bytes": 150323200000,
+    "logical_bytes": 552312551517,
+    "roots": {
+      "/private/tmp/faultline-apple-positive-v2/provision-v1": {
+        "allocated_bytes": 705212416,
+        "entries": 1,
+        "logical_bytes": 696573576
+      },
+      "/private/tmp/faultline-apple-positive-v2/setup-v4": {
+        "allocated_bytes": 1640042496,
+        "entries": 46,
+        "logical_bytes": 551615977941
+      }
+    }
+  },
+  "execution": "NO_GO / UNAVAILABLE",
+  "extracted_kernel_sha256": "UNKNOWN_UNTIL_SEPARATELY_AUTHORIZED_EXTRACTION",
+  "failure_policy": "Preserve all original and partial state and existing services; no retry, cleanup, restart, shutdown or default-kernel changes.",
+  "fresh_directory": "/private/tmp/faultline-apple-positive-v2/provision-v2",
+  "frozen_v1_files_sha256": {
+    "/Users/grove/projects/faultline/qualification/2026-10-19-apple-container-provision-v1-review.json": "953c8427066682df39ee4b74ac61d1d00b1eb912e2c28659b11ffb457d5fc6ec",
+    "/Users/grove/projects/faultline/qualification/APPLE_CONTAINER_PROVISION_V1.md": "13e11b3339a26cd4dc224112ffd9122d86ceb379f276f74ab19f6e52e198d429",
+    "/Users/grove/projects/faultline/qualification/apple_container_provision.py": "2da6578d3c1cb49798ccc0f82db8f6e54c357c4a5c671736dfe556e2104dd67c",
+    "/private/tmp/faultline-apple-positive-v2/evidence/provision-v1.json": "ad1949e4a3fb2dbc70ebcb5a34bf12b0a40a2581ac7fb667c85e5383707259e2",
+    "/private/tmp/faultline-apple-positive-v2/provision-v1/kata-static-3.32.0-arm64.tar.zst": "8736c054d9223974735394f822000823baef509e1c33405ec798240fa9b6e4b5"
+  },
+  "kernel_destination": "/private/tmp/faultline-apple-positive-v2/provision-v2/vmlinux-6.18.35-197-debug",
+  "kernel_member": "opt/kata/share/kata-containers/vmlinux-6.18.35-197-debug",
+  "kind": "WORKER_KERNEL_PROVISION_V2_PREPARATION_ONLY",
+  "not_authorized": [
+    "provision-v2 until separately approved",
+    "download or image pull",
+    "service command or lifecycle change",
+    "guardian installation",
+    "VM/canary or guest Python",
+    "default-kernel/config changes",
+    "cleanup",
+    "publication, merge or issue closure"
+  ],
+  "proposal_path": "qualification/APPLE_CONTAINER_PROVISION_V2.md",
+  "proposal_sha256": "5695951a135b5ee3ed9ef5cba72a2b598645f28c48303b7141ab89d20ef91388",
+  "provenance": "Operator-reported provision-v1 exit 1; independently read/hash-compared original receipt, archive, worker graph/interpreter and sparse snapshot. No service contact or extraction during preparation.",
+  "provision_v1": {
+    "archive_curl_exit": 0,
+    "authorization": "CONSUMED",
+    "error": "ValueError: Storage phase admission failed",
+    "kernel_verification_or_extraction_reached": false,
+    "preserved_unchanged": true,
+    "receipt": "/private/tmp/faultline-apple-positive-v2/evidence/provision-v1.json",
+    "result": "FAILED",
+    "sha256": "ad1949e4a3fb2dbc70ebcb5a34bf12b0a40a2581ac7fb667c85e5383707259e2",
+    "worker_pull_exit": 0
+  },
+  "provision_v2_executed": false,
+  "qualification_granted": false,
+  "receipt": "/private/tmp/faultline-apple-positive-v2/evidence/provision-v2.json",
+  "remote_state_observed": {
+    "headRefOid": "15e79caba0c9fa3ca38520c628f91d285bb7ddb3",
+    "isDraft": true,
+    "issue": 2,
+    "issue_state": "OPEN",
+    "pr": 17,
+    "remote_mutations": false,
+    "state": "OPEN"
+  },
+  "requires_separate_authorization": true,
+  "retrieval_commands": [],
+  "reviewed_at_utc": "2026-10-19T08:49:54.753554+00:00",
+  "runtime_config_sha256": "ec039793064339b1c438630aaa4a81b03717d96a6ca6b7a19a945c6f85c0883e",
+  "runtime_state_sha256": "e20ab71a03fb61bc86129a28e6b75d0d1a4f53799df0d04758b63048c1e4e94f",
+  "service_commands": [],
+  "source_sha256": {
+    "apple_container_provision.py": "2da6578d3c1cb49798ccc0f82db8f6e54c357c4a5c671736dfe556e2104dd67c",
+    "apple_container_provision_v2.py": "b14ae16b36e3f2dd198eac4558384711a60e00103668db9741e417511d7c8d8c"
+  },
+  "validation": {
+    "all_service_download_vm_calls_mocked": true,
+    "command": "/opt/homebrew/bin/python3 -I -B -m unittest discover -s tests -p 'test_apple_container*.py'",
+    "continuation_extraction_mocked": true,
+    "scoped_tests": 61,
+    "shared_extractor_tested_with_synthetic_archives": true
+  },
+  "worker": {
+    "full_verification_matches_v1": true,
+    "interpreter": {
+      "bytes": 67608,
+      "link": "python3.13",
+      "sha256": "cb4548d280f38c2b1df4cba45f12c90a034729e08fce5bf1a223c58add0e21e3"
+    },
+    "reference": "docker.io/library/python@sha256:55432fc4ef6d07e33c10449312f0ec00071bbb310bb9bd7ba626a31fbbc2cb0d",
+    "retrieval_requested": false,
+    "snapshot": {
+      "allocated_bytes": 1333428224,
+      "check": "SPARSE_DATA_AND_STRUCTURE_NOT_FSCK_OR_GUEST_BOOT",
+      "data_bytes_read": 1333428224,
+      "extent_map_and_data_sha256": "af7e906cc24b34138962ebd6f000f68fbb9a7194d530a149c0fca87d4b6507f4",
+      "logical_bytes": 550829555712,
+      "path": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/snapshots/55432fc4ef6d07e33c10449312f0ec00071bbb310bb9bd7ba626a31fbbc2cb0d/snapshot"
+    },
+    "snapshot_extent_count": 4098
+  }
+}

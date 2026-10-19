@@ -7,6 +7,12 @@ GO override, installation, image retrieval, service startup or automatic cleanup
 Only the fixed filesystem fixture is implemented. Network, resource and lifetime
 controls are specified below and remain unavailable, not passing placeholders.
 
+Current request: [provision-v2 verification/extraction only](APPLE_CONTAINER_PROVISION_V2.md).
+Provision-v1 exited 1 at storage admission after worker verification and archive
+download; its authorization is consumed and all its artifacts/evidence are preserved.
+No continuation, retrieval, service change, guardian installation or VM launch has
+been executed by this preparation.
+
 The operator supplied normal-Terminal inspection JSON at
 `2026-10-18T20:22:22.245494+00:00`, retained as
 [client evidence](2026-10-18-apple-container-terminal.json). It reports Container

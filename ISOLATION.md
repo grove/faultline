@@ -82,9 +82,12 @@ distinguishes operator execution evidence from independent receipt/source hash a
 read-only storage comparison. Actual setup-v4 storage is 740,351,288 logical /
 273,485,824 allocated bytes; these observations are not hard quotas.
 
-The sole next request is [worker and dedicated-kernel provisioning](qualification/APPLE_CONTAINER_PROVISION_V1.md),
-using the existing services, preserving the default kernel/config and all receipts.
-No init retrieval, restart or cleanup is requested. A [host guardian](qualification/APPLE_CONTAINER_GUARDIAN.md)
+Provision-v1 exited 1 after worker verification and archive retrieval, at the
+combined logical-storage check. Its authorization is consumed; its receipt and
+artifacts remain unchanged. The sole next request is the separately authorized
+[provision-v2 verification/extraction continuation](qualification/APPLE_CONTAINER_PROVISION_V2.md),
+reusing the verified worker/archive with a corrected 515-GiB combined logical cap.
+No retrieval, service command, restart or cleanup is requested. A [host guardian](qualification/APPLE_CONTAINER_GUARDIAN.md)
 is prepared with mocked tests for a later separately authorized positive stage;
 it is neither registered nor calibrated against a live VM. No synthetic execution
 authority transfers from artifact provisioning. PR #17 remains draft, issue #2
@@ -250,9 +253,9 @@ Even successful synthetic qualification would apply only to its exact host,
 versions and configuration, require independent review, and would not enable
 `faultline-audit`, mutations, project tests or the #10 experiment.
 
-**Decision: NO_GO / UNAVAILABLE.** Setup-v4 succeeded and is consumed. The next
-request is separately approved pinned worker/dedicated-kernel provisioning with
-the existing services. The reviewed synthetic protocol needs later authorization. This PR
+**Decision: NO_GO / UNAVAILABLE.** Setup-v4 succeeded and provision-v1 failed;
+both authorizations are consumed. The next request is separately approved offline
+verification/extraction of existing artifacts via provision-v2. The reviewed synthetic protocol needs later authorization. This PR
 does not request blanket installation or experiment authority. Do not escape the
 current Codex restrictions or install a substitute runtime to complete a receipt.
 
