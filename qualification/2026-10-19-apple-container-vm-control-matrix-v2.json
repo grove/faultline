@@ -1,0 +1,131 @@
+{
+  "baseline_commit": "4d2c7bedf2734b52d61b409a49cd6693b4f348ab",
+  "calibration_repeats": 0,
+  "canary_runs": 0,
+  "container_service_changes": 0,
+  "controls": [
+    {
+      "control": "host_fixture_deadline_and_restart",
+      "evidence": "2026-10-19-apple-container-guardian-calibration-v4-independent-verification.json",
+      "finding": "Consumed successful v4; not VM evidence.",
+      "status": "OBSERVED_PASS_HISTORICAL_DO_NOT_REPEAT"
+    },
+    {
+      "control": "configuration_id_to_runtime_registration",
+      "evidence": "2026-10-19-apple-container-vm-supported-api-evidence.json#ContainersService.swift/registerService",
+      "finding": "Configuration ID, root and --uuid bind exact runtime service; no VM instance created.",
+      "status": "SUPPORTED_SOURCE_CONTRACT_NOT_OBSERVED_FOR_VM"
+    },
+    {
+      "control": "immutable_create_configuration_and_artifacts",
+      "evidence": "apple_container_vm_binding.py:seal/verify",
+      "finding": "Reviewed bytes, kernel/init/rootfs references, published artifact pins and file identity; no atomic check/use guarantee.",
+      "status": "OFFLINE_IMPLEMENTED_TESTED_NOT_LIVE"
+    },
+    {
+      "control": "later_bootstrap_bundle_identity",
+      "evidence": "apple_container_vm_binding.py:bootstrap_bundle",
+      "finding": "Checks later config/kernel/rootfs metadata and copied content against sealed create output. No actual bundle created; sparse-shape mismatch refuses.",
+      "status": "OFFLINE_IMPLEMENTED_TESTED_NOT_LIVE"
+    },
+    {
+      "control": "guardian_coordinator_runtime_binding",
+      "evidence": "apple_container_vm_binding.py:participant/check_readiness/runtime_owner",
+      "finding": "One seal, exact role source/argv/PID/UID/birth/executable, runtime plist/source, original boot/deadline. No live observer/runner is supplied.",
+      "status": "OFFLINE_IMPLEMENTED_TESTED_NOT_LIVE"
+    },
+    {
+      "control": "vm_liveness_in_owner",
+      "evidence": "2026-10-19-apple-container-vm-supported-api-evidence.json#VZVirtualMachine.h/state/delegate",
+      "finding": "Object holder can query state or receive delegate notifications; no documented hard observation/stop latency.",
+      "status": "SUPPORTED_OBJECT_API_NOT_INDEPENDENT"
+    },
+    {
+      "control": "external_vm_instance_liveness_after_owner_loss",
+      "evidence": "2026-10-19-apple-container-vm-supported-api-evidence.json#VZVirtualMachine.h; Apple DTS 848542",
+      "finding": "No supported external live-instance lookup/adoption/backend identity in audited public interface; runtime status and PID disappearance insufficient.",
+      "status": "UNAVAILABLE_SUPPORTED_EXTERNAL_CONTRACT"
+    },
+    {
+      "control": "actual_execution_backend_and_auxiliary_ownership",
+      "evidence": "2026-10-19-apple-container-vm-supported-api-evidence.json#DTS",
+      "finding": "Helper names/relationships are implementation details; no direct mapping technique. Shared helpers cannot safely be classified or killed by name.",
+      "status": "UNAVAILABLE_SUPPORTED_EXTERNAL_CONTRACT"
+    },
+    {
+      "control": "normal_vm_stop",
+      "evidence": "2026-10-19-apple-container-vm-supported-api-evidence.json#VZVirtualMachine.h/stop; LinuxContainer.swift/stop",
+      "finding": "Successful callback denotes stop for the held object; errors/state transitions must be checked; no guaranteed completion deadline.",
+      "status": "SUPPORTED_OBJECT_API_NOT_OBSERVED"
+    },
+    {
+      "control": "owner_crash_vm_cleanup",
+      "evidence": "2026-10-19-apple-container-vm-supported-api-evidence.json#DTS",
+      "finding": "OS is expected to clean up the client VM. Does not independently establish this host deadline, backend identities or quiescence.",
+      "status": "SUPPORTED_ARCHITECTURAL_EXPECTATION_NOT_OBSERVED"
+    },
+    {
+      "control": "network_allocation_identity",
+      "evidence": "2026-10-19-apple-container-vm-supported-api-evidence.json#NetworkClient.swift/lookup; DefaultNetworkService.swift/releaseSession",
+      "finding": "Hostname->Attachment lookup and session-bound allocation release are supported. Lookup absence is not VM/interface teardown proof.",
+      "status": "SUPPORTED_ALLOCATION_QUERY_ONLY"
+    },
+    {
+      "control": "vmnet_interface_stop",
+      "evidence": "2026-10-19-apple-container-vm-supported-api-evidence.json#vmnet.h/vmnet_stop_interface",
+      "finding": "Requires interface_ref; immediate success schedules callback. Serializable network_ref is a network capability, not interface/VM adoption.",
+      "status": "SUPPORTED_HANDLE_API_NOT_EXTERNAL_VM_ORACLE"
+    },
+    {
+      "control": "no_network_positive_configuration",
+      "evidence": "2026-10-19-apple-container-vm-supported-api-evidence.json#RuntimeService.swift/bootstrap",
+      "finding": "Empty attachments mean empty interface/session construction loop; not a host-observed network/IPC denial or cleanup proof.",
+      "status": "SUPPORTED_SOURCE_CONFIGURATION_NOT_OBSERVED"
+    },
+    {
+      "control": "independent_vm_auxiliary_network_teardown_after_kill",
+      "evidence": "2026-10-19-apple-container-vm-supported-api-evidence.json",
+      "finding": "No supported observer combines exact VM execution/backend and interface/session quiescence after runtime death. Primary terminal blocker.",
+      "status": "UNAVAILABLE_SUPPORTED_EXTERNAL_CONTRACT"
+    },
+    {
+      "control": "coordinator_loss_guardian_loss_deadline_uncertainty",
+      "evidence": "apple_container_vm_binding.py:disposition",
+      "finding": "Never rearm; reject changed identities/provenance; no bootstrap/actions or successful teardown; preserve state and refuse retry.",
+      "status": "OFFLINE_FAIL_CLOSED_TESTED"
+    },
+    {
+      "control": "filesystem_private_alias_denial",
+      "evidence": "APPLE_CONTAINER_NEXT.md",
+      "finding": "Proposed read-only shares do not establish observed enforcement.",
+      "status": "NOT_RUN_UNQUALIFIED"
+    },
+    {
+      "control": "detached_descendants_replacement_aggregate_limits",
+      "evidence": "APPLE_CONTAINER_NEXT.md",
+      "finding": "No guest/VM run; workload rlimits/cgroups are not a whole-host aggregate proof.",
+      "status": "NOT_RUN_UNQUALIFIED"
+    },
+    {
+      "control": "vm_stage_effect_authorization",
+      "evidence": "APPLE_CONTAINER_VM_TERMINAL_NO_GO.md",
+      "finding": "Unsupported independent ownership/teardown contract blocks first bounded VM experiment.",
+      "status": "NOT_GRANTED_NO_REQUEST_READY"
+    },
+    {
+      "control": "issue_10_challenges_skill_execution",
+      "evidence": "experiments/lost-acknowledgement.md",
+      "finding": "No authorization transferred.",
+      "status": "FROZEN_DISABLED_NOT_RUN"
+    }
+  ],
+  "decision": "TERMINAL_NO_GO",
+  "execution": "NO_GO / UNAVAILABLE",
+  "guest_python_executions": 0,
+  "issue_2": "OPEN",
+  "kind": "VM_SUPPORTED_INTERFACE_DECISION_MATRIX_V2",
+  "next_decision": "Keep Apple stack disabled pending supported external instance control/observation, or separately authorize evaluation of a different ownership boundary. No implementation/redesign/live effects authorized.",
+  "pr_17": "DRAFT",
+  "qualification_granted": false,
+  "vm_launches": 0
+}

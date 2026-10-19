@@ -66,6 +66,13 @@ only the runtime registration/PID; independent VM/backend ownership, auxiliary
 execution, vmnet teardown, configuration binding, descendants, filesystem/network
 denial and aggregate resource enforcement remain unqualified. See the
 [source-grounded VM disposition](qualification/APPLE_CONTAINER_VM_NO_GO.md).
+A subsequent [supported-interface review](qualification/APPLE_CONTAINER_VM_TERMINAL_NO_GO.md)
+concludes **TERMINAL NO_GO** for this pinned Apple stack: public object-local
+state/stop APIs and expected OS crash cleanup do not supply independent external
+VM/backend ownership and bounded auxiliary/network teardown evidence. Immutable
+configuration/artifact/participant bindings are implemented and offline-tested,
+but cannot fill that unsupported observer contract. Proceeding requires a maintainer
+architecture decision; no VM-stage approval is ready.
 No VM/guest/canary/#10 ran. Existing Container services retain their setup-v4
 identities; PR #17 remains draft, issue #2 open and the skill advice-only.
 The preparation chronology below is historical and grants no fresh effects.

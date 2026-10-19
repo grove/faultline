@@ -1,3 +1,5 @@
+**Current decision:** [Terminal supported-interface NO-GO](APPLE_CONTAINER_VM_TERMINAL_NO_GO.md), with the [updated control matrix](2026-10-19-apple-container-vm-control-matrix-v2.json) and offline-tested immutable binding. The review below is the preserved initial disposition at commit `4d2c7be`. No calibration was repeated.
+
 # VM-specific qualification — NO_GO after successful host-fixture calibration
 
 Host-fixture calibration-v4 succeeded on macOS 27.0.1 / 26A434, arm64, UID 501.

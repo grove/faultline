@@ -1,0 +1,271 @@
+{
+  "container_commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+  "containerization_commit": "bc994b88df46207fad7775b0eabc51947e315881",
+  "dts": {
+    "reviewed_sections": "Apple DTS answers: expected client-crash VM cleanup; helper identities/relations private implementation detail; no direct supported mapping; resource-leak test recommended",
+    "type": "ARCHITECTURAL_GUIDANCE_NOT_HOST_EXECUTION_EVIDENCE",
+    "url": "https://developer.apple.com/forums/thread/848542"
+  },
+  "kind": "PINNED_APPLE_SOURCE_AND_INSTALLED_SUPPORTED_API_REVIEW",
+  "no_vm_no_calibration_no_service_changes": true,
+  "reviewed_wall_ns": 1792415271822882000,
+  "scope": "Public SDK declarations and pinned stack control/data paths only; no private selectors/root diagnostics/runtime service calls",
+  "sdk_headers": [
+    {
+      "bytes": 17833,
+      "documentation_url": "https://developer.apple.com/documentation/virtualization/vzvirtualmachine",
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Virtualization.framework/Headers/VZVirtualMachine.h",
+      "sdk": "MacOSX27.0.sdk",
+      "sha256": "7a3f24cc0e9e622c0da0c507a755190749a79ee7e139d6c8b77b12ee760ce46f",
+      "symbol_locations": {
+        "VZVirtualMachineState state": 125,
+        "initWithConfiguration:": 90,
+        "networkDevices": 198,
+        "requestStopWithError:": 160,
+        "stopWithCompletionHandler:": 139
+      }
+    },
+    {
+      "bytes": 1851,
+      "documentation_url": "https://developer.apple.com/documentation/virtualization/vzvirtualmachinedelegate",
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Virtualization.framework/Headers/VZVirtualMachineDelegate.h",
+      "sdk": "MacOSX27.0.sdk",
+      "sha256": "8e238811b3bb2feb9f0e06355db44afc522639619d7b58d11e6f5921d8e2ed8f",
+      "symbol_locations": {
+        "didStopWithError:": 34,
+        "guestDidStopVirtualMachine:": 27
+      }
+    },
+    {
+      "bytes": 1929,
+      "documentation_url": "https://developer.apple.com/documentation/virtualization/vzfilehandlenetworkdeviceattachment",
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Virtualization.framework/Headers/VZFileHandleNetworkDeviceAttachment.h",
+      "sdk": "MacOSX27.0.sdk",
+      "sha256": "2d01225921260912f35e8b9aa8b7ee261ad7b7dff8089b54b5deb5e5587e9960",
+      "symbol_locations": {
+        "initWithFileHandle:": 30
+      }
+    },
+    {
+      "bytes": 719,
+      "documentation_url": "https://developer.apple.com/documentation/virtualization/vznatnetworkdeviceattachment",
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Virtualization.framework/Headers/VZNATNetworkDeviceAttachment.h",
+      "sdk": "MacOSX27.0.sdk",
+      "sha256": "84a2a66bad86b3e0251920fc4a72831be461fec6e591609465da2d49b2311e0c",
+      "symbol_locations": {
+        "VZNATNetworkDeviceAttachment": 2
+      }
+    },
+    {
+      "bytes": 44222,
+      "documentation_url": "https://developer.apple.com/documentation/vmnet",
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/vmnet.framework/Headers/vmnet.h",
+      "sdk": "MacOSX27.0.sdk",
+      "sha256": "f23e88c6638cf5e41811ad54e2071d3cf72ec426772264cb34f932ef260d420d",
+      "symbol_locations": {
+        "vmnet_interface_id_key": 249,
+        "vmnet_interface_start_with_network": 391,
+        "vmnet_network_copy_serialization": 1097,
+        "vmnet_network_create_with_serialization": 1101,
+        "vmnet_stop_interface(interface_ref": 641
+      }
+    }
+  ],
+  "source_snapshots": [
+    {
+      "bytes": 6299,
+      "path": "Sources/ContainerResource/Container/Bundle.swift",
+      "sha256": "96f3e3c45a11b78fd9d7a25e9ba474f96858f9d1bed98b2900b7c9009f9c8ac1",
+      "symbol_locations": {
+        "func cloneContainerRootFs": 143,
+        "func create(": 81
+      },
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerResource/Container/Bundle.swift"
+    },
+    {
+      "bytes": 8782,
+      "path": "Sources/ContainerResource/Container/ContainerConfiguration.swift",
+      "sha256": "a0a1fedcb23ab456252e38f4a75e7c8671b6edcc257ae14e2b124c386199113c",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerResource/Container/ContainerConfiguration.swift"
+    },
+    {
+      "bytes": 3491,
+      "path": "Sources/ContainerResource/Container/ProcessConfiguration.swift",
+      "sha256": "c210015326a88ce6ff88aa8cc318518fc09e858466c131aea8e11bab55ae7bb0",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerResource/Container/ProcessConfiguration.swift"
+    },
+    {
+      "bytes": 44497,
+      "path": "Sources/Services/ContainerAPIService/Server/Containers/ContainersService.swift",
+      "sha256": "97682795122a8a5a98126cde8ec1bffe2802bf23ca14d37462ff0ad0c944560b",
+      "symbol_locations": {
+        "func create(configuration:": 267,
+        "func registerService(": 1109
+      },
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/ContainerAPIService/Server/Containers/ContainersService.swift"
+    },
+    {
+      "bytes": 11911,
+      "path": "Sources/ContainerPlugin/PluginLoader.swift",
+      "sha256": "f9e63b036ed7f90d5ad15c6f33e08b11be6b6d1d8cbc7c3ac8a05e47e1947ae9",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerPlugin/PluginLoader.swift"
+    },
+    {
+      "bytes": 65659,
+      "path": "Sources/Services/RuntimeLinux/Server/RuntimeService.swift",
+      "sha256": "fe3e959e5d60a093ad78d36d6549839aa24464f007862bd70db804913db2aecd",
+      "symbol_locations": {
+        "func bootstrap(": 138,
+        "func createBundle()": 1709,
+        "private func cleanUpContainer": 1403
+      },
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/RuntimeLinux/Server/RuntimeService.swift"
+    },
+    {
+      "bytes": 1626,
+      "path": "Sources/Services/RuntimeLinux/Server/IsolatedInterfaceStrategy.swift",
+      "sha256": "5565b10fb6a163925583a7e97e499c2428a675626a0405d18814bd7fcdc47b6e",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/RuntimeLinux/Server/IsolatedInterfaceStrategy.swift"
+    },
+    {
+      "bytes": 2304,
+      "path": "Sources/Services/RuntimeLinux/Server/NonisolatedInterfaceStrategy.swift",
+      "sha256": "d166227d90cc8ec940dba9f31acb32d34d4d06d99ca83705b13709bcde2f9d1f",
+      "symbol_locations": {
+        "vmnet_network_create_with_serialization": 41
+      },
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/RuntimeLinux/Server/NonisolatedInterfaceStrategy.swift"
+    },
+    {
+      "bytes": 1909,
+      "path": "Sources/Services/Runtime/RuntimeClient/InterfaceStrategy.swift",
+      "sha256": "6a76dfe40e0c6dc108c70aebe9b2f0514784f090bff2dfd6f147f91e8d1b12ba",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/Runtime/RuntimeClient/InterfaceStrategy.swift"
+    },
+    {
+      "bytes": 3200,
+      "path": "Sources/Services/NetworkVmnet/Server/AllocationOnlyVmnetNetwork.swift",
+      "sha256": "edf221ce5ed506d7dc0b0cd811fb5223ae0246e125308a5803604e535e68baa0",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/NetworkVmnet/Server/AllocationOnlyVmnetNetwork.swift"
+    },
+    {
+      "bytes": 8179,
+      "path": "Sources/Services/NetworkVmnet/Server/ReservedVmnetNetwork.swift",
+      "sha256": "09f28c1c3f7598a53e67ea4c1b782dc3cce0c81ba32e38160c2b11af49d76cd7",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/NetworkVmnet/Server/ReservedVmnetNetwork.swift"
+    },
+    {
+      "bytes": 5008,
+      "path": "Sources/Services/Network/Client/NetworkClient.swift",
+      "sha256": "65acbf179386a9607a30eee53bf76a8b07ce433df12a8f55b5c990dba549605f",
+      "symbol_locations": {
+        "public func allocate(": 70,
+        "public func connect()": 52,
+        "public func lookup(": 86
+      },
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/Network/Client/NetworkClient.swift"
+    },
+    {
+      "bytes": 1162,
+      "path": "Sources/Services/Network/Client/NetworkRoutes.swift",
+      "sha256": "c381b4beb7bfd36b89ff42e637ecc787343d832c3154356278abce97ad8c25fa",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/Network/Client/NetworkRoutes.swift"
+    },
+    {
+      "bytes": 6339,
+      "path": "Sources/Services/Network/Server/DefaultNetworkService.swift",
+      "sha256": "04a855e5fcd0a760869a5f372ad175fd1acd08f5c8c087e817026a672c5935cc",
+      "symbol_locations": {
+        "allocationsBySession": 28,
+        "func lookup(": 122,
+        "func releaseSession": 110
+      },
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/Network/Server/DefaultNetworkService.swift"
+    },
+    {
+      "bytes": 3002,
+      "path": "Sources/Services/Network/Server/NetworkHarness.swift",
+      "sha256": "bfe475592d34ecd564bde9152967e62336a13d36e0a9b96b8fa42090fe5ab756",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/Network/Server/NetworkHarness.swift"
+    },
+    {
+      "bytes": 2126,
+      "path": "Sources/ContainerXPC/XPCClientSession.swift",
+      "sha256": "c8a1601cd1e0e41f601b5e8509513ce1cd9154cd2bd02eb14919ffee196cca4e",
+      "symbol_locations": {
+        "public func close()": 50
+      },
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerXPC/XPCClientSession.swift"
+    },
+    {
+      "bytes": 6390,
+      "path": "Sources/ContainerResource/Container/Filesystem.swift",
+      "sha256": "c4c9aeb3d63eaa44d57d62eeae98978c1a6f5769abc83e3e9bb26331ef66c1b0",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerResource/Container/Filesystem.swift"
+    },
+    {
+      "bytes": 3264,
+      "path": "Sources/Services/Runtime/RuntimeClient/RuntimeConfiguration.swift",
+      "sha256": "f8f366823a264ec0bc8fc254e7f72ec58b2e83c255c9c5f5e4cdddc3d6f2240e",
+      "symbol_locations": {
+        "runtimeConfigurationFilename": 23,
+        "writeRuntimeConfiguration": 57
+      },
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/Runtime/RuntimeClient/RuntimeConfiguration.swift"
+    },
+    {
+      "bytes": 1127,
+      "path": "Sources/Services/RuntimeLinux/Client/LinuxRuntimeData.swift",
+      "sha256": "c9a45b2d610d3b25b706cba1fcc23eb6bb1021f3eaddc3c903de076731f13d1f",
+      "symbol_locations": {},
+      "url": "https://raw.githubusercontent.com/apple/container/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/RuntimeLinux/Client/LinuxRuntimeData.swift"
+    },
+    {
+      "bytes": 21640,
+      "path": "Sources/Containerization/VZVirtualMachineInstance.swift",
+      "sha256": "cc1a80f95bfb81cc0981f6e8cfbb5ad4f812b41e1b5fb7cfa9fbf7768da24c12",
+      "symbol_locations": {
+        "config.networkDevices =": 429,
+        "public func stop()": 214
+      },
+      "url": "https://raw.githubusercontent.com/apple/containerization/bc994b88df46207fad7775b0eabc51947e315881/Sources/Containerization/VZVirtualMachineInstance.swift"
+    },
+    {
+      "bytes": 3260,
+      "path": "Sources/Containerization/VZVirtualMachineManager.swift",
+      "sha256": "c33fcc93f114519a97b8461135618569ee5ad2fb089e789820dc4677bf0c9276",
+      "symbol_locations": {
+        "func create(": 49
+      },
+      "url": "https://raw.githubusercontent.com/apple/containerization/bc994b88df46207fad7775b0eabc51947e315881/Sources/Containerization/VZVirtualMachineManager.swift"
+    },
+    {
+      "bytes": 73155,
+      "path": "Sources/Containerization/LinuxContainer.swift",
+      "sha256": "f9b771370d335c644f21686bcdf11d434bb9b9ccc9e4efd2ece1db9d83f28161",
+      "symbol_locations": {
+        "public func stop()": 1004
+      },
+      "url": "https://raw.githubusercontent.com/apple/containerization/bc994b88df46207fad7775b0eabc51947e315881/Sources/Containerization/LinuxContainer.swift"
+    },
+    {
+      "bytes": 2867,
+      "path": "Sources/Containerization/NATNetworkInterface.swift",
+      "sha256": "101848c081da8cdf0255a62f493456c22264d5242143063419d61f656f5afb3f",
+      "symbol_locations": {
+        "reference: vmnet_network_ref": 36
+      },
+      "url": "https://raw.githubusercontent.com/apple/containerization/bc994b88df46207fad7775b0eabc51947e315881/Sources/Containerization/NATNetworkInterface.swift"
+    }
+  ]
+}
