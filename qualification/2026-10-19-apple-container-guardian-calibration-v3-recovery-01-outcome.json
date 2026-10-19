@@ -1,0 +1,68 @@
+{
+  "action_returncode": 0,
+  "action_stdout_stderr_empty": true,
+  "authorization": "NATIVE_SCOPED_APPROVAL_COMPLETED; CONSUMED_NO_RETRY",
+  "captured_fixture_pid_16969_absent": true,
+  "captured_guardian_pid_16954_absent": true,
+  "execution": "NO_GO / UNAVAILABLE",
+  "fixture_and_second_case_registrations_absent": true,
+  "independent_after_receipt_sha256": "9369f0f92a5c526823c40ad9e7ac1e8aeff2e34b882f96209d56fe87201a2c9e",
+  "independent_launchctl_print": {
+    "interpretation": "Corroboration only; successful domain inventory and independent ps absence in independent-after.json are the oracle",
+    "returncode": 113,
+    "stderr": "Bad request.\nCould not find service \"dev.faultline.guardian-calibration-v3.coordinator-loss.guardian\" in domain for uid: 501\n"
+  },
+  "issue_2": "OPEN",
+  "kind": "APPROVED_ONE_TIME_EXACT_STOPPED_REGISTRATION_RECOVERY",
+  "original_evidence_metadata_and_hashes_preserved": true,
+  "original_receipts": [
+    {
+      "bytes": 172,
+      "gid": 0,
+      "mode": "0o400",
+      "path": "/private/tmp/faultline-guardian-calibration-v3-recovery-01/action.json",
+      "sha256": "e62a73e2f5aef8a60fc6c7f380f9b41e1a58fd9d76bacf2a1dc965897998f78f",
+      "uid": 501
+    },
+    {
+      "bytes": 293,
+      "gid": 0,
+      "mode": "0o400",
+      "path": "/private/tmp/faultline-guardian-calibration-v3-recovery-01/after.json",
+      "sha256": "b1c129b6ee1486c3707a2a636203c2ec391c0f218f224ed31f8fa4dab84a4387",
+      "uid": 501
+    },
+    {
+      "bytes": 2527,
+      "gid": 0,
+      "mode": "0o400",
+      "path": "/private/tmp/faultline-guardian-calibration-v3-recovery-01/before.json",
+      "sha256": "85cfdb9d787f6ea18002e5dad63ce3ca6638de48c6e7ea450685ae653fca4ec6",
+      "uid": 501
+    },
+    {
+      "bytes": 2740,
+      "gid": 0,
+      "mode": "0o400",
+      "path": "/private/tmp/faultline-guardian-calibration-v3-recovery-01/intent.json",
+      "sha256": "d4134c5235e7dd6ac12b0f38019e01f111d828edc8e9ca117bb49dab5095f318",
+      "uid": 501
+    },
+    {
+      "bytes": 145,
+      "gid": 0,
+      "mode": "0o400",
+      "path": "/private/tmp/faultline-guardian-calibration-v3-recovery-01/result.json",
+      "sha256": "b9f23a12230b018b601f516924c25afbfbd906cc7ba960dad62d0d87731cb582",
+      "uid": 501
+    }
+  ],
+  "pr_17": "DRAFT",
+  "qualification_granted": false,
+  "result": "EXACT_STOPPED_REGISTRATION_REMOVED",
+  "source_commit": "11a48b5ea3d0c0d6afeb441f1d7d7a9522e4a1cf",
+  "source_sha256": "001c1768021e30d3c0fe9a1877e838ffbf0e052916215d4fde384371208071c9",
+  "target": "user/501/dev.faultline.guardian-calibration-v3.coordinator-loss.guardian",
+  "v4_status": "PREPARED_NOT_AUTHORIZED_NOT_RUN",
+  "vm_launches": 0
+}

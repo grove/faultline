@@ -1,0 +1,6 @@
+{
+  "fixture_pid_absent": true,
+  "guardian_pid_absent": true,
+  "originals_preserved": true,
+  "result": "EXACT_STOPPED_REGISTRATION_REMOVED"
+}

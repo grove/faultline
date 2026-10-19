@@ -1,0 +1,12 @@
+{
+  "captured_pid_observations": {
+    "16954": null,
+    "16969": null
+  },
+  "fixture_and_second_case_registrations_absent": true,
+  "monotonic": 74139.528427333,
+  "original_manifest_verified": true,
+  "raw_launchctl_print": null,
+  "registration": null,
+  "wall_ns": 1792413969582855000
+}

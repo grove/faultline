@@ -1,0 +1,17 @@
+{
+  "captured_pid_observations": {
+    "16954": null,
+    "16969": null
+  },
+  "fixture_and_second_case_registrations_absent": true,
+  "monotonic": 74139.437274583,
+  "original_manifest_verified": true,
+  "raw_launchctl_print": "user/501/dev.faultline.guardian-calibration-v3.coordinator-loss.guardian = {\n\tactive count = 0\n\tpath = /private/tmp/faultline-guardian-calibration-v3/coordinator-loss/dev.faultline.guardian-calibration-v3.coordinator-loss.guardian.plist\n\ttype = LaunchAgent\n\tstate = not running\n\n\tprogram = /opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\n\targuments = {\n\t\t/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15\n\t\t-I\n\t\t-B\n\t\t/Users/grove/projects/faultline/qualification/apple_container_guardian_calibration_v3.py\n\t\tguardian\n\t\t/private/tmp/faultline-guardian-calibration-v3/coordinator-loss/plan.json\n\t}\n\n\tworking directory = /\n\n\tdefault environment = {\n\t\tPATH => /usr/bin:/bin:/usr/sbin:/sbin\n\t}\n\n\tenvironment = {\n\t\tOSLogRateLimit => 64\n\t\tTZ => Europe/Oslo\n\t\tPATH => /usr/bin:/bin\n\t\tLC_ALL => C\n\t\tXPC_SERVICE_NAME => dev.faultline.guardian-calibration-v3.coordinator-loss.guardian\n\t}\n\n\tdomain = user/501\n\tasid = 100040\n\tminimum runtime = 1\n\texit timeout = 1\n\truns = 1\n\tlast exit code = 0\n\n\tsemaphores = {\n\t\tsuccessful exit => 0\n\t}\n\n\tresource coalition = {\n\t\tID = 19928\n\t\ttype = resource\n\t\tstate = active\n\t\tactive count = 1\n\t\tname = dev.faultline.guardian-calibration-v3.coordinator-loss.guardian\n\t}\n\n\tjetsam coalition = {\n\t\tID = 19929\n\t\ttype = jetsam\n\t\tstate = active\n\t\tactive count = 1\n\t\tname = dev.faultline.guardian-calibration-v3.coordinator-loss.guardian\n\t}\n\n\tspawn type = background (5)\n\tjetsam priority = 40\n\tjetsam memory limit (active) = (unlimited)\n\tjetsam memory limit (inactive) = (unlimited)\n\tjetsamproperties category = daemon\n\tjetsam thread limit = 32\n\tcpumon = default\n\tsanitizer flags = 0x0\n\n\tproperties = runatload | inferred program\n}\n",
+  "registration": {
+    "origin": "/private/tmp/faultline-guardian-calibration-v3/coordinator-loss/dev.faultline.guardian-calibration-v3.coordinator-loss.guardian.plist",
+    "pid": null,
+    "plist_sha256": "23bc939534ac5762fea03f33dbc898683808e7949c5a31825301e843933c4c62",
+    "target": "user/501/dev.faultline.guardian-calibration-v3.coordinator-loss.guardian"
+  },
+  "wall_ns": 1792413969491704000
+}
