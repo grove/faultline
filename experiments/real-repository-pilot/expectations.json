@@ -1,0 +1,32 @@
+{
+  "r1": {
+    "kind": "historical_gap",
+    "expected": "Exclusive prerelease bound such as <3.0.0a8 should admit 3.0.0a7 by default; prereleases detection omits < and >. Existing dev-bound expectations assert the wrong policy; contains/filter boundary examples are missing.",
+    "source": "src/packaging/specifiers.py::Specifier.prereleases / contains / filter; tests/test_specifiers.py",
+    "upstream_issue": "https://github.com/pypa/packaging/issues/788",
+    "upstream_fix": "https://github.com/pypa/packaging/pull/794",
+    "fix_commit": "cf2cbe2aec28f87c6228a6fb136c27931c9af407",
+    "contract": "Pre-fix prereleases property says autodetect from specifier; _compare_less_than permits prerelease bounds. Upstream issue quotes version-specifiers exclusive comparison rule and maintainers concur. Absence of > policy detail is weaker; grade < scenario as the primary expected gap."
+  },
+  "r2": {
+    "kind": "historical_gap",
+    "expected": "Public Context.lookup_default must return None when no default_map or requested key missing, rather than expose internal UNSET; callers/subclasses using `is not None` can falsely treat absence as a real default. Missing direct assertions for absence.",
+    "source": "src/click/core.py::Context.lookup_default / Parameter.get_default / consume_value; tests/test_defaults.py / test_context.py",
+    "upstream_issue": "https://github.com/pallets/click/issues/3145",
+    "upstream_fix": "https://github.com/pallets/click/pull/3224",
+    "fix_commit": "b6afbf05ea6dbc8a4e7cdd448dd345c783973137",
+    "contract": "Pre-fix public return annotation includes None; upstream reports backwards compatibility failure; accepted fix restores None and adds direct missing-map/missing-key assertions. Explicit mapped None and falsy values are distinct from absence internally."
+  },
+  "r3": {
+    "kind": "protected_control",
+    "expected": "Initialization converters run before validators. tests/test_make.py::TestConverter.test_convert_before_validate distinguishes converter exception from validator exception. docs/init.md doctest converts string to integer then validates >=0. Do not mistake lack of a value assertion in the one order test for lack of order protection.",
+    "source": "src/attr/_make.py initializer generation; tests/test_make.py:1824-1840; docs/init.md converters section; tests and shared fixtures",
+    "limitations": "Protected for selected initialization order, not every converter/validator combination or assignment path."
+  },
+  "r4": {
+    "kind": "protected_control",
+    "expected": "Different host, HTTPS downgrade, and nonstandard upgrade ports strip auth; same-host standard-port HTTP-to-HTTPS and equivalent explicit/default ports retain it. Direct assertions test these outcomes; rebuild_auth applies decision.",
+    "source": "src/requests/sessions.py::should_strip_auth / rebuild_auth; tests/test_requests.py:1940-1986; fixtures",
+    "limitations": "Protected for selected host/scheme/port contract, not arbitrary URL parsing, all credential flows or overall security. Excludes previous TLS walkthrough."
+  }
+}

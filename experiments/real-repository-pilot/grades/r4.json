@@ -1,0 +1,94 @@
+{
+  "case": "r4",
+  "findings": [
+    {
+      "id": "F1",
+      "title": "Cross-host HTTPS upgrades lack protection",
+      "classification": "accepted_gap",
+      "reason": "The report identifies a meaningful missing regression assertion. Existing tests separately exercise host changes and HTTPS upgrades, but do not protect the precedence between those decisions. The current implementation correctly strips credentials; this finding alleges missing protection, not an implementation bug.",
+      "evidence": [
+        "src/requests/sessions.py:158 — Hostname changes return true before the HTTPS-upgrade exception.",
+        "src/requests/sessions.py:164 — The standard-port HTTP-to-HTTPS exception does not itself check hostname equality.",
+        "tests/test_requests.py:1942 — The host-change assertion keeps both URLs on HTTP.",
+        "tests/test_requests.py:1952 — The upgrade assertions retain the same hostname.",
+        "docs/user/quickstart.rst:226 — Authorization must be removed on off-host redirects.",
+        "src/requests/sessions.py:324 — rebuild_auth removes Authorization when should_strip_auth returns true."
+      ],
+      "counterevidence": "Host-change stripping and same-host upgrade retention already have direct assertions. Those assertions do not exercise the report's combined conditions. The downgrade integration assertion at tests/test_requests.py:1931 also does not exercise the upgrade exception.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "none",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    },
+    {
+      "id": "F2",
+      "title": "The port-change test also changes scheme",
+      "classification": "accepted_gap",
+      "reason": "The named assertion changes both scheme and port. The other nonstandard-port stripping assertions also change scheme, so they do not independently protect the port comparison. The report correctly distinguishes this missing regression protection from the currently correct implementation.",
+      "evidence": [
+        "src/requests/sessions.py:173 — Port changes are calculated independently from scheme changes.",
+        "src/requests/sessions.py:184 — Either a port change or a scheme change requires stripping outside the exceptions.",
+        "tests/test_requests.py:1972 — The port-change example changes HTTP to HTTPS as well as 1234 to 4321.",
+        "tests/test_requests.py:1963 — The first nonstandard-port upgrade example also changes scheme.",
+        "tests/test_requests.py:1966 — The second nonstandard-port upgrade example also changes scheme.",
+        "tests/test_requests.py:1978 — Default-port parameters cover equivalent port spellings, with retention asserted at line 1986."
+      ],
+      "counterevidence": "Existing assertions protect default-port equivalence and stripping when scheme changes. Same-host retention at tests/test_requests.py:1938 uses one HTTPBin endpoint. The digest redirect at tests/test_lowlevel.py:139 uses a relative Location on the single server established at line 179. Neither supplies isolated port-change protection.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "none",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    },
+    {
+      "id": "F3",
+      "title": "Same-origin redirects can replace explicit credentials with .netrc credentials",
+      "classification": "unresolved",
+      "reason": "The credential replacement described by the report is supported by the source. Its classification as a bug depends on extending general authentication precedence to redirect rebuilding. The cited documentation and tests support that expectation but do not clearly settle this competing-credentials redirect contract. The suspected bug therefore remains unresolved.",
+      "evidence": [
+        "src/requests/sessions.py:330 — With trust_env enabled, rebuild_auth looks up .netrc credentials regardless of whether stripping occurred.",
+        "src/requests/sessions.py:332 — Available .netrc credentials are applied through prepare_auth.",
+        "src/requests/models.py:685 — A credential tuple becomes an HTTPBasicAuth handler.",
+        "src/requests/auth.py:112 — HTTPBasicAuth assigns Authorization, replacing its previous value.",
+        "src/requests/sessions.py:537 — Initial preparation skips .netrc lookup when explicit request or session authentication exists.",
+        "docs/user/quickstart.rst:221 — General precedence places auth= above .netrc.",
+        "tests/test_requests.py:702 — Explicit-versus-.netrc precedence is asserted without a redirect.",
+        "tests/test_requests.py:1934 — Same-host redirect retention supplies explicit credentials but no controlled competing .netrc account.",
+        "tests/conftest.py:28 — The autouse environment cleanup targets proxy variables, not .netrc authentication."
+      ],
+      "counterevidence": "docs/user/authentication.rst:39 further supports explicit authentication taking precedence. Conversely, src/requests/sessions.py:312 describes redirect rebuilding as removing and reapplying authentication, and line 329 expressly anticipates .netrc reapplication. These sources establish the mechanism but leave its intended precedence for this redirect case materially uncertain.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "Establish whether explicit auth= precedence must persist during same-origin redirects when .netrc supplies a different account.",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    }
+  ],
+  "predeclared_gap_found": null,
+  "predeclared_gap_missed": null,
+  "protected_behavior_false_alarm": false,
+  "no_finding_assessment": "Not applicable; the report contains three substantive findings.",
+  "limits": [
+    "Evidence paths are relative to /SNAPSHOTS/r4.",
+    "This is an LLM source review, not execution or an independent human study. No project code, imports, tests, builds, scripts, hooks, or network calls were executed; no edits or external messages were made.",
+    "Protection conclusions are limited to the frozen files inspected. External HTTPBin fixture internals were unavailable.",
+    "The oracle identifies r4 as a protected control, so historical-gap found and missed fields are null. F3 is not counted as a confirmed bug or protected-behavior false alarm."
+  ],
+  "disputed_classifications": [
+    "F1: The oracle's protected-control designation does not establish protection for the combined cross-host standard-port HTTPS-upgrade case.",
+    "F2: The oracle's port-protection assessment overlooks that the stripping examples also change scheme."
+  ]
+}

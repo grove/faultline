@@ -1,0 +1,28 @@
+{
+  "frozen_utc": "2026-10-19T14:33:29.286549+00:00",
+  "faultline_commit": "8fc4ed71ba41343e22dfb28f6304f04d751eaa2a",
+  "skill_sha256": "9bd02aca93a8450f808e5c23f9313b6a9cdc8f634d1dd6973008161c0a27eafa",
+  "expectations_sha256": "957bdeb7b723ee9f8448b7938ddeeb75c3e98a8ccc7658da2014b83a7ec50d62",
+  "source_manifest_sha256": "1836e86d10e4cc1fa7646e9a2879e6d8b6f0a84c6d20ead86e3d02bd1df2ea21",
+  "cases": {
+    "r1": {
+      "scope": "Specifier prerelease inclusion behavior in src/packaging/specifiers.py (prereleases, contains and filter), its callers, tests/test_specifiers.py and relevant docs. Focus on this behavior; read other staged helpers and assertions as needed.",
+      "prompt_sha256": "07f7b46cf1e2e82a703479699c26d5eeebe8dcc46122e5d31399da4ef43eb777"
+    },
+    "r2": {
+      "scope": "Context.lookup_default and its parameter-default resolution callers in src/click/core.py, tests/test_defaults.py, tests/test_context.py and relevant docs. Focus on this public default lookup behavior; read other staged helpers and assertions as needed.",
+      "prompt_sha256": "cf590ee9f159de0c043805ad0337debb6c98dd861e947d71c97c66261403f3f5"
+    },
+    "r3": {
+      "scope": "Conversion before validation during generated initialization in src/attr/_make.py, tests/test_make.py::TestConverter, related initialization tests, fixtures and docs/init.md. Focus on the initialization ordering contract; read other staged helpers and assertions as needed.",
+      "prompt_sha256": "4181585348d5e1f1c15a7dda9a0609d79a0259f4ec08a0750b04440f545607f5"
+    },
+    "r4": {
+      "scope": "The host/scheme/port authorization-retention decision in src/requests/sessions.py::SessionRedirectMixin.should_strip_auth, its rebuild_auth caller, relevant tests/test_requests.py cases, tests/conftest.py and docs. Focus on this redirect session-state behavior; read other staged helpers and assertions as needed.",
+      "prompt_sha256": "5324d6180d29172ca1462f4acdaad47a456a0485e339d4a7a76ad7bb3a3c5201"
+    }
+  },
+  "method": "One fresh ephemeral Codex exec per case; 600s ceiling; timestamp immediately before Popen submission, terminal turn.completed receive after final agent_message; monotonic nanosecond clock recorded to 0.001s (not accuracy claim). No retries.",
+  "host": "macOS; Codex CLI 0.163.0; gpt-6.1-sol; reasoning xhigh; user config ignored; read-only sandbox; approval never; web disabled",
+  "setup_limits": "No operator clarification or dependency/runtime setup. Public-source acquisition/selection/staging is evaluation setup, separate from measured audits. Bare clone duration not instrumented; initial staging total 3.948s from prior tool record; final staging measured in source-manifest."
+}

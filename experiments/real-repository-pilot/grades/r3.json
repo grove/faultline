@@ -1,0 +1,93 @@
+{
+  "case": "r3",
+  "findings": [
+    {
+      "id": "F1",
+      "title": "The conversion-order test stops before validation",
+      "classification": "accepted_gap",
+      "reason": "Accepted narrowly for the reported cross-field boundary: validation of an earlier field must wait until later fields finish conversion. Existing exception-precedence and same-field assertions do not establish that interaction. The report correctly distinguishes missing regression protection from an implementation bug.",
+      "evidence": [
+        "docs/init.md:515-524 + The documented sequence completes per-attribute factories and converters before all validators, which may access other attributes.",
+        "tests/test_make.py:1829-1840 + The converter on x raises ZeroDivisionError before its raising validator; y has no converter. This protects exception precedence but never observes later-field conversion.",
+        "docs/init.md:217-230 + Cross-field validation reads instance.y, but neither field has a converter.",
+        "docs/init.md:334-346 + Successful conversion followed by validation is asserted for a single field.",
+        "src/attr/_make.py:2232-2234 + Validators are collected while processing attributes.",
+        "src/attr/_make.py:2367-2394 + Conversion statements precede the separate validation block in the current implementation.",
+        "tests/strategies.py:76-85 + Base attribute strategies supply defaults without converters or validators; their generated combinations do not supply this interaction."
+      ],
+      "counterevidence": "tests/test_make.py:1839-1840 meaningfully protects converter-before-validator exception precedence, and docs/init.md:334-346 protects successful same-field conversion before validation. These refute a blanket claim that initialization order lacks protection, but the raw report explicitly identifies the narrower cross-field gap.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "none",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    },
+    {
+      "id": "F2",
+      "title": "Factory tests do not require earlier conversion to finish",
+      "classification": "accepted_gap",
+      "reason": "The report identifies a distinct, documented ordering interaction: a later dependent factory observes an earlier field after conversion. Reviewed assertions cover factory-result conversion and dependent defaults separately. This fits the frozen initialization-order scope and does not establish a current implementation bug.",
+      "evidence": [
+        "docs/init.md:515-518 + Factories and converters execute per attribute in declaration order, placing an earlier conversion before a later factory.",
+        "tests/test_make.py:1808-1822 + The factory captures val independently of the instance; its result is converted and asserted.",
+        "tests/test_dunders.py:870-881 + The takes_self factory returns the instance itself, without reading an earlier converted field.",
+        "tests/test_functional.py:358-367 + The dependent default reads self.x, but x has no converter.",
+        "src/attr/_make.py:2874 + Decorator defaults become Factory objects with takes_self=True, confirming the functional test exercises the shared factory mechanism.",
+        "src/attr/_make.py:2232-2245 + Attributes are processed sequentially and dependent factories receive self.",
+        "src/attr/_make.py:2333-2341 + The factory result feeds the current attribute's converter; earlier attributes have already been processed."
+      ],
+      "counterevidence": "Existing tests protect same-field factory conversion and dependent defaults. docs/api.rst:82-92 also asserts a factory reading an earlier field, without a converter. docs/init.md:156-160 cautions that factories receive partially initialized instances, but the explicit per-attribute sequence still supports the report's earlier-field contract.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "none",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    },
+    {
+      "id": "F3",
+      "title": "Hook-order tests omit the validation boundary",
+      "classification": "accepted_gap",
+      "reason": "The documented validation-before-post-init boundary is distinct from F1 and F2. Reviewed hook assertions do not observe whether post-init runs before a constructor's validation failure. The report correctly describes a regression-protection gap while acknowledging that current generation preserves the order.",
+      "evidence": [
+        "docs/init.md:520-522 + All validators precede __attrs_post_init__ in the documented order.",
+        "src/attr/_make.py:2386-2397 + Generated validator calls precede post-init, without an exception handler that would continue into post-init after validation fails.",
+        "tests/test_make.py:923-935 + The hook-order case checks pre-init state and post-init arithmetic, with neither converters nor validators.",
+        "tests/test_make.py:66-76 + The shared fixture toggles validation and restores it; it supplies no validator or ordering assertion.",
+        "tests/strategies.py:171-183 + Generated pre-init and post-init hooks contain only pass.",
+        "tests/test_dunders.py:895-906 + Constructor validation exceptions are observed without a post-init hook or side-effect assertion."
+      ],
+      "counterevidence": "tests/test_make.py:905-915 protects post-init access to initialized attributes, and tests/test_make.py:923-935 protects pre-init/post-init ordering. Validation exception propagation is separately protected. None of these assertions observes post-init effects when validation fails.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "none",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    }
+  ],
+  "predeclared_gap_found": null,
+  "predeclared_gap_missed": null,
+  "protected_behavior_false_alarm": false,
+  "no_finding_assessment": "Not applicable; the report contains three substantive findings.",
+  "limits": [
+    "This is an LLM source review, not execution or an independent human study.",
+    "Project files were read as data only. No project code, imports, tests, builds, scripts, hooks, network calls, edits, or external messages were executed.",
+    "Evidence paths are relative to /SNAPSHOTS/r3.",
+    "Coverage conclusions are limited to the frozen tests, doctest assertions, helpers, and fixtures reviewed; no runtime or mutation-survival claims are made.",
+    "The r3 oracle is a protected control, so historical-gap found/missed fields are null. Current implementation correctness does not resolve the reported coverage gaps."
+  ],
+  "disputed_classifications": [
+    "F1: Any blanket rejection based on the oracle's protected-control designation would be too broad. Its cited exception-precedence and same-field doctest protection does not establish the report's specific later-field conversion boundary; expectations.json:24 expressly limits the control's coverage."
+  ]
+}

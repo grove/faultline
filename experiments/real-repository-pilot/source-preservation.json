@@ -1,0 +1,22 @@
+[
+  {
+    "case": "r1",
+    "file_count": 43,
+    "frozen_files_unchanged": true
+  },
+  {
+    "case": "r2",
+    "file_count": 82,
+    "frozen_files_unchanged": true
+  },
+  {
+    "case": "r3",
+    "file_count": 76,
+    "frozen_files_unchanged": true
+  },
+  {
+    "case": "r4",
+    "file_count": 53,
+    "frozen_files_unchanged": true
+  }
+]

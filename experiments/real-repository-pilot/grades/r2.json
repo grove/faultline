@@ -1,0 +1,117 @@
+{
+  "case": "r2",
+  "findings": [
+    {
+      "id": "F1",
+      "title": "A configured default can unexpectedly trigger a prompt",
+      "classification": "accepted_gap",
+      "reason": "The documented bypass contract conflicts with the frozen prompting branch. Existing assertions do not combine a mapped value with enabled prompting. This supports both a suspected implementation bug and missing regression protection.",
+      "evidence": [
+        "docs/prompts.md:129-131 + explicitly states that default_map overrides prompting.",
+        "src/click/core.py:2323-2327 + assigns mapped values the DEFAULT_MAP source.",
+        "src/click/core.py:3287-3297 + includes DEFAULT_MAP among sources that trigger prompting and replaces the source with PROMPT.",
+        "src/click/core.py:2715 + prompt_required defaults to True.",
+        "tests/test_defaults.py:105-127 + map coverage uses an option without prompting.",
+        "tests/test_termui.py:407-455 + prompting cases supply no default_map.",
+        "src/click/testing.py:353-358 and src/click/termui.py:148-154 + exhausted input raises EOFError, which prompting converts to Abort."
+      ],
+      "counterevidence": "Optional prompts and resilient parsing can avoid this branch, but neither applies to the report's ordinary prompt=True invocation. tests/test_context.py:730-774 protects source reporting without prompting, so it does not cover this interaction.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "none",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    },
+    {
+      "id": "F2a",
+      "title": "Finding 2: Context.lookup_default exposes UNSET for missing defaults",
+      "classification": "accepted_gap",
+      "reason": "The lookup_default portion identifies the single predeclared historical gap. Both absence paths expose the sentinel, while nearby tests exercise boundaries that hide it. The locally available fix independently corroborates the missing-value contract and regression coverage.",
+      "evidence": [
+        "src/click/core.py:708-716 + missing keys and absent maps return UNSET.",
+        "src/click/core.py:803-811 + explicitly describes UNSET as an implementation detail and hides it at the invoke boundary.",
+        "tests/test_context.py:184-204 and 256-287 + checks callback and ctx.params sentinel hiding rather than direct lookup_default results.",
+        "tests/test_commands.py:239-240 and 262-276 + checks missing defaults through Context.invoke, whose conversion masks the lookup result.",
+        "tests/test_defaults.py:105-127 and tests/test_context.py:730-774 + existing map assertions concern present values and parameter sources.",
+        "/SOURCES/click.git@b6afbf05ea6dbc8a4e7cdd448dd345c783973137:tests/test_defaults.py:165-191 + adds explicit missing-key, absent-map and empty-map assertions expecting None.",
+        "/SOURCES/click.git@b6afbf05ea6dbc8a4e7cdd448dd345c783973137:tests/test_defaults.py:266-291 + documents the compatibility failure and a subclass fallback based on None."
+      ],
+      "counterevidence": "The frozen lookup docstring does not explicitly define the missing-value result, and its Any | None annotation alone does not exclude a sentinel. Internal consumers intentionally distinguish UNSET from explicit mapped None at core.py:2283 and 2325. Those internal requirements do not establish that exposing UNSET through the public lookup is compatible.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "The report itself leaves the public missing-value contract provisional; historical evidence is needed to settle its proposed None assertion.",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    },
+    {
+      "id": "F2b",
+      "title": "Finding 2 addendum: Parameter.get_default exposes an undeclared default",
+      "classification": "unresolved",
+      "reason": "The report correctly observes that get_default can return UNSET. However, a requirement that this method return None when no default is declared is not established. The confirmed lookup_default compatibility gap does not automatically establish the same contract for get_default.",
+      "evidence": [
+        "src/click/core.py:2135 and 2170 + an undeclared parameter default is stored as UNSET.",
+        "src/click/core.py:2261-2266 + documents lookup precedence and callable handling without specifying the missing-value result.",
+        "src/click/core.py:2281-2289 + falls back to self.default and returns it, allowing UNSET.",
+        "src/click/core.py:802-811 + Context.invoke explicitly converts get_default's UNSET result to None.",
+        "docs/api.md:168-170 + exposes Parameter members as public API, supporting scrutiny but not specifying this return contract."
+      ],
+      "counterevidence": "The explicit conversion in Context.invoke and the deliberate internal sentinel fallback support treating this as a distinct contract question. The inspected upstream fix restores lookup_default's None result while retaining get_default's fallback to self.default.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "Establish whether Parameter.get_default promises None for an undeclared default; the report's proposed result is provisional.",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    },
+    {
+      "id": "F3",
+      "title": "Callable map defaults lack direct lazy-evaluation protection",
+      "classification": "accepted_gap",
+      "reason": "The callable contract is explicit and the implementation currently honors it. Existing map coverage uses static values, while callable-help coverage uses parameter-local defaults. The map-specific lazy lookup remains meaningfully unprotected.",
+      "evidence": [
+        "src/click/core.py:702-703 and 711-714 + specifies and implements returning the callable without invoking it when call=False.",
+        "src/click/core.py:2265-2266 and 2281-2289 + get_default requests an unevaluated map default and conditionally calls it.",
+        "src/click/core.py:3059-3062 + help formatting requests get_default with call=False.",
+        "tests/test_options.py:572-581 + mapped help coverage supplies a static string.",
+        "tests/test_options.py:617-650 + dynamic help coverage supplies parameter-local lambdas.",
+        "tests/test_options.py:653-664 + callable-object help coverage also uses a parameter-local default.",
+        "tests/conftest.py:6-8 + the shared runner fixture supplies no mapped callable or additional assertions."
+      ],
+      "counterevidence": "The dynamic-help assertions protect the shared Parameter/help path, and the current map implementation is correct. They do not protect Context.lookup_default's callable branch because no mapped callable reaches it in the frozen tests.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "none",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    }
+  ],
+  "predeclared_gap_found": true,
+  "predeclared_gap_missed": false,
+  "protected_behavior_false_alarm": false,
+  "no_finding_assessment": "Not applicable; the report contains findings.",
+  "limits": [
+    "LLM source review only, not execution or an independent human study. No project code, imports, tests, builds, scripts or hooks were executed; no edits or external messages were made.",
+    "Frozen relative paths refer to /SNAPSHOTS/r2. Upstream commit citations identify supplemental local Git evidence, not frozen test coverage.",
+    "Original finding 2 is split into F2a and F2b to retain and separately classify its two explicitly reported API claims.",
+    "An older-snapshot Git read unexpectedly triggered an automatic promisor fetch, violating the no-network constraint. DNS resolution failed; no remote content was obtained, and no further Git calls were made.",
+    "Actionability records first-read field identification and subjective prose clarity, not validated human usability."
+  ],
+  "disputed_classifications": [
+    "F2b: The additional Parameter.get_default compatibility claim remains unresolved; the accepted lookup_default historical fix does not establish a None-return contract for this separate method."
+  ]
+}

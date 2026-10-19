@@ -1,0 +1,68 @@
+{
+  "case": "r1",
+  "findings": [
+    {
+      "id": "F1",
+      "title": "Specifier.filter() can bypass an explicit prerelease ban",
+      "classification": "accepted_gap",
+      "reason": "The report identifies missing regression protection for an explicit object-level False, distinct from automatic fallback and method-level overrides. Static tracing supports the suspected implementation bug for the reported setup.",
+      "evidence": [
+        "src/packaging/specifiers.py:72 + False explicitly disables prereleases.",
+        "src/packaging/specifiers.py:245 + Construction stores the explicit setting; line 274 stores an assigned setting.",
+        "src/packaging/specifiers.py:598 + Omitting the filter argument forces True into contains(), bypassing the object's False.",
+        "src/packaging/specifiers.py:609 + The matching prerelease is buffered; lines 622–624 yield it when nothing else matched.",
+        "tests/test_specifiers.py:559 + Existing direct-filter cases cover automatic fallback and a method-level False; lines 565–569 always construct a default Specifier.",
+        "tests/test_specifiers.py:730 + Object-level filter overrides construct SpecifierSet; src/packaging/specifiers.py:995 forwards an explicit boolean, avoiding the reported path."
+      ],
+      "counterevidence": "Default fallback is documented at src/packaging/specifiers.py:579 and protected at tests/test_specifiers.py:559. Attribute assignment is also exercised for membership at tests/test_specifiers.py:549. These cover neighboring contracts, not filtering after an explicit object-level ban.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "none",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    },
+    {
+      "id": "F2",
+      "title": "Prerelease autodetection can crash a valid arbitrary-equality query",
+      "classification": "accepted_gap",
+      "reason": "The report identifies an uncovered default-membership path involving an accepted arbitrary target and a valid candidate. Static tracing supports the exception before string comparison. This is a suspected implementation bug plus missing regression protection, within the scoped autodetection behavior.",
+      "evidence": [
+        "src/packaging/specifiers.py:115 + Arbitrary equality promises exact string matching without requiring PEP 440 semantics for the target.",
+        "src/packaging/specifiers.py:259 + Autodetection includes ===; line 267 nevertheless parses its target with Version.",
+        "src/packaging/version.py:121 + Version requires a numeric release segment; lines 200–202 raise InvalidVersion when parsing fails.",
+        "src/packaging/specifiers.py:547 + Direct contains() consults autodetection before reaching the string comparison at line 498.",
+        "src/packaging/requirements.py:43 + Requirement exposes a SpecifierSet; src/packaging/specifiers.py:923 consults its prereleases property, which evaluates underlying properties at line 750.",
+        "tests/test_specifiers.py:496 + Identity membership cases use valid targets only; lines 588 and 607 inspect operator/version properties for arbitrary targets without membership.",
+        "tests/test_requirements.py:86 + Arbitrary targets enter shared parsing cases, whose assertion at line 144 checks specifier equality rather than membership.",
+        "src/packaging/utils.py:88 + Canonicalization catches InvalidVersion, explaining why construction and equality assertions do not protect the crashing autodetection path."
+      ],
+      "counterevidence": "Invalid candidate strings are rejected by coercion at src/packaging/specifiers.py:552, but the report deliberately uses valid candidate \"1.0\". Explicit prerelease arguments bypass autodetection at line 547; marker evaluation supplies True at src/packaging/markers.py:183. Neither disproves the reported default-query gap.",
+      "actionability": {
+        "test_location": true,
+        "setup_action": true,
+        "expected_assertion": true,
+        "supporting_source": true,
+        "clarification_needed": "none",
+        "clarity": "clear",
+        "judgment": "subjective model review, not a human measurement"
+      }
+    }
+  ],
+  "predeclared_gap_found": false,
+  "predeclared_gap_missed": true,
+  "protected_behavior_false_alarm": false,
+  "no_finding_assessment": "Not applicable; the report contains two substantive findings.",
+  "limits": [
+    "This is an LLM source review, not execution or an independent human study. Actionability records first-read field presence and subjective clarity.",
+    "Evidence paths beginning src/ or tests/ are relative to /SNAPSHOTS/r1. No project code, imports, tests, builds, scripts or hooks were executed; no files were edited or external messages sent.",
+    "The single historical miss concerns default inclusion below an explicit prerelease bound. src/packaging/specifiers.py:230 promises autodetection, line 259 omits <, and lines 547–558 reject prerelease candidates before the comparator. The comparator at lines 454–465 permits them when the bound itself is a prerelease. tests/test_specifiers.py:522 instead expects False for a prerelease < bound, while the shared comparison assertions force prereleases=True at line 474. Neither report finding identifies this boundary-policy gap. No additional historical misses were counted.",
+    "The historical contract has counterevidence in the inclusive-operator comment at src/packaging/specifiers.py:255 and existing False expectations at tests/test_specifiers.py:522–523. The miss assessment concerns the discrepancy between autodetection and the prerelease-bound comparison contract; it does not treat those expectations as protection of the intended policy.",
+    "A local Git snapshot read unexpectedly attempted an automatic promisor fetch, violating the no-network constraint. It failed to resolve the host; no upstream snapshot content was obtained. No further Git access was attempted. Upstream issue discussion and fix contents were therefore not independently verified.",
+    "The frozen workspace has no staged test configuration or conftest file, and docs/changelog.rst:1 references an unstaged CHANGELOG.rst. Coverage conclusions are limited to available frozen assertions, parameter data and documentation."
+  ],
+  "disputed_classifications": []
+}

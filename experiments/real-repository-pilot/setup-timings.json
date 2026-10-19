@@ -1,0 +1,31 @@
+{
+  "initial_staging": {
+    "method": "monotonic elapsed per repository from initial stage.py tool output; includes pre-freeze Click candidate subsequently replaced before any audit",
+    "runs": [
+      {
+        "case": "r1",
+        "start_utc": "2026-10-19T14:31:19.966430+00:00",
+        "elapsed_seconds": 0.6474441250029486
+      },
+      {
+        "case": "r2",
+        "start_utc": "2026-10-19T14:31:20.613880+00:00",
+        "elapsed_seconds": 0.810325833997922
+      },
+      {
+        "case": "r3",
+        "start_utc": "2026-10-19T14:31:21.424208+00:00",
+        "elapsed_seconds": 1.0134833750053076
+      },
+      {
+        "case": "r4",
+        "start_utc": "2026-10-19T14:31:22.437694+00:00",
+        "elapsed_seconds": 1.4766821670054924
+      }
+    ]
+  },
+  "final_staging": "Per-case monotonic seconds and UTC starts in source-manifest.json",
+  "total_clone_selection_preparation_seconds": "UNKNOWN: no complete stopwatch interval; no estimate substituted",
+  "operator_clarifications": 0,
+  "installs": 0
+}

@@ -1,0 +1,51 @@
+"""One-off host event observer. Does not load or execute target files."""
+import json,os,selectors,signal,subprocess,sys,time
+from datetime import datetime,timezone
+from pathlib import Path
+
+private=Path(__file__).resolve().parent
+case=sys.argv[1]
+assert case in ('r1','r2','r3','r4')
+folder=private/case
+folder.mkdir(exist_ok=False)
+prompt=(private/(case+'-prompt.txt')).read_bytes()
+command=['/opt/homebrew/bin/codex','exec','--ignore-user-config','--ephemeral','--json','--sandbox','read-only','--skip-git-repo-check','--color','never','-C','/SNAPSHOTS/'+case,'-m','gpt-6.1-sol','-c','model_reasoning_effort="xhigh"','-c','approval_policy="never"','-c','web_search="disabled"','-']
+start_utc=datetime.now(timezone.utc).isoformat()
+start=time.monotonic_ns()
+end=None; terminal=None; last_message=None; buffer=b''; events=0
+with (folder/'stderr.txt').open('wb') as err, (folder/'events.jsonl').open('w') as log:
+    process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=err,start_new_session=True)
+    process.stdin.write(prompt); process.stdin.close()
+    selector=selectors.DefaultSelector(); selector.register(process.stdout,selectors.EVENT_READ)
+    while terminal is None:
+        remaining=600-(time.monotonic_ns()-start)/1e9
+        if remaining<=0:
+            terminal='timeout'; end=time.monotonic_ns(); break
+        ready=selector.select(min(remaining,0.1))
+        if not ready:
+            if process.poll() is not None: terminal='process_exited_without_completion'; end=time.monotonic_ns()
+            continue
+        chunk=os.read(process.stdout.fileno(),65536)
+        if not chunk:
+            terminal='stream_closed_without_completion'; end=time.monotonic_ns(); break
+        buffer+=chunk
+        while b'\n' in buffer:
+            line,buffer=buffer.split(b'\n',1)
+            if not line.strip(): continue
+            received=time.monotonic_ns()
+            event=json.loads(line)
+            log.write(json.dumps({'received_seconds':(received-start)/1e9,'event':event})+'\n'); log.flush(); events+=1
+            if event.get('type')=='item.completed' and event.get('item',{}).get('type')=='agent_message':
+                last_message=event['item'].get('text','')
+            if event.get('type') in ('turn.completed','turn.failed'):
+                terminal=event['type']; end=received; break
+    end_utc=datetime.now(timezone.utc).isoformat()
+    selector.close()
+    if terminal!='turn.completed' and process.poll() is None: os.killpg(process.pid,signal.SIGTERM)
+    try: code=process.wait(timeout=10)
+    except subprocess.TimeoutExpired:
+        os.killpg(process.pid,signal.SIGKILL); code=process.wait()
+if last_message is not None: (folder/'response.md').write_text(last_message+'\n')
+record={'case':case,'start_utc':start_utc,'end_observed_utc':end_utc,'elapsed_seconds':(end-start)/1e9,'terminal_event':terminal,'complete_response_captured':terminal=='turn.completed' and last_message is not None,'process_returncode':code,'event_count':events,'command':command,'timing_method':'external monotonic_ns before Popen through complete terminal JSON event received; includes startup and final generation; 0.1s select ceiling, receive scheduling/JSON framing overhead included; UTC end immediately after terminal parse','clock_resolution_seconds':time.get_clock_info('monotonic').resolution}
+(folder/'timing.json').write_text(json.dumps(record,indent=2)+'\n')
+print(json.dumps(record))
