@@ -1,9 +1,10 @@
 # Positive Apple Container smoke review — BLOCKED / NOT RUN
 
-**Current next request:** [identity-scoped setup-v2 recovery](APPLE_CONTAINER_RECOVERY.md).
+**Current next request:** [identity-scoped setup-v2 recovery](APPLE_CONTAINER_RECOVERY_02.md).
 The authorized setup-v2 attempt started four services in `user/501`; Faultline
 rejected trailing-slash paths and could not complete recovery. Services may
-remain active. The original receipt is preserved; no VM or canary ran.
+remain active. Recovery-01 then stopped at process parsing with no removal attempted. Its journal
+and original receipt are preserved; recovery-02 requires new approval. No VM or canary ran.
 No further startup, provisioning or execution is authorized.
 
 The historical preparation and setup proposals below are retained as context.

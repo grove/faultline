@@ -1,4 +1,10 @@
-# Setup-v2 recovery only — separate one-attempt approval required
+# Setup-v2 recovery-01 — consumed attempt, no removal
+
+**This command is historical and must not be rerun.** Recovery-01 stopped at process
+parsing with `attempted: []`, `removed: []`. Its journal is preserved. The only
+current request is [recovery-02](APPLE_CONTAINER_RECOVERY_02.md), requiring fresh
+approval and a new journal. Old recovery source/hashes remain in Git at `c82a52f`.
+The remaining text records the consumed recovery-01 proposal.
 
 PR #17 stays draft, issue #2 stays open, and execution is **NO_GO / UNAVAILABLE**.
 No cleanup has run. Do not repeat setup-v2, start services or provision artifacts.
@@ -60,7 +66,7 @@ bypass was attempted. The proposed operator-Terminal recovery requires successfu
 process observation **before any bootout**; it cannot claim process ownership or
 cleanup success from registration absence alone.
 
-## Exact next authorization
+## Historical recovery-01 authorization — consumed
 
 Approve **one recovery-only execution**, from `/Users/grove/projects/faultline`,
 in the operator's normal Terminal, keeping all other Container management idle:

@@ -7,6 +7,7 @@ import importlib.util
 import json
 from pathlib import Path
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -19,7 +20,7 @@ BASE = json.loads(r.PLAN.read_text())
 
 class RecoveryTests(unittest.TestCase):
     def attempt(self, fail_second=False, deny_ps=False, lingering=False, changed=False, foreign_listener=False,
-                ambiguous_first=False):
+                ambiguous_first=False, process_fault=None, replaced_late=False, new_lingering=False):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         root = Path(temporary.name)
@@ -29,6 +30,9 @@ class RecoveryTests(unittest.TestCase):
             executable = root / Path(entry['identity']['executable']).name
             executable.write_bytes(b'synthetic executable identity; never executed')
             entry['identity']['executable'] = str(executable)
+        previous = root / 'recovery-setup-v2-01.jsonl'
+        previous.write_bytes(b'preserved failed recovery')
+        plan['previous_recovery_journal_sha256'] = hashlib.sha256(previous.read_bytes()).hexdigest()
         plan['setup_receipt_sha256'] = hashlib.sha256(b'original receipt').hexdigest()
         plan_file = root / 'plan.json'
         plan_file.write_text(json.dumps(plan))
@@ -38,6 +42,7 @@ class RecoveryTests(unittest.TestCase):
         remaining = [entry['target'] for entry in entries]
         calls = []
         inspected = {}
+        ps_calls = 0
 
         def run(argv):
             calls.append(argv)
@@ -57,13 +62,37 @@ class RecoveryTests(unittest.TestCase):
                     raise ValueError('simulated second bootout failure')
                 remaining.remove(argv[2])
                 return ''
-            if argv[0] == '/bin/ps':
-                if deny_ps:
-                    raise PermissionError('process inspection unavailable')
+            def active_processes():
                 active = [e for e in entries if e['target'] in remaining]
                 if lingering and not active:
                     active = entries[:1]
-                return ''.join(str(e['pid']) + ' 501 Sun Oct 18 20:00:00 2026 ' + e['identity']['executable'] + '\n' for e in active)
+                if new_lingering and not active:
+                    active = [{**entries[0], 'pid': 200}]
+                if process_fault == 'missing':
+                    active = active[1:]
+                if process_fault == 'stale_pid' and active:
+                    active = [{**active[0], 'pid': 200}] + active[1:]
+                if process_fault == 'unexpected':
+                    active = active + [{**entries[0], 'pid': 200}]
+                return active
+            if argv == r.DISCOVERY:
+                return ''.join(str(e['pid']) + '\n' for e in active_processes())
+            if argv[0] == '/bin/ps':
+                nonlocal ps_calls
+                ps_calls += 1
+                if deny_ps:
+                    raise PermissionError('process inspection unavailable')
+                self.assertEqual(argv[:3], ['/bin/ps', '-ww', '-p'])
+                self.assertEqual(argv[4:], ['-o', 'pid=,uid=,lstart=,comm='])
+                output = []
+                for e in active_processes():
+                    uid = 502 if process_fault == 'uid' else 501
+                    program = '/bin/sh' if process_fault == 'executable' else e['identity']['executable']
+                    started = e['process_started']
+                    if process_fault == 'birth' or (replaced_late and ps_calls > 1):
+                        started = 'Sun Oct 18 23:59:59 2026'
+                    output.append(f"{e['pid']} {uid} {started} {program}\n")
+                return ''.join(output)
             if argv[0] == '/usr/sbin/lsof':
                 output = 'p101\nf14\nPUDP\nn127.0.0.1:2053\n' if entries[0]['target'] in remaining else ''
                 return output + ('p999\nf3\nPUDP\nn127.0.0.1:1053\n' if foreign_listener else '')
@@ -85,6 +114,7 @@ class RecoveryTests(unittest.TestCase):
             code = r.recover(run=run, pause=lambda _: None)
         records = [json.loads(line) for line in journal.read_text().splitlines()]
         self.assertEqual((root / 'setup-v2.json').read_bytes(), b'original receipt')
+        self.assertEqual(previous.read_bytes(), b'preserved failed recovery')
         self.assertFalse(any(c[0].endswith('/container') for c in calls))
         return code, calls, records, remaining
 
@@ -137,6 +167,23 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(records[-1]['phase'], 'PARTIAL_POSTCHECK')
         self.assertEqual(sum(c[1] == 'bootout' for c in calls), 1)
 
+    def test_missing_or_replaced_processes_and_extra_helpers_block_before_removal(self):
+        for fault in ('missing', 'stale_pid', 'uid', 'executable', 'birth', 'unexpected'):
+            with self.subTest(fault=fault):
+                code, calls, _, remaining = self.attempt(process_fault=fault)
+                self.assertEqual(code, 1)
+                self.assertEqual(len(remaining), 4)
+                self.assertFalse(any(c[1] == 'bootout' for c in calls))
+        code, calls, _, _ = self.attempt(replaced_late=True)
+        self.assertEqual(code, 1)
+        self.assertFalse(any(c[1] == 'bootout' for c in calls))
+
+    def test_new_pid_lingering_after_bootout_is_not_mistaken_for_cleanup(self):
+        code, _, records, _ = self.attempt(new_lingering=True)
+        self.assertEqual(code, 1)
+        self.assertEqual(records[-1]['processes'][0]['pid'], 200)
+        self.assertFalse(any(record['phase'] == 'COMPLETE' for record in records))
+
     def test_foreign_plist_hash_is_not_accepted_by_live_revalidation(self):
         entry = BASE['services'][0]
         text = (entry['target'] + ' = {\n\tpid = ' + str(entry['pid']) +
@@ -146,6 +193,62 @@ class RecoveryTests(unittest.TestCase):
         with patch.object(r.identity, 'owned_plist', return_value=foreign):
             with self.assertRaisesRegex(ValueError, 'identity changed'):
                 r.inspect_service(entry, run=lambda _: text)
+
+
+class TargetedProcessTests(unittest.TestCase):
+    RAW = (ROOT / 'qualification/2026-10-19-apple-container-operator-processes.txt').read_text()
+
+    def observe(self, raw=None, discovery=None):
+        raw = self.RAW if raw is None else raw
+        pids = sorted(e['pid'] for e in BASE['services'])
+        discovery = iter([pids, pids] if discovery is None else discovery)
+        calls = []
+        def run(argv):
+            calls.append(argv)
+            if argv == r.DISCOVERY:
+                return ''.join(str(pid) + '\n' for pid in next(discovery))
+            self.assertEqual(argv, ['/bin/ps', '-ww', '-p', ','.join(map(str, pids)),
+                                    '-o', 'pid=,uid=,lstart=,comm='])
+            return raw
+        return r.processes(BASE['services'], run), calls
+
+    def test_actual_operator_rows_parse_and_match_every_frozen_birth_identity(self):
+        observed, calls = self.observe()
+        r.verify_processes(observed, BASE['services'])
+        self.assertEqual([p['pid'] for p in observed], [70913, 70921, 70924, 70925])
+        self.assertEqual(len(calls), 3)
+        self.assertFalse(any('-axo' in call or '-f' in call for call in calls))
+
+    def test_ambiguous_relevant_rows_are_never_ignored(self):
+        for raw in ('70913 501 - /usr/local/bin/container-apiserver\n',
+                    self.RAW + self.RAW.splitlines()[0] + '\n',
+                    self.RAW.replace('70913', '99999', 1),
+                    self.RAW.replace('/usr/local/bin/container-apiserver', '<defunct>'),
+                    self.RAW.replace('23:31:23', '99:31:23')):
+            with self.subTest(raw=raw[:20]), self.assertRaises(ValueError):
+                self.observe(raw=raw)
+
+    def test_disappearing_or_unaccounted_candidate_prevents_complete_observation(self):
+        pids = sorted(e['pid'] for e in BASE['services'])
+        for scans in ([pids, pids[1:]], [pids[1:], pids[1:]]):
+            with self.subTest(scans=scans), self.assertRaises(ValueError):
+                self.observe(discovery=scans)
+
+    def test_no_match_exit_is_distinguished_from_denial_and_unknown_failure(self):
+        ps = ['/bin/ps', '-ww', '-p', '70913', '-o', 'pid=,uid=,lstart=,comm=']
+        for argv in (ps, r.DISCOVERY):
+            for code, stdout, stderr, accepted in ((1, b'', b'', True),
+                                                  (1, b'', b'Operation not permitted', False),
+                                                  (3, b'', b'', False),
+                                                  (0, b'', b'', False)):
+                result = SimpleNamespace(returncode=code, stdout=stdout, stderr=stderr)
+                with self.subTest(argv=argv[0], code=code, stderr=stderr):
+                    with patch.object(r.subprocess, 'run', return_value=result) as native:
+                        if accepted:
+                            self.assertEqual(r.command(argv), '')
+                        else:
+                            with self.assertRaises(ValueError):r.command(argv)
+                        self.assertEqual(native.call_args.kwargs['env']['TZ'], 'Europe/Oslo')
 
 
 if __name__ == '__main__':

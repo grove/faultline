@@ -1,5 +1,6 @@
 """One separately authorized, pinned setup-v2 recovery. Never starts a service."""
 
+from datetime import datetime
 import hashlib
 import importlib.util
 import json
@@ -14,18 +15,23 @@ HERE = Path(__file__).resolve().parent
 SPEC = importlib.util.spec_from_file_location('setup_identity', HERE / 'apple_container_service_setup.py')
 identity = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(identity)
-PLAN = HERE / '2026-10-18-apple-container-recovery-plan.json'
-PLAN_SHA256 = 'f727a96cbea4ac6751aa00894049c35b5c1b0d5a8206e36757f96734f643f9a9'
-ENV = {'PATH': '/usr/bin:/bin', 'LC_ALL': 'C'}
+PLAN = HERE / '2026-10-19-apple-container-recovery-02-plan.json'
+PLAN_SHA256 = '26b72f4f05406f714c2f6ac92fdaba9d5fe39b6b387bb4f4568c43274146e679'
+ENV = {'PATH': '/usr/bin:/bin', 'LC_ALL': 'C', 'TZ': 'Europe/Oslo'}
+DISCOVERY = ['/usr/bin/pgrep', '-u', '501', '^(container-|machine-api)']
 DOMAINS = ('system', 'user/501', 'gui/501')
-JOURNAL = Path('/private/tmp/faultline-apple-positive-v2/evidence/recovery-setup-v2-01.jsonl')
+JOURNAL = Path('/private/tmp/faultline-apple-positive-v2/evidence/recovery-setup-v2-02.jsonl')
 
 
 def command(argv):
     # shortcut: capture trusts finite CLI metadata; stream before adding untrusted output.
     result = subprocess.run(argv, cwd='/', env=ENV, stdin=subprocess.DEVNULL,
                             capture_output=True, timeout=5)
-    empty = argv[0] == '/usr/sbin/lsof' and result.returncode == 1 and not result.stdout
+    absence_supported = (argv[0] == '/usr/sbin/lsof' or argv == DISCOVERY or
+                         argv[:3] == ['/bin/ps', '-ww', '-p'])
+    empty = absence_supported and result.returncode == 1 and not result.stdout
+    if absence_supported and result.returncode == 0 and not result.stdout:
+        raise ValueError('Successful observation returned no records')
     if (result.returncode != 0 and not empty) or result.stderr or len(result.stdout) > 4194304:
         raise ValueError('Recovery command failed or observation incomplete: ' + str(argv))
     return result.stdout.decode('utf-8', 'strict')
@@ -61,20 +67,50 @@ def registrations(run=command):
 
 
 def processes(entries, run=command):
-    text = run(['/bin/ps', '-ww', '-axo', 'pid=,uid=,lstart=,comm='])
-    pids = {entry['pid'] for entry in entries}
-    executables = {entry['identity']['executable'] for entry in entries}
-    names = {Path(path).name for path in executables}
+    def discover():
+        rows = run(DISCOVERY).splitlines()
+        if (len(rows) > 32 or any(not re.fullmatch(r'[1-9][0-9]*', row) for row in rows) or
+                len(set(rows)) != len(rows)):
+            raise ValueError('Ambiguous Container process discovery')
+        return {int(row) for row in rows}
+
+    discovered = discover()
+    requested = discovered | {entry['pid'] for entry in entries}
+    if len(requested) > 32:
+        raise ValueError('Container process observation exceeds budget')
+    text = run(['/bin/ps', '-ww', '-p', ','.join(map(str, sorted(requested))),
+                '-o', 'pid=,uid=,lstart=,comm='])
     found = []
-    for row in text.splitlines():
+    for number, row in enumerate(text.splitlines(), 1):
         fields = row.split(maxsplit=7)
-        if len(fields) != 8 or not fields[0].isdigit() or not fields[1].isdigit():
-            raise ValueError('Unrecognized process observation')
+        if (len(fields) != 8 or not re.fullmatch(r'[1-9][0-9]*', fields[0]) or
+                not re.fullmatch(r'[0-9]+', fields[1]) or not Path(fields[7]).is_absolute()):
+            raise ValueError(f'Ambiguous targeted process row {number}: {len(fields)} fields or invalid PID/UID/path')
         pid, uid = int(fields[0]), int(fields[1])
-        program = fields[7]
-        if pid in pids or (uid == 501 and Path(program).name in names):
-            found.append({'pid': pid, 'uid': uid, 'started': ' '.join(fields[2:7]), 'executable': program})
-    return found
+        started = ' '.join(fields[2:7])
+        try:
+            datetime.strptime(started, '%a %b %d %H:%M:%S %Y')
+        except ValueError:
+            raise ValueError(f'Invalid birth time for targeted PID {pid}') from None
+        if pid not in requested or any(p['pid'] == pid for p in found):
+            raise ValueError('Unexpected/duplicate targeted process row')
+        found.append({'pid': pid, 'uid': uid, 'started': started, 'executable': fields[7]})
+    if discovered != discover() or not discovered.issubset({p['pid'] for p in found}):
+        raise ValueError('Container process set changed or observation incomplete')
+    if any(p['pid'] not in discovered for p in found):
+        raise ValueError('PID discovery failed to account for an observed service process')
+    return sorted(found, key=lambda p: p['pid'])
+
+
+def verify_processes(observed, entries):
+    if len(observed) != len(entries) or {p['pid'] for p in observed} != {e['pid'] for e in entries}:
+        raise ValueError('Setup process set differs; expected PIDs ' + str(sorted(e['pid'] for e in entries)) +
+                         ', observed PIDs ' + str(sorted(p['pid'] for p in observed)))
+    for entry in entries:
+        process = next(p for p in observed if p['pid'] == entry['pid'])
+        if (process['uid'] != entry['process_uid'] or process['started'] != entry['process_started'] or
+                not identity.same_path(process['executable'], entry['identity']['executable'])):
+            raise ValueError(f'Process executable/owner/birth identity differs for PID {entry["pid"]}; no removal')
 
 
 def listeners(run=command):
@@ -113,6 +149,8 @@ def recover(run=command, pause=time.sleep):
         raise ValueError('Original setup-v2 receipt identity changed')
     if os.getuid() != 501 or hashlib.sha256((HERE / 'apple_container_service_setup.py').read_bytes()).hexdigest() != plan['identity_helper_sha256']:
         raise ValueError('Recovery user/source identity differs')
+    if hashlib.sha256(JOURNAL.with_name('recovery-setup-v2-01.jsonl').read_bytes()).hexdigest() != plan['previous_recovery_journal_sha256']:
+        raise ValueError('Previous recovery journal identity changed')
     entries = plan['services']
     if {e['target'] for e in entries} != {'user/501/' + name for name in identity.SERVICE_PROGRAMS}:
         raise ValueError('Recovery target allowlist differs')
@@ -131,19 +169,16 @@ def recover(run=command, pause=time.sleep):
             before = [inspect_service(entry, run) for entry in entries]
             emit({'phase': 'IDENTITIES', 'services': before})
             current_processes = processes(entries, run)
-            if {p['pid'] for p in current_processes} != {e['pid'] for e in entries}:
-                raise ValueError('Unexpected/missing setup processes; no removal')
-            for entry in entries:
-                process = next(p for p in current_processes if p['pid'] == entry['pid'])
-                if process['uid'] != 501 or not identity.same_path(process['executable'], entry['identity']['executable']):
-                    raise ValueError('Process executable/owner differs; no removal')
+            verify_processes(current_processes, entries)
             ports = listeners(run)
             foreign = [item for item in ports if item['pid'] not in {e['pid'] for e in entries}]
             emit({'phase': 'PREFLIGHT', 'services': before, 'processes': current_processes, 'listeners': ports})
             for entry in entries:
                 verify_registrations(registrations(run), [e for e in entries if e['target'] not in removed])
                 current = inspect_service(entry, run)
-                process = [p for p in processes(entries, run) if p['pid'] == entry['pid']]
+                observed_processes = processes(entries, run)
+                verify_processes(observed_processes, [e for e in entries if e['target'] not in removed])
+                process = [p for p in observed_processes if p['pid'] == entry['pid']]
                 if process != [p for p in current_processes if p['pid'] == entry['pid']]:
                     raise ValueError('Process identity changed; no removal')
                 emit({'phase': 'BEFORE_BOOTOUT', 'service': current, 'process': process})
@@ -177,6 +212,6 @@ def recover(run=command, pause=time.sleep):
 
 
 if __name__ == '__main__':
-    if sys.argv[1:] != ['recover-setup-v2-01']:
-        raise SystemExit('Separate approval required: recover-setup-v2-01')
+    if sys.argv[1:] != ['recover-setup-v2-02']:
+        raise SystemExit('Separate approval required: recover-setup-v2-02')
     raise SystemExit(recover())

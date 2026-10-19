@@ -1,0 +1,144 @@
+{
+  "domain": "user/501",
+  "identity_helper_sha256": "d9cccf3fe3cd3156525b292596e254698be1650ed1281c31b80480742f6ef837",
+  "kind": "RECOVERY_02_PLAN_NOT_EXECUTED",
+  "network_observation": "Historical 2026-10-18 lsof observed API PID 70913 UDP 127.0.0.1:2053, no 1053 binding. Not reread in this change; recovery must observe current bindings.",
+  "observed_at_utc": "2026-10-19T05:50:36.484250+00:00",
+  "operator_observations": "All four PID/UID/executable/start-time rows supplied by operator; exact rows retained as a fixture. Live service/plist/executable identities independently rechecked on 2026-10-19; original rejected whole-system row was not retained, so its identity and rejection cause remain unknown.",
+  "operator_process_fixture_sha256": "5f0c34272328d4a787c460047669848925bbae110053cb6ea491227714e69f1c",
+  "previous_recovery_journal_sha256": "72b99a00ad4bdd2005777b364530e2d5c2ee217fadd20d1fa3b4e0c3703dd770",
+  "process_observation_limit": "Targeted process rows and their start times are operator-supplied; /bin/ps and pgrep have not been run in Codex. Recovery must calibrate PID-only discovery against all four live services before removal.",
+  "process_timezone": "Europe/Oslo",
+  "qualification_granted": false,
+  "registrations": {
+    "gui/501": {
+      "endpoints": [],
+      "services": []
+    },
+    "system": {
+      "endpoints": [],
+      "services": []
+    },
+    "user/501": {
+      "endpoints": [
+        "com.apple.container.network.container-network-vmnet.default",
+        "com.apple.container.core.container-core-images",
+        "com.apple.container.apiserver",
+        "com.apple.container.core.machine-apiserver"
+      ],
+      "services": [
+        "com.apple.container.container-network-vmnet.default",
+        "com.apple.container.container-core-images",
+        "com.apple.container.machine-apiserver",
+        "com.apple.container.apiserver"
+      ]
+    }
+  },
+  "services": [
+    {
+      "arguments": [
+        "/usr/local/bin/container-apiserver",
+        "start"
+      ],
+      "effective_roots": {
+        "CONTAINER_APP_ROOT": "/private/tmp/faultline-apple-positive-v2/setup-v2/runtime",
+        "CONTAINER_INSTALL_ROOT": "/usr/local"
+      },
+      "executable_sha256": "0d05388259e73b63f84680968fa5fa39feeef4219cce45c5655d29d3172a63b9",
+      "identity": {
+        "executable": "/usr/local/bin/container-apiserver",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v2/runtime/apiserver/apiserver.plist",
+        "sha256": "25a95feff5c9c2e0643fa9fa70c4a29ccbe6d629c62082799254ed9c427bfbe1"
+      },
+      "mach_services": [
+        "com.apple.container.apiserver"
+      ],
+      "pid": 70913,
+      "process_started": "Sun Oct 18 23:31:23 2026",
+      "process_uid": 501,
+      "state": "running",
+      "target": "user/501/com.apple.container.apiserver"
+    },
+    {
+      "arguments": [
+        "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver",
+        "start",
+        "--resources",
+        "/usr/local/libexec/container/plugins/machine-apiserver/resources"
+      ],
+      "effective_roots": {
+        "CONTAINER_APP_ROOT": "/private/tmp/faultline-apple-positive-v2/setup-v2/runtime/",
+        "CONTAINER_INSTALL_ROOT": "/usr/local/"
+      },
+      "executable_sha256": "1d3f53f6979d92d0bb9f343cc16782bad9a4b23bb380619f4b0d87d9d6df449c",
+      "identity": {
+        "executable": "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v2/runtime/plugin-state/machine-apiserver/service.plist",
+        "sha256": "efb8b2830232bd7fd9f029e793c06645389596b031c56b8ff841443790ca7ce9"
+      },
+      "mach_services": [
+        "com.apple.container.core.machine-apiserver"
+      ],
+      "pid": 70924,
+      "process_started": "Sun Oct 18 23:31:25 2026",
+      "process_uid": 501,
+      "state": "running",
+      "target": "user/501/com.apple.container.machine-apiserver"
+    },
+    {
+      "arguments": [
+        "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images",
+        "start"
+      ],
+      "effective_roots": {
+        "CONTAINER_APP_ROOT": "/private/tmp/faultline-apple-positive-v2/setup-v2/runtime/",
+        "CONTAINER_INSTALL_ROOT": "/usr/local/"
+      },
+      "executable_sha256": "dc88d9aeb67f8258c3697f8485b6ee77018d63b86b6dc3ba9905fb88f01cb6eb",
+      "identity": {
+        "executable": "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v2/runtime/plugin-state/container-core-images/service.plist",
+        "sha256": "843bb73ce1c1235e168552e1bcb36bd06274d5499abc1b7082eff33fa3c4111d"
+      },
+      "mach_services": [
+        "com.apple.container.core.container-core-images"
+      ],
+      "pid": 70925,
+      "process_started": "Sun Oct 18 23:31:26 2026",
+      "process_uid": 501,
+      "state": "running",
+      "target": "user/501/com.apple.container.container-core-images"
+    },
+    {
+      "arguments": [
+        "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet",
+        "start",
+        "--id",
+        "default",
+        "--service-identifier",
+        "com.apple.container.network.container-network-vmnet.default",
+        "--mode",
+        "nat"
+      ],
+      "effective_roots": {
+        "CONTAINER_APP_ROOT": "/private/tmp/faultline-apple-positive-v2/setup-v2/runtime/",
+        "CONTAINER_INSTALL_ROOT": "/usr/local/"
+      },
+      "executable_sha256": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+      "identity": {
+        "executable": "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v2/runtime/networks/default/service.plist",
+        "sha256": "dd8a2679d2efa247fdf7cdd5de7f11eef548123ece671db0816209fbde321683"
+      },
+      "mach_services": [
+        "com.apple.container.network.container-network-vmnet.default"
+      ],
+      "pid": 70921,
+      "process_started": "Sun Oct 18 23:31:24 2026",
+      "process_uid": 501,
+      "state": "running",
+      "target": "user/501/com.apple.container.container-network-vmnet.default"
+    }
+  ],
+  "setup_receipt_sha256": "9cca8060f4314ef1ba6ef1fe430dc2318d81f8f2de3501d90a205e5f8c466ce4"
+}

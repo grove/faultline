@@ -48,8 +48,9 @@ The authorized setup-v2 attempt started four services in `user/501`, then failed
 Faultline's raw path comparisons. API roots had no trailing slash; plugin roots
 did. The original receipt is preserved byte for byte, and independent read-only
 launchd/plist inspection identifies all four services in the dedicated setup-v2
-root. See the [separate recovery proposal](qualification/APPLE_CONTAINER_RECOVERY.md).
-**Recovery approval is the next action; do not retry startup or provision images.**
+root. See the [separate recovery proposal](qualification/APPLE_CONTAINER_RECOVERY_02.md).
+Recovery-01 then stopped on unscoped process parsing, with no removal attempted.
+**Fresh recovery-02 approval is the next action; do not retry startup or provision images.**
 No cleanup or VM execution has run. Setup-v1, setup-v2 and Stage 1a authority are
 consumed. Earlier preparation/inventory receipts and frozen source identities
 remain unchanged; execution-time inventory code identity remains operator-corroborated.
