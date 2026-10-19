@@ -1,0 +1,16 @@
+{
+  "armed_monotonic": 62992.331094291,
+  "boot_identity": "{ sec = 1792339836, usec = 424865 } Sun Oct 18 18:10:36 2026\n",
+  "case": "coordinator-loss",
+  "deadline_monotonic": 63002.331094291,
+  "directory": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss",
+  "fixture_label": "dev.faultline.guardian-calibration-v1.coordinator-loss.fixture",
+  "fixture_plist_sha256": "ef8533517935e1e4171c6faf6293e8556fa78eb36f21fd1140d35b0768e19a98",
+  "guardian_label": "dev.faultline.guardian-calibration-v1.coordinator-loss.guardian",
+  "guardian_plist_sha256": "9f6c8fe52a3f17baa5eea45581d70f6c60a8b62cda250c7b5244d9e824d8693a",
+  "python_sha256": {
+    "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python": "409ddb09021ac53577e7658de9ec09c899655c77a38744679ef73be9af21ecd5",
+    "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15": "1955899cb535256cfa477d926d016819e52e747984722c44f76e39a4950fee0e"
+  },
+  "source_sha256": "89c5e3a23bef60672b6818dcb8ed421ffc3907b70f5e5cd76908bd6dbe309013"
+}

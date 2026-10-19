@@ -1,0 +1,84 @@
+{
+  "approval_command_document": "qualification/APPLE_CONTAINER_GUARDIAN_CALIBRATION_V2.md",
+  "cause_of_v1": "UNDETERMINED; underlying bootstrap streams/status were discarded",
+  "exact_labels": [
+    "dev.faultline.guardian-calibration-v2.coordinator-loss.guardian",
+    "dev.faultline.guardian-calibration-v2.coordinator-loss.fixture",
+    "dev.faultline.guardian-calibration-v2.guardian-restart.guardian",
+    "dev.faultline.guardian-calibration-v2.guardian-restart.fixture"
+  ],
+  "execution": "NO_GO / UNAVAILABLE",
+  "execution_authorized": false,
+  "issue_2": "OPEN",
+  "kind": "GUARDIAN_CALIBRATION_V2_PREPARATION_ONLY",
+  "live_v2_run": false,
+  "new_live_evidence_root": "/private/tmp/faultline-guardian-calibration-v2",
+  "parent_commit": "944b88983c491487f01b3529e1ad3764c08669e0",
+  "pr_17": "DRAFT",
+  "publication_authorized_by": "2026-10-19 user request to continue PR #17 / issue #2 and publish reviewed code, hashes and one-time authorization procedure before approval",
+  "qualification_granted": false,
+  "review": {
+    "bootstrap_limits": {
+      "capture_bytes_combined": 65536,
+      "command_seconds": 1,
+      "raw_encoding": "base64",
+      "retained_cli_cleanup_seconds": 1,
+      "retry": false
+    },
+    "limitations": [
+      "No live launchd acceptance/restart/forced stop test",
+      "Effective caller path access is not launchd acceptance",
+      "Remaining trusted metadata commands retain v1 finite-output assumption",
+      "Same-UID identity checks and target actions are not atomic; no hostile replacement qualification",
+      "No VM/descendant/network/filesystem/resource qualification"
+    ],
+    "scope": [
+      "two bootstrap callers",
+      "bootstrap path/argv preflight and streaming diagnostics",
+      "original plan/readiness/deadline binding on restart",
+      "v1 evidence preservation and consumed status",
+      "synthetic fixtures/tests and one-time operator procedure"
+    ],
+    "termination": "Exact registration/origin/argv/source and independent PID/UID/birth/executable checks; no uncertain termination or automatic repair",
+    "unchanged": [
+      "all previously published files",
+      "v1 original live evidence bytes/modes",
+      "Container services",
+      "production guardian",
+      "VM state"
+    ]
+  },
+  "source_sha256": {
+    "qualification/2026-10-19-apple-container-guardian-calibration-v1-outcome.json": "fdcb968fdf4f211d78077694dcd5884ff5f1dbd4c0f03fab313d38af0ff2c7ce",
+    "qualification/APPLE_CONTAINER_GUARDIAN_CALIBRATION_V2.md": "79cbcada1009f86cbfa7a146099c2eefa00aa220eb776153258ba4a015fadddb",
+    "qualification/APPLE_CONTAINER_GUARDIAN_CALIBRATION_V2_INVESTIGATION.md": "baf1cf8f8211749f364ca8478e2c651db89e4db419b4ba02b6bc7486d613c1e8",
+    "qualification/apple_container_guardian_calibration_v2.py": "525192798ed2c37bf6d381f3d81be929ba4a761964c6eca2797c319aa1f3a96f",
+    "qualification/guardian-calibration-launchd-docs/inspection.json": "d4d5ef0eefd922579bab43415fab339433dd88561cfd2b0365c9eaf9c99feb4d",
+    "qualification/guardian-calibration-launchd-docs/launchctl.1": "cf8752dd8eb8c3370c7d03b333430aa68a665c907c475ea407cb1b6542083ae2",
+    "qualification/guardian-calibration-launchd-docs/launchd.plist.5": "1c5f5041c1d3492988bfa6f9dc6d969dfd072d20af2703c28d9a8f6ed6aaadcb",
+    "qualification/guardian-calibration-launchd-docs/v1-path-modes-acls.txt": "a8f234cfda6d42d8181001f7fc7b773ebf4bf5f8ef4e4774e7f4e1690ad8f4ac",
+    "qualification/guardian-calibration-v1-evidence/attempt.json": "16b21b253e47d8bcd008d8f6e68f16e4fcdee7133220b0cfa343cbfc01515d76",
+    "qualification/guardian-calibration-v1-evidence/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.fixture.plist": "ef8533517935e1e4171c6faf6293e8556fa78eb36f21fd1140d35b0768e19a98",
+    "qualification/guardian-calibration-v1-evidence/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.guardian.plist": "9f6c8fe52a3f17baa5eea45581d70f6c60a8b62cda250c7b5244d9e824d8693a",
+    "qualification/guardian-calibration-v1-evidence/coordinator-loss/plan.json": "9551cb93e89b9d223a7f91da986c4b73e106a78d0de0438cfdff18fd99e6d6ec",
+    "qualification/guardian-calibration-v1-evidence/failure.json": "82c4073531951c024f6ad84a071b3350c45e2d4e43bae265279d236f41c40375",
+    "tests/test_apple_container_guardian_calibration_v2.py": "24bf47498a07dcb00f02e7060e0bc97b067c5ebfee1f8ac9863165ba616bfd07"
+  },
+  "v1_authorization": "CONSUMED_FAILURE_DO_NOT_REPEAT",
+  "v2_authorization": "NOT_GRANTED",
+  "validation": {
+    "full_suite_command": "/opt/homebrew/bin/python3 -B -m unittest discover -s tests",
+    "full_suite_passed": 94,
+    "independent_live_process_observation": "UNAVAILABLE in restricted session; no new ps observation attempted",
+    "initial_full_suite_isolated_invocation": "-I discovery ran 90 entries with one pre-existing test_isolation import error: isolated sys.path excludes repository package; rerun without -I",
+    "live_launchd_registration": false,
+    "scoped_command": "/opt/homebrew/bin/python3 -I -B -m unittest discover -s tests -p 'test_apple_container*.py'",
+    "scoped_passed": 85,
+    "synthetic_launchd_observations": true,
+    "synthetic_real_subprocesses": true,
+    "v2_tests": 11,
+    "vm_launches": 0,
+    "whitespace_check": "git diff --cached --check passes excluding the two byte-exact installed manual snapshots, whose original trailing spaces are deliberately preserved"
+  },
+  "vm_launches": 0
+}

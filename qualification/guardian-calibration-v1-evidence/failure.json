@@ -1,0 +1,5 @@
+{
+  "error": "Command failed: ['/bin/launchctl', 'bootstrap', 'user/501', '/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.guardian.plist']",
+  "result": "INCOMPLETE_STOP_AND_REVIEW",
+  "retry": false
+}

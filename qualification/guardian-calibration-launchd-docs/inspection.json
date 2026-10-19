@@ -1,0 +1,291 @@
+{
+  "cause": "UNDETERMINED",
+  "inspection": "READ_ONLY_NO_BOOTSTRAP",
+  "limits": "Mode/ACL/effective caller access now cannot establish launchd access or acceptance at the earlier failure. No live launchd command, process query or log query was repeated.",
+  "manual_pins": {
+    "launchctl.1": "cf8752dd8eb8c3370c7d03b333430aa68a665c907c475ea407cb1b6542083ae2",
+    "launchd.plist.5": "1c5f5041c1d3492988bfa6f9dc6d969dfd072d20af2703c28d9a8f6ed6aaadcb",
+    "v1-path-modes-acls.txt": "a8f234cfda6d42d8181001f7fc7b773ebf4bf5f8ef4e4774e7f4e1690ad8f4ac"
+  },
+  "manual_provenance": "Installed /usr/share/man manuals; launchctl hash equals previously pinned setup-v1 review. Apple OSS source linked by v1 was inspected but is historical and not assumed to match this installed launchd.",
+  "paths": [
+    {
+      "flags": 1048576,
+      "gid": 0,
+      "mode": "0o755",
+      "path": "/",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 0
+    },
+    {
+      "flags": 1048576,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/Users",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 0
+    },
+    {
+      "flags": 0,
+      "gid": 20,
+      "mode": "0o750",
+      "path": "/Users/grove",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 20,
+      "mode": "0o755",
+      "path": "/Users/grove/projects",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 20,
+      "mode": "0o755",
+      "path": "/Users/grove/projects/faultline",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 20,
+      "mode": "0o755",
+      "path": "/Users/grove/projects/faultline/qualification",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 20,
+      "mode": "0o644",
+      "path": "/Users/grove/projects/faultline/qualification/apple_container_guardian_calibration_v1.py",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": false,
+      "sha256": "89c5e3a23bef60672b6818dcb8ed421ffc3907b70f5e5cd76908bd6dbe309013",
+      "uid": 501
+    },
+    {
+      "flags": 32768,
+      "gid": 0,
+      "mode": "0o755",
+      "path": "/opt",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 0
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o775",
+      "path": "/opt/homebrew/Cellar",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "sha256": "409ddb09021ac53577e7658de9ec09c899655c77a38744679ef73be9af21ecd5",
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "sha256": "1955899cb535256cfa477d926d016819e52e747984722c44f76e39a4950fee0e",
+      "uid": 501
+    },
+    {
+      "flags": 1081344,
+      "gid": 0,
+      "mode": "0o755",
+      "path": "/private",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 0
+    },
+    {
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o1777",
+      "path": "/private/tmp",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 0
+    },
+    {
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o700",
+      "path": "/private/tmp/faultline-guardian-calibration-v1",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o700",
+      "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": true,
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o400",
+      "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.fixture.plist",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": false,
+      "sha256": "ef8533517935e1e4171c6faf6293e8556fa78eb36f21fd1140d35b0768e19a98",
+      "uid": 501
+    },
+    {
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o400",
+      "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.guardian.plist",
+      "readable_by_codex": true,
+      "searchable_or_executable_by_codex": false,
+      "sha256": "9f6c8fe52a3f17baa5eea45581d70f6c60a8b62cda250c7b5244d9e824d8693a",
+      "uid": 501
+    }
+  ],
+  "plutil_recheck": {
+    "argv": [
+      "/usr/bin/plutil",
+      "-lint",
+      "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.guardian.plist",
+      "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.fixture.plist"
+    ],
+    "exit_status": 0,
+    "stderr": "",
+    "stdout": "Both first-case plist paths: OK"
+  },
+  "v1_plan_source_interpreter_pins_match_now": true
+}

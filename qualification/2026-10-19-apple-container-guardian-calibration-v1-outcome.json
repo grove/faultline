@@ -1,0 +1,91 @@
+{
+  "authorization": "CONSUMED_DO_NOT_REPEAT",
+  "cause": "UNDETERMINED: helper discarded command result; observations do not establish bootstrap acceptance failure cause",
+  "execution": "NO_GO / UNAVAILABLE",
+  "execution_witnessed_by_codex": false,
+  "independent_offline_review": {
+    "manifest": [
+      {
+        "gid": 0,
+        "mode": "0o700",
+        "nlink": 5,
+        "path": "/private/tmp/faultline-guardian-calibration-v1",
+        "size": 160,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "mode": "0o400",
+        "nlink": 1,
+        "path": "/private/tmp/faultline-guardian-calibration-v1/attempt.json",
+        "sha256": "16b21b253e47d8bcd008d8f6e68f16e4fcdee7133220b0cfa343cbfc01515d76",
+        "size": 191,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "mode": "0o700",
+        "nlink": 5,
+        "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss",
+        "size": 160,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "mode": "0o400",
+        "nlink": 1,
+        "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.fixture.plist",
+        "sha256": "ef8533517935e1e4171c6faf6293e8556fa78eb36f21fd1140d35b0768e19a98",
+        "size": 1091,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "mode": "0o400",
+        "nlink": 1,
+        "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.guardian.plist",
+        "sha256": "9f6c8fe52a3f17baa5eea45581d70f6c60a8b62cda250c7b5244d9e824d8693a",
+        "size": 1222,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "mode": "0o400",
+        "nlink": 1,
+        "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/plan.json",
+        "sha256": "9551cb93e89b9d223a7f91da986c4b73e106a78d0de0438cfdff18fd99e6d6ec",
+        "size": 1124,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "mode": "0o400",
+        "nlink": 1,
+        "path": "/private/tmp/faultline-guardian-calibration-v1/failure.json",
+        "sha256": "82c4073531951c024f6ad84a071b3350c45e2d4e43bae265279d236f41c40375",
+        "size": 274,
+        "uid": 501
+      }
+    ],
+    "readiness_or_journals_present": false,
+    "second_case_present": false
+  },
+  "issue_2": "OPEN",
+  "kind": "GUARDIAN_CALIBRATION_V1_CONSUMED_FAILURE",
+  "operator_observations": {
+    "first_bootstrap": "failed; underlying exit status/stdout/stderr not preserved",
+    "first_case_launchctl_print": "both labels absent; exit 113 reported for each; raw output not supplied",
+    "last_hour_launchd_log_query": "guardian-calibration-v1 filter returned column header only; exact argv/raw output not supplied",
+    "pgrep": {
+      "argv": "pgrep -u 501 -fl apple_container_guardian_calibration_v1.py",
+      "exit_status": 1,
+      "matches": []
+    },
+    "plutil_lint": "both first-case plists passed; raw output not supplied"
+  },
+  "original_root": "/private/tmp/faultline-guardian-calibration-v1",
+  "originals_modified": false,
+  "pr_17": "DRAFT",
+  "qualification_granted": false,
+  "vm_launches": 0
+}
