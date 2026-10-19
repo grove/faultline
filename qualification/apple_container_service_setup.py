@@ -1,5 +1,6 @@
 """Single approved service-setup attempt; never launches a VM or workload."""
 
+from datetime import datetime, timezone
 import hashlib
 import importlib.util
 import json
@@ -7,6 +8,8 @@ import os
 from pathlib import Path
 import plistlib
 import re
+import shutil
+import stat
 import subprocess
 import sys
 import time
@@ -15,7 +18,7 @@ import tomllib
 
 HERE = Path(__file__).resolve().parent
 BUNDLE = Path("/private/tmp/faultline-apple-positive-v2")
-ATTEMPT = "setup-v3"
+ATTEMPT = "setup-v4"
 SETUP = BUNDLE / ATTEMPT
 CLI = "/usr/local/bin/container"
 PLUGIN_ROOT = Path("/usr/local/libexec/container/plugins")
@@ -34,6 +37,8 @@ ENV = {"HOME": "/Users/grove", "PATH": "/usr/bin:/bin", "LC_ALL": "C", "TZ": "Eu
        "CONTAINER_INSTALL_ROOT": "/usr/local"}
 START = [CLI, "system", "start", "--app-root", ENV["CONTAINER_APP_ROOT"],
          "--install-root", "/usr/local", "--disable-kernel-install", "--timeout", "15"]
+PULL = [CLI, "image", "pull", "--platform", "linux/arm64/v8", "--scheme", "https",
+        "--progress", "plain", "--max-concurrent-downloads", "1", INIT]
 SERVICE_PROGRAMS = {
     "com.apple.container.apiserver": "/usr/local/bin/container-apiserver",
     "com.apple.container.machine-apiserver": "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver",
@@ -63,6 +68,110 @@ def same_path(left, right):
         return Path(left).is_absolute() and Path(right).is_absolute() and Path(left).samefile(right)
     except (OSError, TypeError, ValueError):
         return False
+
+
+def storage(root):
+    """Phase-boundary admission checks, not a live quota on launchd services."""
+    def unreadable(error):
+        raise error
+
+    logical = allocated = count = 0
+    for directory, dirs, files in os.walk(root, followlinks=False, onerror=unreadable):
+        if len(Path(directory).relative_to(root).parts) > 16:
+            raise ValueError("Setup storage nesting exceeds budget")
+        for name in dirs + files:
+            info = (Path(directory) / name).lstat()
+            count += 1
+            if count > 4096 or not (stat.S_ISREG(info.st_mode) or stat.S_ISDIR(info.st_mode)):
+                raise ValueError("Unexpected file kind/count in setup storage")
+            logical += info.st_size
+            allocated += info.st_blocks * 512
+            if max(logical, allocated) > 1024**3:
+                raise ValueError("Setup exceeds one GiB storage admission budget")
+    free = shutil.disk_usage(root).free
+    if free < 2 * 1024**3:
+        raise ValueError("Setup requires two GiB free space")
+    return {"logical_bytes": logical, "allocated_bytes": allocated, "free_bytes": free}
+
+
+def verify_init(root, reference=INIT):
+    """Check pinned local OCI content and fresh snapshot without mounting or executing it."""
+    checked = []
+
+    def regular(path, limit):
+        relative = path.relative_to(root)
+        for parent in (relative, *relative.parents):
+            if (root / parent).is_symlink():
+                raise ValueError("Symlink in init storage")
+        info = path.lstat()
+        if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or not 0 < info.st_size <= limit:
+            raise ValueError("Invalid init file kind, links or size: " + str(relative))
+        return info
+
+    def metadata(path):
+        regular(path, 1048576)
+        return json.loads(path.read_bytes())
+
+    def blob(descriptor, limit):
+        digest = descriptor["digest"]
+        if not re.fullmatch(r"sha256:[0-9a-f]{64}", digest):
+            raise ValueError("Invalid init content digest")
+        path = root / "content/blobs/sha256" / digest[7:]
+        info = regular(path, limit)
+        if type(descriptor["size"]) is not int or descriptor["size"] != info.st_size:
+            raise ValueError("Init blob size mismatch")
+        with path.open("rb") as source:
+            if hashlib.file_digest(source, "sha256").hexdigest() != digest[7:]:
+                raise ValueError("Init blob digest mismatch")
+        checked.append({"path": str(path), **descriptor})
+        return path
+
+    pin = reference.rsplit("@", 1)[1]
+    state = metadata(root / "state.json")
+    if set(state) != {reference}:
+        raise ValueError("Unexpected image references in dedicated runtime")
+    index = metadata(blob(state[reference], 1048576))
+    if index["schemaVersion"] != 2 or len(index["manifests"]) != 1:
+        raise ValueError("Expected one init platform descriptor")
+    descriptor = index["manifests"][0]
+    platform = descriptor["platform"]
+    if (descriptor["digest"] != pin or platform["os"] != "linux" or platform["architecture"] != "arm64" or
+            platform.get("variant", "v8") != "v8"):
+        raise ValueError("Init platform/pinned manifest differs")
+    manifest = metadata(blob(descriptor, 1048576))
+    if manifest["schemaVersion"] != 2 or not 1 <= len(manifest["layers"]) <= 8:
+        raise ValueError("Init manifest/layer count exceeds scope")
+    config = metadata(blob(manifest["config"], 1048576))
+    if config["os"] != "linux" or config["architecture"] != "arm64" or config.get("variant", "v8") != "v8":
+        raise ValueError("Init configuration platform differs")
+    if sum(d["size"] for d in manifest["layers"]) > 256 * 1024**2:
+        raise ValueError("Init compressed layers exceed 256 MiB")
+    for layer in manifest["layers"]:
+        blob(layer, 256 * 1024**2)
+    directory = root / "snapshots" / pin[7:]
+    snapshot = directory / "snapshot"
+    info = regular(snapshot, 640 * 1024**2)
+    description = metadata(directory / "snapshot-info")
+    if (description["type"]["block"]["format"] != "ext4" or description["destination"] != "/" or
+            description["source"] != str(snapshot) or description["options"] != []):
+        raise ValueError("Init snapshot metadata differs")
+    for ingest in (root / "content/ingest", root / "snapshots/ingest"):
+        if not ingest.is_dir() or any(ingest.iterdir()):
+            raise ValueError("Incomplete init ingest remains")
+    with snapshot.open("rb") as source:
+        source.seek(1024)
+        superblock = source.read(1024)
+        log_block_size = int.from_bytes(superblock[24:28], "little")
+        blocks = int.from_bytes(superblock[4:8], "little") + (int.from_bytes(superblock[336:340], "little") << 32)
+        if (superblock[56:58] != b"\x53\xef" or log_block_size > 6 or
+                not 512 * 1024**2 <= blocks * (1024 << log_block_size) <= info.st_size):
+            raise ValueError("Init snapshot EXT4 geometry is invalid")
+        source.seek(0)
+        digest = hashlib.file_digest(source, "sha256").hexdigest()
+    return {"reference": reference, "blobs": checked, "snapshot": {
+        "path": str(snapshot), "bytes": info.st_size, "allocated_bytes": info.st_blocks * 512,
+        "sha256": digest, "metadata": description,
+        "check": "STRUCTURE_AND_UNPACK_EXIT_ONLY; NOT_FSCK_OR_GUEST_BOOT"}}
 
 
 def domain_names(text, domain):
@@ -122,7 +231,8 @@ def owned_plist(text, target):
 def setup():
     started = time.monotonic()
     config_bytes = (HERE / "apple-container-service.toml").read_bytes()
-    report = {"kind": "SERVICE_SETUP_ONLY", "boundary_launches_requested": 0,
+    report = {"kind": "SERVICE_SETUP_AND_PINNED_INIT_ONLY", "boundary_launches_requested": 0,
+              "started_at_utc": datetime.now(timezone.utc).isoformat(),
               "qualification_granted": False, "cwd": "/", "environment": ENV,
               "source_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
                                 for p in (Path(__file__), HERE / "apple-container-service.toml",
@@ -209,7 +319,7 @@ def setup():
 
         try:
             if SETUP.exists() or SETUP.is_symlink():
-                raise ValueError("Setup-v3 directory already exists; do not reuse the attempt")
+                raise ValueError("Setup-v4 directory already exists; do not reuse the attempt")
             if report["source_sha256"]["apple_container_recover_setup_v2.py"] != OBSERVER_SHA256:
                 raise ValueError("Reviewed process observer bytes changed")
             spec = importlib.util.spec_from_file_location("setup_process_observer", HERE / "apple_container_recover_setup_v2.py")
@@ -248,6 +358,7 @@ def setup():
             config = SETUP / "config-home/container"
             config.mkdir(parents=True)
             (config / "config.toml").write_bytes(config_bytes)
+            report["storage_before_start"] = storage(SETUP)
             report["startup_attempted"] = True
             checkpoint()
             run(START, 120)
@@ -261,8 +372,6 @@ def setup():
             copied = SETUP / "runtime/config/config.toml"
             if copied.read_bytes() != (config / "config.toml").read_bytes():
                 raise ValueError("Effective startup configuration differs")
-            if not json.loads(run([CLI, "image", "inspect", INIT], 15)):
-                raise ValueError("Init metadata missing after startup")
             after = inspect_domains()
             report["owned_services"] = owners(after)
             if (set(report["owned_services"]) != set(SERVICE_PROGRAMS) or
@@ -270,7 +379,20 @@ def setup():
                 raise ValueError("Expected startup services missing")
             report["process_plan"] = process_plan(report["owned_services"])
             report["listeners"] = observer.listeners(observe)
-            report["result"] = "SERVICES_STARTED_INIT_METADATA_PRESENT"
+            report["storage_before_pull"] = storage(SETUP)
+            report["provisioning_attempted"] = True
+            checkpoint()
+            run(PULL, 180)
+            report["storage_after_pull"] = storage(SETUP)
+            # ImageInspect intentionally filters the configured init; [] with exit 0 is expected.
+            run([CLI, "image", "inspect", INIT], 15)
+            report["init_verification"] = verify_init(SETUP / "runtime")
+            if owners(inspect_domains()) != {
+                    label: {k: v for k, v in entry.items() if k not in ("process_uid", "process_started")}
+                    for label, entry in report["owned_services"].items()}:
+                raise ValueError("Service identity changed during provisioning")
+            observer.verify_processes(observer.processes(report["process_plan"], observe), report["process_plan"])
+            report["result"] = "SERVICES_STARTED_INIT_CONTENT_SNAPSHOT_CHECKED"
         except (Exception, KeyboardInterrupt) as error:
             report["error"] = type(error).__name__ + ": " + str(error)
             if report["startup_attempted"]:
@@ -325,7 +447,7 @@ def setup():
         finally:
             report["elapsed_seconds"] = time.monotonic() - started
             checkpoint()
-    return 0 if report["result"] == "SERVICES_STARTED_INIT_METADATA_PRESENT" else 1
+    return 0 if report["result"] == "SERVICES_STARTED_INIT_CONTENT_SNAPSHOT_CHECKED" else 1
 
 
 if __name__ == "__main__":

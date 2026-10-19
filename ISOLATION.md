@@ -57,10 +57,24 @@ The [review](qualification/2026-10-19-apple-container-recovery-02-review.json)
 distinguishes receipt contents, source/hash comparison and current observations.
 All previous receipts/source identities are preserved. Setup and recovery attempt
 identities are consumed; do not repeat them. No new startup, provisioning or guest
-execution is authorized. The next proposed effect is a [fresh setup-v3 attempt](qualification/APPLE_CONTAINER_SERVICE_SETUP_V3.md),
-including pinned-init retrieval and identity/process-verified failure recovery.
-It has not run and requires separate approval. Scoped recovery does not qualify
-an execution boundary.
+execution is authorized. The operator subsequently executed [setup-v3](qualification/APPLE_CONTAINER_SERVICE_SETUP_V3.md)
+once. Its [unchanged receipt](qualification/2026-10-19-apple-container-setup-v3.json),
+SHA-256 `27d50d2a34e6fc12c30066068b5edc754ad545bf34004cd1b781827c4ad644e1`,
+records matching source/software/service identities, startup exit 0 and running
+status, then exact-init image-not-found and **FAILED**. Four exact bootouts returned
+0 and final scoped registrations/processes/DNS bindings were empty:
+**SCOPED_RECOVERY_OBSERVED**. Setup-v3 is consumed; its original receipt and runtime
+are preserved. No VM, canary, worker/kernel provisioning or #10 ran.
+
+The [bounded log/source investigation](qualification/2026-10-19-apple-container-setup-v3-outcome.json)
+identifies a suppressed parsing path in implicit init retrieval; it does not
+attribute failure to networking, authentication, digest compatibility or cache.
+Also, 1.5.0 image inspection intentionally hides the configured init: successful
+`[]` is expected, and the old nonempty-metadata check was incorrect.
+The next proposed effect is [one fresh setup-v4 and explicit pinned-init pull](qualification/APPLE_CONTAINER_SERVICE_SETUP_V4.md),
+after service/root/ownership checks, followed by local blob and snapshot structural
+checks. It requires separate approval. Scoped recovery and provisioning do not
+qualify an execution boundary. PR #17 remains draft and issue #2 open.
 
 The latest [staged authorization proposal](qualification/APPLE_CONTAINER_NEXT.md)
 adds a frozen positive-v2 fixture with host acknowledgement before tmpfs teardown,
@@ -222,7 +236,7 @@ Even successful synthetic qualification would apply only to its exact host,
 versions and configuration, require independent review, and would not enable
 `faultline-audit`, mutations, project tests or the #10 experiment.
 
-**Decision: NO_GO / UNAVAILABLE.** The next request is separately approved setup-v3,
+**Decision: NO_GO / UNAVAILABLE.** The next request is separately approved setup-v4,
 with fresh identities, pinned configuration and the explicit host effects above.
 Worker/kernel provisioning and the reviewed synthetic protocol require later authorization. This PR
 does not request blanket installation or experiment authority. Do not escape the

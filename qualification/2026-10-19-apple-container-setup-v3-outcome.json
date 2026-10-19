@@ -1,0 +1,210 @@
+{
+  "attempt": "setup-v3",
+  "authorization_status": "CONSUMED_DO_NOT_REPEAT",
+  "execution_gate": "NO_GO / UNAVAILABLE",
+  "final_scoped_postcheck": {
+    "listeners": [],
+    "processes": [],
+    "registrations": {
+      "gui/501": {
+        "endpoints": [],
+        "services": []
+      },
+      "system": {
+        "endpoints": [],
+        "services": []
+      },
+      "user/501": {
+        "endpoints": [],
+        "services": []
+      }
+    }
+  },
+  "four_exact_bootouts_exit": 0,
+  "frozen_preparations": {
+    "/private/tmp/faultline-apple-positive-v2/evidence/prepared-v2.json": {
+      "all_protected_trees_match": true,
+      "all_source_hashes_match": true,
+      "receipt_sha256": "5c2c360a9b025de6fce372a4129b365580b94eb68503b8017fa2c4cd7331f385"
+    },
+    "/private/tmp/faultline-apple-review-01/evidence/prepared.json": {
+      "all_protected_trees_match": true,
+      "all_source_hashes_match": true,
+      "receipt_sha256": "3349e3c1e401afa9c32de55ecd385cd65afc46b01fcfbb7660d1c0f763f4426d"
+    }
+  },
+  "historical_records_unchanged_and_equal_remote_pr_head": {
+    "qualification/2026-10-18-apple-container-inventory-review.json": "259d19485e76ab24fef681c6411bc6f855433b029554379f4da40fa2a712bd57",
+    "qualification/2026-10-18-apple-container-inventory.json": "801d606d2816c1ca63658edc1259edb71e7f7b83e741a16c605955c1e5f3f2b9",
+    "qualification/2026-10-18-apple-container-positive-review.json": "00bffad79bbf0a40860a6951520b7f57adf269c13ef20e75b68360f6e5b23320",
+    "qualification/2026-10-18-apple-container-positive-v2-prepared.json": "5c2c360a9b025de6fce372a4129b365580b94eb68503b8017fa2c4cd7331f385",
+    "qualification/2026-10-18-apple-container-preflight.json": "639cd38adf4556f81970886ffc40633c790c28c63a9dec1261b9ed1461c6713a",
+    "qualification/2026-10-18-apple-container-preparation.json": "7d9b36a1af6372d349cb5276c3e9347cdb31110add9d2a373e86a5e708f204a4",
+    "qualification/2026-10-18-apple-container-prepared.json": "3349e3c1e401afa9c32de55ecd385cd65afc46b01fcfbb7660d1c0f763f4426d",
+    "qualification/2026-10-18-apple-container-recovery-plan.json": "f727a96cbea4ac6751aa00894049c35b5c1b0d5a8206e36757f96734f643f9a9",
+    "qualification/2026-10-18-apple-container-review.json": "a6c62ae31ef067a11926b7529f7f2d4ad6991f319c6f001e44b20cd1ecf51f84",
+    "qualification/2026-10-18-apple-container-setup-v1-review.json": "c556f7a93e8b139fc7e9ac959b5a173e6194ef34c4252700841292810f66f64d",
+    "qualification/2026-10-18-apple-container-setup-v1.json": "e2fa363740ca780bd736f0daec8ed8f2e0c8bcf3621d0cbb5e9195a2b5ecfb1a",
+    "qualification/2026-10-18-apple-container-setup-v2.json": "9cca8060f4314ef1ba6ef1fe430dc2318d81f8f2de3501d90a205e5f8c466ce4",
+    "qualification/2026-10-18-apple-container-terminal-prerequisites.json": "cd9cddefa06fd299f29683d625dbc9796d8a6fcf02cf29d11eae282583931aa3",
+    "qualification/2026-10-18-apple-container-terminal.json": "08e519083ff3406a59422b217d2f43259062c467554744cb31b952a28e59e8e0",
+    "qualification/2026-10-18-macos.json": "7993892a631482c5181f403dbb04e3f0dea98a98f9be2f1c61cc8d8cf50407fe",
+    "qualification/2026-10-19-apple-container-recovery-01.jsonl": "72b99a00ad4bdd2005777b364530e2d5c2ee217fadd20d1fa3b4e0c3703dd770",
+    "qualification/2026-10-19-apple-container-recovery-02-operator-process-check.json": "633ebd558fd0a4686fd7726b40babfc946862e9e5b8edff4d93041d1bb9150dd",
+    "qualification/2026-10-19-apple-container-recovery-02-plan.json": "26b72f4f05406f714c2f6ac92fdaba9d5fe39b6b387bb4f4568c43274146e679",
+    "qualification/2026-10-19-apple-container-recovery-02-review.json": "38aa1c49d126765591eac3b4858f54ccaf39cc95612a7cee4870e0dc402a11b5",
+    "qualification/2026-10-19-apple-container-recovery-02.jsonl": "22513d910a16fa263df059571d6046458f60008122e56fc9686f0a512b91a5c6",
+    "qualification/2026-10-19-apple-container-setup-v3-review.json": "4420d39e7ea725640c7b81e50d8798b99cab5eb0810e7d31772600446f781957"
+  },
+  "init_inspect_error": "image not found",
+  "init_inspect_exit": 1,
+  "issue_2": "KEEP_OPEN",
+  "kind": "READ_ONLY_REVIEW_AFTER_OPERATOR_SETUP_V3",
+  "new_live_setup_retrieval_cleanup_runs": 0,
+  "next_proposal": "APPLE_CONTAINER_SERVICE_SETUP_V4.md",
+  "operator_execution_not_witnessed_or_repeated": true,
+  "original_receipt": "/private/tmp/faultline-apple-positive-v2/evidence/setup-v3.json",
+  "original_receipt_sha256": "27d50d2a34e6fc12c30066068b5edc754ad545bf34004cd1b781827c4ad644e1",
+  "pinned_sources": [
+    {
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "git_blob_sha1_verified_against_pinned_tree": "16dadb555665916480373092e2f74117f4162752",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/SystemStart.swift",
+      "path": "Sources/ContainerCommands/System/SystemStart.swift",
+      "repository": "apple/container",
+      "sha256": "2cba0eaebc534ca6696542c36cf3023a49182c4e06a68423282cd9d9f02a5185",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerCommands/System/SystemStart.swift"
+    },
+    {
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "git_blob_sha1_verified_against_pinned_tree": "7506dc315c6aa393184b9deb633c3c6d441f6368",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/ImagePull.swift",
+      "path": "Sources/ContainerCommands/Image/ImagePull.swift",
+      "repository": "apple/container",
+      "sha256": "ed9dd78bb8ef5c20083e77a7745bb0688b961e916dec3bf6fec4839b70f394be",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerCommands/Image/ImagePull.swift"
+    },
+    {
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "git_blob_sha1_verified_against_pinned_tree": "475a587fafb227df59480c6daa3a1091efe3e498",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/ImageInspect.swift",
+      "path": "Sources/ContainerCommands/Image/ImageInspect.swift",
+      "repository": "apple/container",
+      "sha256": "087db2cf79bc635fe2b1ae9e97694ad462b74a4f9cdefc90bac1a4b30af15fe7",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerCommands/Image/ImageInspect.swift"
+    },
+    {
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "git_blob_sha1_verified_against_pinned_tree": "fe916f01333a33968d86914c68274c2b2db47626",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/SnapshotStore.swift",
+      "path": "Sources/Services/ContainerImagesService/Server/SnapshotStore.swift",
+      "repository": "apple/container",
+      "sha256": "81b8c41dc3457e4785f23a53ba33cac92533ec118a24b0a447b4a2117c4db0b8",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/ContainerImagesService/Server/SnapshotStore.swift"
+    },
+    {
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "git_blob_sha1_verified_against_pinned_tree": "445a8762116dcb275cc96c935d28f97712538bc5",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/Filesystem.swift",
+      "path": "Sources/ContainerResource/Container/Filesystem.swift",
+      "repository": "apple/container",
+      "sha256": "c4c9aeb3d63eaa44d57d62eeae98978c1a6f5769abc83e3e9bb26331ef66c1b0",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/ContainerResource/Container/Filesystem.swift"
+    },
+    {
+      "commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+      "git_blob_sha1_verified_against_pinned_tree": "90d2d90df5a423865a1fdbb3ef100c21c1b56fed",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/ContentStoreService.swift",
+      "path": "Sources/Services/ContainerImagesService/Server/ContentStoreService.swift",
+      "repository": "apple/container",
+      "sha256": "305a28b9c53fb1c3ab0893654c051da4fe2bb1b2dda24f5e0fbfc248239b38c1",
+      "url": "https://github.com/apple/container/blob/d265d669ecae041bf338cb3b39c4118316d138f0/Sources/Services/ContainerImagesService/Server/ContentStoreService.swift"
+    },
+    {
+      "commit": "bc994b88df46207fad7775b0eabc51947e315881",
+      "git_blob_sha1_verified_against_pinned_tree": "e1f6bca09447ca82ed35ab663e570cc0667bfd52",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/ImageStore.swift",
+      "path": "Sources/Containerization/Image/ImageStore/ImageStore.swift",
+      "repository": "apple/containerization",
+      "sha256": "54578a28141100654f4dd6344c953da5414dcf9cd5cc24dbf93fc119f9104a5b",
+      "url": "https://github.com/apple/containerization/blob/bc994b88df46207fad7775b0eabc51947e315881/Sources/Containerization/Image/ImageStore/ImageStore.swift"
+    },
+    {
+      "commit": "bc994b88df46207fad7775b0eabc51947e315881",
+      "git_blob_sha1_verified_against_pinned_tree": "05745075b7a9823c65dcd70488201e4c77e2e514",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/ImageStore+ReferenceManager.swift",
+      "path": "Sources/Containerization/Image/ImageStore/ImageStore+ReferenceManager.swift",
+      "repository": "apple/containerization",
+      "sha256": "a1352c9968309c1b3259149676efaaf4c4af795b3dc0beaa40e1007477e40552",
+      "url": "https://github.com/apple/containerization/blob/bc994b88df46207fad7775b0eabc51947e315881/Sources/Containerization/Image/ImageStore/ImageStore+ReferenceManager.swift"
+    },
+    {
+      "commit": "bc994b88df46207fad7775b0eabc51947e315881",
+      "git_blob_sha1_verified_against_pinned_tree": "2cbf4e97672611364b2600aee5eba5d16801da69",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/ImageStore+Import.swift",
+      "path": "Sources/Containerization/Image/ImageStore/ImageStore+Import.swift",
+      "repository": "apple/containerization",
+      "sha256": "9248c4f19fcfa324a98222789dae42e8c92b54032281c5d0bbe5eae912639246",
+      "url": "https://github.com/apple/containerization/blob/bc994b88df46207fad7775b0eabc51947e315881/Sources/Containerization/Image/ImageStore/ImageStore+Import.swift"
+    },
+    {
+      "commit": "bc994b88df46207fad7775b0eabc51947e315881",
+      "git_blob_sha1_verified_against_pinned_tree": "c2c20840901f3f4f0bd08d97d271b40a41efafbb",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/LocalContentStore.swift",
+      "path": "Sources/ContainerizationOCI/Content/LocalContentStore.swift",
+      "repository": "apple/containerization",
+      "sha256": "9a836ad4762953a460fb8f1eeb7ef08ecc5ebe0c8b68aa26594c5fddfa30d76e",
+      "url": "https://github.com/apple/containerization/blob/bc994b88df46207fad7775b0eabc51947e315881/Sources/ContainerizationOCI/Content/LocalContentStore.swift"
+    },
+    {
+      "commit": "bc994b88df46207fad7775b0eabc51947e315881",
+      "git_blob_sha1_verified_against_pinned_tree": "cd7a19d63d1588cdc3f5aa051e9ca44eebb2d261",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/Platform.swift",
+      "path": "Sources/ContainerizationOCI/Platform.swift",
+      "repository": "apple/containerization",
+      "sha256": "ab480fe2f0d4060b226ad239cedc01aceceea724cdd0d9a30e7dfefc013ca138",
+      "url": "https://github.com/apple/containerization/blob/bc994b88df46207fad7775b0eabc51947e315881/Sources/ContainerizationOCI/Platform.swift"
+    },
+    {
+      "commit": "bc994b88df46207fad7775b0eabc51947e315881",
+      "git_blob_sha1_verified_against_pinned_tree": "1d9f724a2bcc0dc32773bca9398c44d92d9d53ff",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/EXT4Unpacker.swift",
+      "path": "Sources/Containerization/Image/Unpacker/EXT4Unpacker.swift",
+      "repository": "apple/containerization",
+      "sha256": "7b032ba8cdfd4fa8878a70a6d9f9ff6582dc38847d2d3fa9fc0336e1da4743ca",
+      "url": "https://github.com/apple/containerization/blob/bc994b88df46207fad7775b0eabc51947e315881/Sources/Containerization/Image/Unpacker/EXT4Unpacker.swift"
+    },
+    {
+      "commit": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+      "local_review_file": "/private/tmp/faultline-pr17-doc-review/ParsableArguments.swift",
+      "path": "Sources/ArgumentParser/Parsable Types/ParsableArguments.swift",
+      "repository": "apple/swift-argument-parser",
+      "sha256": "1ad16fa584662bfe539dbbce2e2b9d305af40856f433a60439ecad71e4c9087e",
+      "url": "https://github.com/apple/swift-argument-parser/blob/6a52f3251125d74daf04fcbd5e6f08a75d074382/Sources/ArgumentParser/Parsable%20Types/ParsableArguments.swift"
+    }
+  ],
+  "pr_17": "KEEP_DRAFT",
+  "preserved_copy": "qualification/2026-10-19-apple-container-setup-v3.json",
+  "qualification_granted": false,
+  "read_only_startup_log_record": "qualification/2026-10-19-apple-container-setup-v3-startup-logs.json",
+  "read_only_startup_log_record_sha256": "efaca163415f7155841cf82fa3622cb2f867247a8030cd3e5a4685f3efa50257",
+  "recovery": "SCOPED_RECOVERY_OBSERVED",
+  "result": "FAILED",
+  "reviewed_at_utc": "2026-10-19T07:26:29.993975+00:00",
+  "source_conclusion": {
+    "additional_network_diagnostics_proposed": false,
+    "additional_postcheck_bug": "ImageInspect filters configured init after lookup. An installed init may return exit 0 with []; the old nonempty-result requirement was wrong.",
+    "classification": "SOURCE_INFERENCE_NOT_CAPTURED_EXCEPTION",
+    "explanation": "SystemStart calls ImagePull.parse() with nil arguments before setting reference or logging installation. Locked ArgumentParser uses process arguments; startup arguments are invalid ImagePull arguments. Outer try? suppresses the parse failure. Later pull errors can also be suppressed.",
+    "not_established": [
+      "networking cause",
+      "authentication cause",
+      "digest incompatibility",
+      "cache failure",
+      "absence of all registry traffic"
+    ]
+  },
+  "source_hashes_match_reviewed_version": true,
+  "startup_exit": 0,
+  "vm_canary_worker_kernel_experiment_runs": 0
+}

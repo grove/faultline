@@ -1,0 +1,1141 @@
+{
+  "attempted": [
+    "user/501/com.apple.container.apiserver",
+    "user/501/com.apple.container.machine-apiserver",
+    "user/501/com.apple.container.container-core-images",
+    "user/501/com.apple.container.container-network-vmnet.default"
+  ],
+  "binary_sha256": {
+    "/usr/local/bin/container": "8cc619377e8978a0ce9f22a3e864dcd4445f2bc38fb64c5197bb69a1bab42463",
+    "/usr/local/bin/container-apiserver": "0d05388259e73b63f84680968fa5fa39feeef4219cce45c5655d29d3172a63b9",
+    "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images": "dc88d9aeb67f8258c3697f8485b6ee77018d63b86b6dc3ba9905fb88f01cb6eb",
+    "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+    "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver": "1d3f53f6979d92d0bb9f343cc16782bad9a4b23bb380619f4b0d87d9d6df449c"
+  },
+  "boundary_launches_requested": 0,
+  "cwd": "/",
+  "elapsed_seconds": 2.279817875001754,
+  "environment": {
+    "CONTAINER_APP_ROOT": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime",
+    "CONTAINER_INSTALL_ROOT": "/usr/local",
+    "HOME": "/Users/grove",
+    "LC_ALL": "C",
+    "PATH": "/usr/bin:/bin",
+    "TZ": "Europe/Oslo",
+    "XDG_CONFIG_HOME": "/private/tmp/faultline-apple-positive-v2/setup-v3/config-home"
+  },
+  "error": "ValueError: Setup command failed or exceeded retention bound",
+  "kind": "SERVICE_SETUP_ONLY",
+  "launchd_domain": "user/501",
+  "manager": "Background",
+  "observations": [
+    {
+      "argv": [
+        "/bin/launchctl",
+        "managername"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Background\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/sbin/lsof",
+        "-nP",
+        "-i:1053,2053",
+        "-F",
+        "pPn"
+      ],
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/local/bin/container",
+        "system",
+        "start",
+        "--app-root",
+        "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime",
+        "--install-root",
+        "/usr/local",
+        "--disable-kernel-install",
+        "--timeout",
+        "15"
+      ],
+      "returncode": 0,
+      "stderr": "Launching container-apiserver...\nTesting access to container-apiserver...\nVerifying machine API server is running...\n",
+      "stdout": "",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/usr/local/bin/container",
+        "system",
+        "status",
+        "--format",
+        "json"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"client\":{\"appName\":\"container\",\"build\":\"release\",\"commit\":\"d265d669ecae041bf338cb3b39c4118316d138f0\",\"version\":\"1.5.0\"},\"host\":{\"architecture\":\"arm64\",\"cpus\":10,\"operatingSystem\":\"Version 27.0.1 (Build 26A434)\"},\"paths\":{\"appRoot\":\"/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/\",\"installRoot\":\"/usr/local/\"},\"resources\":{\"containersRunning\":0,\"containersTotal\":0,\"images\":0},\"server\":{\"appName\":\"container-apiserver\",\"build\":\"release\",\"commit\":\"d265d669ecae041bf338cb3b39c4118316d138f0\",\"version\":\"1.5.0\"},\"status\":\"running\"}\n",
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "/usr/local/bin/container",
+        "image",
+        "inspect",
+        "ghcr.io/apple/containerization/vminit@sha256:c5c20071df2a9f249f82c9c2940539bd568360540559921a29f9f8b78df67ade"
+      ],
+      "returncode": 1,
+      "stderr": "Error: image not found: ghcr.io/apple/containerization/vminit@sha256:c5c20071df2a9f249f82c9c2940539bd568360540559921a29f9f8b78df67ade\n",
+      "stdout": "",
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      "observed": {
+        "endpoints": [
+          "com.apple.container.network.container-network-vmnet.default",
+          "com.apple.container.core.container-core-images",
+          "com.apple.container.apiserver",
+          "com.apple.container.core.machine-apiserver"
+        ],
+        "services": [
+          "com.apple.container.container-network-vmnet.default",
+          "com.apple.container.container-core-images",
+          "com.apple.container.machine-apiserver",
+          "com.apple.container.apiserver"
+        ]
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.apiserver"
+      ],
+      "observed": {
+        "executable_sha256": "0d05388259e73b63f84680968fa5fa39feeef4219cce45c5655d29d3172a63b9",
+        "identity": {
+          "executable": "/usr/local/bin/container-apiserver",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/apiserver/apiserver.plist",
+          "sha256": "eb36d99e82b8b08ab81507ddb89136eda3b14eaeaea52910431abf70dfdc5363"
+        },
+        "pid": 22171,
+        "process_started": "Mon Oct 19 09:12:46 2026",
+        "process_uid": 501,
+        "target": "user/501/com.apple.container.apiserver"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.machine-apiserver"
+      ],
+      "observed": {
+        "executable_sha256": "1d3f53f6979d92d0bb9f343cc16782bad9a4b23bb380619f4b0d87d9d6df449c",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/plugin-state/machine-apiserver/service.plist",
+          "sha256": "0c0017518b137cae68eeca7df559e63b24232214ef127fa1c0273d5c476a6e5a"
+        },
+        "pid": 22181,
+        "process_started": "Mon Oct 19 09:12:46 2026",
+        "process_uid": 501,
+        "target": "user/501/com.apple.container.machine-apiserver"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.container-core-images"
+      ],
+      "observed": {
+        "executable_sha256": "dc88d9aeb67f8258c3697f8485b6ee77018d63b86b6dc3ba9905fb88f01cb6eb",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/plugin-state/container-core-images/service.plist",
+          "sha256": "9162d494e0be2c8eca88fdea9b9e865010fbcb316982f8d1a7109c698eb9bc91"
+        },
+        "pid": 22182,
+        "process_started": "Mon Oct 19 09:12:46 2026",
+        "process_uid": 501,
+        "target": "user/501/com.apple.container.container-core-images"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.container-network-vmnet.default"
+      ],
+      "observed": {
+        "executable_sha256": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/networks/default/service.plist",
+          "sha256": "66e2803ae51277a33b6644698bede35d14b7aaa1745655b34203b645247b866c"
+        },
+        "pid": 22178,
+        "process_started": "Mon Oct 19 09:12:46 2026",
+        "process_uid": 501,
+        "target": "user/501/com.apple.container.container-network-vmnet.default"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22171\n22178\n22181\n22182\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "22171,22178,22181,22182",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22171   501 Mon Oct 19 09:12:46 2026     /usr/local/bin/container-apiserver\n22178   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet\n22181   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver\n22182   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/container-core-images/bin/container-core-images\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22171\n22178\n22181\n22182\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      "observed": {
+        "endpoints": [
+          "com.apple.container.network.container-network-vmnet.default",
+          "com.apple.container.core.container-core-images",
+          "com.apple.container.apiserver",
+          "com.apple.container.core.machine-apiserver"
+        ],
+        "services": [
+          "com.apple.container.container-network-vmnet.default",
+          "com.apple.container.container-core-images",
+          "com.apple.container.machine-apiserver",
+          "com.apple.container.apiserver"
+        ]
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.apiserver"
+      ],
+      "observed": {
+        "executable_sha256": "0d05388259e73b63f84680968fa5fa39feeef4219cce45c5655d29d3172a63b9",
+        "identity": {
+          "executable": "/usr/local/bin/container-apiserver",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/apiserver/apiserver.plist",
+          "sha256": "eb36d99e82b8b08ab81507ddb89136eda3b14eaeaea52910431abf70dfdc5363"
+        },
+        "pid": 22171,
+        "target": "user/501/com.apple.container.apiserver"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.machine-apiserver"
+      ],
+      "observed": {
+        "executable_sha256": "1d3f53f6979d92d0bb9f343cc16782bad9a4b23bb380619f4b0d87d9d6df449c",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/plugin-state/machine-apiserver/service.plist",
+          "sha256": "0c0017518b137cae68eeca7df559e63b24232214ef127fa1c0273d5c476a6e5a"
+        },
+        "pid": 22181,
+        "target": "user/501/com.apple.container.machine-apiserver"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.container-core-images"
+      ],
+      "observed": {
+        "executable_sha256": "dc88d9aeb67f8258c3697f8485b6ee77018d63b86b6dc3ba9905fb88f01cb6eb",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/plugin-state/container-core-images/service.plist",
+          "sha256": "9162d494e0be2c8eca88fdea9b9e865010fbcb316982f8d1a7109c698eb9bc91"
+        },
+        "pid": 22182,
+        "target": "user/501/com.apple.container.container-core-images"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.container-network-vmnet.default"
+      ],
+      "observed": {
+        "executable_sha256": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/networks/default/service.plist",
+          "sha256": "66e2803ae51277a33b6644698bede35d14b7aaa1745655b34203b645247b866c"
+        },
+        "pid": 22178,
+        "target": "user/501/com.apple.container.container-network-vmnet.default"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22171\n22178\n22181\n22182\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "22171,22178,22181,22182",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22171   501 Mon Oct 19 09:12:46 2026     /usr/local/bin/container-apiserver\n22178   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet\n22181   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver\n22182   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/container-core-images/bin/container-core-images\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22171\n22178\n22181\n22182\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "bootout",
+        "user/501/com.apple.container.apiserver"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      "observed": {
+        "endpoints": [
+          "com.apple.container.network.container-network-vmnet.default",
+          "com.apple.container.core.container-core-images",
+          "com.apple.container.core.machine-apiserver"
+        ],
+        "services": [
+          "com.apple.container.container-network-vmnet.default",
+          "com.apple.container.container-core-images",
+          "com.apple.container.machine-apiserver"
+        ]
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.machine-apiserver"
+      ],
+      "observed": {
+        "executable_sha256": "1d3f53f6979d92d0bb9f343cc16782bad9a4b23bb380619f4b0d87d9d6df449c",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/plugin-state/machine-apiserver/service.plist",
+          "sha256": "0c0017518b137cae68eeca7df559e63b24232214ef127fa1c0273d5c476a6e5a"
+        },
+        "pid": 22181,
+        "target": "user/501/com.apple.container.machine-apiserver"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.container-core-images"
+      ],
+      "observed": {
+        "executable_sha256": "dc88d9aeb67f8258c3697f8485b6ee77018d63b86b6dc3ba9905fb88f01cb6eb",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/plugin-state/container-core-images/service.plist",
+          "sha256": "9162d494e0be2c8eca88fdea9b9e865010fbcb316982f8d1a7109c698eb9bc91"
+        },
+        "pid": 22182,
+        "target": "user/501/com.apple.container.container-core-images"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.container-network-vmnet.default"
+      ],
+      "observed": {
+        "executable_sha256": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/networks/default/service.plist",
+          "sha256": "66e2803ae51277a33b6644698bede35d14b7aaa1745655b34203b645247b866c"
+        },
+        "pid": 22178,
+        "target": "user/501/com.apple.container.container-network-vmnet.default"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22178\n22181\n22182\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "22171,22178,22181,22182",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22178   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet\n22181   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver\n22182   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/container-core-images/bin/container-core-images\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22178\n22181\n22182\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "bootout",
+        "user/501/com.apple.container.machine-apiserver"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      "observed": {
+        "endpoints": [
+          "com.apple.container.network.container-network-vmnet.default",
+          "com.apple.container.core.container-core-images"
+        ],
+        "services": [
+          "com.apple.container.container-network-vmnet.default",
+          "com.apple.container.container-core-images"
+        ]
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.container-core-images"
+      ],
+      "observed": {
+        "executable_sha256": "dc88d9aeb67f8258c3697f8485b6ee77018d63b86b6dc3ba9905fb88f01cb6eb",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/plugin-state/container-core-images/service.plist",
+          "sha256": "9162d494e0be2c8eca88fdea9b9e865010fbcb316982f8d1a7109c698eb9bc91"
+        },
+        "pid": 22182,
+        "target": "user/501/com.apple.container.container-core-images"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.container-network-vmnet.default"
+      ],
+      "observed": {
+        "executable_sha256": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/networks/default/service.plist",
+          "sha256": "66e2803ae51277a33b6644698bede35d14b7aaa1745655b34203b645247b866c"
+        },
+        "pid": 22178,
+        "target": "user/501/com.apple.container.container-network-vmnet.default"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22178\n22182\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "22171,22178,22181,22182",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22178   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet\n22182   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/container-core-images/bin/container-core-images\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22178\n22182\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "bootout",
+        "user/501/com.apple.container.container-core-images"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      "observed": {
+        "endpoints": [
+          "com.apple.container.network.container-network-vmnet.default"
+        ],
+        "services": [
+          "com.apple.container.container-network-vmnet.default"
+        ]
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501/com.apple.container.container-network-vmnet.default"
+      ],
+      "observed": {
+        "executable_sha256": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+        "identity": {
+          "executable": "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet",
+          "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/networks/default/service.plist",
+          "sha256": "66e2803ae51277a33b6644698bede35d14b7aaa1745655b34203b645247b866c"
+        },
+        "pid": 22178,
+        "target": "user/501/com.apple.container.container-network-vmnet.default"
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22178\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "22171,22178,22181,22182",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22178   501 Mon Oct 19 09:12:46 2026     /usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "22178\n",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "bootout",
+        "user/501/com.apple.container.container-network-vmnet.default"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ],
+      "observed": {
+        "endpoints": [],
+        "services": []
+      },
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NOT_RETAINED",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "22171,22178,22181,22182",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "",
+      "timeout_seconds": 5
+    },
+    {
+      "argv": [
+        "/usr/sbin/lsof",
+        "-nP",
+        "-i:1053,2053",
+        "-F",
+        "pPn"
+      ],
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "",
+      "timeout_seconds": 5
+    }
+  ],
+  "plugin_config_sha256": {
+    "container-core-images": "89ebf5415177298d36f4c67c8c03db26fac1377b428f30a5ccf96407d8f63f9d",
+    "container-network-vmnet": "7ec0d522dcf9c9bc78b1e0843916bd0a98cfec45ef5b35f04fb8407ecda3db3e",
+    "container-runtime-linux": "d609af652f3e0224cb7f0cef315f873081506d010d2d1a8ff33508980e3427a7",
+    "k8s": "4b190947dd6fdadb9463b0210d19c25b1d086ddff00a0685027d29e99facab95",
+    "machine-apiserver": "819edb0d3c20517e8a56e11a9623b3804c6821d3920da3fa66d989f766103b6a"
+  },
+  "qualification_granted": false,
+  "recovery": "SCOPED_RECOVERY_OBSERVED",
+  "recovery_plan": [
+    {
+      "executable_sha256": "0d05388259e73b63f84680968fa5fa39feeef4219cce45c5655d29d3172a63b9",
+      "identity": {
+        "executable": "/usr/local/bin/container-apiserver",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/apiserver/apiserver.plist",
+        "sha256": "eb36d99e82b8b08ab81507ddb89136eda3b14eaeaea52910431abf70dfdc5363"
+      },
+      "pid": 22171,
+      "process_started": "Mon Oct 19 09:12:46 2026",
+      "process_uid": 501,
+      "target": "user/501/com.apple.container.apiserver"
+    },
+    {
+      "executable_sha256": "1d3f53f6979d92d0bb9f343cc16782bad9a4b23bb380619f4b0d87d9d6df449c",
+      "identity": {
+        "executable": "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/plugin-state/machine-apiserver/service.plist",
+        "sha256": "0c0017518b137cae68eeca7df559e63b24232214ef127fa1c0273d5c476a6e5a"
+      },
+      "pid": 22181,
+      "process_started": "Mon Oct 19 09:12:46 2026",
+      "process_uid": 501,
+      "target": "user/501/com.apple.container.machine-apiserver"
+    },
+    {
+      "executable_sha256": "dc88d9aeb67f8258c3697f8485b6ee77018d63b86b6dc3ba9905fb88f01cb6eb",
+      "identity": {
+        "executable": "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/plugin-state/container-core-images/service.plist",
+        "sha256": "9162d494e0be2c8eca88fdea9b9e865010fbcb316982f8d1a7109c698eb9bc91"
+      },
+      "pid": 22182,
+      "process_started": "Mon Oct 19 09:12:46 2026",
+      "process_uid": 501,
+      "target": "user/501/com.apple.container.container-core-images"
+    },
+    {
+      "executable_sha256": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+      "identity": {
+        "executable": "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v3/runtime/networks/default/service.plist",
+        "sha256": "66e2803ae51277a33b6644698bede35d14b7aaa1745655b34203b645247b866c"
+      },
+      "pid": 22178,
+      "process_started": "Mon Oct 19 09:12:46 2026",
+      "process_uid": 501,
+      "target": "user/501/com.apple.container.container-network-vmnet.default"
+    }
+  ],
+  "recovery_postcheck": {
+    "listeners": [],
+    "processes": [],
+    "registrations": {
+      "gui/501": {
+        "endpoints": [],
+        "services": []
+      },
+      "system": {
+        "endpoints": [],
+        "services": []
+      },
+      "user/501": {
+        "endpoints": [],
+        "services": []
+      }
+    }
+  },
+  "removed": [
+    "user/501/com.apple.container.apiserver",
+    "user/501/com.apple.container.machine-apiserver",
+    "user/501/com.apple.container.container-core-images",
+    "user/501/com.apple.container.container-network-vmnet.default"
+  ],
+  "result": "FAILED",
+  "source_sha256": {
+    "apple-container-service.toml": "ec039793064339b1c438630aaa4a81b03717d96a6ca6b7a19a945c6f85c0883e",
+    "apple_container_recover_setup_v2.py": "c86e1c77332d4d9bb8785c5136dedbf1d258a2aba0623a2d9d38e78c9317b6a0",
+    "apple_container_service_setup.py": "465c1d999a5bf0566f0994834d04b18bb2a96b41ebb6d48a2e940eb829e9f1ec"
+  },
+  "startup_attempted": true
+}

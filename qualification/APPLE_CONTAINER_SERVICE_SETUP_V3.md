@@ -1,4 +1,20 @@
-# Stage 1b setup-v3 — one fresh attempt requires approval
+# Stage 1b setup-v3 — consumed; FAILED with scoped recovery observed
+
+The operator executed the approved attempt once. The [byte-for-byte receipt](2026-10-19-apple-container-setup-v3.json)
+has SHA-256 `27d50d2a34e6fc12c30066068b5edc754ad545bf34004cd1b781827c4ad644e1`,
+matching `/private/tmp/faultline-apple-positive-v2/evidence/setup-v3.json`, which is unchanged.
+Startup returned 0 and service status/identities matched, but exact-init inspection
+returned 1, image not found. Four exact bootouts returned 0; final scoped registration,
+process and DNS-listener checks were empty. Result: **FAILED**, recovery:
+**SCOPED_RECOVERY_OBSERVED**. No VM, canary, worker/kernel provisioning or #10 ran.
+
+**Setup-v3 and its recovery authority are consumed. Do not run the historical command below.**
+See the [outcome/source review](2026-10-19-apple-container-setup-v3-outcome.json)
+and [fresh setup-v4 proposal](APPLE_CONTAINER_SERVICE_SETUP_V4.md). No startup,
+retrieval or cleanup is authorized by preparation of that proposal. PR #17 stays
+draft, issue #2 open, execution **NO_GO / UNAVAILABLE**.
+
+## Historical setup-v3 proposal — consumed, not current authorization
 
 Recovery-02 is corroborated by the operator's separate [read-only process checks](2026-10-19-apple-container-recovery-02-operator-process-check.json):
 the four frozen PIDs and UID-501 Container-named processes returned no matches

@@ -8,6 +8,7 @@ from pathlib import Path
 import plistlib
 import subprocess
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -35,14 +36,16 @@ class ServiceSetupTests(unittest.TestCase):
     def attempt(self, manager="Background", failure=None, collision=None, foreign=False, drift=False,
                 domain_error=False, bootout_error=False, trailing=False, wrong_program=False, lingering=False, process_collision=False,
                 endpoint_after=False, missing_init=False, process_denied=False, replaced=False, binary_drift=False,
-                existing_directory=False, config_drift=False, observer_drift=False, bootout_timeout=False):
+                existing_directory=False, config_drift=False, observer_drift=False, bootout_timeout=False,
+                pull_failure=None, verification_failure=False, low_space=False):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         bundle = Path(temporary.name).resolve()
         (bundle / "evidence").mkdir()
         (bundle / "evidence/setup-v1.json").write_bytes(b"original receipt\n")
         (bundle / "evidence/setup-v2.json").write_bytes(b"preserved setup-v2 receipt\n")
-        setup = bundle / "setup-v3"
+        (bundle / "evidence/setup-v3.json").write_bytes(b"preserved setup-v3 receipt\n")
+        setup = bundle / "setup-v4"
         if existing_directory:
             setup.mkdir()
             (setup / "sentinel").write_bytes(b"preserve existing attempt")
@@ -132,7 +135,18 @@ class ServiceSetupTests(unittest.TestCase):
                     "installRoot": "/usr/local/" if trailing else "/usr/local"},
                     "server": {"version": "1.5.0", "commit": "d265d669ecae041bf338cb3b39c4118316d138f0"}}).encode()
             elif argv == [service.CLI, "image", "inspect", service.INIT]:
-                output = b"[]" if missing_init else b"[{}]"
+                output = b"[]"
+                if missing_init:
+                    return subprocess.CompletedProcess(argv, 1, b"", b"image not found")
+            elif argv == service.PULL:
+                self.assertEqual(len(live), 4)
+                checkpoint = json.loads((bundle / "evidence/setup-v4.json").read_text())
+                self.assertEqual(len(checkpoint["process_plan"]), 4)
+                self.assertTrue(checkpoint["provisioning_attempted"])
+                if isinstance(pull_failure, Exception):
+                    raise pull_failure
+                if pull_failure:
+                    return subprocess.CompletedProcess(argv, 1, b"partial pull", b"explicit retrieval failed")
             elif argv[:3] == ["/usr/bin/pgrep", "-u", "501"] or argv[0] == "/bin/ps":
                 if process_denied:
                     return subprocess.CompletedProcess(argv, 1, b"", b"Operation not permitted")
@@ -166,13 +180,18 @@ class ServiceSetupTests(unittest.TestCase):
                 stack.enter_context(patch.object(service, "OBSERVER_SHA256", "wrong"))
             stack.enter_context(patch.object(service.os, "getuid", return_value=501))
             stack.enter_context(patch.object(service.time, "sleep"))
+            if low_space:
+                stack.enter_context(patch.object(service.shutil, "disk_usage", return_value=SimpleNamespace(free=0)))
+            stack.enter_context(patch.object(service, "verify_init", side_effect=ValueError("bad blob/snapshot")
+                                              if verification_failure else None, return_value={"synthetic": True}))
             run = stack.enter_context(patch.object(service.subprocess, "run", side_effect=respond))
             code = service.setup()
             calls = [call.args[0] for call in run.call_args_list]
-        raw = (bundle / "evidence/setup-v3.json").read_text()
+        raw = (bundle / "evidence/setup-v4.json").read_text()
         self.assertNotIn("not-retained", raw)
         self.assertEqual((bundle / "evidence/setup-v1.json").read_bytes(), b"original receipt\n")
         self.assertEqual((bundle / "evidence/setup-v2.json").read_bytes(), b"preserved setup-v2 receipt\n")
+        self.assertEqual((bundle / "evidence/setup-v3.json").read_bytes(), b"preserved setup-v3 receipt\n")
         self.assertFalse(any(cmd[:3] == [service.CLI, "system", "stop"] for cmd in calls))
         if existing_directory:
             self.assertEqual((setup / "sentinel").read_bytes(), b"preserve existing attempt")
@@ -196,7 +215,7 @@ class ServiceSetupTests(unittest.TestCase):
                     self.assertEqual(code, 1)
                     self.assertFalse(report["startup_attempted"])
                     self.assertTrue(all(c[0] == "/bin/launchctl" and c[1] in ("managername", "print") for c in calls))
-                    self.assertFalse((bundle / "setup-v3").exists())
+                    self.assertFalse((bundle / "setup-v4").exists())
 
     def test_unreadable_domain_or_unsupported_manager_blocks_without_fallback(self):
         for kwargs in ({"domain_error": True}, {"manager": "System"}):
@@ -227,7 +246,7 @@ class ServiceSetupTests(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("INCOMPLETE_STOP_AND_REVIEW", report["recovery"])
 
-    def test_repeated_v3_refuses_before_service_contact(self):
+    def test_repeated_v4_refuses_before_service_contact(self):
         _, _, _, bundle = self.attempt()
         with patch.object(service, "BUNDLE", bundle), patch.object(service.subprocess, "run") as run:
             with self.assertRaises(FileExistsError):
@@ -267,13 +286,14 @@ class ServiceSetupTests(unittest.TestCase):
     def test_fresh_attempt_records_exact_sources_and_does_not_repeat_prerequisites(self):
         code, calls, report, _ = self.attempt(trailing=True)
         self.assertEqual(code, 0)
-        self.assertEqual(service.ATTEMPT, "setup-v3")
+        self.assertEqual(service.ATTEMPT, "setup-v4")
         self.assertEqual(report["source_sha256"]["apple_container_recover_setup_v2.py"], service.OBSERVER_SHA256)
         self.assertEqual(report["source_sha256"]["apple-container-service.toml"], service.CONFIG_SHA256)
         self.assertEqual(len(report["process_plan"]), 4)
         self.assertFalse(any(c[0] in ("/usr/bin/codesign", "/usr/sbin/sysctl") for c in calls))
         container_calls = [c for c in calls if c[0] == service.CLI]
-        self.assertEqual([c[1:3] for c in container_calls], [["system", "start"], ["system", "status"], ["image", "inspect"]])
+        self.assertEqual([c[1:3] for c in container_calls], [
+            ["system", "start"], ["system", "status"], ["image", "pull"], ["image", "inspect"]])
         self.assertTrue(all(c[3] == service.INIT for c in container_calls if c[1:3] == ["image", "inspect"]))
 
     def test_missing_init_metadata_causes_owned_only_recovery(self):
@@ -282,6 +302,29 @@ class ServiceSetupTests(unittest.TestCase):
         self.assertEqual(report["recovery"], "SCOPED_RECOVERY_OBSERVED")
         self.assertEqual(len([c for c in calls if c[1] == "bootout"]), 4)
         self.assertEqual(report["removed"], report["attempted"])
+
+    def test_explicit_pull_failure_timeout_or_bad_payload_preserves_failure_and_recovers(self):
+        for kwargs in ({"pull_failure": "nonzero"},
+                       {"pull_failure": subprocess.TimeoutExpired(service.PULL, 180, output=b"partial", stderr=b"pull timeout")},
+                       {"verification_failure": True}):
+            with self.subTest(kwargs=kwargs):
+                code, calls, report, _ = self.attempt(**kwargs)
+                self.assertEqual(code, 1)
+                self.assertTrue(report["provisioning_attempted"])
+                self.assertEqual(report["result"], "FAILED")
+                self.assertEqual(report["recovery"], "SCOPED_RECOVERY_OBSERVED")
+                pull = next(o for o in report["observations"] if o["argv"] == service.PULL)
+                if "pull_failure" in kwargs:
+                    self.assertIn("partial", pull["stdout"])
+                    self.assertTrue(pull["stderr"])
+                self.assertEqual(len([c for c in calls if c[1] == "bootout"]), 4)
+
+    def test_insufficient_disk_space_blocks_start_pull_and_recovery(self):
+        code, calls, report, _ = self.attempt(low_space=True)
+        self.assertEqual(code, 1)
+        self.assertFalse(report["startup_attempted"])
+        self.assertIn("two GiB free", report["error"])
+        self.assertFalse(any(c[0] == service.CLI or c[1] == "bootout" for c in calls))
 
     def test_binary_drift_or_lingering_preexisting_process_blocks_start(self):
         for kwargs in ({"binary_drift": True}, {"process_collision": True}, {"process_denied": True}):
@@ -315,6 +358,125 @@ class ServiceSetupTests(unittest.TestCase):
         self.assertTrue(report["incomplete_postcheck"]["processes"])
         self.assertTrue(report["attempted"])
         self.assertEqual(len([c for c in calls if c[1] == "bootout"]), 4)
+
+
+class InitContentTests(unittest.TestCase):
+    def fixture(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name).resolve()
+        blobs = root / "content/blobs/sha256"
+        blobs.mkdir(parents=True)
+
+        def blob(data):
+            raw = data if isinstance(data, bytes) else json.dumps(data).encode()
+            digest = hashlib.sha256(raw).hexdigest()
+            (blobs / digest).write_bytes(raw)
+            return {"digest": "sha256:" + digest, "size": len(raw)}
+
+        layer = blob(b"synthetic layer bytes, never unpacked or executed")
+        config = blob({"os": "linux", "architecture": "arm64"})
+        manifest = blob({"schemaVersion": 2, "config": config, "layers": [layer]})
+        reference = "ghcr.io/apple/containerization/vminit@" + manifest["digest"]
+        descriptor = {**manifest, "platform": {"os": "linux", "architecture": "arm64"}}
+        index = blob({"schemaVersion": 2, "manifests": [descriptor]})
+        (root / "state.json").write_text(json.dumps({reference: index}))
+        snapshot = root / "snapshots" / manifest["digest"][7:] / "snapshot"
+        snapshot.parent.mkdir(parents=True)
+        header = bytearray(1024)
+        header[4:8] = (131072).to_bytes(4, "little")
+        header[24:28] = (2).to_bytes(4, "little")
+        header[56:58] = b"\x53\xef"
+        with snapshot.open("wb") as output:
+            output.seek(1024)
+            output.write(header)
+            output.truncate(512 * 1024**2)
+        (snapshot.parent / "snapshot-info").write_text(json.dumps({
+            "type": {"block": {"format": "ext4"}}, "source": str(snapshot), "destination": "/", "options": []}))
+        for directory in (root / "content/ingest", root / "snapshots/ingest"):
+            directory.mkdir()
+        return root, reference, blobs / layer["digest"][7:], snapshot
+
+    def test_complete_blob_graph_and_structural_snapshot_are_recorded_without_execution(self):
+        root, reference, _, snapshot = self.fixture()
+        with patch.object(service.subprocess, "run") as run:
+            result = service.verify_init(root, reference)
+        run.assert_not_called()
+        self.assertEqual(len(result["blobs"]), 4)
+        self.assertEqual(result["snapshot"]["bytes"], 512 * 1024**2)
+        self.assertEqual(len(result["snapshot"]["sha256"]), 64)
+        self.assertIn("NOT_FSCK_OR_GUEST_BOOT", result["snapshot"]["check"])
+        self.assertTrue(snapshot.exists())
+
+    def test_corrupt_missing_linked_or_wrong_sized_blob_is_rejected(self):
+        for kind in ("corrupt", "missing", "symlink", "hardlink", "size"):
+            with self.subTest(kind=kind):
+                root, reference, layer, _ = self.fixture()
+                original = layer.read_bytes()
+                if kind == "corrupt":
+                    layer.write_bytes(b"x" * len(original))
+                elif kind == "missing":
+                    layer.unlink()
+                elif kind == "symlink":
+                    target = root / "foreign"
+                    target.write_bytes(original)
+                    layer.unlink()
+                    layer.symlink_to(target)
+                elif kind == "hardlink":
+                    (root / "alias").hardlink_to(layer)
+                else:
+                    layer.write_bytes(original + b"extra")
+                with self.assertRaises((OSError, ValueError)):
+                    service.verify_init(root, reference)
+
+    def test_wrong_pin_platform_incomplete_ingest_or_snapshot_is_rejected(self):
+        for kind in ("pin", "platform", "ingest", "metadata", "geometry", "snapshot-link"):
+            with self.subTest(kind=kind):
+                root, reference, _, snapshot = self.fixture()
+                if kind == "pin":
+                    wrong = reference.rsplit("@", 1)[0] + "@sha256:" + "0" * 64
+                    state = json.loads((root / "state.json").read_text())
+                    (root / "state.json").write_text(json.dumps({wrong: state[reference]}))
+                    reference = wrong
+                elif kind == "platform":
+                    state = json.loads((root / "state.json").read_text())
+                    path = root / "content/blobs/sha256" / state[reference]["digest"][7:]
+                    index = json.loads(path.read_text())
+                    index["manifests"][0]["platform"]["architecture"] = "amd64"
+                    raw = json.dumps(index).encode()
+                    digest = hashlib.sha256(raw).hexdigest()
+                    (path.parent / digest).write_bytes(raw)
+                    (root / "state.json").write_text(json.dumps({reference: {"digest": "sha256:" + digest, "size": len(raw)}}))
+                elif kind == "ingest":
+                    (root / "snapshots/ingest/partial").mkdir()
+                elif kind == "metadata":
+                    path = snapshot.parent / "snapshot-info"
+                    metadata = json.loads(path.read_text())
+                    metadata["source"] = "/unrelated/snapshot"
+                    path.write_text(json.dumps(metadata))
+                elif kind == "snapshot-link":
+                    snapshot.unlink()
+                    snapshot.symlink_to("/unrelated/snapshot")
+                else:
+                    with snapshot.open("r+b") as output:
+                        output.seek(1080)
+                        output.write(b"xx")
+                with self.assertRaises((OSError, ValueError)):
+                    service.verify_init(root, reference)
+
+    def test_storage_admission_rejects_oversize_or_symlinks_without_deleting(self):
+        for kind in ("oversize", "symlink"):
+            with self.subTest(kind=kind), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                path = root / "retained"
+                if kind == "symlink":
+                    path.symlink_to("/unrelated")
+                else:
+                    with path.open("wb") as output:
+                        output.truncate(1024**3 + 1)
+                with self.assertRaises(ValueError):
+                    service.storage(root)
+                self.assertTrue(path.exists() or path.is_symlink())
 
 
 if __name__ == "__main__":

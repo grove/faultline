@@ -1,0 +1,155 @@
+{
+  "approval_command": [
+    "/usr/bin/env",
+    "-i",
+    "HOME=/Users/grove",
+    "PATH=/usr/bin:/bin",
+    "LC_ALL=C",
+    "TZ=Europe/Oslo",
+    "/opt/homebrew/bin/python3",
+    "-I",
+    "-B",
+    "qualification/apple_container_service_setup.py",
+    "setup-v4"
+  ],
+  "approval_cwd": "/Users/grove/projects/faultline",
+  "attempt": "setup-v4",
+  "boundary_launches": 0,
+  "child_cwd": "/",
+  "child_environment": {
+    "CONTAINER_APP_ROOT": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime",
+    "CONTAINER_INSTALL_ROOT": "/usr/local",
+    "HOME": "/Users/grove",
+    "LC_ALL": "C",
+    "PATH": "/usr/bin:/bin",
+    "TZ": "Europe/Oslo",
+    "XDG_CONFIG_HOME": "/private/tmp/faultline-apple-positive-v2/setup-v4/config-home"
+  },
+  "effects_requiring_approval": [
+    "current-session launchd registration of four exact known Container labels",
+    "fresh private config/runtime/content/init-snapshot writes under setup-v4",
+    "host DNS/TLS/HTTPS to ghcr.io and its blob/CDN redirects for the pinned init OCI graph",
+    "default host NAT creation and loopback DNS bindings 127.0.0.1:1053 and 127.0.0.1:2053",
+    "normal OS/runtime state/logs and possible registry credential lookup without supplied/extracted credentials",
+    "ownership/process-verified inline failure recovery limited to this attempt",
+    "one explicit pinned init OCI pull/unpack using registered verified services, ghcr.io public authentication challenge/token and HTTPS blob/CDN redirects for this graph only"
+  ],
+  "execution_gate": "NO_GO / UNAVAILABLE",
+  "explicit_pull_argv": [
+    "/usr/local/bin/container",
+    "image",
+    "pull",
+    "--platform",
+    "linux/arm64/v8",
+    "--scheme",
+    "https",
+    "--progress",
+    "plain",
+    "--max-concurrent-downloads",
+    "1",
+    "ghcr.io/apple/containerization/vminit@sha256:c5c20071df2a9f249f82c9c2940539bd568360540559921a29f9f8b78df67ade"
+  ],
+  "fresh_directory": "/private/tmp/faultline-apple-positive-v2/setup-v4",
+  "kernel": {
+    "archive_sha256": "8736c054d9223974735394f822000823baef509e1c33405ec798240fa9b6e4b5",
+    "archive_url": "https://github.com/kata-containers/kata-containers/releases/download/3.32.0/kata-static-3.32.0-arm64.tar.zst",
+    "installation_enabled": false,
+    "member": "opt/kata/share/kata-containers/vmlinux-6.18.35-197-debug"
+  },
+  "kind": "SETUP_V4_PROVISIONING_PREPARATION_ONLY_NOT_EXECUTED",
+  "local_verification": "Dedicated state.json -> hash-verified generated index -> pinned manifest -> exact config/all layer sizes and SHA-256; matching linux/arm64(/v8); snapshot-info roots/type, EXT4 magic/geometry, snapshot SHA-256; empty ingest dirs; no links/special files.",
+  "not_authorized": [
+    "setup-v4 until separate approval",
+    "worker/kernel provisioning",
+    "VM/canary/negative controls",
+    "experiment #10",
+    "retry/cleanup/deletion/pruning/global stop/PID kill",
+    "PR publication/merge or closing issue #2"
+  ],
+  "pinned_init": "ghcr.io/apple/containerization/vminit@sha256:c5c20071df2a9f249f82c9c2940539bd568360540559921a29f9f8b78df67ade",
+  "prerequisite_rechecks_requested": [],
+  "preserved_prior_helper": {
+    "git_commit": "3b25cd281d75be12a013c4f5dbfd66324403ce69",
+    "path": "qualification/apple_container_service_setup.py",
+    "sha256": "465c1d999a5bf0566f0994834d04b18bb2a96b41ebb6d48a2e940eb829e9f1ec"
+  },
+  "proposal_path": "qualification/APPLE_CONTAINER_SERVICE_SETUP_V4.md",
+  "proposal_sha256": "92f35460c594afa6ba989c8d127a609b23eeaf9adb26e18edc0f1fb02b0b9f8c",
+  "provisioning_precondition": "All four exact services/root/config/source identities and PID/UID/executable/birth/plist identities must be verified after fresh startup; no standalone pull against recovered setup-v3.",
+  "qualification_granted": false,
+  "receipt": "/private/tmp/faultline-apple-positive-v2/evidence/setup-v4.json",
+  "recovery": "Only selected-domain services with exact setup-v4 plist origin, label, effective root identities, pinned executable bytes, frozen plist SHA, PID/UID and captured birth identity; snapshot and revalidate before each of at most four bootouts. Check all namespaces, scoped processes and prior DNS listener baseline. Any ambiguity stops mutation with incomplete recovery; no retries, global stop, PID kill or deletion.",
+  "resources": {
+    "attempt_logical_and_allocated_bytes_max_each": 1073741824,
+    "bounds_checked_after_capture": true,
+    "cli_api_readiness_timeout_seconds": 15,
+    "explicit_pull_timeout_seconds": 180,
+    "file_count_max": 4096,
+    "hard_service_disk_or_download_quota": false,
+    "host_services_hard_cpu_ram_disk_quota": false,
+    "launchctl_stdout_parse_bytes": 4194304,
+    "layer_count_max": 8,
+    "metadata_file_bytes_max": 1048576,
+    "minimum_free_bytes": 2147483648,
+    "observation_bootout_timeout_seconds_each": 5,
+    "ordinary_stream_retention_bytes": 65536,
+    "recovery_postcheck_pause_seconds": 1,
+    "recovery_postchecks_max": 5,
+    "snapshot_file_bytes_max": 671088640,
+    "snapshot_minimum_geometry_bytes": 536870912,
+    "startup_timeout_seconds": 120,
+    "status_init_inspect_timeout_seconds_each": 15,
+    "storage_checks": "before start, before pull, after pull; admission only, not live quotas",
+    "storage_depth_max": 16,
+    "summed_layer_bytes_max": 268435456,
+    "summed_wait_and_pause_ceiling_seconds": 919,
+    "vm_budget_increase": false,
+    "vm_count": 0,
+    "workload_count": 0
+  },
+  "reviewed_at_utc": "2026-10-19T07:26:29.994689+00:00",
+  "software": {
+    "binary_sha256": {
+      "/usr/local/bin/container": "8cc619377e8978a0ce9f22a3e864dcd4445f2bc38fb64c5197bb69a1bab42463",
+      "/usr/local/bin/container-apiserver": "0d05388259e73b63f84680968fa5fa39feeef4219cce45c5655d29d3172a63b9",
+      "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images": "dc88d9aeb67f8258c3697f8485b6ee77018d63b86b6dc3ba9905fb88f01cb6eb",
+      "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+      "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver": "1d3f53f6979d92d0bb9f343cc16782bad9a4b23bb380619f4b0d87d9d6df449c"
+    },
+    "container": "1.5.0",
+    "container_commit": "d265d669ecae041bf338cb3b39c4118316d138f0",
+    "containerization": "0.47.0",
+    "containerization_commit": "bc994b88df46207fad7775b0eabc51947e315881",
+    "plugin_config_sha256": {
+      "container-core-images": "89ebf5415177298d36f4c67c8c03db26fac1377b428f30a5ccf96407d8f63f9d",
+      "container-network-vmnet": "7ec0d522dcf9c9bc78b1e0843916bd0a98cfec45ef5b35f04fb8407ecda3db3e",
+      "container-runtime-linux": "d609af652f3e0224cb7f0cef315f873081506d010d2d1a8ff33508980e3427a7",
+      "k8s": "4b190947dd6fdadb9463b0210d19c25b1d086ddff00a0685027d29e99facab95",
+      "machine-apiserver": "819edb0d3c20517e8a56e11a9623b3804c6821d3920da3fa66d989f766103b6a"
+    }
+  },
+  "source_sha256": {
+    "apple-container-service.toml": "ec039793064339b1c438630aaa4a81b03717d96a6ca6b7a19a945c6f85c0883e",
+    "apple_container_recover_setup_v2.py": "c86e1c77332d4d9bb8785c5136dedbf1d258a2aba0623a2d9d38e78c9317b6a0",
+    "apple_container_service_setup.py": "82a20ecffdedef478b72fe4b3b9a384cb8e35ad9b407b7e61c510a596b21f101"
+  },
+  "startup_argv": [
+    "/usr/local/bin/container",
+    "system",
+    "start",
+    "--app-root",
+    "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime",
+    "--install-root",
+    "/usr/local",
+    "--disable-kernel-install",
+    "--timeout",
+    "15"
+  ],
+  "validation": {
+    "all_service_calls_mocked": true,
+    "command": "/opt/homebrew/bin/python3 -I -B -m unittest discover -s tests -p 'test_apple_container*.py'",
+    "scoped_tests_passed": 49,
+    "setup_v4_executed": false
+  },
+  "verification_limit": "Fresh unpack exit and offline structural snapshot checks, not fsck, independent file-by-file reconstruction, guest boot or qualification."
+}
