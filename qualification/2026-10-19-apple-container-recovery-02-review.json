@@ -1,0 +1,67 @@
+{
+  "authorization": "Recovery-02 identity consumed. No repeat, startup, artifact provisioning, VM/canary, experiment #10 or full qualification is authorized.",
+  "execution_gate": "NO_GO / UNAVAILABLE",
+  "execution_witnessed_by_this_agent": false,
+  "independent_read_only_postcheck": {
+    "commands": [
+      [
+        "/bin/launchctl",
+        "print",
+        "system"
+      ],
+      [
+        "/bin/launchctl",
+        "print",
+        "user/501"
+      ],
+      [
+        "/bin/launchctl",
+        "print",
+        "gui/501"
+      ],
+      [
+        "/usr/sbin/lsof",
+        "-nP",
+        "-i:1053,2053",
+        "-F",
+        "pPn"
+      ]
+    ],
+    "listeners": [],
+    "observed_at_utc": "2026-10-19T05:59:44.746788+00:00",
+    "processes": "NOT_INDEPENDENTLY_INSPECTED_IN_CODEX; process absence comes from the existing journal",
+    "registrations": {
+      "gui/501": {
+        "endpoints": [],
+        "services": []
+      },
+      "system": {
+        "endpoints": [],
+        "services": []
+      },
+      "user/501": {
+        "endpoints": [],
+        "services": []
+      }
+    }
+  },
+  "journal_path": "/private/tmp/faultline-apple-positive-v2/evidence/recovery-setup-v2-02.jsonl",
+  "journal_reported_process_postcheck": [],
+  "journal_reported_removed": [
+    "user/501/com.apple.container.apiserver",
+    "user/501/com.apple.container.machine-apiserver",
+    "user/501/com.apple.container.container-core-images",
+    "user/501/com.apple.container.container-network-vmnet.default"
+  ],
+  "journal_reported_result": "SCOPED_RECOVERY_OBSERVED",
+  "journal_sha256": "22513d910a16fa263df059571d6046458f60008122e56fc9686f0a512b91a5c6",
+  "kind": "PREEXISTING_RECOVERY_02_JOURNAL_REVIEW",
+  "qualification_granted": false,
+  "reason_not_invoked": "Approved hash checks passed; exclusive-create guard found an existing completed recovery-02 journal. No repeat attempted.",
+  "recorded_plan_sha256": "26b72f4f05406f714c2f6ac92fdaba9d5fe39b6b387bb4f4568c43274146e679",
+  "recorded_recovery_source_sha256": "c86e1c77332d4d9bb8785c5136dedbf1d258a2aba0623a2d9d38e78c9317b6a0",
+  "recovery_invoked_by_this_turn": false,
+  "reviewed_at_utc": "2026-10-19T05:59:06.147798+00:00",
+  "reviewed_source_commit": "8f98c2b298237748bf44820565b58f2ad3e320f2",
+  "source_comparison": "Recorded source/plan identities match independently hashed approved files; execution itself was not independently witnessed."
+}

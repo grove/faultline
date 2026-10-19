@@ -1,4 +1,17 @@
-# Recovery setup-v2-02 — separate one-attempt approval required
+# Recovery setup-v2-02 — completed journal, identity consumed
+
+**Do not rerun recovery-02.** On the approved continuation, its journal already
+existed and reported `SCOPED_RECOVERY_OBSERVED`. The collector was not invoked
+again. Its [raw copy](2026-10-19-apple-container-recovery-02.jsonl) is preserved,
+SHA-256 `22513d910a16fa263df059571d6046458f60008122e56fc9686f0a512b91a5c6`.
+The journal records four successful bootouts and empty registration/process/DNS
+binding postchecks. Current independent read-only launchd and lsof observations
+also found no Container registrations/Mach endpoints or reviewed DNS bindings.
+Process absence is journal-reported; it was not independently inspected in Codex.
+Source/plan hashes match the approved files; this agent did not witness the
+recorded execution. See the [provenance review](2026-10-19-apple-container-recovery-02-review.json).
+No new startup, provisioning or execution is authorized. The remaining text
+preserves the consumed recovery-02 proposal and its source identities.
 
 PR #17 remains draft, issue #2 remains open, and execution is **NO_GO / UNAVAILABLE**.
 No cleanup, restart, artifact provisioning, VM, canary or #10 is authorized here.
@@ -87,7 +100,7 @@ The [Apple ps source](https://github.com/apple-oss-distributions/adv_cmds/blob/m
 returns 1 when no selected entries remain. This does not reinterpret permission
 failures as absence or authorize relaxing Codex restrictions.
 
-## Exact separate authorization request
+## Historical recovery-02 authorization — consumed
 
 Approve **one recovery-setup-v2-02 attempt**, in operator Terminal, with all other
 Container management idle. Working directory: `/Users/grove/projects/faultline`.

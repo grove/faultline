@@ -44,16 +44,18 @@ drift by silently restoring bytes and continuing.
 
 ## Current preparation: Apple Container 1.5.0 — UNAVAILABLE pending controls
 
-The authorized setup-v2 attempt started four services in `user/501`, then failed
-Faultline's raw path comparisons. API roots had no trailing slash; plugin roots
-did. The original receipt is preserved byte for byte, and independent read-only
-launchd/plist inspection identifies all four services in the dedicated setup-v2
-root. See the [separate recovery proposal](qualification/APPLE_CONTAINER_RECOVERY_02.md).
-Recovery-01 then stopped on unscoped process parsing, with no removal attempted.
-**Fresh recovery-02 approval is the next action; do not retry startup or provision images.**
-No cleanup or VM execution has run. Setup-v1, setup-v2 and Stage 1a authority are
-consumed. Earlier preparation/inventory receipts and frozen source identities
-remain unchanged; execution-time inventory code identity remains operator-corroborated.
+The setup-v2 failure left four services registered. Recovery-01 stopped before
+removal; the existing [recovery-02 journal](qualification/2026-10-19-apple-container-recovery-02.jsonl)
+now reports four successful bootouts and empty registration/process/listener
+postchecks. On the approved continuation the journal already existed, so no
+recovery was invoked again. Independent read-only launchd/lsof checks confirm
+no Container services/Mach endpoints in system/user/GUI or reviewed DNS bindings.
+Process absence remains journal-reported, not independently inspected in Codex.
+The [review](qualification/2026-10-19-apple-container-recovery-02-review.json)
+distinguishes receipt contents, source/hash comparison and current observations.
+All previous receipts/source identities are preserved. Setup and recovery attempt
+identities are consumed; do not repeat them. No new startup, provisioning or guest
+execution is authorized. Scoped recovery does not qualify an execution boundary.
 
 The latest [staged authorization proposal](qualification/APPLE_CONTAINER_NEXT.md)
 adds a frozen positive-v2 fixture with host acknowledgement before tmpfs teardown,
@@ -215,9 +217,9 @@ Even successful synthetic qualification would apply only to its exact host,
 versions and configuration, require independent review, and would not enable
 `faultline-audit`, mutations, project tests or the #10 experiment.
 
-**Decision: NO_GO / UNAVAILABLE.** Smallest next action: separately approve
-identity-scoped recovery of the existing setup-v2 services. Further startup,
-provisioning and the reviewed synthetic protocol require later authorization. This PR
+**Decision: NO_GO / UNAVAILABLE.** Recovery-02 is recorded as scoped recovery,
+with the provenance limits above. Further startup, provisioning and the reviewed
+synthetic protocol require fresh identities and later authorization. This PR
 does not request blanket installation or experiment authority. Do not escape the
 current Codex restrictions or install a substitute runtime to complete a receipt.
 
