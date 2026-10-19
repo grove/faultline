@@ -1,10 +1,12 @@
 """Single approved service-setup attempt; never launches a VM or workload."""
 
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
 import plistlib
+import re
 import subprocess
 import sys
 import time
@@ -13,7 +15,7 @@ import tomllib
 
 HERE = Path(__file__).resolve().parent
 BUNDLE = Path("/private/tmp/faultline-apple-positive-v2")
-ATTEMPT = "setup-v2"
+ATTEMPT = "setup-v3"
 SETUP = BUNDLE / ATTEMPT
 CLI = "/usr/local/bin/container"
 PLUGIN_ROOT = Path("/usr/local/libexec/container/plugins")
@@ -26,7 +28,7 @@ PLUGIN_CONFIGS = {
     "machine-apiserver": "819edb0d3c20517e8a56e11a9623b3804c6821d3920da3fa66d989f766103b6a",
 }
 INIT = "ghcr.io/apple/containerization/vminit@sha256:c5c20071df2a9f249f82c9c2940539bd568360540559921a29f9f8b78df67ade"
-ENV = {"HOME": "/Users/grove", "PATH": "/usr/bin:/bin", "LC_ALL": "C",
+ENV = {"HOME": "/Users/grove", "PATH": "/usr/bin:/bin", "LC_ALL": "C", "TZ": "Europe/Oslo",
        "XDG_CONFIG_HOME": str(SETUP / "config-home"),
        "CONTAINER_APP_ROOT": str(SETUP / "runtime"),
        "CONTAINER_INSTALL_ROOT": "/usr/local"}
@@ -37,6 +39,22 @@ SERVICE_PROGRAMS = {
     "com.apple.container.machine-apiserver": "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver",
     "com.apple.container.container-core-images": "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images",
     "com.apple.container.container-network-vmnet.default": "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet",
+}
+
+OBSERVER_SHA256 = "c86e1c77332d4d9bb8785c5136dedbf1d258a2aba0623a2d9d38e78c9317b6a0"
+CONFIG_SHA256 = "ec039793064339b1c438630aaa4a81b03717d96a6ca6b7a19a945c6f85c0883e"
+BINARY_SHA256 = {
+    "/usr/local/bin/container-apiserver": "0d05388259e73b63f84680968fa5fa39feeef4219cce45c5655d29d3172a63b9",
+    "/usr/local/libexec/container/plugins/machine-apiserver/bin/machine-apiserver": "1d3f53f6979d92d0bb9f343cc16782bad9a4b23bb380619f4b0d87d9d6df449c",
+    "/usr/local/libexec/container/plugins/container-core-images/bin/container-core-images": "dc88d9aeb67f8258c3697f8485b6ee77018d63b86b6dc3ba9905fb88f01cb6eb",
+    "/usr/local/libexec/container/plugins/container-network-vmnet/bin/container-network-vmnet": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+    "/usr/local/bin/container": "8cc619377e8978a0ce9f22a3e864dcd4445f2bc38fb64c5197bb69a1bab42463"
+}
+MACH = {
+    "com.apple.container.apiserver": "com.apple.container.apiserver",
+    "com.apple.container.machine-apiserver": "com.apple.container.core.machine-apiserver",
+    "com.apple.container.container-core-images": "com.apple.container.core.container-core-images",
+    "com.apple.container.container-network-vmnet.default": "com.apple.container.network.container-network-vmnet.default",
 }
 
 
@@ -107,9 +125,18 @@ def setup():
     report = {"kind": "SERVICE_SETUP_ONLY", "boundary_launches_requested": 0,
               "qualification_granted": False, "cwd": "/", "environment": ENV,
               "source_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-                                for p in (Path(__file__), HERE / "apple-container-service.toml")},
+                                for p in (Path(__file__), HERE / "apple-container-service.toml",
+                                          HERE / "apple_container_recover_setup_v2.py")},
               "observations": [], "result": "FAILED", "startup_attempted": False}
     with (BUNDLE / ("evidence/" + ATTEMPT + ".json")).open("x", encoding="utf-8") as evidence:
+        def checkpoint():
+            evidence.seek(0)
+            json.dump(report, evidence, indent=2, sort_keys=True)
+            evidence.write("\n")
+            evidence.truncate()
+            evidence.flush()
+            os.fsync(evidence.fileno())
+
         def run(argv, timeout, view=None):
             entry = {"argv": argv, "timeout_seconds": timeout}
             report["observations"].append(entry)
@@ -125,10 +152,28 @@ def setup():
             text = result.stdout.decode("utf-8", "replace")
             entry.update(returncode=result.returncode, stdout="NOT_RETAINED" if view else text[:65536],
                          stderr=result.stderr[:65536].decode("utf-8", "replace"))
-            if result.returncode or len(result.stdout) > (4194304 if view else 65536) or len(result.stderr) > 65536:
+            absence = (argv == observer.DISCOVERY or argv[:3] == ["/bin/ps", "-ww", "-p"] or
+                       argv[0] == "/usr/sbin/lsof")
+            empty = absence and result.returncode == 1 and not result.stdout and not result.stderr
+            if ((result.returncode and not empty) or (absence and not result.returncode and not result.stdout) or
+                    len(result.stdout) > (4194304 if view else 65536) or len(result.stderr) > 65536 or (absence and result.stderr)):
                 raise ValueError("Setup command failed or exceeded retention bound")
             if view:
                 value = domain_names(text, argv[2]) if view == "domain" else owned_plist(text, argv[2])
+                if view == "service":
+                    pids = re.findall(r"^\tpid = ([1-9][0-9]*)$", text, re.M)
+                    if len(pids) != 1 or re.findall(r"^\tstate = (.+)$", text, re.M) != ["running"]:
+                        raise ValueError("Ambiguous/nonrunning service process identity")
+                    for name in ("CONTAINER_APP_ROOT", "CONTAINER_INSTALL_ROOT"):
+                        roots = re.findall(r"^\t\t" + name + r" => (.+)$", text, re.M)
+                        if len(roots) != 1 or not same_path(roots[0], ENV[name]):
+                            raise ValueError("Effective service root differs")
+                    with Path(value["executable"]).open("rb") as source:
+                        digest = hashlib.file_digest(source, "sha256").hexdigest()
+                    if digest != BINARY_SHA256[value["executable"]]:
+                        raise ValueError("Service executable bytes changed")
+                    value = {"identity": value, "pid": int(pids[0]), "executable_sha256": digest,
+                             "target": argv[2]}
                 entry["observed"] = value
                 return value
             return text
@@ -137,12 +182,46 @@ def setup():
             return {target: run(["/bin/launchctl", "print", target], 5, "domain") for target in domains}
 
         def owners(inventory):
-            if any(rows["services"] for target, rows in inventory.items() if target != domain):
-                raise ValueError("Container services appeared in another domain; no automatic recovery")
+            if any(names for target, rows in inventory.items() if target != domain for names in rows.values()):
+                raise ValueError("Container service/endpoint appeared in another domain; no automatic recovery")
+            labels = inventory[domain]["services"]
+            if (not set(labels).issubset(SERVICE_PROGRAMS) or
+                    not set(inventory[domain]["endpoints"]).issubset({MACH[label] for label in labels})):
+                raise ValueError("Unknown service/endpoint ownership; no automatic recovery")
             return {label: run(["/bin/launchctl", "print", domain + "/" + label], 5, "service")
-                    for label in inventory[domain]["services"]}
+                    for label in SERVICE_PROGRAMS if label in labels}
+
+        def observe(argv):
+            return run(argv, 5)
+
+        def process_plan(owned):
+            entries = list(owned.values())
+            processes = observer.processes(entries, observe) if entries else []
+            if not entries and observe(observer.DISCOVERY):
+                raise ValueError("Unowned Container processes remain")
+            for entry in entries:
+                matches = [p for p in processes if p["pid"] == entry["pid"]]
+                if len(matches) != 1:
+                    raise ValueError("Missing/ambiguous setup process")
+                entry.update(process_uid=501, process_started=matches[0]["started"])
+            observer.verify_processes(processes, entries)
+            return entries
 
         try:
+            if SETUP.exists() or SETUP.is_symlink():
+                raise ValueError("Setup-v3 directory already exists; do not reuse the attempt")
+            if report["source_sha256"]["apple_container_recover_setup_v2.py"] != OBSERVER_SHA256:
+                raise ValueError("Reviewed process observer bytes changed")
+            spec = importlib.util.spec_from_file_location("setup_process_observer", HERE / "apple_container_recover_setup_v2.py")
+            observer = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(observer)
+            if hashlib.sha256(config_bytes).hexdigest() != CONFIG_SHA256:
+                raise ValueError("Reviewed configuration bytes changed")
+            for name, expected in BINARY_SHA256.items():
+                with Path(name).open("rb") as source:
+                    if hashlib.file_digest(source, "sha256").hexdigest() != expected:
+                        raise ValueError("Installed executable bytes changed: " + name)
+            report["binary_sha256"] = BINARY_SHA256
             if tomllib.loads(config_bytes.decode())["vminit"]["image"] != INIT:
                 raise ValueError("Init configuration pin changed")
             if CUSTOM_PLUGINS.is_symlink() or (CUSTOM_PLUGINS.exists() and any(CUSTOM_PLUGINS.iterdir())):
@@ -154,7 +233,7 @@ def setup():
                     raise ValueError("Installed plugin configuration changed: " + name)
             report["plugin_config_sha256"] = PLUGIN_CONFIGS
             manager = run(["/bin/launchctl", "managername"], 5).strip()
-            if manager not in ("Aqua", "Background") or os.getuid() == 0:
+            if manager not in ("Aqua", "Background") or os.getuid() != 501:
                 raise ValueError("Unsupported launchd session; no domain fallback")
             domains = ("system", f"user/{os.getuid()}", f"gui/{os.getuid()}")
             domain = domains[2] if manager == "Aqua" else domains[1]
@@ -162,49 +241,90 @@ def setup():
             before = inspect_domains()
             if any(rows[section] for rows in before.values() for section in ("services", "endpoints")):
                 raise ValueError("Existing Container services/endpoints; do not register or stop them")
+            if run(observer.DISCOVERY, 5):
+                raise ValueError("Existing Container processes; do not start or stop them")
+            before_ports = observer.listeners(observe)
             SETUP.mkdir(mode=0o700)
             config = SETUP / "config-home/container"
             config.mkdir(parents=True)
             (config / "config.toml").write_bytes(config_bytes)
             report["startup_attempted"] = True
+            checkpoint()
             run(START, 120)
             status = json.loads(run([CLI, "system", "status", "--format", "json"], 15))
             if status.get("status") != "running" or not same_path(status["paths"]["appRoot"], ENV["CONTAINER_APP_ROOT"]):
                 raise ValueError("Unexpected post-start service state/root")
             if (not same_path(status["paths"]["installRoot"], "/usr/local") or
                     status["server"]["version"] != "1.5.0" or
-                    not status["server"]["commit"].startswith("d265d66")):
+                    status["server"]["commit"] != "d265d669ecae041bf338cb3b39c4118316d138f0"):
                 raise ValueError("Service installation/source identity differs")
             copied = SETUP / "runtime/config/config.toml"
             if copied.read_bytes() != (config / "config.toml").read_bytes():
                 raise ValueError("Effective startup configuration differs")
             if not json.loads(run([CLI, "image", "inspect", INIT], 15)):
                 raise ValueError("Init metadata missing after startup")
-            report["owned_services"] = owners(inspect_domains())
-            if "com.apple.container.apiserver" not in report["owned_services"]:
-                raise ValueError("Owned API service missing from selected domain")
+            after = inspect_domains()
+            report["owned_services"] = owners(after)
+            if (set(report["owned_services"]) != set(SERVICE_PROGRAMS) or
+                    set(after[domain]["endpoints"]) != set(MACH.values())):
+                raise ValueError("Expected startup services missing")
+            report["process_plan"] = process_plan(report["owned_services"])
+            report["listeners"] = observer.listeners(observe)
             report["result"] = "SERVICES_STARTED_INIT_METADATA_PRESENT"
         except (Exception, KeyboardInterrupt) as error:
             report["error"] = type(error).__name__ + ": " + str(error)
             if report["startup_attempted"]:
                 try:
                     plan = owners(inspect_domains())
-                    report["recovery_plan"] = plan
-                    for label, identity in plan.items():
-                        target = domain + "/" + label
-                        if run(["/bin/launchctl", "print", target], 5, "service") != identity:
+                    entries = process_plan(plan)
+                    report["recovery_plan"] = entries
+                    report["removed"] = []
+                    report["attempted"] = []
+                    checkpoint()
+                    for entry in entries:
+                        remaining = [e for e in entries if e["target"] not in report["removed"]]
+                        current = owners(inspect_domains())
+                        if {e["target"] for e in current.values()} != {e["target"] for e in remaining}:
+                            raise ValueError("Service set changed before recovery")
+                        live = current[entry["target"].rsplit("/", 1)[1]]
+                        if live != {k: v for k, v in entry.items() if k not in ("process_uid", "process_started")}:
                             raise ValueError("Service ownership changed; no bootout")
-                        run(["/bin/launchctl", "bootout", target], 5)
-                    remaining = inspect_domains()
-                    report["recovery"] = "NO_CONTAINER_REGISTRATIONS_OBSERVED" if not any(
-                        rows[section] for rows in remaining.values() for section in ("services", "endpoints")
-                    ) else "INCOMPLETE_STOP_AND_REVIEW"
+                        observer.verify_processes(observer.processes(entries, observe), remaining)
+                        report["attempted"].append(entry["target"])
+                        checkpoint()
+                        run(["/bin/launchctl", "bootout", entry["target"]], 5)
+                        report["removed"].append(entry["target"])
+                        checkpoint()
+                    for attempt in range(5):
+                        registrations = inspect_domains()
+                        processes = observer.processes(entries, observe) if entries else []
+                        if not entries and observe(observer.DISCOVERY):
+                            raise ValueError("Unowned Container processes remain")
+                        ports = observer.listeners(observe)
+                        report["recovery_postcheck"] = {"registrations": registrations,
+                                                       "processes": processes, "listeners": ports}
+                        checkpoint()
+                        if not any(names for rows in registrations.values() for names in rows.values()) and not processes and ports == before_ports:
+                            report["recovery"] = "SCOPED_RECOVERY_OBSERVED"
+                            break
+                        if attempt < 4:
+                            time.sleep(1)
+                    else:
+                        raise ValueError("Registrations/processes/bindings remain after recovery")
                 except (Exception, KeyboardInterrupt) as recovery_error:
                     report["recovery"] = "INCOMPLETE_STOP_AND_REVIEW: " + str(recovery_error)
+                    try:
+                        entries = report.get("recovery_plan", [])
+                        report["incomplete_postcheck"] = {
+                            "registrations": inspect_domains(),
+                            "processes": observer.processes(entries, observe) if entries else "NOT_VERIFIED",
+                            "listeners": observer.listeners(observe),
+                        }
+                    except (Exception, KeyboardInterrupt) as observation_error:
+                        report["incomplete_observation_error"] = str(observation_error)
         finally:
             report["elapsed_seconds"] = time.monotonic() - started
-            json.dump(report, evidence, indent=2, sort_keys=True)
-            evidence.write("\n")
+            checkpoint()
     return 0 if report["result"] == "SERVICES_STARTED_INIT_METADATA_PRESENT" else 1
 
 

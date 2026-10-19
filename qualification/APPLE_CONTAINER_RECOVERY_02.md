@@ -7,7 +7,11 @@ SHA-256 `22513d910a16fa263df059571d6046458f60008122e56fc9686f0a512b91a5c6`.
 The journal records four successful bootouts and empty registration/process/DNS
 binding postchecks. Current independent read-only launchd and lsof observations
 also found no Container registrations/Mach endpoints or reviewed DNS bindings.
-Process absence is journal-reported; it was not independently inspected in Codex.
+Subsequent [operator-supplied independent process observations](2026-10-19-apple-container-recovery-02-operator-process-check.json)
+corroborate the empty process postcheck: both targeted ps and Container-name pgrep
+returned no output, exit 1. They were not run or witnessed in Codex. Original
+journals and the earlier review remain unchanged. The next proposal is separately
+authorized [setup-v3](APPLE_CONTAINER_SERVICE_SETUP_V3.md).
 Source/plan hashes match the approved files; this agent did not witness the
 recorded execution. See the [provenance review](2026-10-19-apple-container-recovery-02-review.json).
 No new startup, provisioning or execution is authorized. The remaining text

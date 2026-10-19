@@ -3,7 +3,7 @@
 **Historical setup-v1 request: its one-attempt authorization is consumed.** The
 operator attempt stopped at the too-restrictive Aqua-only guard before startup.
 Do not rerun the commands below or use their prefix-wide recovery. The corrected
-current request is [setup-v2](APPLE_CONTAINER_SERVICE_SETUP_V2.md).
+current request is [setup-v3](APPLE_CONTAINER_SERVICE_SETUP_V3.md).
 
 Stage 1a is complete and stopped at **unregistered**, not a containment failure.
 The [unaltered inventory](2026-10-18-apple-container-inventory.json) has SHA-256

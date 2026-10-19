@@ -1,0 +1,38 @@
+{
+  "execution_gate": "NO_GO / UNAVAILABLE",
+  "interpretation": "Reported empty selections corroborate disappearance of the four frozen PIDs and UID-501 Container-named processes. They do not constitute general sandbox or vmnet teardown qualification.",
+  "journal_sha256_unchanged": "22513d910a16fa263df059571d6046458f60008122e56fc9686f0a512b91a5c6",
+  "kind": "OPERATOR_SUPPLIED_INDEPENDENT_RECOVERY_02_PROCESS_OBSERVATIONS",
+  "observations": [
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "70913,70921,70924,70925",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 1,
+      "stderr": "NOT_SEPARATELY_SUPPLIED",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/pgrep",
+        "-u",
+        "501",
+        "-l",
+        "^(container-|machine-api)"
+      ],
+      "returncode": 1,
+      "stderr": "NOT_SEPARATELY_SUPPLIED",
+      "stdout": ""
+    }
+  ],
+  "operator_observed_at_utc": null,
+  "provenance": "User-supplied results of independent read-only commands, separate from the recovery-02 helper. Not run or witnessed in Codex.",
+  "qualification_granted": false,
+  "recovery_repeated": false,
+  "reported_at_review_utc": "2026-10-19T06:13:45.121487+00:00"
+}

@@ -50,12 +50,17 @@ now reports four successful bootouts and empty registration/process/listener
 postchecks. On the approved continuation the journal already existed, so no
 recovery was invoked again. Independent read-only launchd/lsof checks confirm
 no Container services/Mach endpoints in system/user/GUI or reviewed DNS bindings.
-Process absence remains journal-reported, not independently inspected in Codex.
+The operator's later [independent targeted ps/pgrep observations](qualification/2026-10-19-apple-container-recovery-02-operator-process-check.json)
+corroborate no remaining scoped processes (empty output, exit 1); these were supplied
+by the operator, not witnessed or repeated in Codex.
 The [review](qualification/2026-10-19-apple-container-recovery-02-review.json)
 distinguishes receipt contents, source/hash comparison and current observations.
 All previous receipts/source identities are preserved. Setup and recovery attempt
 identities are consumed; do not repeat them. No new startup, provisioning or guest
-execution is authorized. Scoped recovery does not qualify an execution boundary.
+execution is authorized. The next proposed effect is a [fresh setup-v3 attempt](qualification/APPLE_CONTAINER_SERVICE_SETUP_V3.md),
+including pinned-init retrieval and identity/process-verified failure recovery.
+It has not run and requires separate approval. Scoped recovery does not qualify
+an execution boundary.
 
 The latest [staged authorization proposal](qualification/APPLE_CONTAINER_NEXT.md)
 adds a frozen positive-v2 fixture with host acknowledgement before tmpfs teardown,
@@ -217,9 +222,9 @@ Even successful synthetic qualification would apply only to its exact host,
 versions and configuration, require independent review, and would not enable
 `faultline-audit`, mutations, project tests or the #10 experiment.
 
-**Decision: NO_GO / UNAVAILABLE.** Recovery-02 is recorded as scoped recovery,
-with the provenance limits above. Further startup, provisioning and the reviewed
-synthetic protocol require fresh identities and later authorization. This PR
+**Decision: NO_GO / UNAVAILABLE.** The next request is separately approved setup-v3,
+with fresh identities, pinned configuration and the explicit host effects above.
+Worker/kernel provisioning and the reviewed synthetic protocol require later authorization. This PR
 does not request blanket installation or experiment authority. Do not escape the
 current Codex restrictions or install a substitute runtime to complete a receipt.
 

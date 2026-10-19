@@ -25,6 +25,8 @@ class RecoveryTests(unittest.TestCase):
         self.addCleanup(temporary.cleanup)
         root = Path(temporary.name)
         plan = copy.deepcopy(BASE)
+        # This unit-test plan is synthetic; the consumed live recovery plan stays frozen.
+        plan['identity_helper_sha256'] = hashlib.sha256((r.HERE / 'apple_container_service_setup.py').read_bytes()).hexdigest()
         for number, entry in enumerate(plan['services'], 101):
             entry['pid'] = number
             executable = root / Path(entry['identity']['executable']).name

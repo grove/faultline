@@ -4,7 +4,8 @@
 services, then failed Faultline's path comparison and recovery checks. Its receipt
 is preserved unchanged. The [recovery-02 result](APPLE_CONTAINER_RECOVERY_02.md)
 records scoped service recovery with separate provenance limits; do not repeat it.
-A startup retry requires a fresh identity and separate approval. The remaining text records the consumed setup-v2 proposal.
+The [fresh setup-v3 proposal](APPLE_CONTAINER_SERVICE_SETUP_V3.md) requires separate
+approval; no earlier startup/recovery authority transfers. The remaining text records the consumed setup-v2 proposal.
 
 The operator's setup-v1 receipt is [preserved byte for byte](2026-10-18-apple-container-setup-v1.json),
 SHA-256 `e2fa363740ca780bd736f0daec8ed8f2e0c8bcf3621d0cbb5e9195a2b5ecfb1a`.

@@ -1,11 +1,12 @@
 # Positive Apple Container smoke review — BLOCKED / NOT RUN
 
-**Current state:** [recovery-02 journal reports scoped recovery](APPLE_CONTAINER_RECOVERY_02.md).
-The existing journal records four successful bootouts and empty registration,
-process and listener postchecks. Independent read-only launchd/lsof checks confirm
-no Container registrations/Mach endpoints or reviewed DNS bindings; process absence
-remains journal-reported. The journal and all earlier receipts are preserved.
-Recovery-02 must not be repeated. No startup, provisioning, VM or canary is authorized.
+**Current next request:** one [fresh setup-v3 attempt](APPLE_CONTAINER_SERVICE_SETUP_V3.md).
+Recovery-02 is corroborated by the operator's separate [targeted process checks](2026-10-19-apple-container-recovery-02-operator-process-check.json),
+in addition to the unchanged journal and earlier independent launchd/lsof checks.
+These process observations were supplied by the operator, not repeated in Codex.
+All prior attempt identities are consumed. Setup-v3 has a fresh directory/receipt
+and is **NOT RUN / NOT AUTHORIZED**; worker/kernel provisioning and VM/canary
+execution remain separate later approvals.
 
 The historical preparation and setup proposals below are retained as context.
 All prerequisite checks and Stage 1a are complete; do not repeat them or reuse
