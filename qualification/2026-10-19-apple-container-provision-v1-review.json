@@ -1,0 +1,172 @@
+{
+  "accepted_init_redownload": false,
+  "accepted_setup_v4_receipt_sha256": "7366b677973d26db9b16efbfc1cae563e262de59d4fb1d695ed79d56f73b584c",
+  "approval_command": [
+    "/usr/bin/env",
+    "-i",
+    "HOME=/Users/grove",
+    "PATH=/usr/bin:/bin",
+    "LC_ALL=C",
+    "TZ=Europe/Oslo",
+    "/opt/homebrew/bin/python3",
+    "-I",
+    "-B",
+    "qualification/apple_container_provision.py",
+    "provision-v1"
+  ],
+  "approval_cwd": "/Users/grove/projects/faultline",
+  "child_cwd": "/",
+  "child_environment": {
+    "CONTAINER_APP_ROOT": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime",
+    "CONTAINER_INSTALL_ROOT": "/usr/local",
+    "HOME": "/Users/grove",
+    "LC_ALL": "C",
+    "PATH": "/usr/bin:/bin",
+    "TZ": "Europe/Oslo",
+    "XDG_CONFIG_HOME": "/private/tmp/faultline-apple-positive-v2/setup-v4/config-home"
+  },
+  "current_storage": {
+    "allocated_bytes": 273485824,
+    "free_bytes": 156467200000,
+    "logical_bytes": 740351288
+  },
+  "execution": "NO_GO / UNAVAILABLE",
+  "failure_policy": "Retain FAILED receipt/partial artifacts and existing services/runtime; no retry, cleanup, default-kernel change or shutdown. In-flight image work can survive client/coordinator timeout; separate scoped review required.",
+  "fresh_directory": "/private/tmp/faultline-apple-positive-v2/provision-v1",
+  "guardian": {
+    "fixed_deadline_seconds": 10,
+    "installed": false,
+    "live_calibrated": false,
+    "requires_separate_positive_authorization": true,
+    "source_only": true,
+    "vm_owner_binary_sha256": "e8bee184cc1f6b53982f9cc4ecb02085ebe238b8834112f71f8972c0d488511a"
+  },
+  "guardian_procedure_sha256": "1868054c10b2e4c3e9862ff8fdc525dec1121576548d77773203dc172728330f",
+  "kernel": {
+    "archive_bytes": 696573576,
+    "archive_sha256": "8736c054d9223974735394f822000823baef509e1c33405ec798240fa9b6e4b5",
+    "dedicated_path": "/private/tmp/faultline-apple-positive-v2/provision-v1/vmlinux-6.18.35-197-debug",
+    "default_kernel_mutation": false,
+    "extracted_sha256": "TO_BE_RECORDED_AFTER_AUTHORIZED_PROVISIONING",
+    "member": "opt/kata/share/kata-containers/vmlinux-6.18.35-197-debug",
+    "url": "https://github.com/kata-containers/kata-containers/releases/download/3.32.0/kata-static-3.32.0-arm64.tar.zst"
+  },
+  "kernel_download_argv": [
+    "/usr/bin/curl",
+    "-q",
+    "--fail",
+    "--silent",
+    "--show-error",
+    "--location",
+    "--proto",
+    "=https",
+    "--proto-redir",
+    "=https",
+    "--max-redirs",
+    "5",
+    "--connect-timeout",
+    "10",
+    "--max-time",
+    "300",
+    "--max-filesize",
+    "696573576",
+    "--output",
+    "/private/tmp/faultline-apple-positive-v2/provision-v1/kata-static-3.32.0-arm64.tar.zst",
+    "https://github.com/kata-containers/kata-containers/releases/download/3.32.0/kata-static-3.32.0-arm64.tar.zst"
+  ],
+  "kind": "WORKER_KERNEL_PROVISION_V1_PREPARATION_ONLY",
+  "not_authorized": [
+    "provision-v1 until separate approval",
+    "init retrieval",
+    "setup-v4 repeat",
+    "service start/stop",
+    "guardian registration",
+    "VM/canary/Python execution",
+    "negative controls",
+    "#10",
+    "Faultline skill enablement",
+    "merge/issue closure"
+  ],
+  "proposal_path": "qualification/APPLE_CONTAINER_PROVISION_V1.md",
+  "proposal_sha256": "13e11b3339a26cd4dc224112ffd9122d86ceb379f276f74ab19f6e52e198d429",
+  "qualification_granted": false,
+  "receipt": "/private/tmp/faultline-apple-positive-v2/evidence/provision-v1.json",
+  "resource_bounds": {
+    "combined_roots": [
+      "setup-v4",
+      "provision-v1"
+    ],
+    "coordinator_alarm_seconds": 600,
+    "curl_max_seconds": 300,
+    "curl_subprocess_timeout_seconds": 310,
+    "hard_disk_network_cpu_ram_quota": false,
+    "kernel_archive_decompressed_read_max_bytes": 8589934592,
+    "kernel_member_max_bytes": 134217728,
+    "max_allocated_bytes": 8589934592,
+    "max_logical_bytes": 551903297536,
+    "minimum_free_bytes": 17179869184,
+    "observer_timeout_seconds": 5,
+    "phase_checks": [
+      "before worker",
+      "after worker",
+      "after archive",
+      "after extraction"
+    ],
+    "snapshot_data_extent_read_max_bytes": 8589934592,
+    "status_timeout_seconds": 15,
+    "worker_layer_decompressed_read_max_bytes_each": 536870912,
+    "worker_pull_timeout_seconds": 180,
+    "worker_snapshot_max_bytes": 550829555712
+  },
+  "reviewed_at_utc": "2026-10-19T08:02:46.050232+00:00",
+  "service_registration_or_shutdown": false,
+  "source_sha256": {
+    "apple-container-service.toml": "ec039793064339b1c438630aaa4a81b03717d96a6ca6b7a19a945c6f85c0883e",
+    "apple_container_guardian.py": "8c0a0b9096ac78c2b5417250af3d38e436a7c164244e68d0aa53aa940f414e56",
+    "apple_container_provision.py": "2da6578d3c1cb49798ccc0f82db8f6e54c357c4a5c671736dfe556e2104dd67c",
+    "apple_container_recover_setup_v2.py": "c86e1c77332d4d9bb8785c5136dedbf1d258a2aba0623a2d9d38e78c9317b6a0",
+    "apple_container_service_setup.py": "82a20ecffdedef478b72fe4b3b9a384cb8e35ad9b407b7e61c510a596b21f101"
+  },
+  "validation": {
+    "all_service_download_vm_calls_mocked": true,
+    "command": "/opt/homebrew/bin/python3 -I -B -m unittest discover -s tests -p 'test_apple_container*.py'",
+    "scoped_tests": 59
+  },
+  "worker": {
+    "compressed_layer_bytes": 46062357,
+    "config": "sha256:da841a7026abc0089180121604f6d0ba4324998e2d133eccae13f22707055dc1",
+    "layer_digests_and_sizes": [
+      [
+        "c75f989a229d12b2d2613a5997de9ff3546f664c22da9248720033a2410220f6",
+        28137179
+      ],
+      [
+        "aa08835651e777794bde3e8c99bee012c418f60d0d164df22497fa01dc72aca5",
+        3176232
+      ],
+      [
+        "7b2df2902dddd1a4510670c4d3a6d61b4458fa3e7c1ae0b262d75bde1349ab14",
+        14748696
+      ],
+      [
+        "32020fed7f2a057b9cee7fdbfa3ea9fc394149118d7a951c462c7055c3cd3f56",
+        250
+      ]
+    ],
+    "reference": "docker.io/library/python@sha256:55432fc4ef6d07e33c10449312f0ec00071bbb310bb9bd7ba626a31fbbc2cb0d"
+  },
+  "worker_pull_argv": [
+    "/usr/local/bin/container",
+    "image",
+    "pull",
+    "--platform",
+    "linux/arm64/v8",
+    "--scheme",
+    "https",
+    "--progress",
+    "plain",
+    "--max-concurrent-downloads",
+    "1",
+    "docker.io/library/python@sha256:55432fc4ef6d07e33c10449312f0ec00071bbb310bb9bd7ba626a31fbbc2cb0d"
+  ]
+}

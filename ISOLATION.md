@@ -71,10 +71,24 @@ identifies a suppressed parsing path in implicit init retrieval; it does not
 attribute failure to networking, authentication, digest compatibility or cache.
 Also, 1.5.0 image inspection intentionally hides the configured init: successful
 `[]` is expected, and the old nonempty-metadata check was incorrect.
-The next proposed effect is [one fresh setup-v4 and explicit pinned-init pull](qualification/APPLE_CONTAINER_SERVICE_SETUP_V4.md),
-after service/root/ownership checks, followed by local blob and snapshot structural
-checks. It requires separate approval. Scoped recovery and provisioning do not
-qualify an execution boundary. PR #17 remains draft and issue #2 open.
+The operator subsequently completed setup-v4 successfully, exit 0. Its
+[unaltered receipt](qualification/2026-10-19-apple-container-setup-v4.json), SHA-256
+`7366b677973d26db9b16efbfc1cae563e262de59d4fb1d695ed79d56f73b584c`, reports
+`SERVICES_STARTED_INIT_CONTENT_SNAPSHOT_CHECKED`, four verified service identities
+left running, no recovery and zero VM/canary launches. The init is accepted as
+provisioned for this exact configuration; setup-v4 is consumed and must not repeat.
+The [provenance-qualified review](qualification/2026-10-19-apple-container-setup-v4-outcome.json)
+distinguishes operator execution evidence from independent receipt/source hash and
+read-only storage comparison. Actual setup-v4 storage is 740,351,288 logical /
+273,485,824 allocated bytes; these observations are not hard quotas.
+
+The sole next request is [worker and dedicated-kernel provisioning](qualification/APPLE_CONTAINER_PROVISION_V1.md),
+using the existing services, preserving the default kernel/config and all receipts.
+No init retrieval, restart or cleanup is requested. A [host guardian](qualification/APPLE_CONTAINER_GUARDIAN.md)
+is prepared with mocked tests for a later separately authorized positive stage;
+it is neither registered nor calibrated against a live VM. No synthetic execution
+authority transfers from artifact provisioning. PR #17 remains draft, issue #2
+open, execution **NO_GO / UNAVAILABLE**.
 
 The latest [staged authorization proposal](qualification/APPLE_CONTAINER_NEXT.md)
 adds a frozen positive-v2 fixture with host acknowledgement before tmpfs teardown,
@@ -236,9 +250,9 @@ Even successful synthetic qualification would apply only to its exact host,
 versions and configuration, require independent review, and would not enable
 `faultline-audit`, mutations, project tests or the #10 experiment.
 
-**Decision: NO_GO / UNAVAILABLE.** The next request is separately approved setup-v4,
-with fresh identities, pinned configuration and the explicit host effects above.
-Worker/kernel provisioning and the reviewed synthetic protocol require later authorization. This PR
+**Decision: NO_GO / UNAVAILABLE.** Setup-v4 succeeded and is consumed. The next
+request is separately approved pinned worker/dedicated-kernel provisioning with
+the existing services. The reviewed synthetic protocol needs later authorization. This PR
 does not request blanket installation or experiment authority. Do not escape the
 current Codex restrictions or install a substitute runtime to complete a receipt.
 

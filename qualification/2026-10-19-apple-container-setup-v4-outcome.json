@@ -1,0 +1,130 @@
+{
+  "authorization_status": "SETUP_V4_CONSUMED_DO_NOT_REPEAT",
+  "boundary_launches": 0,
+  "execution": "NO_GO / UNAVAILABLE",
+  "execution_provenance": "Operator supplied; not witnessed/repeated by Codex. Original bytes and source/config/observer hashes independently compared.",
+  "guardian": "PREPARED_NOT_INSTALLED_NOT_LIVE_CALIBRATED",
+  "historical_records_preserved": {
+    "qualification/2026-10-18-apple-container-inventory-review.json": "259d19485e76ab24fef681c6411bc6f855433b029554379f4da40fa2a712bd57",
+    "qualification/2026-10-18-apple-container-inventory.json": "801d606d2816c1ca63658edc1259edb71e7f7b83e741a16c605955c1e5f3f2b9",
+    "qualification/2026-10-18-apple-container-positive-review.json": "00bffad79bbf0a40860a6951520b7f57adf269c13ef20e75b68360f6e5b23320",
+    "qualification/2026-10-18-apple-container-positive-v2-prepared.json": "5c2c360a9b025de6fce372a4129b365580b94eb68503b8017fa2c4cd7331f385",
+    "qualification/2026-10-18-apple-container-preflight.json": "639cd38adf4556f81970886ffc40633c790c28c63a9dec1261b9ed1461c6713a",
+    "qualification/2026-10-18-apple-container-preparation.json": "7d9b36a1af6372d349cb5276c3e9347cdb31110add9d2a373e86a5e708f204a4",
+    "qualification/2026-10-18-apple-container-prepared.json": "3349e3c1e401afa9c32de55ecd385cd65afc46b01fcfbb7660d1c0f763f4426d",
+    "qualification/2026-10-18-apple-container-recovery-plan.json": "f727a96cbea4ac6751aa00894049c35b5c1b0d5a8206e36757f96734f643f9a9",
+    "qualification/2026-10-18-apple-container-review.json": "a6c62ae31ef067a11926b7529f7f2d4ad6991f319c6f001e44b20cd1ecf51f84",
+    "qualification/2026-10-18-apple-container-setup-v1-review.json": "c556f7a93e8b139fc7e9ac959b5a173e6194ef34c4252700841292810f66f64d",
+    "qualification/2026-10-18-apple-container-setup-v1.json": "e2fa363740ca780bd736f0daec8ed8f2e0c8bcf3621d0cbb5e9195a2b5ecfb1a",
+    "qualification/2026-10-18-apple-container-setup-v2.json": "9cca8060f4314ef1ba6ef1fe430dc2318d81f8f2de3501d90a205e5f8c466ce4",
+    "qualification/2026-10-18-apple-container-terminal-prerequisites.json": "cd9cddefa06fd299f29683d625dbc9796d8a6fcf02cf29d11eae282583931aa3",
+    "qualification/2026-10-18-apple-container-terminal.json": "08e519083ff3406a59422b217d2f43259062c467554744cb31b952a28e59e8e0",
+    "qualification/2026-10-18-macos.json": "7993892a631482c5181f403dbb04e3f0dea98a98f9be2f1c61cc8d8cf50407fe",
+    "qualification/2026-10-19-apple-container-operator-processes.txt": "5f0c34272328d4a787c460047669848925bbae110053cb6ea491227714e69f1c",
+    "qualification/2026-10-19-apple-container-recovery-01.jsonl": "72b99a00ad4bdd2005777b364530e2d5c2ee217fadd20d1fa3b4e0c3703dd770",
+    "qualification/2026-10-19-apple-container-recovery-02-operator-process-check.json": "633ebd558fd0a4686fd7726b40babfc946862e9e5b8edff4d93041d1bb9150dd",
+    "qualification/2026-10-19-apple-container-recovery-02-plan.json": "26b72f4f05406f714c2f6ac92fdaba9d5fe39b6b387bb4f4568c43274146e679",
+    "qualification/2026-10-19-apple-container-recovery-02-review.json": "38aa1c49d126765591eac3b4858f54ccaf39cc95612a7cee4870e0dc402a11b5",
+    "qualification/2026-10-19-apple-container-recovery-02.jsonl": "22513d910a16fa263df059571d6046458f60008122e56fc9686f0a512b91a5c6",
+    "qualification/2026-10-19-apple-container-setup-v3-outcome.json": "ff84a8e3d4f845b7e389e2b3c3aa1319d6f526f60f583e253927a3d7f5a6585b",
+    "qualification/2026-10-19-apple-container-setup-v3-review.json": "4420d39e7ea725640c7b81e50d8798b99cab5eb0810e7d31772600446f781957",
+    "qualification/2026-10-19-apple-container-setup-v3-startup-logs.json": "efaca163415f7155841cf82fa3622cb2f867247a8030cd3e5a4685f3efa50257",
+    "qualification/2026-10-19-apple-container-setup-v3.json": "27d50d2a34e6fc12c30066068b5edc754ad545bf34004cd1b781827c4ad644e1",
+    "qualification/2026-10-19-apple-container-setup-v4-review.json": "f9ff948d7a8e670daff34dabbd8b31999e889a6115654f7bb0a5ee1cd7a08502"
+  },
+  "independent_read_only_storage": {
+    "allocated_bytes": 273485824,
+    "free_bytes": 156467200000,
+    "logical_bytes": 740351288
+  },
+  "init": {
+    "blobs": [
+      {
+        "digest": "sha256:52ceb5f60b8fa2159ab95f3145e6dc649fa2538b6e87cdc48b660c4c418e934a",
+        "mediaType": "application/vnd.oci.image.index.v1+json",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/content/blobs/sha256/52ceb5f60b8fa2159ab95f3145e6dc649fa2538b6e87cdc48b660c4c418e934a",
+        "size": 358
+      },
+      {
+        "digest": "sha256:c5c20071df2a9f249f82c9c2940539bd568360540559921a29f9f8b78df67ade",
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/content/blobs/sha256/c5c20071df2a9f249f82c9c2940539bd568360540559921a29f9f8b78df67ade",
+        "platform": {
+          "architecture": "arm64",
+          "os": "linux"
+        },
+        "size": 409
+      },
+      {
+        "digest": "sha256:9f6055935bd1bc0c3299f81b927d8b26e1fa57da5a542d20ce94895b789b4764",
+        "mediaType": "application/vnd.oci.image.config.v1+json",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/content/blobs/sha256/9f6055935bd1bc0c3299f81b927d8b26e1fa57da5a542d20ce94895b789b4764",
+        "size": 255
+      },
+      {
+        "digest": "sha256:288a5de3805fef8beec785de9bd9f57857c26d04ac96b562a28cbcb352814b19",
+        "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+        "path": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/content/blobs/sha256/288a5de3805fef8beec785de9bd9f57857c26d04ac96b562a28cbcb352814b19",
+        "size": 69253615
+      }
+    ],
+    "reference": "ghcr.io/apple/containerization/vminit@sha256:c5c20071df2a9f249f82c9c2940539bd568360540559921a29f9f8b78df67ade",
+    "snapshot": {
+      "allocated_bytes": 189022208,
+      "bytes": 671088640,
+      "check": "STRUCTURE_AND_UNPACK_EXIT_ONLY; NOT_FSCK_OR_GUEST_BOOT",
+      "metadata": {
+        "destination": "/",
+        "options": [],
+        "source": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/snapshots/c5c20071df2a9f249f82c9c2940539bd568360540559921a29f9f8b78df67ade/snapshot",
+        "type": {
+          "block": {
+            "cache": {
+              "on": {}
+            },
+            "format": "ext4",
+            "sync": {
+              "fsync": {}
+            }
+          }
+        }
+      },
+      "path": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/snapshots/c5c20071df2a9f249f82c9c2940539bd568360540559921a29f9f8b78df67ade/snapshot",
+      "sha256": "d5c6f80f42dfb49fabc4ad7c6867d8df37686f6514d90f4eeacda0428c84f20b"
+    }
+  },
+  "init_status": "PROVISIONED_FOR_THIS_HOST_CONFIGURATION_DO_NOT_DOWNLOAD_AGAIN",
+  "issue_2": "OPEN",
+  "kind": "OPERATOR_SETUP_V4_SUCCESS_WITH_SEPARATE_HASH_AND_DISK_REVIEW",
+  "next_authorization": "APPLE_CONTAINER_PROVISION_V1.md",
+  "no_new_effects_executed": [
+    "setup",
+    "artifact retrieval",
+    "kernel installation",
+    "service registration or shutdown",
+    "VM/canary",
+    "experiment #10",
+    "Faultline execution enablement"
+  ],
+  "operator_exit_status": 0,
+  "original_receipt": "/private/tmp/faultline-apple-positive-v2/evidence/setup-v4.json",
+  "original_receipt_sha256": "7366b677973d26db9b16efbfc1cae563e262de59d4fb1d695ed79d56f73b584c",
+  "pr_17": "DRAFT",
+  "preserved_copy": "qualification/2026-10-19-apple-container-setup-v4.json",
+  "qualification_granted": false,
+  "result": "SERVICES_STARTED_INIT_CONTENT_SNAPSHOT_CHECKED",
+  "reviewed_at_utc": "2026-10-19T08:02:46.045449+00:00",
+  "service_status": "Four identities verified in operator receipt; preserved running; no recovery or current service contact by this review.",
+  "source_sha256": {
+    "apple-container-service.toml": "ec039793064339b1c438630aaa4a81b03717d96a6ca6b7a19a945c6f85c0883e",
+    "apple_container_recover_setup_v2.py": "c86e1c77332d4d9bb8785c5136dedbf1d258a2aba0623a2d9d38e78c9317b6a0",
+    "apple_container_service_setup.py": "82a20ecffdedef478b72fe4b3b9a384cb8e35ad9b407b7e61c510a596b21f101"
+  },
+  "storage_in_operator_receipt": {
+    "allocated_bytes": 273485824,
+    "free_bytes": 156977688576,
+    "logical_bytes": 740351288
+  },
+  "storage_observed_at_utc": "2026-10-19T08:02:46.045538+00:00",
+  "storage_scope": "setup-v4 only, logical/allocated bytes incl init; no hard live quota"
+}
