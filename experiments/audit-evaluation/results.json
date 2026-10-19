@@ -1,0 +1,225 @@
+{
+  "summary": {
+    "baseline_runs": 6,
+    "expected_weakness_cases": 3,
+    "meaningful_weaknesses_identified_manual": 3,
+    "protected_controls": 3,
+    "protected_controls_without_false_positive_manual": 3,
+    "missed_findings_manual": 0,
+    "false_positives_manual": 0,
+    "unclear_explanations_manual": 0,
+    "specific_scenario_and_assertion_manual": "3/3 findings",
+    "understandable_and_actionable_subjective": "3/3 findings, coordinator judgment; no user study",
+    "audit_checkpoint_seconds_median": 11.0,
+    "audit_checkpoint_seconds_min": 9,
+    "audit_checkpoint_seconds_max": 21,
+    "model_startup_and_final_generation_seconds": "not measured separately",
+    "source_reading_tool_calls_agent_reported_total": 22,
+    "evaluation_preparation_seconds": 71,
+    "evaluation_preparation_includes": "isolated checkout and fixture/oracle authoring; not developer setup for an audit",
+    "auditor_setup": "none reported in 6/6; direct skill-file use, no installs or infrastructure",
+    "skill_changes": "none; no concrete behavioral issue exposed in this sample",
+    "remaining_gaps": [
+      "single run per tiny authored case, one inherited host model/settings",
+      "shared filesystem; answers withheld by prompt discipline rather than access controls",
+      "coordinator authored fixtures and graded responses; grading is not independent",
+      "exact final-response/UI latency, startup, token costs, and human comprehension not measured",
+      "no large repositories, ambiguous contracts, missing tests, or dependency mocks in this set",
+      "no claim of effectiveness over ordinary review or arbitrary-hostile-code qualification"
+    ]
+  },
+  "runs": [
+    {
+      "case": "c01",
+      "agent": "/root/audit_baseline_c01",
+      "report": "runs/baseline-c01.md",
+      "report_sha256": "7dc98367ce60151b1154b077916b852082953bde807344bfbfa1aed86ea0af98",
+      "start_utc": "2026-10-19T13:49:15Z",
+      "pre_final_utc": "2026-10-19T13:49:26Z",
+      "completion_observed_before_utc": "2026-10-19T13:50:16Z",
+      "audit_checkpoint_seconds": 11,
+      "completion_upper_bound_seconds": 61,
+      "source_reading_tool_calls_agent_reported": 3,
+      "setup_agent_reported": "none",
+      "target_execution_agent_reported": false,
+      "grading": {
+        "method": "manual coordinator judgment against frozen expectations; not independently graded",
+        "found_weakness": true,
+        "kind": "suspected implementation bug",
+        "missed_findings": [],
+        "false_positives": [],
+        "unclear_explanations": [],
+        "specific_scenario_and_assertion": true,
+        "understandable_and_actionable_subjective": true
+      },
+      "source_files_agent_reported": [
+        "faultline-audit/SKILL.md",
+        "experiments/audit-evaluation/fixtures/c01/README.md",
+        "experiments/audit-evaluation/fixtures/c01/quote.py",
+        "experiments/audit-evaluation/fixtures/c01/test_quote.py"
+      ]
+    },
+    {
+      "case": "c02",
+      "agent": "/root/audit_baseline_c02",
+      "report": "runs/baseline-c02.md",
+      "report_sha256": "f5b3cf55b3355ffe40ea634d96c9dc64866d994f2957c63d21406d090555931d",
+      "start_utc": "2026-10-19T13:50:27Z",
+      "pre_final_utc": "2026-10-19T13:50:38Z",
+      "completion_observed_before_utc": "2026-10-19T13:52:06Z",
+      "audit_checkpoint_seconds": 11,
+      "completion_upper_bound_seconds": 99,
+      "source_reading_tool_calls_agent_reported": 3,
+      "setup_agent_reported": "none",
+      "target_execution_agent_reported": false,
+      "grading": {
+        "method": "manual coordinator judgment against frozen expectations; not independently graded",
+        "found_weakness": false,
+        "kind": null,
+        "missed_findings": [],
+        "false_positives": [],
+        "unclear_explanations": [],
+        "specific_scenario_and_assertion": null,
+        "understandable_and_actionable_subjective": null
+      },
+      "source_files_agent_reported": [
+        "faultline-audit/SKILL.md",
+        "experiments/audit-evaluation/fixtures/c02/README.md",
+        "experiments/audit-evaluation/fixtures/c02/checks.py",
+        "experiments/audit-evaluation/fixtures/c02/quote.py",
+        "experiments/audit-evaluation/fixtures/c02/test_quote.py"
+      ]
+    },
+    {
+      "case": "c03",
+      "agent": "/root/audit_baseline_c03",
+      "report": "runs/baseline-c03.md",
+      "report_sha256": "8dc82d60ef045a3b91a8ea1e8cb87f2be1ead436c4560e3de8e43c61aa0d5085",
+      "start_utc": "2026-10-19T13:50:34Z",
+      "pre_final_utc": "2026-10-19T13:50:43Z",
+      "completion_observed_before_utc": "2026-10-19T13:52:06Z",
+      "audit_checkpoint_seconds": 9,
+      "completion_upper_bound_seconds": 92,
+      "source_reading_tool_calls_agent_reported": 3,
+      "setup_agent_reported": "none",
+      "target_execution_agent_reported": false,
+      "grading": {
+        "method": "manual coordinator judgment against frozen expectations; not independently graded",
+        "found_weakness": true,
+        "kind": "suspected implementation bug",
+        "missed_findings": [],
+        "false_positives": [],
+        "unclear_explanations": [],
+        "specific_scenario_and_assertion": true,
+        "understandable_and_actionable_subjective": true
+      },
+      "source_files_agent_reported": [
+        "faultline-audit/SKILL.md",
+        "experiments/audit-evaluation/fixtures/c03/README.md",
+        "experiments/audit-evaluation/fixtures/c03/cart.py",
+        "experiments/audit-evaluation/fixtures/c03/test_cart.py"
+      ]
+    },
+    {
+      "case": "c04",
+      "agent": "/root/audit_baseline_c04",
+      "report": "runs/baseline-c04.md",
+      "report_sha256": "570d089591bb687f1128330775cba99dd72e185005d33989c0ef4e9110160b14",
+      "start_utc": "2026-10-19T13:49:22Z",
+      "pre_final_utc": "2026-10-19T13:49:38Z",
+      "completion_observed_before_utc": "2026-10-19T13:50:16Z",
+      "audit_checkpoint_seconds": 16,
+      "completion_upper_bound_seconds": 54,
+      "source_reading_tool_calls_agent_reported": 6,
+      "setup_agent_reported": "none",
+      "target_execution_agent_reported": false,
+      "grading": {
+        "method": "manual coordinator judgment against frozen expectations; not independently graded",
+        "found_weakness": false,
+        "kind": null,
+        "missed_findings": [],
+        "false_positives": [],
+        "unclear_explanations": [],
+        "specific_scenario_and_assertion": null,
+        "understandable_and_actionable_subjective": null
+      },
+      "source_files_agent_reported": [
+        "faultline-audit/SKILL.md",
+        "experiments/audit-evaluation/fixtures/c04/README.md",
+        "experiments/audit-evaluation/fixtures/c04/cart.py",
+        "experiments/audit-evaluation/fixtures/c04/test_cart.py"
+      ]
+    },
+    {
+      "case": "c05",
+      "agent": "/root/audit_baseline_c05",
+      "report": "runs/baseline-c05.md",
+      "report_sha256": "c0019423df454a5a504137d65d730ff504b96e25e8e72968af8dfbd5551a829b",
+      "start_utc": "2026-10-19T13:50:40Z",
+      "pre_final_utc": "2026-10-19T13:50:50Z",
+      "completion_observed_before_utc": "2026-10-19T13:52:06Z",
+      "audit_checkpoint_seconds": 10,
+      "completion_upper_bound_seconds": 86,
+      "source_reading_tool_calls_agent_reported": 3,
+      "setup_agent_reported": "none",
+      "target_execution_agent_reported": false,
+      "grading": {
+        "method": "manual coordinator judgment against frozen expectations; not independently graded",
+        "found_weakness": true,
+        "kind": "missing test protection",
+        "missed_findings": [],
+        "false_positives": [],
+        "unclear_explanations": [],
+        "specific_scenario_and_assertion": true,
+        "understandable_and_actionable_subjective": true
+      },
+      "source_files_agent_reported": [
+        "faultline-audit/SKILL.md",
+        "experiments/audit-evaluation/fixtures/c05/README.md",
+        "experiments/audit-evaluation/fixtures/c05/checkout.py",
+        "experiments/audit-evaluation/fixtures/c05/test_checkout.py"
+      ]
+    },
+    {
+      "case": "c06",
+      "agent": "/root/audit_baseline_c06",
+      "report": "runs/baseline-c06.md",
+      "report_sha256": "7de26106701d1aa398c916a09462e435dba6a85202954722568a5b0dc974e2c8",
+      "start_utc": "2026-10-19T13:49:29Z",
+      "pre_final_utc": "2026-10-19T13:49:50Z",
+      "completion_observed_before_utc": "2026-10-19T13:50:16Z",
+      "audit_checkpoint_seconds": 21,
+      "completion_upper_bound_seconds": 47,
+      "source_reading_tool_calls_agent_reported": 4,
+      "setup_agent_reported": "none",
+      "target_execution_agent_reported": false,
+      "grading": {
+        "method": "manual coordinator judgment against frozen expectations; not independently graded",
+        "found_weakness": false,
+        "kind": null,
+        "missed_findings": [],
+        "false_positives": [],
+        "unclear_explanations": [],
+        "specific_scenario_and_assertion": null,
+        "understandable_and_actionable_subjective": null
+      },
+      "source_files_agent_reported": [
+        "faultline-audit/SKILL.md",
+        "experiments/audit-evaluation/fixtures/c06/README.md",
+        "experiments/audit-evaluation/fixtures/c06/checkout.py",
+        "experiments/audit-evaluation/fixtures/c06/test_checkout.py"
+      ]
+    }
+  ],
+  "validation": {
+    "focused_tests_passed": 7,
+    "commands": [
+      "python3 -B -m unittest discover -s tests -p test_skill.py -v",
+      "python3 -B -m unittest discover -s tests -p test_spike_design.py -v",
+      "python3 -B -m unittest discover -s tests -p test_audit_evaluation.py -v"
+    ],
+    "skill_creator_validator": "unavailable: ModuleNotFoundError: No module named yaml",
+    "dependency_installations": 0,
+    "qualification_tests": "not rerun"
+  }
+}

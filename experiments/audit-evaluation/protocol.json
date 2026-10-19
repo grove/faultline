@@ -1,0 +1,25 @@
+{
+  "baseline_commit": "40cfeeafc816d5474db37cce6b014d7f7cab2ee0",
+  "skill_sha256": "9bd02aca93a8450f808e5c23f9313b6a9cdc8f634d1dd6973008161c0a27eafa",
+  "cases": [
+    "c01",
+    "c02",
+    "c03",
+    "c04",
+    "c05",
+    "c06"
+  ],
+  "selection": "six authored synthetic cases: threshold, mutation-before-validation, same-key retry; weak/strong paired controls",
+  "auditor_prompt_template": "Read <skill> and find weak tests in <case>.",
+  "isolation": "fresh auditor context, only canonical skill and selected case; no expectations or other reports",
+  "execution": "source reading only; no imports, test discovery, project code, Docker, or dependency installation",
+  "grading": "coordinator compares raw outputs to frozen expectations; counts are manual classifications, clarity/actionability subjective; latency is measured separately",
+  "planned_repeats": "one baseline audit per case; rerun only cases exposing a concrete issue after a narrow fix; no best-of sampling",
+  "setup_start_utc": "2026-10-19T13:47:38Z",
+  "fixtures_ready_utc": "2026-10-19T13:48:49Z",
+  "auditor_context": "fork_turns=none; inherited host model/settings, no model override; exact model/version/token cost unavailable",
+  "scope_control": "shared filesystem with instructed path restriction, not OS-enforced answer isolation; graders/other reports not supplied",
+  "instrumentation_prompt": "Call clock__curr_time before reading and immediately before final response; send UTC timestamps, source-reading host-tool call count, files read, and setup needed in an internal message; keep instrumentation out of normal Audit response.",
+  "timing_definition": "Agent UTC start-to-pre-final checkpoint; excludes final response generation and agent startup. Coordinator completion-observed timestamps provide conservative upper bounds including final response and notification handling; not exact UI latency. UTC clock resolution is one second.",
+  "expectations_sha256": "f618ab7c62f5b108331ed1c695fc3d662f1031b58c57864d04bc14b50ac45f7e"
+}

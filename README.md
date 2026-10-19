@@ -82,8 +82,12 @@ copies are user-owned; recopy deliberately for updates. The repository keeps
 [one canonical skill](faultline-audit/SKILL.md). No sibling project is required.
 
 Copy/discovery was checked on 2026-10-18 with Codex CLI 0.163.0 on macOS 27.0.1
-arm64. That historical check does not establish current end-to-end invocation or
-product effectiveness on real repositories.
+arm64. A [live six-case synthetic evaluation](experiments/audit-evaluation/REPORT.md)
+on 2026-10-19 used the actual skill through direct-file invocation: three intended
+weaknesses found and no false positives on three protected controls, by manual
+grading. Read-to-pre-response checkpoints took 9–21 seconds; these exclude final
+response generation and startup. No setup was needed by the auditors. These small
+authored cases do not establish effectiveness or speed on real repositories.
 
 ## Maintainer notes
 
@@ -102,11 +106,12 @@ Focused maintainer checks (Python standard library only):
 ```sh
 python3 -B -m unittest discover -s tests -p test_skill.py -v
 python3 -B -m unittest discover -s tests -p test_spike_design.py -v
+python3 -B -m unittest discover -s tests -p test_audit_evaluation.py -v
 ```
 
 These inspect packaging, instruction boundaries, links, and frozen fixture
-hashes/syntax. They do not execute target-project code, the frozen scenario,
-Docker, or qualification procedures. Historical research has separate maintainer
-tests; it is not part of the Audit workflow.
+hashes/syntax and evaluation records. They do not execute target-project code,
+the frozen scenario, Docker, or qualification procedures. Historical research has
+separate maintainer tests; it is not part of the Audit workflow.
 
 Apache-2.0; see [LICENSE](LICENSE).

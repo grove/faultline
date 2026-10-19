@@ -1,0 +1,32 @@
+{
+  "c01": {
+    "weakness": true,
+    "kind": "suspected implementation bug",
+    "scenario": "total 50",
+    "assertion": "delivery_cost(50) == 0"
+  },
+  "c02": {
+    "weakness": false,
+    "reason": "threshold and adjacent totals asserted via shared helper"
+  },
+  "c03": {
+    "weakness": true,
+    "kind": "suspected implementation bug",
+    "scenario": "invalid percent 110 changes cart before raising",
+    "assertion": "cart == before after ValueError"
+  },
+  "c04": {
+    "weakness": false,
+    "reason": "existing invalid-discount test asserts unchanged cart and already catches implementation defect; do not invent test gap or claim observed failure"
+  },
+  "c05": {
+    "weakness": true,
+    "kind": "missing test protection",
+    "scenario": "same key and amount twice",
+    "assertion": "one ledger effect and same receipt; implementation currently deduplicates"
+  },
+  "c06": {
+    "weakness": false,
+    "reason": "fixture repeats same key and asserts one effect plus receipt equality"
+  }
+}

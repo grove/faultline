@@ -32,6 +32,15 @@ The [initial source-only walkthrough](experiments/audit-walkthrough.md) records
 two known historical bugs, a clean control, and execution-refusal checks. It is
 retrospective and not an independent effectiveness benchmark.
 
+The [six-case live skill evaluation](experiments/audit-evaluation/REPORT.md) now
+records fresh-context audits of synthetic weak/strong test pairs, withheld answers,
+raw reports, measured clock intervals, and manual grading. All three intended
+weaknesses were identified without false positives on the three protected
+controls. No skill change was justified. The fixtures are reusable manual
+regression cases; offline checks preserve evidence and do not test model compliance.
+Real-repository value, independent grading, repeatability, and exact end-to-end
+latency remain unestablished.
+
 ## 2. Preserve research; retire its build order
 
 Leave `ISOLATION.md`, `qualification/`, terminal receipts, frozen experiments, and

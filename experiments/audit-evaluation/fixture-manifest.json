@@ -1,0 +1,21 @@
+{
+  "fixtures/c01/README.md": "d16224b5ad374984efc0d908e8c8fae64bc4725129d220700dd518b625080fe9",
+  "fixtures/c01/quote.py": "e0d34999dc1ce9296bd414dea44e229cc0eec793bee178053533f19b3008197c",
+  "fixtures/c01/test_quote.py": "4c58af76fb98f2b40292d3148d81a77221d5775ae89baca8f236caad0385e8d4",
+  "fixtures/c02/README.md": "d16224b5ad374984efc0d908e8c8fae64bc4725129d220700dd518b625080fe9",
+  "fixtures/c02/checks.py": "1dfd7cd7a7f874c32a150a715b1289499f38adec793ad7c083b36abe9b2fa934",
+  "fixtures/c02/quote.py": "bd38635cf2f5116ba1b524550659b68bc03bae314389596616b0bca5c0e1e9ef",
+  "fixtures/c02/test_quote.py": "c84a480159d7cc64c53aed635232a30ce7dae0c0a4a102eda1a5a060132a0c6b",
+  "fixtures/c03/README.md": "eaa7e283fdca5a8ddb8f510ffe4198551afaafbe75dfef20cde286494140a656",
+  "fixtures/c03/cart.py": "6f41be0ba46f3f7fe52d0e7138929a54d0dedd8c03cbb75e973af826c76a30e9",
+  "fixtures/c03/test_cart.py": "d4a63fece876986f898c4d36e16fb03c59380a134319542c5411ccbf14f16327",
+  "fixtures/c04/README.md": "eaa7e283fdca5a8ddb8f510ffe4198551afaafbe75dfef20cde286494140a656",
+  "fixtures/c04/cart.py": "6f41be0ba46f3f7fe52d0e7138929a54d0dedd8c03cbb75e973af826c76a30e9",
+  "fixtures/c04/test_cart.py": "f79f0fb20a8c953fcdd52e85d7e56f162804855024a280e47fa045f1e94f2ad6",
+  "fixtures/c05/README.md": "71814c8f7cfa0411e1a6277a66c27466c8dc402c760880b40577176777b00c41",
+  "fixtures/c05/checkout.py": "eada52d355dc5e53681569464604be274bfff0fb7375d53779500e998fa96c79",
+  "fixtures/c05/test_checkout.py": "445733603b09fd82e6da32fcc0a6eb3acf4ed553eee533a79de60d1907149ba9",
+  "fixtures/c06/README.md": "71814c8f7cfa0411e1a6277a66c27466c8dc402c760880b40577176777b00c41",
+  "fixtures/c06/checkout.py": "eada52d355dc5e53681569464604be274bfff0fb7375d53779500e998fa96c79",
+  "fixtures/c06/test_checkout.py": "01183f467a69b4d9f09255e8ea3dff2dbc6072722cda515a25b3eccb8aaea1b5"
+}
