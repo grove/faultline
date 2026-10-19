@@ -1,0 +1,142 @@
+{
+  "kind": "OPERATOR_PROVISION_V3_SUCCESS_WITH_INDEPENDENT_OFFLINE_REVIEW",
+  "operator_exit_status": 0,
+  "operator_execution_witnessed_by_codex": false,
+  "provenance": "Operator supplied run/exit status; independently read and hash-verified receipt/helper, reverified disk content, archive member byte equality, worker content/interpreter/sparse snapshot, permissions and storage. No provisioning entrypoint, network/service/guardian/VM command invoked by this review.",
+  "result": "WORKER_AND_DEDICATED_KERNEL_VERIFIED_NO_VM",
+  "original_receipt": "/private/tmp/faultline-apple-positive-v2/evidence/provision-v3.json",
+  "original_receipt_sha256": "e082359d42a2d24690c10cd16d220cb55783d2f6b68c5d9210333d5a4dafdea0",
+  "preserved_copy": "qualification/2026-10-19-apple-container-provision-v3.json",
+  "source_sha256": {
+    "apple_container_provision.py": "2da6578d3c1cb49798ccc0f82db8f6e54c357c4a5c671736dfe556e2104dd67c",
+    "apple_container_provision_v3.py": "f714443cb19964f9f4117edd0834ba3971f3aadce300d136f5d394c87ac792d7"
+  },
+  "provision_v3_status": "CONSUMED_SUCCESS_DO_NOT_REPEAT",
+  "provision_v1_v2_status": "CONSUMED_FAILURES_PRESERVED",
+  "qualification_granted": false,
+  "execution": "NO_GO / UNAVAILABLE",
+  "pr_17": "DRAFT",
+  "issue_2": "OPEN",
+  "storage_in_operator_receipt": {
+    "allocated_bytes": 2396311552,
+    "free_bytes": 151396118528,
+    "logical_bytes": 552374351067,
+    "reserved_kernel_bytes": 0,
+    "reserved_receipt_bytes": 1048576,
+    "root": "/private/tmp/faultline-apple-positive-v2"
+  },
+  "storage_admission_limits": {
+    "max_logical_bytes": 552977039360,
+    "max_allocated_bytes": 8589934592,
+    "min_free_bytes": 17179869184,
+    "receipt_reserve_bytes": 1048576,
+    "phase_checks_not_live_quotas": true
+  },
+  "independent_review": {
+    "reviewed_at_utc": "2026-10-19T09:22:08.177101+00:00",
+    "kernel": {
+      "path": "/private/tmp/faultline-apple-positive-v2/provision-v3/vmlinux-6.18.35-197-debug",
+      "bytes": 30423552,
+      "sha256": "fb2cfb79eb1ae19447a85d75682d7fa5cfec97e24beb2609a492b806e8072c8d",
+      "header": {
+        "format": "LINUX_ARM64_IMAGE",
+        "text_offset": 0,
+        "image_size": 31129600,
+        "flags": 10,
+        "endianness": "little",
+        "page_size": 4096,
+        "physical_placement_anywhere": true,
+        "pe_header_offset": 64
+      }
+    },
+    "modes": {
+      "/private/tmp/faultline-apple-positive-v2/evidence/provision-v3.json": {
+        "mode": "0o444",
+        "uid": 501,
+        "gid": 0
+      },
+      "/private/tmp/faultline-apple-positive-v2/provision-v3": {
+        "mode": "0o500",
+        "uid": 501,
+        "gid": 0
+      },
+      "/private/tmp/faultline-apple-positive-v2/provision-v3/vmlinux-6.18.35-197-debug": {
+        "mode": "0o444",
+        "uid": 501,
+        "gid": 0
+      }
+    },
+    "storage_now": {
+      "root": "/private/tmp/faultline-apple-positive-v2",
+      "logical_bytes": 552374352054,
+      "allocated_bytes": 2396377088,
+      "free_bytes": 151142400000,
+      "reserved_kernel_bytes": 0,
+      "reserved_receipt_bytes": 1048576
+    },
+    "worker_verified_equal_to_receipts_v1_v2_v3": true,
+    "archive_member_byte_comparison": true,
+    "all_preparation_preservation_pins_match": true
+  },
+  "worker": {
+    "reference": "docker.io/library/python@sha256:55432fc4ef6d07e33c10449312f0ec00071bbb310bb9bd7ba626a31fbbc2cb0d",
+    "manifest_config": {
+      "digest": "sha256:da841a7026abc0089180121604f6d0ba4324998e2d133eccae13f22707055dc1",
+      "mediaType": "application/vnd.oci.image.config.v1+json",
+      "size": 5553
+    },
+    "layers": [
+      {
+        "digest": "sha256:c75f989a229d12b2d2613a5997de9ff3546f664c22da9248720033a2410220f6",
+        "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+        "size": 28137179
+      },
+      {
+        "digest": "sha256:aa08835651e777794bde3e8c99bee012c418f60d0d164df22497fa01dc72aca5",
+        "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+        "size": 3176232
+      },
+      {
+        "digest": "sha256:7b2df2902dddd1a4510670c4d3a6d61b4458fa3e7c1ae0b262d75bde1349ab14",
+        "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+        "size": 14748696
+      },
+      {
+        "digest": "sha256:32020fed7f2a057b9cee7fdbfa3ea9fc394149118d7a951c462c7055c3cd3f56",
+        "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+        "size": 250
+      }
+    ],
+    "interpreter": {
+      "bytes": 67608,
+      "link": "python3.13",
+      "sha256": "cb4548d280f38c2b1df4cba45f12c90a034729e08fce5bf1a223c58add0e21e3"
+    },
+    "snapshot": {
+      "allocated_bytes": 1333428224,
+      "check": "SPARSE_DATA_AND_STRUCTURE_NOT_FSCK_OR_GUEST_BOOT",
+      "data_bytes_read": 1333428224,
+      "extent_map_and_data_sha256": "af7e906cc24b34138962ebd6f000f68fbb9a7194d530a149c0fca87d4b6507f4",
+      "logical_bytes": 550829555712,
+      "path": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/snapshots/55432fc4ef6d07e33c10449312f0ec00071bbb310bb9bd7ba626a31fbbc2cb0d/snapshot"
+    },
+    "extent_count": 4098
+  },
+  "historical_receipts_sha256": {
+    "/private/tmp/faultline-apple-positive-v2/evidence/inventory.json": "801d606d2816c1ca63658edc1259edb71e7f7b83e741a16c605955c1e5f3f2b9",
+    "/private/tmp/faultline-apple-positive-v2/evidence/prepared-v2.json": "5c2c360a9b025de6fce372a4129b365580b94eb68503b8017fa2c4cd7331f385",
+    "/private/tmp/faultline-apple-positive-v2/evidence/provision-v1.json": "ad1949e4a3fb2dbc70ebcb5a34bf12b0a40a2581ac7fb667c85e5383707259e2",
+    "/private/tmp/faultline-apple-positive-v2/evidence/provision-v2.json": "c56a7cdf32130e60142adc66ecb43bfa034191ec867dad43cf3682dab17727c6",
+    "/private/tmp/faultline-apple-positive-v2/evidence/provision-v3.json": "e082359d42a2d24690c10cd16d220cb55783d2f6b68c5d9210333d5a4dafdea0",
+    "/private/tmp/faultline-apple-positive-v2/evidence/recovery-setup-v2-01.jsonl": "72b99a00ad4bdd2005777b364530e2d5c2ee217fadd20d1fa3b4e0c3703dd770",
+    "/private/tmp/faultline-apple-positive-v2/evidence/recovery-setup-v2-02.jsonl": "22513d910a16fa263df059571d6046458f60008122e56fc9686f0a512b91a5c6",
+    "/private/tmp/faultline-apple-positive-v2/evidence/setup-v1.json": "e2fa363740ca780bd736f0daec8ed8f2e0c8bcf3621d0cbb5e9195a2b5ecfb1a",
+    "/private/tmp/faultline-apple-positive-v2/evidence/setup-v2.json": "9cca8060f4314ef1ba6ef1fe430dc2318d81f8f2de3501d90a205e5f8c466ce4",
+    "/private/tmp/faultline-apple-positive-v2/evidence/setup-v3.json": "27d50d2a34e6fc12c30066068b5edc754ad545bf34004cd1b781827c4ad644e1",
+    "/private/tmp/faultline-apple-positive-v2/evidence/setup-v4.json": "7366b677973d26db9b16efbfc1cae563e262de59d4fb1d695ed79d56f73b584c"
+  },
+  "next_authorization": "qualification/APPLE_CONTAINER_GUARDIAN_CALIBRATION_V1.md",
+  "vm_launches": 0,
+  "guardian_installed": false,
+  "vm_descendant_containment": "UNQUALIFIED"
+}

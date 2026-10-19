@@ -1,0 +1,37 @@
+{
+  "kind": "GUARDIAN_CALIBRATION_V1_PREPARATION_ONLY",
+  "publication_authorized_by": "User request: update PR #17 with successful artifact milestone and prepare separately authorized guardian stage",
+  "execution_authorized": false,
+  "guardian_installed": false,
+  "live_calibration_run": false,
+  "qualification_granted": false,
+  "execution": "NO_GO / UNAVAILABLE",
+  "pr_17": "DRAFT",
+  "issue_2": "OPEN",
+  "source_sha256": {
+    "qualification/apple_container_guardian_calibration_v1.py": "89c5e3a23bef60672b6818dcb8ed421ffc3907b70f5e5cd76908bd6dbe309013",
+    "tests/test_apple_container_guardian_calibration_v1.py": "095880134769a95a65f69491f3b7ba8eeaee69e07ea2a75a9dd0882d46a1886a",
+    "qualification/APPLE_CONTAINER_GUARDIAN_CALIBRATION_V1.md": "59f32ec13fd815fbea1c4c6e07daebb90dbd1d9b8a9d9cd157e948f08563f8cc"
+  },
+  "validation": {
+    "command": "/opt/homebrew/bin/python3 -I -B -m unittest discover -s tests -p 'test_apple_container*.py'",
+    "passed": 74,
+    "new_tests": 6,
+    "real_coordinator_guardian_test_subprocesses": true,
+    "synthetic_identity_and_launchd_observations": true,
+    "cooperative_host_fixture": true,
+    "live_launchd_registration": false,
+    "independent_ps_in_this_session": "UNAVAILABLE: PermissionError [Errno 1] Operation not permitted; no escalation or protection change attempted",
+    "vm_launches": 0,
+    "qualification_inferred": false
+  },
+  "approval_command_document": "qualification/APPLE_CONTAINER_GUARDIAN_CALIBRATION_V1.md",
+  "new_live_evidence_root": "/private/tmp/faultline-guardian-calibration-v1",
+  "historical_guardian_unchanged": true,
+  "remaining_gaps": [
+    "Live launchd installation/recovery/termination latency NOT RUN",
+    "Independent live PID observations unavailable in restricted Codex host",
+    "VM/Virtualization auxiliary process, descendant and vmnet containment UNQUALIFIED",
+    "File/network/resource canaries NOT RUN; #10 NOT RUN; skill remains advice-only"
+  ]
+}
