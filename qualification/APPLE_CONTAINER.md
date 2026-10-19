@@ -7,9 +7,10 @@ GO override, installation, image retrieval, service startup or automatic cleanup
 Only the fixed filesystem fixture is implemented. Network, resource and lifetime
 controls are specified below and remain unavailable, not passing placeholders.
 
-Current request: [provision-v2 verification/extraction only](APPLE_CONTAINER_PROVISION_V2.md).
+Current request: [provision-v3 verification/copy only](APPLE_CONTAINER_PROVISION_V3.md).
 Provision-v1 exited 1 at storage admission after worker verification and archive
-download; its authorization is consumed and all its artifacts/evidence are preserved.
+download. Provision-v2 failed its ELF check on a raw ARM64 Linux Image. Both
+authorizations are consumed; all artifacts/evidence, including the v2 file, are preserved.
 No continuation, retrieval, service change, guardian installation or VM launch has
 been executed by this preparation.
 
