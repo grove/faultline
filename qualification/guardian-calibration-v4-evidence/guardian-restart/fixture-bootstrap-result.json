@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/bin/launchctl",
+    "bootstrap",
+    "user/501",
+    "/private/tmp/faultline-guardian-calibration-v4/guardian-restart/dev.faultline.guardian-calibration-v4.guardian-restart.fixture.plist"
+  ],
+  "finished_monotonic": 74220.282283333,
+  "output_bytes_observed": 0,
+  "output_limit": false,
+  "returncode": 0,
+  "start_error": null,
+  "started_monotonic": 74220.276148666,
+  "stderr_base64": "",
+  "stdout_base64": "",
+  "timeout": false
+}

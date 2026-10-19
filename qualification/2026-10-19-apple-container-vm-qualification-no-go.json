@@ -1,0 +1,82 @@
+{
+  "apple_lifecycle_counterevidence": {
+    "finding": "Client-crash VM cleanup is expected across macOS versions; exact helper relationships are implementation details; no direct supported owner-mapping diagnostic. Does not meet this task independent host-specific deadline/teardown evidence requirement.",
+    "type": "APPLE_DTS_ARCHITECTURAL_GUIDANCE_NOT_HOST_MEASUREMENT",
+    "url": "https://developer.apple.com/forums/thread/848542"
+  },
+  "canary_executions": 0,
+  "controls": [
+    {
+      "control": "host_fixture_coordinator_death",
+      "evidence_or_gap": "v4 coordinator-loss; original deadline; fixture forced stop and independent absence",
+      "status": "OBSERVED_PASS"
+    },
+    {
+      "control": "host_fixture_guardian_restart",
+      "evidence_or_gap": "v4 guardian-restart; new guardian PID; unchanged deadline; independent absence",
+      "status": "OBSERVED_PASS"
+    },
+    {
+      "control": "actual_vm_identity_and_configuration",
+      "evidence_or_gap": "prospective root absent; no created VM configuration identity; current VM guardian lacks configuration/artifact binding",
+      "status": "NOT_RUN_UNQUALIFIED"
+    },
+    {
+      "control": "vm_backend_and_auxiliary_execution",
+      "evidence_or_gap": "guardian observes runtime registration/PID only; no independently bound VM/backend liveness or recovery interface",
+      "status": "UNAVAILABLE_WITH_PREPARED_OBSERVER"
+    },
+    {
+      "control": "detached_descendants_and_replacement",
+      "evidence_or_gap": "trusted fixtures create no descendants; PID birth precision and check/action non-atomic; no VM owner/backend replacement exercise",
+      "status": "NOT_RUN_UNQUALIFIED"
+    },
+    {
+      "control": "network_vmnet_teardown",
+      "evidence_or_gap": "no attachment proposed; shared default vmnet service preserved; no per-VM session/teardown observation",
+      "status": "NOT_RUN_UNQUALIFIED"
+    },
+    {
+      "control": "filesystem_private_and_alias_denial",
+      "evidence_or_gap": "read-only/no-sensitive-mount configuration is a proposal/source prediction, not observed denial",
+      "status": "NOT_RUN_UNQUALIFIED"
+    },
+    {
+      "control": "aggregate_resources_and_output",
+      "evidence_or_gap": "per-process rlimits and workload cgroups are not whole-VM/host aggregate proofs; proposed VM budget remains unapproved",
+      "status": "NOT_RUN_UNQUALIFIED"
+    },
+    {
+      "control": "vm_deadline_coordinator_and_guardian_loss",
+      "evidence_or_gap": "host fixture result cannot transfer to Virtualization lifetime",
+      "status": "NOT_RUN_UNQUALIFIED"
+    },
+    {
+      "control": "issue_10",
+      "evidence_or_gap": "no lost-ack experiment authorization",
+      "status": "FROZEN_NOT_RUN"
+    }
+  ],
+  "execution": "NO_GO / UNAVAILABLE",
+  "guest_python_executions": 0,
+  "host_fixture_prerequisite": "SATISFIED_BY_APPROVED_V4_ONLY",
+  "issue_2": "OPEN",
+  "kind": "SOURCE_GROUNDED_VM_STAGE_FEASIBILITY_AND_NO_GO",
+  "next_necessary_approval": "Only a completed separately reviewed VM-specific procedure; none ready while independent ownership/teardown guarantees are missing",
+  "offline_tests": {
+    "command": "/opt/homebrew/bin/python3 -I -B -m unittest discover -s tests -p test_apple_container_guardian.py",
+    "observation": "MOCKS_ONLY_NOT_VM_QUALIFICATION",
+    "passed": 4
+  },
+  "pr_17": "DRAFT",
+  "prepared_vm_source_sha256": {
+    "APPLE_CONTAINER_GUARDIAN.md": "1868054c10b2e4c3e9862ff8fdc525dec1121576548d77773203dc172728330f",
+    "APPLE_CONTAINER_NEXT.md": "e86052bea060c50eb19131dc737c9d0bc5b482614f4cc985b6f5bdca8dad7ba1",
+    "apple_container_guardian.py": "8c0a0b9096ac78c2b5417250af3d38e436a7c164244e68d0aa53aa940f414e56",
+    "apple_container_positive_v2.py": "bb20d238a7834551147efc6f3e15fc3ea56f844a5c506ad6aeaa2a0ffb752412"
+  },
+  "qualification_granted": false,
+  "required_offline_resolution": "Supported instance-specific liveness and auxiliary/network teardown observation/recovery contract; sealed configuration/artifact binding and completed versioned coordinator; no security requirement relaxation",
+  "vm_effect_authorization": "NOT_GRANTED_NOT_REQUESTED_INCOMPLETE_STAGE",
+  "vm_launches": 0
+}

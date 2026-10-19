@@ -1,0 +1,247 @@
+{
+  "access": [
+    {
+      "caller_access": true,
+      "flags": 1048576,
+      "gid": 0,
+      "mode": "0o755",
+      "path": "/",
+      "required_access": 1,
+      "uid": 0
+    },
+    {
+      "caller_access": true,
+      "flags": 32768,
+      "gid": 0,
+      "mode": "0o755",
+      "path": "/opt",
+      "required_access": 1,
+      "uid": 0
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o775",
+      "path": "/opt/homebrew/Cellar",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python",
+      "required_access": 5,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 80,
+      "mode": "0o755",
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+      "required_access": 5,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 1081344,
+      "gid": 0,
+      "mode": "0o755",
+      "path": "/private",
+      "required_access": 1,
+      "uid": 0
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o1777",
+      "path": "/private/tmp",
+      "required_access": 1,
+      "uid": 0
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o700",
+      "path": "/private/tmp/faultline-guardian-calibration-v4",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o700",
+      "path": "/private/tmp/faultline-guardian-calibration-v4/coordinator-loss",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o400",
+      "path": "/private/tmp/faultline-guardian-calibration-v4/coordinator-loss/dev.faultline.guardian-calibration-v4.coordinator-loss.fixture.plist",
+      "required_access": 4,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o400",
+      "path": "/private/tmp/faultline-guardian-calibration-v4/coordinator-loss/plan.json",
+      "required_access": 4,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "path": "/private/tmp/faultline-qualification-20261019",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "path": "/private/tmp/faultline-qualification-20261019/qualification",
+      "required_access": 1,
+      "uid": 501
+    },
+    {
+      "caller_access": true,
+      "flags": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "path": "/private/tmp/faultline-qualification-20261019/qualification/apple_container_guardian_calibration_v4.py",
+      "required_access": 4,
+      "uid": 501
+    }
+  ],
+  "argv": [
+    "/bin/launchctl",
+    "bootstrap",
+    "user/501",
+    "/private/tmp/faultline-guardian-calibration-v4/coordinator-loss/dev.faultline.guardian-calibration-v4.coordinator-loss.fixture.plist"
+  ],
+  "monotonic": 74210.023027458,
+  "plan_sha256": "645de2122480edee70122b6b353a4616cb4e199757f9a7aae574c1da7592d8ee",
+  "plist_sha256": "f567dae63c1f7c9aa2dd0b72c0720328f39d6324dccc9207a918825839f72a24"
+}

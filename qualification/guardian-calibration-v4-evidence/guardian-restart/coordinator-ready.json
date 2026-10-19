@@ -1,0 +1,10 @@
+{
+  "identity": {
+    "birth": "Mon Oct 19 14:47:30 2026",
+    "executable": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python",
+    "pid": 57993,
+    "uid": 501
+  },
+  "monotonic": 74220.258164625,
+  "plan_sha256": "223ec4c0b39744cc55e124bcb210b0d887b01a85320c48d339e1d2bf97313731"
+}

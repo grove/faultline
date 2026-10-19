@@ -1,0 +1,632 @@
+{
+  "all_owned_registrations_absent": true,
+  "captured_pid_raw_postchecks": [
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "57803",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 1,
+      "stderr_base64": "",
+      "stdout_base64": ""
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "57820",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 1,
+      "stderr_base64": "",
+      "stdout_base64": ""
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "57824",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 1,
+      "stderr_base64": "",
+      "stdout_base64": ""
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "57838",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 1,
+      "stderr_base64": "",
+      "stdout_base64": ""
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "57964",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 1,
+      "stderr_base64": "",
+      "stdout_base64": ""
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "57993",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 1,
+      "stderr_base64": "",
+      "stdout_base64": ""
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "58008",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 1,
+      "stderr_base64": "",
+      "stdout_base64": ""
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-ww",
+        "-p",
+        "58030",
+        "-o",
+        "pid=,uid=,lstart=,comm="
+      ],
+      "returncode": 1,
+      "stderr_base64": "",
+      "stdout_base64": ""
+    }
+  ],
+  "cases": {
+    "coordinator-loss": {
+      "bound_coordinator_identity": {
+        "birth": "Mon Oct 19 14:47:19 2026",
+        "executable": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python",
+        "pid": 57824,
+        "uid": 501
+      },
+      "cooperative_alarm_excluded": true,
+      "coordinator_pid": 57824,
+      "coordinator_returncode": -9,
+      "deadline_monotonic": 74219.553071458,
+      "fixture_pid": 57838,
+      "guardian_pids": [
+        57820
+      ],
+      "guardian_start_deadlines": [
+        74219.553071458
+      ],
+      "initial_coordinator_identity": {
+        "birth": "Mon Oct 19 14:47:19 2026",
+        "executable": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+        "pid": 57824,
+        "uid": 501
+      },
+      "registration_absent": true,
+      "termination_lateness_seconds": 0.23380154201004189,
+      "termination_monotonic": 74219.786873
+    },
+    "guardian-restart": {
+      "bound_coordinator_identity": {
+        "birth": "Mon Oct 19 14:47:30 2026",
+        "executable": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python",
+        "pid": 57993,
+        "uid": 501
+      },
+      "cooperative_alarm_excluded": true,
+      "coordinator_pid": 57993,
+      "coordinator_returncode": -9,
+      "deadline_monotonic": 74229.871090583,
+      "fixture_pid": 58008,
+      "guardian_pids": [
+        57964,
+        58030
+      ],
+      "guardian_start_deadlines": [
+        74229.871090583,
+        74229.871090583
+      ],
+      "initial_coordinator_identity": {
+        "birth": "Mon Oct 19 14:47:30 2026",
+        "executable": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+        "pid": 57993,
+        "uid": 501
+      },
+      "registration_absent": true,
+      "termination_lateness_seconds": 0.3378918750095181,
+      "termination_monotonic": 74230.208982458
+    }
+  },
+  "domain_inventory": {
+    "argv": [
+      "/bin/launchctl",
+      "print",
+      "user/501"
+    ],
+    "matching_v3_v4_rows": [],
+    "returncode": 0,
+    "sha256": "1b7fc4aeb8bfee6b9e135f160426ce024f0df7dbae08d0fb596ed42d380ea2f9"
+  },
+  "execution": "NO_GO / UNAVAILABLE",
+  "kind": "INDEPENDENT_POST_RUN_HOST_FIXTURE_VERIFICATION",
+  "observed_monotonic": 74282.100572375,
+  "observed_wall_ns": 1792414112154981000,
+  "original_v4_manifest": [
+    {
+      "ctime_ns": 1792414060370138044,
+      "gid": 0,
+      "inode": 142209738,
+      "kind": "directory",
+      "mode": "0o700",
+      "mtime_ns": 1792414060370138044,
+      "path": ".",
+      "size": 192,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414039603608594,
+      "gid": 0,
+      "inode": 142209739,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414039603608594,
+      "path": "attempt.json",
+      "sha256": "cbc97fe196ca11bf6642d454067987a0ca20e8129c83a37d7a962934548d8af1",
+      "size": 191,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414049921318350,
+      "gid": 0,
+      "inode": 142209740,
+      "kind": "directory",
+      "mode": "0o700",
+      "mtime_ns": 1792414049921318350,
+      "path": "coordinator-loss",
+      "size": 576,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414040083853060,
+      "gid": 0,
+      "inode": 142209753,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414040083853060,
+      "path": "coordinator-loss/coordinator-bootstrap-complete.json",
+      "sha256": "d2963ef148fd159c85805d99ef8d04c6bbd2ac5e8b254a31601f4a4f016c893a",
+      "size": 120,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414040062298813,
+      "gid": 0,
+      "inode": 142209750,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414040062298813,
+      "path": "coordinator-loss/coordinator-ready.json",
+      "sha256": "415139ba9dec7a35e6effd1bbc775829414f1f6c240f66f470fb4fca54d3e22d",
+      "size": 361,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414040398546510,
+      "gid": 0,
+      "inode": 142209755,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414040398546510,
+      "path": "coordinator-loss/coordinator-result.json",
+      "sha256": "aa6139e415238e6556d0301e17e1de83533a92ef8d99f914fce10fc9bc8bdc51",
+      "size": 583,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414039964450662,
+      "gid": 0,
+      "inode": 142209748,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414039964450662,
+      "path": "coordinator-loss/coordinator-spawn-intent.json",
+      "sha256": "ef761ab41d8f064e8b08dadbfd6c839ae26ae6a3dc9ce77a27f0b61a8070e904",
+      "size": 470,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414040389767387,
+      "gid": 0,
+      "inode": 142209749,
+      "kind": "file",
+      "mode": "0o600",
+      "mtime_ns": 1792414040389767387,
+      "path": "coordinator-loss/coordinator.jsonl",
+      "sha256": "71e846d0f7fe416acdfc566a424cff25c62803d805eb4707de5987d9835f5f03",
+      "size": 5210,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414039607097094,
+      "gid": 0,
+      "inode": 142209741,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414039607097094,
+      "path": "coordinator-loss/dev.faultline.guardian-calibration-v4.coordinator-loss.fixture.plist",
+      "sha256": "f567dae63c1f7c9aa2dd0b72c0720328f39d6324dccc9207a918825839f72a24",
+      "size": 1169,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414039607391094,
+      "gid": 0,
+      "inode": 142209742,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414039607391094,
+      "path": "coordinator-loss/dev.faultline.guardian-calibration-v4.coordinator-loss.guardian.plist",
+      "sha256": "dac91a65711fd1409ff487e644648667e9b5a9a2232327ec7378924b9e1d83be",
+      "size": 1300,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414040077898061,
+      "gid": 0,
+      "inode": 142209751,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414040077898061,
+      "path": "coordinator-loss/fixture-bootstrap-intent.json",
+      "sha256": "c55df8056cfb950b18905a2dbd2c2cf836dc6e7f8803fbd4cafc51ce3fc20103",
+      "size": 6320,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414040083537185,
+      "gid": 0,
+      "inode": 142209752,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414040083537185,
+      "path": "coordinator-loss/fixture-bootstrap-result.json",
+      "sha256": "353633afda88705abf4a5ba6b9c887e5372e84a8f9e566175afd8e1e09933c8d",
+      "size": 458,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414039625559966,
+      "gid": 0,
+      "inode": 142209744,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414039625559966,
+      "path": "coordinator-loss/guardian-bootstrap-intent.json",
+      "sha256": "ec48752eb44a31500ea77095f0bde7809115709f115e2409ce79ea46663e5f3e",
+      "size": 6322,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414039631429756,
+      "gid": 0,
+      "inode": 142209745,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414039631429756,
+      "path": "coordinator-loss/guardian-bootstrap-result.json",
+      "sha256": "ed337927caf4c396e2ee7b0c8487dfbb063ba4b7eaf406b5d9c709664445ea9d",
+      "size": 457,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414049841831696,
+      "gid": 0,
+      "inode": 142209746,
+      "kind": "file",
+      "mode": "0o600",
+      "mtime_ns": 1792414049841831696,
+      "path": "coordinator-loss/guardian.jsonl",
+      "sha256": "24cf497173ea9d3af7901a0d88bc1e01cdc1822f96038b2a9e13b378fe6488e8",
+      "size": 1623,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414049909069519,
+      "gid": 0,
+      "inode": 142209754,
+      "kind": "file",
+      "mode": "0o600",
+      "mtime_ns": 1792414049909069519,
+      "path": "coordinator-loss/operator.jsonl",
+      "sha256": "227525bfbfae9744716bf8b96e277ac3812d8672d9ad1a526d244a855f1a47c7",
+      "size": 746,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414039607637052,
+      "gid": 0,
+      "inode": 142209743,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414039607637052,
+      "path": "coordinator-loss/plan.json",
+      "sha256": "645de2122480edee70122b6b353a4616cb4e199757f9a7aae574c1da7592d8ee",
+      "size": 1124,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414039941889249,
+      "gid": 0,
+      "inode": 142209747,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414039941889249,
+      "path": "coordinator-loss/ready.json",
+      "sha256": "f096176f6fe0b7bef80eded431d9635239ce4302bdc9ebd7880925ff07e901dc",
+      "size": 88,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414049921508517,
+      "gid": 0,
+      "inode": 142209766,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414049921508517,
+      "path": "coordinator-loss/result.json",
+      "sha256": "6f1ef45453b93887f072a3a31df8e7e0f5cad6a143750324bf3fc6e13655111b",
+      "size": 183,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414060369775753,
+      "gid": 0,
+      "inode": 142209767,
+      "kind": "directory",
+      "mode": "0o700",
+      "mtime_ns": 1792414060369775753,
+      "path": "guardian-restart",
+      "size": 576,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414050337264326,
+      "gid": 0,
+      "inode": 142209784,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414050337264326,
+      "path": "guardian-restart/coordinator-bootstrap-complete.json",
+      "sha256": "e18d939051624f7e7a3df716c5a0011527d526de9bca00f9a8e04f77ed4d1b2f",
+      "size": 120,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414050312825455,
+      "gid": 0,
+      "inode": 142209780,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414050312825455,
+      "path": "guardian-restart/coordinator-ready.json",
+      "sha256": "e0cb9705c0e6897c31053db637d04be36dd5c27b09bb7861ea3724b9e1f40e30",
+      "size": 361,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414050507886591,
+      "gid": 0,
+      "inode": 142209786,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414050507886591,
+      "path": "guardian-restart/coordinator-result.json",
+      "sha256": "8f6f5f66197f2b7a363af93bc0d271c88ffb39c764b28129c36902116ac5cfb7",
+      "size": 584,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414050232926926,
+      "gid": 0,
+      "inode": 142209775,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414050232926926,
+      "path": "guardian-restart/coordinator-spawn-intent.json",
+      "sha256": "1c63a0f07a53996e222a4ae09d8069495a75144a333cc918d75d353e05d5a05b",
+      "size": 470,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414050502079425,
+      "gid": 0,
+      "inode": 142209777,
+      "kind": "file",
+      "mode": "0o600",
+      "mtime_ns": 1792414050502079425,
+      "path": "guardian-restart/coordinator.jsonl",
+      "sha256": "d9a027d1bfc8f05cffa242d3cdd90ae8584d6961bf5077b013b47438b75331a9",
+      "size": 4210,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414049925099058,
+      "gid": 0,
+      "inode": 142209768,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414049925099058,
+      "path": "guardian-restart/dev.faultline.guardian-calibration-v4.guardian-restart.fixture.plist",
+      "sha256": "f1f062cfc6328cb14772146d5217111af61b009d06ca5a37a6ce1f0709d39868",
+      "size": 1169,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414049925428308,
+      "gid": 0,
+      "inode": 142209769,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414049925428308,
+      "path": "guardian-restart/dev.faultline.guardian-calibration-v4.guardian-restart.guardian.plist",
+      "sha256": "ed05f9720ce55919d448f87f966bb0a0399f330252abf940a0ea79c1456903cd",
+      "size": 1300,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414050330393161,
+      "gid": 0,
+      "inode": 142209782,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414050330393161,
+      "path": "guardian-restart/fixture-bootstrap-intent.json",
+      "sha256": "141e2af1c9355e1ae545c6e69d97d7d3b64260ca5c9062291a4f9c14017920d5",
+      "size": 6320,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414050336953201,
+      "gid": 0,
+      "inode": 142209783,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414050336953201,
+      "path": "guardian-restart/fixture-bootstrap-result.json",
+      "sha256": "fcad20d8a24261ba25cfda06ccf172d59d0f0897688f9d8668600927aa5ff210",
+      "size": 458,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414049942463180,
+      "gid": 0,
+      "inode": 142209771,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414049942463180,
+      "path": "guardian-restart/guardian-bootstrap-intent.json",
+      "sha256": "f0866a3819ccc2d8294d7e1b853557fca4f20a068d8003dbc2be18dc03990384",
+      "size": 6319,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414049948399388,
+      "gid": 0,
+      "inode": 142209772,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414049948399388,
+      "path": "guardian-restart/guardian-bootstrap-result.json",
+      "sha256": "1709170dd8069a088acbcf710da9297b62c7c015146d695312b2101e60dfb320",
+      "size": 459,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414060263781603,
+      "gid": 0,
+      "inode": 142209773,
+      "kind": "file",
+      "mode": "0o600",
+      "mtime_ns": 1792414060263781603,
+      "path": "guardian-restart/guardian.jsonl",
+      "sha256": "4558ffe25626f135bd8333f9d1122556799679adee4f18882ce2fa8d948dec6f",
+      "size": 1746,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414060354003463,
+      "gid": 0,
+      "inode": 142209785,
+      "kind": "file",
+      "mode": "0o600",
+      "mtime_ns": 1792414060354003463,
+      "path": "guardian-restart/operator.jsonl",
+      "sha256": "7c8f93a9213f2356a85dd78ee24feabfc48c1f1890fa93d6e7d4ff09684ab009",
+      "size": 1365,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414049925657975,
+      "gid": 0,
+      "inode": 142209770,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414049925657975,
+      "path": "guardian-restart/plan.json",
+      "sha256": "223ec4c0b39744cc55e124bcb210b0d887b01a85320c48d339e1d2bf97313731",
+      "size": 1124,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414050179336310,
+      "gid": 0,
+      "inode": 142209774,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414050179336310,
+      "path": "guardian-restart/ready.json",
+      "sha256": "abfa489f0ca796ba8e18462fa6cad471721b416125b681ee3fe473e1807bf993",
+      "size": 88,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414060369997252,
+      "gid": 0,
+      "inode": 142209882,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414060369997252,
+      "path": "guardian-restart/result.json",
+      "sha256": "dad42e61069e48a18b0220f1f2375f0bd80e41b4c96c6ae95c5c0ee8cc09db1c",
+      "size": 186,
+      "uid": 501
+    },
+    {
+      "ctime_ns": 1792414060370210711,
+      "gid": 0,
+      "inode": 142209883,
+      "kind": "file",
+      "mode": "0o400",
+      "mtime_ns": 1792414060370210711,
+      "path": "result.json",
+      "sha256": "eb3bd9dce7e18fee9d7f4345799bd07407120eb3d928c8c5e04ddb1c1c1ea2bd",
+      "size": 132,
+      "uid": 501
+    }
+  ],
+  "qualification_granted": false,
+  "source_commit": "23d8769445501136be593c6e6f0b972c73da817d",
+  "source_sha256": "522c8b79c86edb5b48e087b848a029b4a88b1f1ef23f498597f2561ce10cbc1c",
+  "uid": 501,
+  "vm_descendant_containment": "UNQUALIFIED",
+  "vm_launches": 0
+}

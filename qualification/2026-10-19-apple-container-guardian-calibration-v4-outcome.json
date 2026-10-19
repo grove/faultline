@@ -1,0 +1,94 @@
+{
+  "all_captured_pids_absent": [
+    57803,
+    57820,
+    57824,
+    57838,
+    57964,
+    57993,
+    58008,
+    58030
+  ],
+  "all_exact_registrations_absent": true,
+  "cases": {
+    "coordinator-loss": {
+      "bound_coordinator_identity": {
+        "birth": "Mon Oct 19 14:47:19 2026",
+        "executable": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python",
+        "pid": 57824,
+        "uid": 501
+      },
+      "cooperative_alarm_excluded": true,
+      "coordinator_pid": 57824,
+      "coordinator_returncode": -9,
+      "deadline_monotonic": 74219.553071458,
+      "fixture_pid": 57838,
+      "guardian_pids": [
+        57820
+      ],
+      "guardian_start_deadlines": [
+        74219.553071458
+      ],
+      "initial_coordinator_identity": {
+        "birth": "Mon Oct 19 14:47:19 2026",
+        "executable": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+        "pid": 57824,
+        "uid": 501
+      },
+      "registration_absent": true,
+      "termination_lateness_seconds": 0.23380154201004189,
+      "termination_monotonic": 74219.786873
+    },
+    "guardian-restart": {
+      "bound_coordinator_identity": {
+        "birth": "Mon Oct 19 14:47:30 2026",
+        "executable": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python",
+        "pid": 57993,
+        "uid": 501
+      },
+      "cooperative_alarm_excluded": true,
+      "coordinator_pid": 57993,
+      "coordinator_returncode": -9,
+      "deadline_monotonic": 74229.871090583,
+      "fixture_pid": 58008,
+      "guardian_pids": [
+        57964,
+        58030
+      ],
+      "guardian_start_deadlines": [
+        74229.871090583,
+        74229.871090583
+      ],
+      "initial_coordinator_identity": {
+        "birth": "Mon Oct 19 14:47:30 2026",
+        "executable": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+        "pid": 57993,
+        "uid": 501
+      },
+      "registration_absent": true,
+      "termination_lateness_seconds": 0.3378918750095181,
+      "termination_monotonic": 74230.208982458
+    }
+  },
+  "container_services": "Four original setup-v4 PID/birth/UID/origin/plist/binary identities independently unchanged",
+  "execution": "NO_GO / UNAVAILABLE",
+  "independent_verification_receipt": "2026-10-19-apple-container-guardian-calibration-v4-independent-verification.json",
+  "independent_verification_sha256": "8fc9a6c00a36c0ac0bb412422d63160e2c0a286d3eb9a893b66807db8ab6970b",
+  "installer_exit_status": 0,
+  "issue_10": "FROZEN_NOT_RUN",
+  "issue_2": "OPEN",
+  "kind": "APPROVED_LIVE_HOST_FIXTURE_CALIBRATION_WITH_INDEPENDENT_POSTCHECK",
+  "native_execution_approval": "SEPARATE_SCOPED_V4_APPROVAL_COMPLETED; CONSUMED_SUCCESS_DO_NOT_REPEAT",
+  "new_observed_startup_finding": "Both live v4 coordinators changed resolved executable from pinned launcher to pinned framework, with the same PID/UID/birth and poll None; after ready binding identities remained exact until deliberate SIGKILL. This proves the transition exists, not which v3 OR operand failed.",
+  "original_raw_files_preserved": 34,
+  "pr_17": "DRAFT",
+  "qualification_granted": false,
+  "raw_copies": "guardian-calibration-v4-evidence",
+  "result": "CALIBRATED_HOST_FIXTURES_ONLY",
+  "source_commit": "23d8769445501136be593c6e6f0b972c73da817d",
+  "source_sha256": "522c8b79c86edb5b48e087b848a029b4a88b1f1ef23f498597f2561ce10cbc1c",
+  "stopped_guardian_registrations_removed_within_approved_stage": true,
+  "v3_historical_cause": "NOT_RECOVERABLE: v3 initial/subsequent identities, poll result, streams and observation time were not retained",
+  "vm_containment": "UNQUALIFIED",
+  "vm_launches": 0
+}

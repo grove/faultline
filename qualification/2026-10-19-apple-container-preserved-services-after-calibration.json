@@ -1,0 +1,54 @@
+{
+  "kind": "READ_ONLY_PRESERVED_CONTAINER_SERVICES_AND_PROSPECTIVE_VM_OBSERVATION",
+  "monotonic": 74407.105515458,
+  "no_container_cli_service_or_vm_operation": true,
+  "prospective_vm_root": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/containers/faultline-apple-positive-v3",
+  "prospective_vm_root_absent": true,
+  "services": [
+    {
+      "binary_sha256": "0d05388259e73b63f84680968fa5fa39feeef4219cce45c5655d29d3172a63b9",
+      "birth": "Mon Oct 19 09:39:36 2026",
+      "identity_unchanged_from_setup_v4": true,
+      "origin": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/apiserver/apiserver.plist",
+      "pid": 33406,
+      "plist_sha256": "701c7d700a3055c3ec15b7f83a66416ee35ca76e75b4b3b1720bb7d441519bb7",
+      "state": "running",
+      "target": "user/501/com.apple.container.apiserver",
+      "uid": 501
+    },
+    {
+      "binary_sha256": "dc88d9aeb67f8258c3697f8485b6ee77018d63b86b6dc3ba9905fb88f01cb6eb",
+      "birth": "Mon Oct 19 09:39:36 2026",
+      "identity_unchanged_from_setup_v4": true,
+      "origin": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/plugin-state/container-core-images/service.plist",
+      "pid": 33461,
+      "plist_sha256": "f9d6c0b7812ee09feeea356869983e0f851bbf14179d93cb54b27233e09ecabf",
+      "state": "running",
+      "target": "user/501/com.apple.container.container-core-images",
+      "uid": 501
+    },
+    {
+      "binary_sha256": "bfb0c8b002946071df4428c5fa8e1d3bcb86d9798ae2e25dab1a1388e84c7270",
+      "birth": "Mon Oct 19 09:39:36 2026",
+      "identity_unchanged_from_setup_v4": true,
+      "origin": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/networks/default/service.plist",
+      "pid": 33432,
+      "plist_sha256": "34d40fe37b417cd297348bffa86bac5164fca4b6bdcaa0891b54d7218ce51eba",
+      "state": "running",
+      "target": "user/501/com.apple.container.container-network-vmnet.default",
+      "uid": 501
+    },
+    {
+      "binary_sha256": "1d3f53f6979d92d0bb9f343cc16782bad9a4b23bb380619f4b0d87d9d6df449c",
+      "birth": "Mon Oct 19 09:39:36 2026",
+      "identity_unchanged_from_setup_v4": true,
+      "origin": "/private/tmp/faultline-apple-positive-v2/setup-v4/runtime/plugin-state/machine-apiserver/service.plist",
+      "pid": 33457,
+      "plist_sha256": "be6a5833641cfdd2f62fc52e9d8e3558728ef3fcbe45b661c1cf4da39a382a31",
+      "state": "running",
+      "target": "user/501/com.apple.container.machine-apiserver",
+      "uid": 501
+    }
+  ],
+  "wall_ns": 1792414237159901000
+}

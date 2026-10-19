@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+    "-I",
+    "-B",
+    "/private/tmp/faultline-qualification-20261019/qualification/apple_container_guardian_calibration_v4.py",
+    "coordinator",
+    "/private/tmp/faultline-guardian-calibration-v4/coordinator-loss/plan.json"
+  ],
+  "error": null,
+  "final_identity": null,
+  "finished_monotonic": 74210.343700666,
+  "output_limit": false,
+  "pid": 57824,
+  "returncode": -9,
+  "started_monotonic": 74209.91049875,
+  "stderr_base64": "",
+  "stdout_base64": ""
+}

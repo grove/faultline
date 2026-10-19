@@ -1,0 +1,15 @@
+{
+  "architecture": "arm64",
+  "boot_identity": "{ sec = 1792339836, usec = 424865 } Sun Oct 18 18:10:36 2026\n",
+  "kind": "HOST_CONFIGURATION_FOR_APPROVED_V4",
+  "launchctl_manual_sha256": "cf8752dd8eb8c3370c7d03b333430aa68a665c907c475ea407cb1b6542083ae2",
+  "launchctl_procinfo_manual_lines": "291-300: diagnostic execution context, requires root, not a production contract",
+  "observed_wall_ns": 1792414313355851000,
+  "python_binaries": {
+    "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python": "409ddb09021ac53577e7658de9ec09c899655c77a38744679ef73be9af21ecd5",
+    "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15": "1955899cb535256cfa477d926d016819e52e747984722c44f76e39a4950fee0e"
+  },
+  "source_procedure": "APPLE_CONTAINER_GUARDIAN_CALIBRATION_V4.md",
+  "sw_vers": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434\n",
+  "uid": 501
+}

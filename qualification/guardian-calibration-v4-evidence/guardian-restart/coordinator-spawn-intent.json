@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+    "-I",
+    "-B",
+    "/private/tmp/faultline-qualification-20261019/qualification/apple_container_guardian_calibration_v4.py",
+    "coordinator",
+    "/private/tmp/faultline-guardian-calibration-v4/guardian-restart/plan.json"
+  ],
+  "monotonic": 74220.178302333,
+  "plan_sha256": "223ec4c0b39744cc55e124bcb210b0d887b01a85320c48d339e1d2bf97313731"
+}

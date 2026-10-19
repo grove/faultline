@@ -42,7 +42,36 @@ evidence elsewhere. Verify both immutable originals and unchanged test copies
 after every step; drift stops the run and invalidates attribution. Do not repair
 drift by silently restoring bytes and continuing.
 
-## Current preparation: Apple Container 1.5.0 — UNAVAILABLE pending controls
+## Current qualification: host fixtures calibrated; VM execution NO_GO
+
+The separately approved calibration-v4 completed both host-fixture cases on
+macOS 27.0.1 / 26A434, arm64, UID 501. After deliberate coordinator SIGKILL,
+fixture termination was **0.233802 s** after the original ten-second deadline.
+After deliberate guardian SIGKILL/restart it was **0.337892 s** after the unchanged
+original deadline. Both stops preceded the cooperative alarm. Independent checks
+found all eight captured PIDs and all four exact registrations absent, including
+safe removal of stopped guardians. [Outcome and provenance](qualification/2026-10-19-apple-container-guardian-calibration-v4-outcome.json)
+and [raw receipts/independent verification](qualification/2026-10-19-apple-container-guardian-calibration-v4-independent-verification.json).
+
+V3 remains a consumed failed overall calibration despite its observed first-case
+forced stop. The separately approved exact stopped-v3 registration recovery
+completed with original evidence preserved and independent registration/PID absence
+([recovery receipt](qualification/2026-10-19-apple-container-guardian-calibration-v3-recovery-01-outcome.json)).
+V4 observed Python launcher-to-framework executable transitions before binding;
+v3's exact failing operand remains unknown because its identities/poll/streams
+and observation time were not retained. All prior attempt identities stay consumed.
+
+**Actual VM execution is NO_GO / UNAVAILABLE.** The prepared VM guardian observes
+only the runtime registration/PID; independent VM/backend ownership, auxiliary
+execution, vmnet teardown, configuration binding, descendants, filesystem/network
+denial and aggregate resource enforcement remain unqualified. See the
+[source-grounded VM disposition](qualification/APPLE_CONTAINER_VM_NO_GO.md).
+No VM/guest/canary/#10 ran. Existing Container services retain their setup-v4
+identities; PR #17 remains draft, issue #2 open and the skill advice-only.
+The preparation chronology below is historical and grants no fresh effects.
+
+## Historical preparation: Apple Container 1.5.0
+
 
 The setup-v2 failure left four services registered. Recovery-01 stopped before
 removal; the existing [recovery-02 journal](qualification/2026-10-19-apple-container-recovery-02.jsonl)
