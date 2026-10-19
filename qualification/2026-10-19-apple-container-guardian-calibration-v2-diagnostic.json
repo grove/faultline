@@ -1,0 +1,214 @@
+{
+  "authorization": "CONSUMED_FAILURE_DO_NOT_REPEAT",
+  "execution": "NO_GO / UNAVAILABLE",
+  "execution_witnessed_by_codex": false,
+  "finding": {
+    "correction": "New v3 helper explicitly sets LimitLoadToSessionType to the string Background for guardian and fixture; no domain/mode change.",
+    "documentation_section": "launchd Agent, Table 1 and following paragraph; archived guidance, not a new live acceptance test",
+    "documentation_url": "https://developer.apple.com/library/archive/technotes/tn2083/_index.html",
+    "guidance": "Apple TN2083 identifies Background as the per-user agent session and documents Aqua when LimitLoadToSessionType is omitted. Installed launchd.plist(5) separately defines the session constraint and resource classification.",
+    "live_v3_acceptance": "NOT RUN; correction is prepared, not qualified",
+    "local_manual": "qualification/guardian-calibration-launchd-docs/launchd.plist.5",
+    "local_manual_lines": {
+      "LimitLoadToSessionType": [
+        163,
+        166
+      ],
+      "ProcessType": [
+        584,
+        595
+      ]
+    },
+    "local_manual_sha256": "1c5f5041c1d3492988bfa6f9dc6d969dfd072d20af2703c28d9a8f6ed6aaadcb",
+    "rejection": "Operator-correlated launchd session rejection (134), distinct from launchctl exit 5.",
+    "source_defect": "Both v2-generated agent definitions target user/501 but omit the explicit Background session constraint. ProcessType classifies resources; it does not select a session.",
+    "v1_cause": "Remains undetermined; no v1 launchd transaction diagnostics supplied."
+  },
+  "independent_offline_review": {
+    "new_live_launchd_process_or_log_queries": false,
+    "original_live_evidence_manifest": [
+      {
+        "gid": 0,
+        "kind": "directory",
+        "mode": "0o700",
+        "path": "/private/tmp/faultline-guardian-calibration-v1",
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v1/attempt.json",
+        "sha256": "16b21b253e47d8bcd008d8f6e68f16e4fcdee7133220b0cfa343cbfc01515d76",
+        "size": 191,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "directory",
+        "mode": "0o700",
+        "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss",
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.fixture.plist",
+        "sha256": "ef8533517935e1e4171c6faf6293e8556fa78eb36f21fd1140d35b0768e19a98",
+        "size": 1091,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/dev.faultline.guardian-calibration-v1.coordinator-loss.guardian.plist",
+        "sha256": "9f6c8fe52a3f17baa5eea45581d70f6c60a8b62cda250c7b5244d9e824d8693a",
+        "size": 1222,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v1/coordinator-loss/plan.json",
+        "sha256": "9551cb93e89b9d223a7f91da986c4b73e106a78d0de0438cfdff18fd99e6d6ec",
+        "size": 1124,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v1/failure.json",
+        "sha256": "82c4073531951c024f6ad84a071b3350c45e2d4e43bae265279d236f41c40375",
+        "size": 274,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "directory",
+        "mode": "0o700",
+        "path": "/private/tmp/faultline-guardian-calibration-v2",
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v2/attempt.json",
+        "sha256": "3d75cb72e196cb7c350786fef5922662f0a26b6c63e35d302c81af88d2207751",
+        "size": 191,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "directory",
+        "mode": "0o700",
+        "path": "/private/tmp/faultline-guardian-calibration-v2/coordinator-loss",
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v2/coordinator-loss/dev.faultline.guardian-calibration-v2.coordinator-loss.fixture.plist",
+        "sha256": "cd173e9d50b32a557536a9fc9fe8ee84b7a628f7c39fd0b4c73996f28b5c15d5",
+        "size": 1091,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v2/coordinator-loss/dev.faultline.guardian-calibration-v2.coordinator-loss.guardian.plist",
+        "sha256": "02527a355dd690f30730a6950fc35040ae839849ccc14d7f7731f0d63d8d7cf2",
+        "size": 1222,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v2/coordinator-loss/guardian-bootstrap-intent.json",
+        "sha256": "96887c439d7cbda5a591e599145c8d6927d204edd2ed2a51604c02e97ae5023f",
+        "size": 6815,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v2/coordinator-loss/guardian-bootstrap-result.json",
+        "sha256": "897af59519515af2f553181244e081de2a61270a0842b852991ef32938a5870d",
+        "size": 588,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v2/coordinator-loss/plan.json",
+        "sha256": "1d1a64a21b5d59ec2a663c89ce4f4786a9abb5594c3db9614d5aa98684da421b",
+        "size": 1118,
+        "uid": 501
+      },
+      {
+        "gid": 0,
+        "kind": "file",
+        "mode": "0o400",
+        "path": "/private/tmp/faultline-guardian-calibration-v2/failure.json",
+        "sha256": "1ec2e7df37aa9c0b5afec8ed26636c898d012258109f052e642121ac6830606a",
+        "size": 153,
+        "uid": 501
+      }
+    ],
+    "readiness_or_guardian_journal_present": false,
+    "v1_manifest_matches_published_outcome": true,
+    "v2_bootstrap_result": {
+      "argv": [
+        "/bin/launchctl",
+        "bootstrap",
+        "user/501",
+        "/private/tmp/faultline-guardian-calibration-v2/coordinator-loss/dev.faultline.guardian-calibration-v2.coordinator-loss.guardian.plist"
+      ],
+      "finished_monotonic": 66592.910220833,
+      "output_bytes_observed": 94,
+      "output_limit": false,
+      "returncode": 5,
+      "start_error": null,
+      "started_monotonic": 66592.905548541,
+      "stderr_base64": "Qm9vdHN0cmFwIGZhaWxlZDogNTogSW5wdXQvb3V0cHV0IGVycm9yClRyeSByZS1ydW5uaW5nIHRoZSBjb21tYW5kIGFzIHJvb3QgZm9yIHJpY2hlciBlcnJvcnMuCg==",
+      "stdout_base64": "",
+      "timeout": false
+    },
+    "v2_bootstrap_stderr_utf8": "Bootstrap failed: 5: Input/output error\nTry re-running the command as root for richer errors.\n",
+    "v2_plists": "Both original coordinator-loss plists omit LimitLoadToSessionType and set ProcessType=Background; no original plist changed."
+  },
+  "issue_2": "OPEN",
+  "kind": "GUARDIAN_CALIBRATION_V2_CONSUMED_FAILURE_WITH_OPERATOR_DIAGNOSTIC",
+  "operator_diagnostic": {
+    "correlation": "Operator identifies calibration-v2 first coordinator-loss guardian bootstrap; retained receipt independently shows same exact user/501 bootstrap argv, CLI exit 5 and generic I/O stderr. The log redacts the service; receipt does not independently bind PID 94871.",
+    "launchctl_pid": 94871,
+    "launchd_message": "[user/501:] Bootstrap by launchctl[94871] for <private> failed (134: Service cannot load in requested session)",
+    "log_query_argv_supplied": false,
+    "print_disabled_argv": [
+      "/bin/launchctl",
+      "print-disabled",
+      "user/501"
+    ],
+    "print_disabled_result": "Operator reports no Faultline calibration override",
+    "provenance": "Operator-provided unified-log excerpt and print-disabled observation in the 2026-10-19 user request; not independently collected or re-queried by Codex.",
+    "raw_log_archive_and_print_disabled_output_supplied": false,
+    "timestamp_as_supplied": "2026-10-19 12:40:22.972",
+    "timestamp_timezone": "Not specified in supplied excerpt; not converted to UTC",
+    "underlying_launchd_error": 134,
+    "underlying_launchd_error_text": "Service cannot load in requested session"
+  },
+  "originals_modified": false,
+  "pr_17": "DRAFT",
+  "qualification_granted": false,
+  "v1_authorization": "CONSUMED_FAILURE_DO_NOT_REPEAT",
+  "vm_launches_by_this_preparation": 0
+}

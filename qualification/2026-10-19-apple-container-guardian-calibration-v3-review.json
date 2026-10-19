@@ -1,0 +1,95 @@
+{
+  "approval_command_document": "qualification/APPLE_CONTAINER_GUARDIAN_CALIBRATION_V3.md",
+  "diagnostic_provenance_document": "qualification/2026-10-19-apple-container-guardian-calibration-v2-diagnostic.json",
+  "exact_labels": [
+    "dev.faultline.guardian-calibration-v3.coordinator-loss.guardian",
+    "dev.faultline.guardian-calibration-v3.coordinator-loss.fixture",
+    "dev.faultline.guardian-calibration-v3.guardian-restart.guardian",
+    "dev.faultline.guardian-calibration-v3.guardian-restart.fixture"
+  ],
+  "execution": "NO_GO / UNAVAILABLE",
+  "execution_authorized": false,
+  "issue_2": "OPEN",
+  "kind": "GUARDIAN_CALIBRATION_V3_PREPARATION_ONLY",
+  "live_v3_run": false,
+  "new_live_evidence_root": "/private/tmp/faultline-guardian-calibration-v3",
+  "new_live_evidence_root_state": "ABSENT; exclusive creation only in separately authorized invocation; no prepared live plists",
+  "operator_launchd_error": 134,
+  "operator_launchd_timestamp_as_supplied": "2026-10-19 12:40:22.972",
+  "parent_commit": "e811860a65ff6358f9167045110f759dda98860f",
+  "pr_17": "DRAFT",
+  "preservation_verification": {
+    "all_previous_review_hashes_match": true,
+    "manifest_document": "qualification/2026-10-19-apple-container-guardian-calibration-v2-diagnostic.json",
+    "original_live_files_rechecked": 12,
+    "original_live_tree_membership_and_modes_unchanged": true,
+    "v1_original_manifest_matches_published_outcome": true
+  },
+  "preserved_v2_cli_exit": 5,
+  "provision_v3_authorization": "CONSUMED_SUCCESS_DO_NOT_REPEAT",
+  "publication_authorized_by": "2026-10-19 user request to prepare the smallest calibration-v3 correction and publish hashes, scope, stopping conditions and tests to PR #17 before requesting separate execution approval",
+  "qualification_granted": false,
+  "review": {
+    "bootstrap_limits": {
+      "capture_bytes_combined": 65536,
+      "command_seconds": 1,
+      "raw_encoding": "base64",
+      "retained_cli_cleanup_seconds": 1,
+      "retry": false
+    },
+    "limitations": [
+      "No live launchd acceptance/restart/forced stop test",
+      "Effective caller path access is not launchd acceptance",
+      "Remaining trusted metadata commands retain v1 finite-output assumption",
+      "Same-UID identity checks and target actions are not atomic; no hostile replacement qualification",
+      "No VM/descendant/network/filesystem/resource qualification",
+      "Operator log excerpt is redacted and not independently queried; no raw log archive/disabled inventory or timestamp timezone supplied",
+      "Session correction has no live launchd acceptance evidence yet"
+    ],
+    "scope": [
+      "New versioned v3 helper derived byte-for-byte from v2 except fresh identities/entry point, explicit shared session constraint, and live exact-plist verification",
+      "Both guardian and fixture plists: LimitLoadToSessionType=Background (string); retain ProcessType=Background",
+      "Versioned diagnostic/provenance and original-evidence preservation manifest",
+      "V2 safety tests reused unchanged against v3, plus four v3 regression tests",
+      "Separate hash-pinned one-time operator procedure; preparation and publication only"
+    ],
+    "stopping_conditions": [
+      "Existing root/symlink or any exact label collision; no reuse",
+      "Wrong UID/Background manager, source/interpreter/provision-receipt hash, boot identity, path access/owner/mode/type/link/size, or lint failure",
+      "Wrong/missing/extra plist configuration, including any session constraint other than the exact string Background",
+      "Insufficient original deadline, changed plan/readiness/armed-plan/journal deadline, clock reset or malformed/torn journal",
+      "Bootstrap nonzero status, any stderr, start/I/O/cleanup error, timeout/output overflow or intent/result collision; preserve all evidence, no automatic retry or second case",
+      "Missing/replaced/unregistered-live process identity, uncertain origin or failed independent stop/restart observation; no uncertain kill",
+      "Any incomplete or interrupted invocation consumes approval; no rerun, repair, sudo, domain switch, old-plist changes, VM start, merge or issue closure"
+    ],
+    "unchanged": [
+      "Every previously published file",
+      "All 12 v1/v2 original live files and their owner/group/modes/hashes; both consumed authorizations remain consumed",
+      "user/501, UID 501, 0700 roots, 0400 plans/plists/receipts, 0600 journals",
+      "Original ten-second deadlines and sealed plan/readiness/journal bindings across restarts",
+      "Bounded bootstrap stdout/stderr, actual returncode and exclusive fsynced intent/result receipts",
+      "Exact registration/origin/argv/source plus independent PID/UID/birth/executable checks before target termination",
+      "Existing Container services, production guardian, VM state and provision-v3 receipt"
+    ]
+  },
+  "source_sha256": {
+    "qualification/2026-10-19-apple-container-guardian-calibration-v2-diagnostic.json": "4204262b071bdad02c075fa77bd19f95c197b412f7e8a8226082bddab296896d",
+    "qualification/APPLE_CONTAINER_GUARDIAN_CALIBRATION_V3.md": "fafc37266437faca9e98fcb764d44c7a73f0320e18c041b626ea0f4fc363e825",
+    "qualification/apple_container_guardian_calibration_v3.py": "2c431ec7b99a6424eee8b7b7fcbff1eaf1c2b28fa2503b8a804ef587827ecc02",
+    "tests/test_apple_container_guardian_calibration_v3.py": "d1af20886f4ce8b3b2c6901b7bf680e1f9b9e6b2e45b3a183b180cbac5bd0a01"
+  },
+  "v1_authorization": "CONSUMED_FAILURE_DO_NOT_REPEAT",
+  "v2_authorization": "CONSUMED_FAILURE_DO_NOT_REPEAT",
+  "v3_authorization": "NOT_GRANTED",
+  "validation": {
+    "full_suite_command": "/opt/homebrew/bin/python3 -B -m unittest discover -s tests",
+    "full_suite_passed": 109,
+    "inherited_v2_tests": 11,
+    "live_launchd_registration": false,
+    "new_v3_tests": 4,
+    "synthetic_subprocesses_and_launchd_observations": true,
+    "v3_command": "/opt/homebrew/bin/python3 -I -B -m unittest discover -s tests -p 'test_apple_container_guardian_calibration_v3.py'",
+    "v3_tests_passed": 15,
+    "vm_launches": 0
+  }
+}
