@@ -54,7 +54,10 @@ Use a short title and these fields, linking to the code and tests actually read:
   avoid introducing a framework or mutation plan for an ordinary assertion.
 - **Confidence and uncertainty:** distinguish **suspected implementation bug** from
   **missing test protection**. Explain the source supporting the expectation and
-  what would refute the concern. Never claim tests passed or a bug was reproduced
+  what would refute the concern. When an expected result is unsettled, label it a
+  **contract question** and make the suggested assertion conditional on that policy.
+  Keep expectations for different APIs or lifecycle phases separate and support
+  each one. Never claim tests passed or a bug was reproduced
   from source inspection alone.
 
 Finish with the reviewed scope, material limitations, and **Tests were not run.**

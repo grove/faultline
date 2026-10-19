@@ -1,0 +1,67 @@
+{
+  "method": "Existing local raw stdout was path-normalized and checked against all 77 published output digests/byte counts; no new acquisition or audit. Presence in captured stdout does not establish model attention or complete delivery of every token to the model.",
+  "matched_output_records": 77,
+  "r1_signals": [
+    {
+      "signal": "default autodetection documented",
+      "item_id": "item_3",
+      "received_seconds": 15.285684417,
+      "source": "https://github.com/pypa/packaging/blob/a716c52b5f3ca9b4a512f538b80ced8ee01b2775/src/packaging/specifiers.py#L230",
+      "captured_text_probe": "given specifiers.",
+      "present_in_captured_stdout": true,
+      "output_sha256": "4e92f565905a0d6c681ed663d66c6a897beea00c8c0332758b2be3093cbd9bb1"
+    },
+    {
+      "signal": "autodetection guard excludes exclusive operators",
+      "item_id": "item_7",
+      "received_seconds": 21.279599,
+      "source": "https://github.com/pypa/packaging/blob/a716c52b5f3ca9b4a512f538b80ced8ee01b2775/src/packaging/specifiers.py#L259",
+      "captured_text_probe": "if operator in [\"==\", \">=\", \"<=\", \"~=\", \"===\"]:",
+      "present_in_captured_stdout": true,
+      "output_sha256": "4b007884c503342877d1984bc352c41adedadce0cd2147f6d6f46500ea484cf4"
+    },
+    {
+      "signal": "shared comparison test overrides default",
+      "item_id": "item_6",
+      "received_seconds": 21.279317917,
+      "source": "https://github.com/pypa/packaging/blob/a716c52b5f3ca9b4a512f538b80ced8ee01b2775/tests/test_specifiers.py#L474",
+      "captured_text_probe": "spec = Specifier(spec, prereleases=True)",
+      "present_in_captured_stdout": true,
+      "output_sha256": "2e566e173c834d5b89e78285d92e39ac05d8859dd3a2c35ceccb66bb7d9c253c"
+    },
+    {
+      "signal": "existing assertion expects exclusive bound to reject prereleases",
+      "item_id": "item_6",
+      "received_seconds": 21.279317917,
+      "source": "https://github.com/pypa/packaging/blob/a716c52b5f3ca9b4a512f538b80ced8ee01b2775/tests/test_specifiers.py#L522",
+      "captured_text_probe": "(\"<1.0.dev1\", False)",
+      "present_in_captured_stdout": true,
+      "output_sha256": "2e566e173c834d5b89e78285d92e39ac05d8859dd3a2c35ceccb66bb7d9c253c"
+    },
+    {
+      "signal": "bound comparator permits a prerelease bound",
+      "item_id": "item_7",
+      "received_seconds": 21.279599,
+      "source": "https://github.com/pypa/packaging/blob/a716c52b5f3ca9b4a512f538b80ced8ee01b2775/src/packaging/specifiers.py#L458",
+      "captured_text_probe": "if not spec.is_prerelease and prospective.is_prerelease:",
+      "present_in_captured_stdout": true,
+      "output_sha256": "4b007884c503342877d1984bc352c41adedadce0cd2147f6d6f46500ea484cf4"
+    },
+    {
+      "signal": "default contains path rejects before comparison",
+      "item_id": "item_7",
+      "received_seconds": 21.279599,
+      "source": "https://github.com/pypa/packaging/blob/a716c52b5f3ca9b4a512f538b80ced8ee01b2775/src/packaging/specifiers.py#L557",
+      "captured_text_probe": "if normalized_item.is_prerelease and not prereleases:",
+      "present_in_captured_stdout": true,
+      "output_sha256": "4b007884c503342877d1984bc352c41adedadce0cd2147f6d6f46500ea484cf4"
+    }
+  ],
+  "visibility_limits": [
+    "External PEP 440 normative text absent from the frozen snapshot.",
+    "Repository-root test configuration and root changelog were not staged.",
+    "The archived stdout for these reads has the probes; no output-truncation notice was found in r1 raw stdout. This does not prove absence of host/model context truncation."
+  ],
+  "r1_final_report_sha256": "487ac893f075fe0566e3567b18c5895cd6b64e91f0cd9e447bec2a1492a4d013",
+  "source_manifest_sha256": "1836e86d10e4cc1fa7646e9a2879e6d8b6f0a84c6d20ead86e3d02bd1df2ea21"
+}

@@ -1,0 +1,26 @@
+{
+  "baseline_commit": "167131c1d0551ffa4c27b14b61974c14420db274",
+  "sections_sha256": {
+    "verification_gate": "7d708b1ec1a135d3a20eaea8647015e68bc87e234b30c6dca58fa2179a0bd1d9",
+    "release_boundary": "5f686017c22ef41b3a7d457f890391db5a588fbf2b370f608b414c9486811853"
+  },
+  "pilot_report_sha256": "c4df9567775407730c0ee02a8c1a92e9caf7276f11ae89377f09e070de14dca1",
+  "pilot_artifact_manifest_sha256": "c87812aa752cd3fb7ba73a8646a95ee765c29cc30e1018dc682473e2ef2e3450",
+  "original_local_files_unchanged": 103,
+  "original_git_status_unchanged": true,
+  "frozen_upstream_files_unchanged": 254,
+  "protected_paths_unchanged": [
+    "ISOLATION.md",
+    "qualification",
+    "DESIGN.md",
+    "IMPLEMENTATION.md",
+    "DESIGN-HISTORY.md",
+    "IMPLEMENTATION-HISTORY.md",
+    "experiments/real-repository-pilot",
+    "experiments/real-repository-evaluation-plan.md",
+    "experiments/audit-evaluation",
+    "experiments/audit-walkthrough.md",
+    "experiments/pr-18-19-merge-readiness.md",
+    "experiments/lost-acknowledgement.md"
+  ]
+}

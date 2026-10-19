@@ -1,0 +1,34 @@
+[
+  {
+    "case": "r1",
+    "item_id": "item_14",
+    "received_seconds": 75.398847125,
+    "text": "I found a path where `Specifier.filter()` appears to admit a prerelease despite an explicit `prereleases=False` on the object. The tests cover `False` on the filter call but don\u2019t cover that object setting. I\u2019m checking adjacent cases for existing protection or conflicting documented behavior.",
+    "text_sha256": "64ee2413aa3d7990e7ea79ef783c8df5323396653ad8607bad61261164b30594",
+    "qualification": "first finding-bearing commentary by coordinator judgment; tentative concern, not final actionable report or first streamed token"
+  },
+  {
+    "case": "r2",
+    "item_id": "item_13",
+    "received_seconds": 39.388168625,
+    "text": "The `faultline-audit` skill calls for tracing concrete failure cases and checking nearby tests for protection. So far, I see a possible mismatch: missing public lookups return `UNSET`, while one caller explicitly converts it to `None` for public use. I\u2019m checking the surrounding contracts and tests before treating that as a finding.",
+    "text_sha256": "37ad755c21f28db58c7737b7349e61cb284b41e5da3d5e4f48f82b6debf28279",
+    "qualification": "first finding-bearing commentary by coordinator judgment; tentative concern, not final actionable report or first streamed token"
+  },
+  {
+    "case": "r3",
+    "item_id": "item_16",
+    "received_seconds": 41.79748825,
+    "text": "The source places all conversions before a separate validator block, matching the documented order. The named test only exercises a converter that raises; it never reaches validation. I\u2019m checking the shared helpers and other initializer tests for protection of the successful, cross-field ordering case.",
+    "text_sha256": "f35fe002969dec17f4154d0d088f35bb299ba4abd64acb2cc0385763c5b58132",
+    "qualification": "first finding-bearing commentary by coordinator judgment; tentative concern, not final actionable report or first streamed token"
+  },
+  {
+    "case": "r4",
+    "item_id": "item_15",
+    "received_seconds": 54.186779125,
+    "text": "The \u201cport change\u201d test changes both scheme and port, so it doesn\u2019t isolate port-only credential stripping. The host-change and HTTP-to-HTTPS tests also cover those rules separately, leaving their interaction untested. I\u2019m checking `.netrc` handling next: `rebuild_auth` can replace the header after the retention decision.\n",
+    "text_sha256": "5d3d0d5380942ee2a472877e8f417b91161c60022850776a08a8429b5560fc23",
+    "qualification": "first finding-bearing commentary by coordinator judgment; tentative concern, not final actionable report or first streamed token"
+  }
+]
