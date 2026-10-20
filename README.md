@@ -66,6 +66,42 @@ Illustrative finding only; no repository was reviewed or test run for this examp
 If the reviewed scope has no useful finding, Faultline says so. It does not invent
 findings to fill a report or claim the whole repository is correct.
 
+## 3. Turn a finding into a GitHub issue (optional)
+
+Faultline reports findings; it never publishes issues. To draft an actionable issue
+from a finding, install [Intentline's issue skill](https://github.com/grove/intentline)
+in the same project:
+
+```sh
+npx skills@latest add grove/intentline --skill intentline-issue
+```
+
+Stay in the **same coding-agent conversation** after reviewing a useful finding.
+You do not need to rerun Faultline or copy its report.
+
+**Prepare — review only:**
+
+```text
+Use intentline-issue in REVIEW mode to draft one GitHub issue from the
+Faultline finding above. Recheck its evidence and expected behavior,
+include acceptance criteria and a proposed test, and preserve uncertainty.
+Don't publish or change anything.
+```
+
+**Publish — only after approving that draft:**
+
+```text
+Use intentline-issue in CREATE mode to publish the approved draft as
+exactly one issue in OWNER/REPO. I authorize creating this one issue.
+Check for duplicates, read back the new issue, and return its URL.
+Do not change code or run tests.
+```
+
+Replace `OWNER/REPO` with the intended GitHub repository. Publishing requires
+your coding agent's existing GitHub issue-write access; installation grants none.
+Repeat the review and explicit CREATE request for each additional finding.
+Suggested tests remain **PROPOSED — NOT RUN**.
+
 ## Verify this finding?
 
 **Verification is not enabled; here is the suggested test.** That is the current
