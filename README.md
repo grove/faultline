@@ -162,6 +162,14 @@ provisionally unchanged; one run per cell establishes no reliability or speed ga
 
 ## Maintainer notes
 
+[RO-1: ordinary review versus Faultline](experiments/ordinary-review-comparison/PROTOCOL.md)
+is a prepared read-only comparison, **NOT FROZEN / NOT RUN**. Existing evaluations
+do not establish incremental value over ordinary review; the current product
+decision is **INCONCLUSIVE**. Six candidate scopes are prepared. The user serves
+as both human curator and grader; grading is independent of audit workers, not
+curation. Budget enforcement and the complete study freeze remain prerequisites.
+This phase preserves issue #6's original executable study and dependencies.
+
 [Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md) ·
 [Security research and unchanged execution gate](ISOLATION.md) ·
 [Historical design](DESIGN-HISTORY.md) · [Historical plan](IMPLEMENTATION-HISTORY.md)

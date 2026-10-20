@@ -123,3 +123,9 @@ understandable explanations, and time to a useful finding. Known-answer
 walkthroughs check usability, not independent discovery. Record unknown timings
 honestly. If ordinary direct review is equally useful, simplify rather than
 adding infrastructure.
+
+The proposed [RO-1 comparison](experiments/ordinary-review-comparison/PROTOCOL.md)
+tests this question directly with matched ordinary-review and actual-skill arms.
+It is **NOT FROZEN / NOT RUN**; existing evidence supports **INCONCLUSIVE** on
+incremental value. It adds no product machinery and does not replace issue #6's
+separately gated executable study.
