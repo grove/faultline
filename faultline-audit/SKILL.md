@@ -45,7 +45,12 @@ conversation; writing a report requires caller authority for its destination.
    clarification materially changes the finding. Do not invent a contract.
    Report a contradiction only with source support for both the expectation and
    the reachable result; otherwise surface a concise contract question with
-   conditional expectations, not an unsupported bug claim.
+   conditional expectations, not an unsupported bug claim. Before proposing an
+   exact error code, status, or protocol value in a test, briefly reconcile the
+   applicable documentation, selected caller, and defining registry or constant
+   when available. If they conflict, keep the behavior-level test but make the
+   exact value a **contract question**, not a verified assertion. Do not expand
+   this into a repository-wide consistency audit.
 4. Return up to three actionable findings, ordered by consequence and confidence.
    Prefer one useful finding over filling a quota. For documentation-only,
    mechanical, low-risk, or already-protected scope, say

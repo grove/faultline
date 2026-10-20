@@ -72,6 +72,19 @@ class SkillTests(unittest.TestCase):
             self.assertIn(instruction, " ".join(text.split()))
         self.assertNotRegex(text, r"(?m)^\s*(?:docker|container|pip|npx|uvx|curl) ")
 
+    def test_exact_assertion_contract_conflict_is_conditional(self):
+        """Instruction regression only; not evidence of model detection quality."""
+        text = " ".join(SKILL.read_text(encoding="utf-8").split())
+        for phrase in (
+            "exact error code, status, or protocol value",
+            "applicable documentation, selected caller, and defining registry or constant",
+            "when available",
+            "keep the behavior-level test",
+            "**contract question**, not a verified assertion",
+            "Do not expand this into a repository-wide consistency audit",
+        ):
+            self.assertIn(phrase, text)
+
     def test_audit_requires_grounded_findings_without_execution_claims(self):
         text = " ".join(SKILL.read_text(encoding="utf-8").split())
         for instruction in (
