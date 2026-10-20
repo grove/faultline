@@ -1,0 +1,18 @@
+{
+  "checked_utc": "2026-10-20T06:35:16.754921+00:00",
+  "original_workspace_files_checked": 103,
+  "original_workspace_head": "ad4b3db108fa9e7c5c5035a0d26f4c09eb9647c6",
+  "original_workspace_status_sha256": "80ee91ed4b7fffed6f8c6e93cd40d838a8e8a464a74b365e004f8a6c9b061718",
+  "all_original_workspace_files_status_head_unchanged": true,
+  "prior_tracked_files_checked": 195,
+  "prior_tracked_changed_paths": [
+    "faultline-audit/SKILL.md"
+  ],
+  "all_other_prior_tracked_files_unchanged": true,
+  "base_pr21_commit": "ec2effd2ed1a060482a967043672d90e4dc26278",
+  "pr20_head": "167131c1d0551ffa4c27b14b61974c14420db274",
+  "pr20_state": "OPEN",
+  "pr21_state": "OPEN",
+  "ordinary_output_and_execution_fences_byte_identical": true,
+  "execution": "NO_GO / UNAVAILABLE; no Docker or target execution"
+}

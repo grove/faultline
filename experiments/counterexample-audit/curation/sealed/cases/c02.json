@@ -1,0 +1,86 @@
+{
+  "actual_source_trace": [
+    "flask/wrappers.py:26 uses one scalar _cached_json sentinel.",
+    "get_json catches ValueError, sets rv=None for silent=True, then stores None in that scalar cache.",
+    "The next default-cache call returns the cached None before parsing or evaluating the silent policy, so default BadRequest is bypassed.",
+    "Flask hooks and views can access the same contextual request object, making the interaction production reachable without direct private-field manipulation."
+  ],
+  "alternate_valid_findings": [
+    "The equivalent response JSONMixin interaction is admissible if the report traces the response path and contract.",
+    "A credible unprotected custom on_json_loading_failed return-value interaction can be accepted separately if grounded; do not invent handler semantics.",
+    "Other material scope-bound JSON validation/cache/encoding gaps may be accepted with evidence and actual missed assertion."
+  ],
+  "contracts": [
+    {
+      "contract": "silent silences parse errors and returns None; absent silence, failed parsing delegates to on_json_loading_failed, whose default raises BadRequest. cache stores parsed JSON.",
+      "path": "flask/wrappers.py",
+      "symbols": [
+        "JSONMixin.get_json",
+        "JSONMixin.on_json_loading_failed",
+        "JSONMixin.json",
+        "Request"
+      ]
+    },
+    {
+      "contract": "Default request wrapper and hooks/view execution belong to the request lifecycle.",
+      "path": "flask/app.py",
+      "symbols": [
+        "Flask.request_class",
+        "Flask.preprocess_request",
+        "Flask.full_dispatch_request"
+      ]
+    },
+    {
+      "contract": "A request context holds the request instance used by hooks and view code.",
+      "path": "flask/ctx.py",
+      "symbols": [
+        "RequestContext"
+      ]
+    },
+    {
+      "contract": "Published API autodoc includes Request methods and attributes.",
+      "path": "docs/api.rst",
+      "symbols": [
+        "Request Objects"
+      ]
+    }
+  ],
+  "expected": "First call returns None; second call invokes the default failure handler and raises BadRequest.",
+  "expected_detection": "supported_contradiction",
+  "family": "flask",
+  "full_credit": "Identify the silent-then-non-silent same-request interaction, cached None fast path, BadRequest contract, and why the existing cache=False second call does not protect it. A concrete regression preserving the second cache default suffices; patch not required.",
+  "id": "c02",
+  "limitations": [
+    "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+    "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+    "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+    "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+    "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+    "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+    "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+    "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+    "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+  ],
+  "oracle_challenges": [
+    "The first upstream issue example omitted content_type=application/json and is not itself a valid contract counterexample in this snapshot; the oracle uses the actual accepted regression input.",
+    "Maintainer initially considered this behavior acceptable, then acknowledged extension/before_request effects. The packet contract and accepted fix substantiate the oracle; broad universal cache purity is not assumed.",
+    "Werkzeug get_data and external JSON implementations are not bundled; source tests and the wrapper contract establish the target, but unrelated dependency edge cases may remain unresolvable source-only."
+  ],
+  "pair": "c05",
+  "partial_credit": "Ask how cache and silent policies should compose, grounded in this early return, but stop short of proving the documented failure behavior or actual outcome.",
+  "role": "defective",
+  "scope": "Request and response JSON parsing, request lifecycle integration and related test protection.",
+  "target": "A silent failed parse cached on the request suppresses a later non-silent parse error.",
+  "test_gap": "tests/test_helpers.py:58-63 test_ignore_cached_json explicitly uses cache=False on the second non-silent call; it proves the bypass-cache path while missing default-cache policy interaction. Single malformed-request tests do not exercise prior silent access.",
+  "trigger": "One request with content_type=application/json and malformed body. Call get_json(silent=True) with default cache=True, then get_json() with default silent=False and cache=True.",
+  "unsupported_target_variants": [
+    "No-JSON-mimetype input without force=True is not a valid proof of expected BadRequest: this snapshot explicitly returns None for non-JSON mimetypes.",
+    "Valid JSON null returning None is correct and is not evidence of the parse-error defect.",
+    "An independent later request is not affected by the prior request cache.",
+    "The report must not allege all cache=False second calls fail to raise: that existing tested path bypasses the parsed cache."
+  ],
+  "upstream": {
+    "commit": "8c0d8c1c147a2534c8ed60f7dc62080371126c18",
+    "repository": "pallets/flask"
+  }
+}

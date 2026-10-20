@@ -1,0 +1,73 @@
+{
+  "alternate_valid_findings": [
+    "A material distinct skip/xfail state or reporting gap can be accepted when traced to a production branch and not covered by current assertions.",
+    "A precise missing skipif combination can be assessed independently, but absence of that spelling alone does not establish an unprotected shared normalization path: the fixed assertion covers the same skipped_by_mark normalization branch."
+  ],
+  "contracts": [
+    {
+      "contract": "--runxfail forces running/reporting xfail-marked tests as though not marked and makes imperative xfail have no effect.",
+      "path": "doc/en/skipping.rst",
+      "symbols": [
+        "Ignoring xfail"
+      ]
+    },
+    {
+      "contract": "runxfail option is xfail-specific; mark skip reports are normalized to the test item definition.",
+      "path": "src/_pytest/skipping.py",
+      "symbols": [
+        "pytest_addoption",
+        "pytest_runtest_setup",
+        "pytest_runtest_makereport"
+      ]
+    },
+    {
+      "contract": "Production runtest report creation is passed through the skipping hook.",
+      "path": "src/_pytest/runner.py",
+      "symbols": [
+        "pytest_runtest_makereport"
+      ]
+    },
+    {
+      "contract": "Terminal summaries display locations from skipped reports.",
+      "path": "src/_pytest/terminal.py",
+      "symbols": [
+        "TerminalReporter"
+      ]
+    }
+  ],
+  "expected_detection": "protected",
+  "family": "pytest",
+  "id": "c03",
+  "limitations": [
+    "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+    "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+    "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+    "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+    "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+    "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+    "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+    "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+    "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+  ],
+  "oracle_challenges": [
+    "The targeted new regression explicitly spells mark.skip, not every mark.skipif variant or plugin report type. Do not claim complete marking coverage.",
+    "Other hook wrappers and custom items can alter reports. Claims depending on omitted third-party behavior should remain unresolved unless the supplied source proves the necessary contract."
+  ],
+  "pair": "c06",
+  "protected_evidence": [
+    "src/_pytest/skipping.py:295 onward uses an independent if for skip location normalization after the xfail-policy chain.",
+    "testing/test_skipping.py:238-264 test_xfail_run_with_skip_mark parametrizes both -rs and -rs --runxfail, checks the exact user test path and line, and checks one skipped result.",
+    "The generated test has @pytest.mark.skip and a failing body; this assertion genuinely exercises the mark/option/reporting interaction rather than inspecting a helper in isolation."
+  ],
+  "protected_false_alarms": [
+    "Claiming --runxfail still prevents location normalization for ordinary skip marks because the normalization is elif-connected to that option.",
+    "Claiming tests never combine --runxfail and mark.skip or never assert the user location in that combination."
+  ],
+  "role": "protected",
+  "scope": "Skip and expected-failure marking, execution policy and result reporting.",
+  "target": "Xfail execution policy does not bypass normalization of skip-mark report locations.",
+  "upstream": {
+    "commit": "c3e2b11a62234c283b4ed4a7bfe5edf7eb6f3d4d",
+    "repository": "pytest-dev/pytest"
+  }
+}

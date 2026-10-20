@@ -1,0 +1,3 @@
+Grade report.md using rubric.json and oracle.json, challenging both the report and the frozen oracle against project/. Return only the rubric's JSON schema. Preserve every material claim, including valid alternative gaps, unsupported assertions and uncertainty. Source-only model judgment is not reproduction.
+
+The report's source links point to an audit staging directory; map their project-relative paths to the supplied project/ here. Read only this directory's report.md, rubric.json, oracle.json, and project/ files. Do not inspect parents, siblings, other reports, skills, treatment mappings or Git history. No network, file edits, other agents, target imports, discovery, tests, builds, package scripts, hooks, installation, or Docker. Use file readers/search only.

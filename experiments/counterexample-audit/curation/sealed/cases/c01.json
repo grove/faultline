@@ -1,0 +1,73 @@
+{
+  "alternate_valid_findings": [
+    "A precise supported gap in composition of caller increment and sleep, distinct from existing primitive assertions, may be accepted; absence of a composed test alone is not evidence of the historical bug.",
+    "A documented, material UTC-versus-local-time gap in absolute Retry-After handling may be accepted if the report proves the contract and explains why the clock mocks hide it. Do not require external history to credit a sound source argument.",
+    "Other scope-bound Retry cloning or status-timing defects/test gaps may be accepted when independently grounded."
+  ],
+  "contracts": [
+    {
+      "contract": "Retry attempts create new Retry objects with updated values; respect_retry_after_header controls respecting Retry-After on RETRY_AFTER_STATUS_CODES; independent status_forcelist can force response-status retries.",
+      "path": "src/urllib3/util/retry.py",
+      "symbols": [
+        "Retry",
+        "Retry.new",
+        "Retry.increment",
+        "Retry.sleep",
+        "Retry.is_retry"
+      ]
+    },
+    {
+      "contract": "The status-retry production branch calls is_retry, increment, then sleep(response) before recursively requesting again.",
+      "path": "src/urllib3/connectionpool.py",
+      "symbols": [
+        "HTTPConnectionPool.urlopen"
+      ]
+    },
+    {
+      "contract": "Public callers configure Retry instances at pool level and per request.",
+      "path": "docs/user-guide.rst",
+      "symbols": [
+        "Retrying requests"
+      ]
+    }
+  ],
+  "expected_detection": "protected",
+  "family": "urllib3",
+  "id": "c01",
+  "limitations": [
+    "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+    "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+    "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+    "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+    "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+    "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+    "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+    "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+    "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+  ],
+  "oracle_challenges": [
+    "The fixed regression assertions cover cloning and sleeping separately, not a full network status-retry cycle. A report must not be penalized solely for asking for a justified composition test.",
+    "Header-date tests mock local-time conversions. This control is not a claim that HTTP-date timezone handling is correct.",
+    "Redirect sleep_for_retry bypass paths are outside the declared response-status timing target; do not generalize the control to redirects."
+  ],
+  "pair": "c04",
+  "protected_evidence": [
+    "src/urllib3/util/retry.py:199-216 copies respect_retry_after_header in new(), and increment() calls new().",
+    "src/urllib3/util/retry.py:289-305 checks self.respect_retry_after_header before honoring response Retry-After; otherwise backoff applies.",
+    "test/test_retry.py:293-299 parametrizes both True and False and asserts propagation through new().",
+    "test/test_retry.py:301-347 uses positive numeric and absolute-date Retry-After values, both policy settings, mocked clock/sleep, and asserts calls versus no calls.",
+    "src/urllib3/connectionpool.py:806-821 is the real status-retry caller of increment() then sleep(response)."
+  ],
+  "protected_false_alarms": [
+    "Claiming that False is omitted from new() and therefore resets to the True default.",
+    "Claiming sleep(response) ignores respect_retry_after_header=False on the response-status retry path.",
+    "Claiming there are no assertions covering False-policy clone propagation or positive Retry-After with False-policy sleep."
+  ],
+  "role": "protected",
+  "scope": "Retry policy preservation and timing of response-status retries through the pool request path.",
+  "target": "Explicit Retry-After policy survives cloning and governs status retry sleep.",
+  "upstream": {
+    "commit": "728d9244665ef5b03103cb74d7b409ebe4f23b43",
+    "repository": "urllib3/urllib3"
+  }
+}

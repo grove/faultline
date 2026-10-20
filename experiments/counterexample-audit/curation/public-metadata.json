@@ -1,0 +1,126 @@
+{
+  "auditor_input_boundary": "Stage exactly one packets/<id> directory. Give the ordinary Audit prompt with the case scope. Do not expose this metadata, licenses, sealed directories, sibling packets, fix history or oracle. Fresh session per packet and arm; no target execution or browsing.",
+  "cases": [
+    {
+      "file_count": 9,
+      "files": {
+        "docs/advanced-usage.rst": "ac2fc3925801ac09d10945c1764367e43426dd685f77f62765220f11e529ba55",
+        "docs/user-guide.rst": "f9a78af871a738826f1f7c076e51d21134985343b5a761bf340b395fa239ddc8",
+        "setup.cfg": "0012c2736de3136af1b874fb1c85823abac61e38fc6a759560d601b68def0c7b",
+        "src/urllib3/connectionpool.py": "7c7e3b7a0f4339128591b4e855b0d83b2ede0709bb7f7208bade3af1f0bb0075",
+        "src/urllib3/exceptions.py": "fed8929b0610f1e9ba392af918f3b98696c21bcab40d322e27617b34c1320f27",
+        "src/urllib3/poolmanager.py": "2585320543772221249d476367b549ae9090afa48feef8b45b04a776b9fc5e91",
+        "src/urllib3/response.py": "6af6ccd14b948c916fb0b44103dd096989398e52a65174ba0bf4b2f61c329536",
+        "src/urllib3/util/retry.py": "522ef8878e202c8216900c53f522b7036984beee79fa8756809330dcb8943469",
+        "test/test_retry.py": "b550dc58c369606d8fbf81051aa1ba0d66e5849cc5198593c5754f1947bdcabe"
+      },
+      "id": "c01",
+      "scope": "Retry policy preservation and timing of response-status retries through the pool request path.",
+      "source_bytes": 141556
+    },
+    {
+      "file_count": 10,
+      "files": {
+        "docs/api.rst": "213d0d955e3d0fbbbd1bd23bec231b2db11e0db8a81c039a029059bf5ab1757b",
+        "flask/app.py": "ebf92c1bae66633f26ddd36ac4bd5ee2f2e139bfe79c2bc7c15e979178c5f5b0",
+        "flask/ctx.py": "95e1734bd7f39a8d2e68b09dc691dce7f8a2259d47d17fc8838c8f08ebd3fbe8",
+        "flask/globals.py": "a4683bd905bffb8c547ec237dc8e4bff2efa736d407aa7d2a970dc6ddf30bd75",
+        "flask/json/__init__.py": "d67740bce6c0454698a708bbf2753ac06aa6701caa15fc5ccb78c49ab5c7be87",
+        "flask/testing.py": "5c3de058dbcb515f1da951f029df6d673b23f357d21ed8cea61435c1336d94cb",
+        "flask/wrappers.py": "65c247c99e0823db25cc973af7f2b2ba58f262e36d2e503402a43f892a033148",
+        "setup.cfg": "c8905362815ec544ba15dd8aa2863c255cc369c0b202e2fd5dd3a0c82c9cf582",
+        "tests/conftest.py": "c643fe37064c0e769f0af0445b5e2efbe0f69b195955bee5359396a1f2c707e6",
+        "tests/test_helpers.py": "230096d0b5fa0ee1946192ec489e2d23018af28f63317ed6a78d031d406445c3"
+      },
+      "id": "c02",
+      "scope": "Request and response JSON parsing, request lifecycle integration and related test protection.",
+      "source_bytes": 199707
+    },
+    {
+      "file_count": 10,
+      "files": {
+        "doc/en/skipping.rst": "9eb9b8282840720da1d4965d918d9131d67ca716ca56a75b6cf8a43c453a5c79",
+        "setup.cfg": "2a19d93cbd0ca3fdccb08a04f943097c58fbcff1b0234638b5c691dfcd2e2810",
+        "src/_pytest/nodes.py": "702f8e4c963093847fac9502b0dc12dcffbd8c2d53a926799a6beee9ea97ec7d",
+        "src/_pytest/outcomes.py": "a5049d04b7df4924ce019a84c490d7c890a0bfc6a06e18c80783fbb361213a38",
+        "src/_pytest/reports.py": "d2006fd1faabec8c3fbf2df64f2b4ee7d34582870e8b5bdab372545bd9f95677",
+        "src/_pytest/runner.py": "7d42662836c3b0f6707a5246b7aef64526063bf462eaac1a117e5a44623757df",
+        "src/_pytest/skipping.py": "da78594559dc6c278919034d8cf45eb25a02a7ada76bab68276a3e2a0dcf114f",
+        "src/_pytest/terminal.py": "7f4b965e21eef33fd63a9d4e74f56f1e42d76615d361af701c7dcebf537ec99b",
+        "testing/conftest.py": "3b51d2924cd1104b4bdc2db504d7715b2371f5bc7c76b952096d3523a2749261",
+        "testing/test_skipping.py": "eba8c8728da90328dc93074063adf19f951da8e62b3a0ac19b6a197af884536d"
+      },
+      "id": "c03",
+      "scope": "Skip and expected-failure marking, execution policy and result reporting.",
+      "source_bytes": 179307
+    },
+    {
+      "file_count": 9,
+      "files": {
+        "docs/advanced-usage.rst": "ac2fc3925801ac09d10945c1764367e43426dd685f77f62765220f11e529ba55",
+        "docs/user-guide.rst": "f9a78af871a738826f1f7c076e51d21134985343b5a761bf340b395fa239ddc8",
+        "setup.cfg": "0012c2736de3136af1b874fb1c85823abac61e38fc6a759560d601b68def0c7b",
+        "src/urllib3/connectionpool.py": "7c7e3b7a0f4339128591b4e855b0d83b2ede0709bb7f7208bade3af1f0bb0075",
+        "src/urllib3/exceptions.py": "fed8929b0610f1e9ba392af918f3b98696c21bcab40d322e27617b34c1320f27",
+        "src/urllib3/poolmanager.py": "2585320543772221249d476367b549ae9090afa48feef8b45b04a776b9fc5e91",
+        "src/urllib3/response.py": "6af6ccd14b948c916fb0b44103dd096989398e52a65174ba0bf4b2f61c329536",
+        "src/urllib3/util/retry.py": "0fdff5f111523acecbf01d7e311acc7c5c98504f410a885ee395aed903c04465",
+        "test/test_retry.py": "875904fe028a42c129a717228c274821859dbd2cff8e97c3674708560b9f0393"
+      },
+      "id": "c04",
+      "scope": "Retry policy preservation and timing of response-status retries through the pool request path.",
+      "source_bytes": 138606
+    },
+    {
+      "file_count": 10,
+      "files": {
+        "docs/api.rst": "213d0d955e3d0fbbbd1bd23bec231b2db11e0db8a81c039a029059bf5ab1757b",
+        "flask/app.py": "ebf92c1bae66633f26ddd36ac4bd5ee2f2e139bfe79c2bc7c15e979178c5f5b0",
+        "flask/ctx.py": "95e1734bd7f39a8d2e68b09dc691dce7f8a2259d47d17fc8838c8f08ebd3fbe8",
+        "flask/globals.py": "a4683bd905bffb8c547ec237dc8e4bff2efa736d407aa7d2a970dc6ddf30bd75",
+        "flask/json/__init__.py": "d67740bce6c0454698a708bbf2753ac06aa6701caa15fc5ccb78c49ab5c7be87",
+        "flask/testing.py": "5c3de058dbcb515f1da951f029df6d673b23f357d21ed8cea61435c1336d94cb",
+        "flask/wrappers.py": "d79c2512c60251a632bcb1b2f48fb3dff894f4d18e5a4e1e27c28b845bafdfa4",
+        "setup.cfg": "c8905362815ec544ba15dd8aa2863c255cc369c0b202e2fd5dd3a0c82c9cf582",
+        "tests/conftest.py": "c643fe37064c0e769f0af0445b5e2efbe0f69b195955bee5359396a1f2c707e6",
+        "tests/test_helpers.py": "849769a215a9a135212603c6fb8950bbf2d364f23dfd38c2292a2bc4169ab9ff"
+      },
+      "id": "c05",
+      "scope": "Request and response JSON parsing, request lifecycle integration and related test protection.",
+      "source_bytes": 200742
+    },
+    {
+      "file_count": 10,
+      "files": {
+        "doc/en/skipping.rst": "9eb9b8282840720da1d4965d918d9131d67ca716ca56a75b6cf8a43c453a5c79",
+        "setup.cfg": "2a19d93cbd0ca3fdccb08a04f943097c58fbcff1b0234638b5c691dfcd2e2810",
+        "src/_pytest/nodes.py": "702f8e4c963093847fac9502b0dc12dcffbd8c2d53a926799a6beee9ea97ec7d",
+        "src/_pytest/outcomes.py": "a5049d04b7df4924ce019a84c490d7c890a0bfc6a06e18c80783fbb361213a38",
+        "src/_pytest/reports.py": "d2006fd1faabec8c3fbf2df64f2b4ee7d34582870e8b5bdab372545bd9f95677",
+        "src/_pytest/runner.py": "7d42662836c3b0f6707a5246b7aef64526063bf462eaac1a117e5a44623757df",
+        "src/_pytest/skipping.py": "9b660e0b99182d42074f34ffb51f64d481cf8ee385428d06b3c3bc7163a70e9b",
+        "src/_pytest/terminal.py": "7f4b965e21eef33fd63a9d4e74f56f1e42d76615d361af701c7dcebf537ec99b",
+        "testing/conftest.py": "3b51d2924cd1104b4bdc2db504d7715b2371f5bc7c76b952096d3523a2749261",
+        "testing/test_skipping.py": "53d40fd7636ce10e7c18add19da9b2c20294dbc4461665af09da271bedc00224"
+      },
+      "id": "c06",
+      "scope": "Skip and expected-failure marking, execution policy and result reporting.",
+      "source_bytes": 178552
+    }
+  ],
+  "contract_evidence_visibility_limitations": [
+    "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+    "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+    "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+    "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+    "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+    "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+    "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+    "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+    "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+  ],
+  "frozen_utc": "2026-10-20T06:10:47Z",
+  "packet_root": "/private/tmp/faultline-holdout-curation/packets",
+  "sealed_expectations_sha256": "3dee9b503c52d94f593645b4ab30d2571e836d51a5d60c9efe4b3ae89352efd4",
+  "sealed_rubric_sha256": "2366f6ae3d6d982973bfd12b298e40f1636f916993c119d13eb8663527fe86c8"
+}

@@ -1,0 +1,470 @@
+{
+  "runs": [
+    {
+      "id": "r01",
+      "case": "c05",
+      "arm": "baseline",
+      "role": "protected",
+      "complete": true,
+      "elapsed_seconds": 143.3089935,
+      "grade": "grades/g09/response.md",
+      "grade_sha256": "51b410cc7ebb98b5c78119470c2e00c827ab4bae4846339e859c72af146bc7f8",
+      "detection": {
+        "detected": false,
+        "kind": "protected",
+        "reason": "The declared silent-versus-strict cache interaction is protected by separate cache entries and meaningful regression assertions. The report identifies distinct concerns without alleging that the protected defect persists.",
+        "evidence": [
+          "project/flask/wrappers.py:52-61 documents silent error handling and caching; lines 63-64 select the cache entry by silent.",
+          "project/flask/wrappers.py:77-90 preserves the strict entry after silent failure and shares successful results across both entries.",
+          "project/tests/test_helpers.py:65-71 asserts that malformed JSON parsed silently with default caching still raises BadRequest on a subsequent strict parse.",
+          "project/tests/test_helpers.py:73-78 asserts identity sharing and correct content for successful parsing across both silent settings.",
+          "The oracle's protected conclusion is supported. Its broader statement about cache=False protection requires qualification, as finding F3 explains."
+        ],
+        "target_claim_ids": []
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 3,
+        "claims": 7,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 6,
+        "unresolved": 1
+      }
+    },
+    {
+      "id": "r02",
+      "case": "c05",
+      "arm": "revised",
+      "role": "protected",
+      "complete": true,
+      "elapsed_seconds": 120.833141375,
+      "grade": "grades/g05/response.md",
+      "grade_sha256": "53132aa02bfdcafacbdb29840d662051524d41b7b3fcc3b57819f5ea0415227b",
+      "detection": {
+        "detected": false,
+        "kind": "protected",
+        "reason": "The declared mixed-silent cache interaction is protected by the implementation and explicit regression assertions. The report identifies three supported, distinct gaps without alleging that the historical defect persists.",
+        "evidence": [
+          "project/flask/wrappers.py:26,63-90 keeps separate normal and silent cache entries; a silent parsing failure leaves the normal entry untouched.",
+          "project/tests/test_helpers.py:65-71 explicitly asserts BadRequest after a cached silent failure with default caching.",
+          "project/tests/test_helpers.py:73-78 asserts identity and content sharing after successful parsing.",
+          "The oracle's statement that test_ignore_cached_json protects the cache=False alternate path needs qualification: its normal cache entry is empty, so it does not protect bypass of an already populated entry."
+        ],
+        "target_claim_ids": []
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 3,
+        "claims": 6,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 6
+      }
+    },
+    {
+      "id": "r03",
+      "case": "c01",
+      "arm": "revised",
+      "role": "protected",
+      "complete": true,
+      "elapsed_seconds": 114.036849875,
+      "grade": "grades/g06/response.md",
+      "grade_sha256": "ea90ca7adda187a216b7a14e7c9eb7c28942d4052ef23b6b4245d7db4e94ae40",
+      "detection": {
+        "detected": false,
+        "kind": "protected",
+        "reason": "The declared Retry-After policy interaction is protected by implementation guards and meaningful assertions. Neither reported finding alleges that historical defect persists. Both identify supported alternative gaps.",
+        "evidence": [
+          "project/src/urllib3/util/retry.py:199-216 preserves respect_retry_after_header in new(); increment() uses new() at 426-433.",
+          "project/src/urllib3/util/retry.py:298-303 checks respect_retry_after_header before honoring the response header.",
+          "project/test/test_retry.py:293-298 asserts propagation for both policy values; 300-343 asserts sleep versus no sleep for positive numeric and absolute-date headers.",
+          "The manager-default policy loss and absolute-date timezone error are distinct from the protected interaction."
+        ],
+        "target_claim_ids": []
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 2,
+        "claims": 5,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 5
+      }
+    },
+    {
+      "id": "r04",
+      "case": "c01",
+      "arm": "baseline",
+      "role": "protected",
+      "complete": true,
+      "elapsed_seconds": 157.240145667,
+      "grade": "grades/g07/response.md",
+      "grade_sha256": "e13027bd7f748386f2bd3c4d3bde6d8d0239813a768920bc764978463b64b43b",
+      "detection": {
+        "detected": false,
+        "kind": "protected",
+        "reason": "The supplied source supports the oracle's protected interaction. The report acknowledges the currently correct implementation and identifies distinct behavior defects and composition gaps without asserting that the historical defect persists.",
+        "target_claim_ids": [],
+        "evidence": [
+          "project/src/urllib3/util/retry.py:199-216 preserves respect_retry_after_header during cloning; increment() calls new() at 426-433.",
+          "project/src/urllib3/util/retry.py:298-303 guards header sleep with respect_retry_after_header and otherwise applies backoff.",
+          "project/test/test_retry.py:293-298 asserts cloning preserves both policy settings; 300-343 asserts positive numeric and absolute-date header sleep versus no sleep.",
+          "project/src/urllib3/connectionpool.py:804-835 increments, calls sleep(response), and passes the updated policy into the next request."
+        ]
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 3,
+        "claims": 7,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 7
+      }
+    },
+    {
+      "id": "r05",
+      "case": "c06",
+      "arm": "baseline",
+      "role": "defective",
+      "complete": true,
+      "elapsed_seconds": 128.45277325,
+      "grade": "grades/g03/response.md",
+      "grade_sha256": "b708296e2921f02c6819a47f526b57b99f36206503cdff049f3d22a56429f6bf",
+      "detection": {
+        "detected": false,
+        "kind": "miss",
+        "reason": "The report identifies two supported alternative gaps, but neither addresses the oracle's target: --runxfail bypassing location normalization for ordinary skip-marked tests. It also does not raise that interaction as a contract question.",
+        "evidence": [
+          "project/src/_pytest/skipping.py:233-244 evaluates skip marks and raises skip independently of --runxfail.",
+          "project/src/_pytest/skipping.py:273-305 places the runxfail gate and skip-location normalization in the same elif chain, supporting the oracle's normalization-bypass claim without changing the skipped outcome.",
+          "project/doc/en/skipping.rst:351-361 defines xfail-specific option behavior. The stronger skip-location expectation comes from the normalization comment at project/src/_pytest/skipping.py:299-301 and assertions at project/testing/test_skipping.py:780-787 and 1193-1207.",
+          "project/src/_pytest/terminal.py:1116-1131 and 1245-1267 derives skipped-summary locations from report.longrepr. Folding may omit the numeric line, so exact terminal formatting should not be inferred.",
+          "report.md:1-19 discusses absent custom-item line numbers and xfail-condition evaluation, without identifying the skip-mark/--runxfail location interaction."
+        ],
+        "target_claim_ids": []
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 2,
+        "claims": 4,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 4
+      }
+    },
+    {
+      "id": "r06",
+      "case": "c06",
+      "arm": "revised",
+      "role": "defective",
+      "complete": true,
+      "elapsed_seconds": 153.954274791,
+      "grade": "grades/g02/response.md",
+      "grade_sha256": "5e4527fcd3ebcfc3b9137fcb9b98d33fbab3ca0e6bd5b2d6d0e82470fa31f882",
+      "detection": {
+        "detected": true,
+        "kind": "supported_contradiction",
+        "reason": "Finding 3 identifies the oracle target through a true skipif marker, the runxfail reporting gate, the resulting internal location, and the missing option/location assertion. The proposed regression checks location while preserving the skipped outcome.",
+        "evidence": [
+          "project/src/_pytest/skipping.py:159-176,233-239: true skipif marks set skipped_by_mark_key and raise skip during setup.",
+          "project/src/_pytest/skipping.py:273-305: the runxfail elif bypasses location normalization; the normalization comment explicitly requires the item definition instead of pytest's exception-raising location.",
+          "project/doc/en/skipping.rst:351-361 and project/src/_pytest/skipping.py:29-37 describe an xfail-specific override. The precise skip-location contract additionally rests on the production comment and existing reporting assertion.",
+          "project/src/_pytest/runner.py:111-118,204-211 and project/src/_pytest/reports.py:311-314 connect setup skipping to report creation and the skipping reporting hook; setup skips prevent test execution.",
+          "project/src/_pytest/terminal.py:1116-1131,1245-1266 displays the skipped report's location. The skipif example retains its line number.",
+          "project/testing/test_skipping.py:665-680 asserts the user filename and skipped outcome without --runxfail; the supplied runxfail tests do not cross ordinary skipping with location reporting."
+        ],
+        "target_claim_ids": [
+          "F3.C1",
+          "F3.C2"
+        ]
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 3,
+        "claims": 6,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 6
+      }
+    },
+    {
+      "id": "r07",
+      "case": "c02",
+      "arm": "revised",
+      "role": "defective",
+      "complete": true,
+      "elapsed_seconds": 116.091769292,
+      "grade": "grades/g11/response.md",
+      "grade_sha256": "c4ae313186ec532d4fc972b3f8ab79ceb9283052f6daa74dd6da716409b3d8ab",
+      "detection": {
+        "detected": true,
+        "kind": "supported_contradiction",
+        "reason": "The report identifies the oracle's exact silent-then-strict interaction, explains the cached-None bypass of documented BadRequest behavior, establishes request-lifecycle reachability, and identifies the existing test's cache=False escape. The supplied source supports the frozen target.",
+        "target_claim_ids": [
+          "F1.C1",
+          "F1.C2"
+        ],
+        "evidence": [
+          "project/flask/wrappers.py:52-61 documents silent error suppression, parsed-result caching, and delegation on parsing failure; lines 88-104 specify default BadRequest.",
+          "project/flask/wrappers.py:63-84 returns an existing scalar cache before considering silent, and caches None after a suppressed ValueError.",
+          "project/tests/test_helpers.py:58-63 supplies malformed application/json but disables caching on the second call.",
+          "project/flask/ctx.py:279-283 creates the contextual request; project/flask/globals.py:34-38,59 resolves that request; project/flask/app.py:1792-1807,2055-2080 runs hooks before the view within the same request."
+        ]
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 3,
+        "claims": 6,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 6
+      }
+    },
+    {
+      "id": "r08",
+      "case": "c02",
+      "arm": "baseline",
+      "role": "defective",
+      "complete": true,
+      "elapsed_seconds": 117.170371125,
+      "grade": "grades/g04/response.md",
+      "grade_sha256": "aca18a2c14e7fbaf7c1670afbe8a3dfc542c3d54368a45471981b27a0ebf6586",
+      "detection": {
+        "detected": true,
+        "kind": "supported_contradiction",
+        "reason": "The report establishes the declared silent-then-strict cache defect and accurately identifies the missing assertion. Its proposed regression retains the existing malformed application/json input while restoring default caching on the second call. The frozen oracle's target is supported by the supplied source.",
+        "target_claim_ids": [
+          "F1C1",
+          "F1C2"
+        ],
+        "evidence": [
+          "project/flask/wrappers.py:52-61 documents silent error handling and caching; lines 88-104 promise default BadRequest handling.",
+          "project/flask/wrappers.py:77-84 stores None after a silent parsing failure; lines 63-64 return it on the subsequent default-cache call before evaluating error policy.",
+          "project/flask/ctx.py:279-283 stores the request instance; project/flask/app.py:1792-1807 and 2055-2080 run hooks before dispatch using that request context.",
+          "project/tests/test_helpers.py:58-63 supplies malformed application/json but explicitly disables caching on the strict call, leaving the target interaction unasserted."
+        ]
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 2,
+        "claims": 4,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 4
+      }
+    },
+    {
+      "id": "r09",
+      "case": "c03",
+      "arm": "baseline",
+      "role": "protected",
+      "complete": true,
+      "elapsed_seconds": 160.883415667,
+      "grade": "grades/g12/response.md",
+      "grade_sha256": "a5916c813b80674bcafadcba016a765260f81fc020ad6404557654c0d4060e7c",
+      "detection": {
+        "detected": false,
+        "kind": "protected",
+        "reason": "The frozen oracle's narrow protection is supported: skip-location normalization runs independently of the --runxfail reporting branch, and a regression asserts the user location with and without that option. The report raises distinct xfail gaps and does not allege the protected defect persists.",
+        "evidence": [
+          "project/src/_pytest/skipping.py:273-306: the --runxfail branch leaves reporting unchanged, followed by an independent if that normalizes mark-generated skip locations.",
+          "project/testing/test_skipping.py:238-261: test_xfail_run_with_skip_mark covers both -rs and -rs --runxfail, asserting test_sample.py:2, the skip reason, and one skipped result.",
+          "project/src/_pytest/runner.py:204-209,312-313: production report creation invokes pytest_runtest_makereport.",
+          "project/src/_pytest/terminal.py:1116-1131,1245-1266: skipped summaries consume locations from report.longrepr."
+        ],
+        "target_claim_ids": []
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 2,
+        "claims": 4,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 4
+      }
+    },
+    {
+      "id": "r10",
+      "case": "c03",
+      "arm": "revised",
+      "role": "protected",
+      "complete": true,
+      "elapsed_seconds": 118.917018083,
+      "grade": "grades/g10/response.md",
+      "grade_sha256": "d9613e6e19763b5f77ed15e439ed93b63329d86f55fdb66e6fc139006c9559f6",
+      "detection": {
+        "detected": false,
+        "kind": "protected",
+        "reason": "The declared skip-location interaction is protected by the implementation and an explicit regression assertion. Both reported findings concern distinct, source-supported gaps and do not assert that the protected defect persists.",
+        "evidence": [
+          "project/src/_pytest/skipping.py:273-306 handles --runxfail in the xfail-policy chain, then independently normalizes mark-based skip locations.",
+          "project/testing/test_skipping.py:238-261 parametrizes ordinary mark.skip execution with both -rs and -rs --runxfail, asserting test_sample.py:2, the skip reason, and one skipped result.",
+          "Finding 1 concerns custom items without line numbers; finding 2 concerns evaluating xfail conditions before honoring --runxfail. Neither alleges missing protection for the oracle's ordinary skip-location interaction."
+        ],
+        "target_claim_ids": []
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 2,
+        "claims": 4,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 4
+      }
+    },
+    {
+      "id": "r11",
+      "case": "c04",
+      "arm": "revised",
+      "role": "defective",
+      "complete": true,
+      "elapsed_seconds": 101.674943875,
+      "grade": "grades/g08/response.md",
+      "grade_sha256": "70db2b7a3118259bc8893c2f6032dd52d2e68f891b407276cb0d93eae83f0d66",
+      "detection": {
+        "detected": true,
+        "kind": "supported_contradiction",
+        "reason": "Both reported mechanisms match the target: cloning loses the explicit False policy, and sleep(response) independently ignores that policy. The report supplies documented inputs, reachable pool paths, incorrect behavior and specific missing assertions. This establishes a source-supported contradiction, not runtime reproduction.",
+        "evidence": [
+          "project/src/urllib3/util/retry.py:32-43 documents retry-state cloning and public configuration; lines 140-154 define the opt-out for statuses including 429 and 503.",
+          "project/src/urllib3/util/retry.py:174-215 defaults the flag to True but omits it from new(); increment() returns that clone at lines 425-439.",
+          "project/src/urllib3/connectionpool.py:804-835 checks eligibility, increments, sleeps with the response and recursively requests using the updated policy.",
+          "project/src/urllib3/util/retry.py:264-302 reads a positive Retry-After and calls time.sleep without checking the opt-out.",
+          "project/test/test_retry.py contains neither False-policy preservation assertions nor response-driven sleep assertions."
+        ],
+        "target_claim_ids": [
+          "F1C1",
+          "F1C2",
+          "F2C1",
+          "F2C2"
+        ]
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 2,
+        "claims": 4,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 4
+      }
+    },
+    {
+      "id": "r12",
+      "case": "c04",
+      "arm": "baseline",
+      "role": "defective",
+      "complete": true,
+      "elapsed_seconds": 97.323405791,
+      "grade": "grades/g01/response.md",
+      "grade_sha256": "afaf4a071ea0d3d58ba5e447581a8a583feefaa7002aaac0183f59b10536e093",
+      "detection": {
+        "detected": true,
+        "kind": "supported_contradiction",
+        "reason": "Both reported defects match the target and are supported by the supplied contract, production path and missing assertions. The report correctly distinguishes clone-policy loss from the independent sleep guard omission. This is source-based detection, not reproduction.",
+        "target_claim_ids": [
+          "F1-C1",
+          "F2-C1"
+        ],
+        "evidence": [
+          "project/src/urllib3/util/retry.py:32-43 documents reusable Retry configuration; lines 140-154 define the header policy and include 429 and 503.",
+          "project/src/urllib3/util/retry.py:174,194,199-215 shows that new() omits the configured flag and restores the True default; increment() returns that copy at lines 425-439.",
+          "project/src/urllib3/connectionpool.py:804-835 checks eligibility, increments, sleeps with the response and recursively passes the copied policy.",
+          "project/src/urllib3/util/retry.py:274-302 honors a positive Retry-After in sleep(response) without checking the flag.",
+          "project/test/test_retry.py:103-189 contains counter, backoff, sleep and eligibility tests without either reported opt-out assertion."
+        ]
+      },
+      "control_alarm": false,
+      "counts": {
+        "findings": 2,
+        "claims": 4,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "claim_classifications": {
+        "accepted_gap": 4
+      }
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "attempts": 6,
+      "completed": 6,
+      "supported_contradictions": 2,
+      "contract_questions_on_bug_cases": 0,
+      "target_misses": 1,
+      "controls": 3,
+      "control_alarms": 0,
+      "median_seconds": 135.880883375,
+      "range_seconds": [
+        97.323405791,
+        160.883415667
+      ],
+      "claim_classifications": {
+        "accepted_gap": 29,
+        "unresolved": 1
+      },
+      "findings": 14,
+      "claims": 30,
+      "unsupported_claims": 0,
+      "false_positive_claims": 0
+    },
+    "revised": {
+      "attempts": 6,
+      "completed": 6,
+      "supported_contradictions": 3,
+      "contract_questions_on_bug_cases": 0,
+      "target_misses": 0,
+      "controls": 3,
+      "control_alarms": 0,
+      "median_seconds": 117.5043936875,
+      "range_seconds": [
+        101.674943875,
+        153.954274791
+      ],
+      "claim_classifications": {
+        "accepted_gap": 31
+      },
+      "findings": 15,
+      "claims": 31,
+      "unsupported_claims": 0,
+      "false_positive_claims": 0
+    }
+  },
+  "revised_to_baseline_median_ratio": 0.8647603015886708,
+  "decision": {
+    "supported_contradictions_increased": true,
+    "unsupported_claims_did_not_increase": true,
+    "control_alarms_did_not_increase": true,
+    "speed_guard_passed": true,
+    "preliminary_positive_signal": true
+  },
+  "known_case_excluded": true,
+  "limitations": [
+    "One run per cell; source-only model grades, no human adjudication or target reproduction.",
+    "Public history may be familiar from training; instructed and observed-read blinding is not an OS read barrier.",
+    "Secondary contract uncertainties remain unresolved; no policy is settled by a grade."
+  ]
+}

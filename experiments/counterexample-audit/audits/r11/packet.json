@@ -1,0 +1,12 @@
+{
+  "SKILL.md": "2dca9f9ff3400b6a5de4b91637794e2e7dd71d71f8649536819cfe8a5270d3d7",
+  "project/docs/advanced-usage.rst": "ac2fc3925801ac09d10945c1764367e43426dd685f77f62765220f11e529ba55",
+  "project/docs/user-guide.rst": "f9a78af871a738826f1f7c076e51d21134985343b5a761bf340b395fa239ddc8",
+  "project/setup.cfg": "0012c2736de3136af1b874fb1c85823abac61e38fc6a759560d601b68def0c7b",
+  "project/src/urllib3/connectionpool.py": "7c7e3b7a0f4339128591b4e855b0d83b2ede0709bb7f7208bade3af1f0bb0075",
+  "project/src/urllib3/exceptions.py": "fed8929b0610f1e9ba392af918f3b98696c21bcab40d322e27617b34c1320f27",
+  "project/src/urllib3/poolmanager.py": "2585320543772221249d476367b549ae9090afa48feef8b45b04a776b9fc5e91",
+  "project/src/urllib3/response.py": "6af6ccd14b948c916fb0b44103dd096989398e52a65174ba0bf4b2f61c329536",
+  "project/src/urllib3/util/retry.py": "0fdff5f111523acecbf01d7e311acc7c5c98504f410a885ee395aed903c04465",
+  "project/test/test_retry.py": "875904fe028a42c129a717228c274821859dbd2cff8e97c3674708560b9f0393"
+}
