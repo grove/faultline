@@ -1,0 +1,18 @@
+{
+  "r1": {
+    "published_prompt_sha256": "70c7485c598134e572e11731a344dfd7324fea1227cdcdefce430ce59d106b9d",
+    "original_prompt_sha256": "07f7b46cf1e2e82a703479699c26d5eeebe8dcc46122e5d31399da4ef43eb777"
+  },
+  "r2": {
+    "published_prompt_sha256": "4334fa3f2e2e390dce2005aa50d1fa5cdf941571d68f820435c632d94c46fe91",
+    "original_prompt_sha256": "cf590ee9f159de0c043805ad0337debb6c98dd861e947d71c97c66261403f3f5"
+  },
+  "r3": {
+    "published_prompt_sha256": "4840a7ff8f97f15a4d6a137995ad5ff36bc6c51b7f1535fc2306150f1ae76af7",
+    "original_prompt_sha256": "4181585348d5e1f1c15a7dda9a0609d79a0259f4ec08a0750b04440f545607f5"
+  },
+  "r4": {
+    "published_prompt_sha256": "f6c0dcceb312309c7b5fd6510711f6c4b59b0a965063aefb5352ccb6d9ee2068",
+    "original_prompt_sha256": "5324d6180d29172ca1462f4acdaad47a456a0485e339d4a7a76ad7bb3a3c5201"
+  }
+}

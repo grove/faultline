@@ -1,0 +1,17 @@
+{
+  "control_preparation": "The original protected labels were too broad for interaction boundaries. Second reviewers upheld the actual gaps, rather than forcing agreement with the preparer.",
+  "staging_limits": "Repository-root test configuration, external PEP 440 specification text and external HTTPBin fixture implementation were absent. Frozen inputs were not amended and no cases were replaced or retried.",
+  "grading_network_attempt": {
+    "case": "r2",
+    "phase": "independent grading, not Audit",
+    "observed_seconds": 69.645430583,
+    "command": "git --git-dir=/SOURCES/click.git show 8.2.1:src/click/core.py | nl -ba | sed -n ...",
+    "outcome": "Implicit promisor fetch attempted; DNS/network blocked. No remote content obtained.",
+    "captured_error": "fatal: unable to access https://github.com/pallets/click.git/: Could not resolve host: github.com; fatal: could not fetch f57ada62b195fa533387b5d06b366b17edb7d2f4 from promisor remote",
+    "response": "Disabled remote.origin.promisor in task-local bare clones only, retaining cached objects. Second reviewers forbidden Git. No global config, security gate, project code or dependencies changed."
+  },
+  "grade_r1_erratum": "r1 raw grade incorrectly says a Git read triggered network. Its command ledger has no Git commands. The observed blocked lazy-fetch attempt belongs to r2 grading; see deviations.json. The raw grade is retained, and this unsupported limit is not adopted.",
+  "auditor_network_attempts_observed": 0,
+  "target_execution_commands_observed": 0,
+  "telemetry_limits": "Commands and host events inspected; no kernel-level execution/network tracing or sandbox qualification claim."
+}

@@ -1,0 +1,94 @@
+{
+  "plan": "../real-repository-evaluation-plan.md",
+  "base_commit": "8fc4ed71ba41343e22dfb28f6304f04d751eaa2a",
+  "frozen_before_audits": true,
+  "cases": [
+    {
+      "case": "r1",
+      "repository": "pypa/packaging",
+      "commit": "a716c52b5f3ca9b4a512f538b80ced8ee01b2775",
+      "source_url": "https://github.com/pypa/packaging/tree/a716c52b5f3ca9b4a512f538b80ced8ee01b2775",
+      "scope": "Specifier prerelease inclusion behavior in src/packaging/specifiers.py (prereleases, contains and filter), its callers, tests/test_specifiers.py and relevant docs. Focus on this behavior; read other staged helpers and assertions as needed.",
+      "input": "inputs/r1.txt",
+      "file_count": 43
+    },
+    {
+      "case": "r2",
+      "repository": "pallets/click",
+      "commit": "fa7f035ab58dc4d9b8818b92fbc6a8f3c3234af6",
+      "source_url": "https://github.com/pallets/click/tree/fa7f035ab58dc4d9b8818b92fbc6a8f3c3234af6",
+      "scope": "Context.lookup_default and its parameter-default resolution callers in src/click/core.py, tests/test_defaults.py, tests/test_context.py and relevant docs. Focus on this public default lookup behavior; read other staged helpers and assertions as needed.",
+      "input": "inputs/r2.txt",
+      "file_count": 82
+    },
+    {
+      "case": "r3",
+      "repository": "python-attrs/attrs",
+      "commit": "ee66e7274852438cc23d4240a1a9cd632fda8b52",
+      "source_url": "https://github.com/python-attrs/attrs/tree/ee66e7274852438cc23d4240a1a9cd632fda8b52",
+      "scope": "Conversion before validation during generated initialization in src/attr/_make.py, tests/test_make.py::TestConverter, related initialization tests, fixtures and docs/init.md. Focus on the initialization ordering contract; read other staged helpers and assertions as needed.",
+      "input": "inputs/r3.txt",
+      "file_count": 76
+    },
+    {
+      "case": "r4",
+      "repository": "psf/requests",
+      "commit": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+      "source_url": "https://github.com/psf/requests/tree/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+      "scope": "The host/scheme/port authorization-retention decision in src/requests/sessions.py::SessionRedirectMixin.should_strip_auth, its rebuild_auth caller, relevant tests/test_requests.py cases, tests/conftest.py and docs. Focus on this redirect session-state behavior; read other staged helpers and assertions as needed.",
+      "input": "inputs/r4.txt",
+      "file_count": 53
+    }
+  ],
+  "host": {
+    "os": "macOS 27.0.1 arm64",
+    "host": "Codex CLI 0.163.0, installed before evaluation",
+    "requested_model": "gpt-6.1-sol",
+    "actual_server_model_identity": "not separately exposed by captured events",
+    "reasoning_effort": "xhigh (existing host setting)",
+    "configuration": "user config ignored; read-only sandbox; approval never; web disabled; ephemeral fresh session",
+    "concurrency": "four audit sessions overlapped; packaging grading began after its response while other audits finished; no isolation from shared host/account load"
+  },
+  "audit_method": {
+    "request": "canonical skill plus scoped Find weak tests prompt; safety restrictions only; no custom finding evaluator",
+    "assigned": 4,
+    "attempts_per_case": 1,
+    "observation_ceiling_seconds": 600,
+    "answer_isolation": "expected answers, labels, fixes, histories and other reports absent from auditor prompts; filesystem shared; enforced by instructions, not OS access separation",
+    "source_acquisition": "public bare Git clones with hooks disabled, git archive read as data, only regular src/tests/docs .py/.pyi/.rst/.md/.txt bytes staged; no project checkout, imports, hooks, dependency resolution or project execution",
+    "skill_changes": "none; all audits used the canonical skill identified in freeze.json",
+    "grading": "four fresh model reviewers, distinct from preparer and auditors, source-only; second independent reviewers only for disputed classifications; not human grading"
+  },
+  "latency": {
+    "measured": "external monotonic_ns immediately before launching host with ordinary prompt, through full terminal turn.completed JSON line receipt after final agent_message; timestamp precedes terminal JSON parse. Includes startup, queueing, tools, reasoning and generation.",
+    "observer_source": "observer.py.txt (one-off standard-library collection glue, not an Audit dependency or timing service)",
+    "event_ledgers": "events/; stdout content omitted in published ledgers, hashes retained; complete raw anonymized final responses in audits/ and grades/",
+    "recording": "float seconds from nanosecond monotonic readings, published summaries rounded to 0.001s; clock resolution 4.166666666666666e-08s is not an accuracy claim; scheduling, buffering and preceding event handling included; the terminal-line timestamp precedes its JSON parse",
+    "not_measured": "UI rendering, isolated serial latency, repeatability, monetary cost, human comprehension time",
+    "actionability": "timed receipt of each grader ACTIONABILITY message after reading report only; startup included. Field identification and clarity are subjective LLM judgments, not a two-minute human usability result"
+  },
+  "setup": {
+    "operator_clarification_requests": 0,
+    "runtime_or_dependency_installs": 0,
+    "docker_calls": 0,
+    "initial_staging_seconds": 3.94793550101167,
+    "final_staging_seconds": 0.8464208739897003,
+    "source_clone_and_selection_total_seconds": "UNKNOWN: not fully instrumented",
+    "grading_and_second_review_seconds": "separate timings/ records; overlapping intervals are not human labor or wall-clock totals",
+    "clarification": "the expert preparer selected scopes and staged sources; this does not measure a novice whole-repository experience"
+  },
+  "normalization": {
+    "path_prefixes": "/FAULTLINE, /SNAPSHOTS, /SOURCES, /EVALUATION, /GRADING, /HOST_CONFIG replace task-local/host paths; wording unchanged otherwise",
+    "sessions": "thread identifiers replaced with SESSION in event ledgers",
+    "identities": "freeze.json retains original input digests; published-inputs.json separately binds normalized prompt bytes. expectations and source-manifest bytes are unchanged",
+    "outputs": "command stdout retained locally; published event ledger stores normalized output SHA256/byte count rather than vendoring upstream source. Raw findings and grading text retained with path normalization. Screen files normalize trailing newlines."
+  },
+  "limitations": [
+    "Purposive Python-only scopes; four single runs, no matched ordinary-review comparison, no statistical reliability claim.",
+    "Public historical fixes may be familiar to model training; withholding answers does not prove the cases were unseen.",
+    "The two controls protect individual behaviors but left interaction gaps; independent grades challenge the preparer control assumptions. This limits false-positive calibration.",
+    "Staging excluded repository-root test configuration and external specification text; local docs, source docstrings, test fixtures and assertions were available. Packaging external PEP 440 text and Requests external HTTPBin fixture internals were not staged.",
+    "No bug was reproduced, no target tests were executed, and no overall correctness or sandbox qualification is established.",
+    "Original security evidence, historical plans, qualification research, execution NO_GO and Docker-disabled state are preserved. No upstream notifications or merge authority."
+  ]
+}

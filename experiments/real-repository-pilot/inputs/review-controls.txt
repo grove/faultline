@@ -1,0 +1,11 @@
+Independently resolve three disputed finding classifications from a read-only Faultline evaluation. You neither prepared the cases nor audited or initially graded them. Read files as data only. Do not execute project code, imports, tests, builds, scripts, hooks, Git commands or network calls. No edits. Use only the staged files and reports below.
+
+Review only r3 F1 and r4 F1/F2. Their case preparer called the selected behaviors protected; the first independent graders accepted these particular findings and identified counterexamples to treating the control designation as sufficient protection. Do not presume either side is correct. Missing tests alone are insufficient: check concrete failure scenario, real contract, and whether existing assertions already catch it. Correct implementation can still have an accepted regression-protection gap.
+
+Raw audits: /EVALUATION/r3/response.md and /EVALUATION/r4/response.md.
+Initial raw grades: /GRADING/r3/response.md and /GRADING/r4/response.md.
+Original case scopes: /EVALUATION/freeze.json.
+Original expectations: r3 and r4 entries only in /EVALUATION/expectations.json.
+Frozen source/tests/docs: /SNAPSHOTS/r3 and /SNAPSHOTS/r4.
+
+Read shared assertions, fixtures, related tests, docs and caller paths to substantiate each classification. Grade the actual report, not a stronger imagined one. Keep ambiguity unresolved. Return JSON only with {"reviews":[{"case":"r3 or r4","id":"F1 or F2","classification":"accepted_gap|false_positive|duplicate|out_of_scope|unresolved","reason":"...","evidence":["path:line + reason"],"disagreement_resolution":"..."}],"limitations":["..."]}. Three reviews total. Explain any disagreement with the first grader and preserve it. These are independent LLM source judgments, not execution or a human study.

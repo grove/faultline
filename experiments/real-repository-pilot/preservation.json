@@ -1,0 +1,21 @@
+{
+  "base_commit": "8fc4ed71ba41343e22dfb28f6304f04d751eaa2a",
+  "original_local_manifest_files_checked": 103,
+  "original_local_manifest_changes": [],
+  "protected_paths_checked": [
+    "ISOLATION.md",
+    "qualification",
+    "DESIGN-HISTORY.md",
+    "IMPLEMENTATION-HISTORY.md",
+    "experiments/audit-evaluation",
+    "experiments/real-repository-evaluation-plan.md",
+    "experiments/audit-walkthrough.md",
+    "experiments/pr-18-19-merge-readiness.md",
+    "experiments/lost-acknowledgement.md",
+    "faultline-audit/SKILL.md"
+  ],
+  "protected_paths_changed": [],
+  "skill_sha256": "9bd02aca93a8450f808e5c23f9313b6a9cdc8f634d1dd6973008161c0a27eafa",
+  "isolation_sha256": "b322110467e158fd05dbb73f93ecf619af6b7ce5566a7a328648aaa3feeba37d",
+  "scope": "Static preservation checks; no qualification procedure or target execution."
+}

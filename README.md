@@ -89,6 +89,12 @@ grading. Read-to-pre-response checkpoints took 9–21 seconds; these exclude fin
 response generation and startup. No setup was needed by the auditors. These small
 authored cases do not establish effectiveness or speed on real repositories.
 
+A [four-repository read-only pilot](experiments/real-repository-pilot/REPORT.md)
+completed on 2026-10-19: independent model review accepted 9 of 11 emitted findings
+and left two unresolved; one of two predeclared historical gaps was found.
+Measured full-response latency was 128–164 seconds, with no runtime setup.
+Control-selection limitations and the missed gap limit reliability claims.
+
 ## Maintainer notes
 
 [Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md) ·
@@ -107,6 +113,7 @@ Focused maintainer checks (Python standard library only):
 python3 -B -m unittest discover -s tests -p test_skill.py -v
 python3 -B -m unittest discover -s tests -p test_spike_design.py -v
 python3 -B -m unittest discover -s tests -p test_audit_evaluation.py -v
+python3 -B -m unittest discover -s tests -p test_real_repository_evaluation.py -v
 ```
 
 These inspect packaging, instruction boundaries, links, and frozen fixture

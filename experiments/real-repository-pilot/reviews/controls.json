@@ -1,0 +1,63 @@
+{
+  "reviews": [
+    {
+      "case": "r3",
+      "id": "F1",
+      "classification": "accepted_gap",
+      "reason": "The report identifies a documented cross-field boundary: an earlier field's validator must wait until later fields finish conversion. With both fields converted by int, premature validation could observe a raw string in instance.y or run before y's conversion fails. Existing assertions protect converter exception precedence, successful same-field conversion, and cross-field access separately. They do not establish this combined boundary. The implementation currently preserves it.",
+      "evidence": [
+        "/EVALUATION/r3/response.md:5 + The actual finding explicitly concerns an earlier validator running before a later conversion; line 9 supplies the concrete setup and assertions.",
+        "/EVALUATION/freeze.json:17 + Cross-field conversion and validation ordering fits the frozen initialization-order scope.",
+        "/SNAPSHOTS/r3/docs/init.md:515 + The documented sequence completes per-attribute factories and converters before all validators at line 520.",
+        "/SNAPSHOTS/r3/tests/test_make.py:1829 + The validator raises RuntimeError, but x's converter raises ZeroDivisionError first; y has no converter. The assertion at line 1839 meaningfully protects exception precedence.",
+        "/SNAPSHOTS/r3/docs/init.md:334 + The doctest establishes successful conversion before validation for one field, without another field's converter.",
+        "/SNAPSHOTS/r3/docs/init.md:217 + The cross-field validator reads instance.y, but neither field has a converter. This catches validation before y is assigned, without establishing later conversion completion.",
+        "/SNAPSHOTS/r3/tests/strategies.py:76 + Shared attribute strategies supply defaults without converters or validators; metadata wrapping at line 101 preserves those absent features.",
+        "/SNAPSHOTS/r3/src/attr/_make.py:2071 + Initializer construction delegates to the reviewed generator, which emits conversions at line 2367 before the separate validator block at line 2386."
+      ],
+      "disagreement_resolution": "I agree with the first grader's narrow accepted_gap classification. The preparer's exception-precedence and same-field doctest protection is real, so a blanket claim that conversion order lacks protection would be false. The actual report specifies the additional later-field conversion boundary, which those controls do not establish."
+    },
+    {
+      "case": "r4",
+      "id": "F1",
+      "classification": "accepted_gap",
+      "reason": "The report provides a concrete credential-leak scenario supported by the off-host redirect contract. Moving the standard-port HTTPS-upgrade exception ahead of the hostname check would retain credentials on a cross-host upgrade while preserving the reviewed host-only, upgrade-only, and downgrade assertions. This is a regression-protection gap in decision precedence; the current implementation handles it correctly.",
+      "evidence": [
+        "/EVALUATION/r4/response.md:5 + The report specifies a cross-host HTTP-to-HTTPS redirect and the precise branch-reordering regression.",
+        "/EVALUATION/freeze.json:21 + Host/scheme/port authorization retention and rebuild_auth are explicitly within scope.",
+        "/SNAPSHOTS/r4/docs/user/quickstart.rst:226 + The public documentation requires removing Authorization on off-host redirects.",
+        "/SNAPSHOTS/r4/src/requests/sessions.py:158 + Hostname changes currently return true before the upgrade exception; the exception at line 164 contains no hostname comparison.",
+        "/SNAPSHOTS/r4/tests/test_requests.py:1942 + The host-change assertion keeps both URLs on HTTP, so it does not test precedence over upgrade retention.",
+        "/SNAPSHOTS/r4/tests/test_requests.py:1952 + Standard-port upgrade assertions retain the hostname; the nonstandard-port cases at lines 1962 and 1965 also retain it.",
+        "/SNAPSHOTS/r4/tests/test_requests.py:1921 + The integration stripping assertion exercises an HTTPS downgrade, which cannot activate the HTTP-to-HTTPS exception.",
+        "/SNAPSHOTS/r4/tests/conftest.py:15 + HTTPBin wrappers join paths to fixture endpoints; the autouse fixture at line 25 only clears proxy variables and supplies no additional redirect assertions.",
+        "/SNAPSHOTS/r4/src/requests/sessions.py:273 + Redirect processing calls rebuild_auth; line 324 deletes Authorization according to should_strip_auth. Setting trust_env=False excludes the subsequent netrc reapplication."
+      ],
+      "disagreement_resolution": "I agree with the first grader. The preparer's protected-control designation accurately describes several direct assertions, but it does not establish the reported precedence between hostname stripping and standard-port upgrade retention. No current credential leak is established."
+    },
+    {
+      "case": "r4",
+      "id": "F2",
+      "classification": "accepted_gap",
+      "reason": "The reported same-host, same-scheme change from HTTPS port 8443 to 9443 must strip authorization under the source's explicit port comparison and root-URI contract. Replacing the final decision with changed_scheme would incorrectly retain it while satisfying the reviewed stripping examples, which also change scheme. Default-port equivalence assertions require retention and do not detect that omission. The implementation currently includes the correct port comparison.",
+      "evidence": [
+        "/EVALUATION/r4/response.md:15 + The actual finding supplies distinct nondefault HTTPS ports and identifies omission of port comparison as the failure scenario.",
+        "/SNAPSHOTS/r4/src/requests/sessions.py:173 + Port changes are calculated independently of scheme changes; line 184 requires stripping when either changes outside the exceptions.",
+        "/SNAPSHOTS/r4/tests/test_requests.py:1972 + The named port-change assertion changes HTTP to HTTPS as well as port 1234 to 4321.",
+        "/SNAPSHOTS/r4/tests/test_requests.py:1961 + The comment explicitly expects nonstandard-port stripping, but both following assertions also change scheme.",
+        "/SNAPSHOTS/r4/tests/test_requests.py:1978 + Parameterized default-port cases cover equivalent explicit and implicit ports, with retention asserted at line 1986.",
+        "/SNAPSHOTS/r4/tests/test_requests.py:1933 + Same-host integration coverage asserts retention through one HTTPBin endpoint, without an isolated port change.",
+        "/SNAPSHOTS/r4/tests/test_lowlevel.py:141 + The digest redirect uses relative Location '/', on the single server established at line 179; its authorization assertion does not exercise a port change.",
+        "/SNAPSHOTS/r4/src/requests/sessions.py:324 + rebuild_auth applies the decision to Authorization, supporting the report's proposed caller-level assertion with trust_env=False."
+      ],
+      "disagreement_resolution": "I agree with the first grader. The preparer's assertion that selected port behavior is protected overlooks the scheme change shared by all positive stripping examples. Default-port retention remains protected. This finding is distinct from F1: omitting the port term and reordering the hostname/upgrade branches break different conditions."
+    }
+  ],
+  "limitations": [
+    "These are independent LLM source judgments, not execution results or a human study.",
+    "Files were inspected as data only. No project code, imports, tests, builds, scripts, hooks, Git commands, network calls, or edits were performed.",
+    "Conclusions are limited to the frozen reports, scopes, r3/r4 expectations, and inspected source, tests, documentation, fixtures, and helpers. No full-suite mutation-survival claim is made.",
+    "External HTTPBin fixture implementations were unavailable; their internal behavior remains unresolved.",
+    "Only r3 F1 and r4 F1/F2 were classified. Acceptance concerns missing regression protection, not confirmed implementation defects."
+  ]
+}

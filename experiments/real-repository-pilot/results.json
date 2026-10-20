@@ -1,0 +1,257 @@
+{
+  "summary": {
+    "audits_assigned": 4,
+    "audits_completed": 4,
+    "attempts_per_case": 1,
+    "emitted_findings": 11,
+    "finding_counts": {
+      "accepted_gap": 9,
+      "unresolved": 2,
+      "false_positive": 0,
+      "duplicate": 0,
+      "out_of_scope": 0
+    },
+    "substantive_claims": 12,
+    "claim_counts": {
+      "accepted_gap": 10,
+      "unresolved": 2,
+      "false_positive": 0,
+      "duplicate": 0,
+      "out_of_scope": 0
+    },
+    "false_positives_among_adjudicated": {
+      "numerator": 0,
+      "denominator": 9,
+      "fraction": 0.0
+    },
+    "historical_gaps_predeclared": 2,
+    "historical_gaps_found": 1,
+    "historical_gaps_missed": 1,
+    "protected_controls_predeclared": 2,
+    "controls_with_identified_false_alarms": 0,
+    "control_selection_limit": "Both controls contained meaningful interaction gaps; three protection assumptions were challenged and independently reviewed. Not an exhaustive negative-control benchmark.",
+    "latency_seconds_median": 138.034486146,
+    "latency_seconds_min": 127.659518792,
+    "latency_seconds_max": 163.582004333,
+    "actionability_fields_located": 11,
+    "findings_judged_clear": 11,
+    "finding_units_needing_contract_clarification": 2,
+    "actionability_screen_seconds": [
+      11.508668,
+      10.806199458,
+      10.30567725,
+      9.301634458
+    ],
+    "grading_response_seconds": [
+      134.026836625,
+      211.636597333,
+      129.744425125,
+      157.058205958
+    ],
+    "second_review_seconds": [
+      171.3777855,
+      119.268119792
+    ],
+    "human_comprehension_seconds": "UNKNOWN; no human usability study",
+    "skill_changes": 0,
+    "fresh_regression_audits": 0,
+    "judgment_method": "Independent LLM source review with second review of disputes; not reproduced bugs, human grading, or statistical estimates"
+  },
+  "runs": [
+    {
+      "case": "r1",
+      "audit": "audits/r1.md",
+      "grade": "grades/r1.json",
+      "timing": "timings/audit-r1.json",
+      "historical_gap_found": false,
+      "historical_gap_missed": true,
+      "protected_behavior_false_alarm": false
+    },
+    {
+      "case": "r2",
+      "audit": "audits/r2.md",
+      "grade": "grades/r2.json",
+      "timing": "timings/audit-r2.json",
+      "historical_gap_found": true,
+      "historical_gap_missed": false,
+      "protected_behavior_false_alarm": false
+    },
+    {
+      "case": "r3",
+      "audit": "audits/r3.md",
+      "grade": "grades/r3.json",
+      "timing": "timings/audit-r3.json",
+      "historical_gap_found": null,
+      "historical_gap_missed": null,
+      "protected_behavior_false_alarm": false
+    },
+    {
+      "case": "r4",
+      "audit": "audits/r4.md",
+      "grade": "grades/r4.json",
+      "timing": "timings/audit-r4.json",
+      "historical_gap_found": null,
+      "historical_gap_missed": null,
+      "protected_behavior_false_alarm": false
+    }
+  ],
+  "finding_units": [
+    {
+      "case": "r1",
+      "id": "F1",
+      "classification": "accepted_gap",
+      "raw_grade_claims": [
+        "F1"
+      ]
+    },
+    {
+      "case": "r1",
+      "id": "F2",
+      "classification": "accepted_gap",
+      "raw_grade_claims": [
+        "F2"
+      ]
+    },
+    {
+      "case": "r2",
+      "id": "F1",
+      "classification": "accepted_gap",
+      "raw_grade_claims": [
+        "F1"
+      ]
+    },
+    {
+      "case": "r2",
+      "id": "F2",
+      "classification": "unresolved",
+      "raw_grade_claims": [
+        "F2a",
+        "F2b"
+      ]
+    },
+    {
+      "case": "r2",
+      "id": "F3",
+      "classification": "accepted_gap",
+      "raw_grade_claims": [
+        "F3"
+      ]
+    },
+    {
+      "case": "r3",
+      "id": "F1",
+      "classification": "accepted_gap",
+      "raw_grade_claims": [
+        "F1"
+      ]
+    },
+    {
+      "case": "r3",
+      "id": "F2",
+      "classification": "accepted_gap",
+      "raw_grade_claims": [
+        "F2"
+      ]
+    },
+    {
+      "case": "r3",
+      "id": "F3",
+      "classification": "accepted_gap",
+      "raw_grade_claims": [
+        "F3"
+      ]
+    },
+    {
+      "case": "r4",
+      "id": "F1",
+      "classification": "accepted_gap",
+      "raw_grade_claims": [
+        "F1"
+      ]
+    },
+    {
+      "case": "r4",
+      "id": "F2",
+      "classification": "accepted_gap",
+      "raw_grade_claims": [
+        "F2"
+      ]
+    },
+    {
+      "case": "r4",
+      "id": "F3",
+      "classification": "unresolved",
+      "raw_grade_claims": [
+        "F3"
+      ]
+    }
+  ],
+  "claim_units": [
+    {
+      "case": "r1",
+      "id": "F1",
+      "classification": "accepted_gap"
+    },
+    {
+      "case": "r1",
+      "id": "F2",
+      "classification": "accepted_gap"
+    },
+    {
+      "case": "r2",
+      "id": "F1",
+      "classification": "accepted_gap"
+    },
+    {
+      "case": "r2",
+      "id": "F2a",
+      "classification": "accepted_gap"
+    },
+    {
+      "case": "r2",
+      "id": "F2b",
+      "classification": "unresolved"
+    },
+    {
+      "case": "r2",
+      "id": "F3",
+      "classification": "accepted_gap"
+    },
+    {
+      "case": "r3",
+      "id": "F1",
+      "classification": "accepted_gap"
+    },
+    {
+      "case": "r3",
+      "id": "F2",
+      "classification": "accepted_gap"
+    },
+    {
+      "case": "r3",
+      "id": "F3",
+      "classification": "accepted_gap"
+    },
+    {
+      "case": "r4",
+      "id": "F1",
+      "classification": "accepted_gap"
+    },
+    {
+      "case": "r4",
+      "id": "F2",
+      "classification": "accepted_gap"
+    },
+    {
+      "case": "r4",
+      "id": "F3",
+      "classification": "unresolved"
+    }
+  ],
+  "adjudication": {
+    "mixed_finding": "r2 F2 is conservatively unresolved as one emitted finding; accepted F2a and unresolved F2b are separately retained. reviews/click.json independently supports this unit classification. The expected historical gap is nevertheless identified by F2a.",
+    "control_disputes": "r3 F1 and r4 F1/F2 remain accepted after reviews/controls.json. Original preparer expectations and first grades are preserved.",
+    "unresolved": "r2 F2b needs a Parameter.get_default missing-value contract; r4 F3 needs a competing-credentials redirect contract. Neither is silently accepted or counted false.",
+    "grading_erratum": "r1 raw grade incorrectly says a Git read triggered network. Its command ledger has no Git commands. The observed blocked lazy-fetch attempt belongs to r2 grading; see deviations.json. The raw grade is retained, and this unsupported limit is not adopted."
+  }
+}

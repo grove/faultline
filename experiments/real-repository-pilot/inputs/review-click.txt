@@ -1,0 +1,7 @@
+Independently review one disputed claim in a read-only Faultline evaluation. You did not prepare the case, run the audit, or produce its first grade. Read files as data only. No project code, imports, tests, builds, scripts, hooks, Git commands or network calls. No edits.
+
+Read finding 2 only in /EVALUATION/r2/response.md, the first grade in /GRADING/r2/response.md, the r2 scope in /EVALUATION/freeze.json, and frozen source/tests/docs at /SNAPSHOTS/r2.
+
+The first grader accepted the main Context.lookup_default missing-value claim (F2a) but classified its additional Parameter.get_default claim (F2b) as unresolved. Review only the disputed F2b contract and the consequence for classifying original emitted finding 2 as one reporting unit. Distinguish observed return mechanism from evidence that the proposed None result is required. Trace callers, docs, existing assertions and counterevidence. Do not assume the first grade is correct or strengthen the raw report. Use accepted_gap, false_positive, duplicate, out_of_scope or unresolved. Preserve ambiguity.
+
+Return JSON only: {"reviews":[{"case":"r2","id":"F2b","classification":"...","reason":"...","evidence":["path:line + reason"],"disagreement_resolution":"..."}],"original_finding_2_unit_classification":"...","unit_reason":"...","limitations":["..."]}. These are independent model judgments, not execution or human usability evidence.
