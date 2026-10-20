@@ -1,0 +1,164 @@
+{
+  "method": "Direct extraction from unmodified independent grades; no classification overrides.",
+  "cells": [
+    {
+      "id": "A",
+      "instructions": "old",
+      "specification": "absent",
+      "detection": {
+        "detected": false,
+        "kind": "miss",
+        "finding_ids": [],
+        "reason": "The report never surfaces default membership below an explicit prerelease exclusive bound as a bug or contract question. project/src/packaging/specifiers.py:259 excludes exclusive operators from autodetection; contains at :547 and :557 consequently rejects prereleases by default, while the comparator at :458 can accept them when enabled. Shared membership assertions at project/tests/test_specifiers.py:474 force prereleases=True; separate assertions at :522\u2013532 expect False for exclusive dev bounds. These are distinct paths. No supplied normative text establishes that exclusive prerelease bounds must enable autodetection, so the detection miss does not itself establish an overlooked implementation bug.",
+        "appropriate_to_supplied_information": true
+      },
+      "counts": {
+        "findings": 3,
+        "claims": 4,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "finding_classifications": {
+        "accepted_gap": 3
+      },
+      "ambiguity": [
+        {
+          "id": "F1",
+          "ambiguity_handling": "no_ambiguity",
+          "ambiguity_reason": "The explicit-disable contract grounds this narrowly scoped claim. The report correctly distinguishes instance policy, method overrides, and SpecifierSet forwarding."
+        },
+        {
+          "id": "F2",
+          "ambiguity_handling": "appropriate",
+          "ambiguity_reason": "The report provides a concrete failure mechanism and contract evidence, then explicitly conditions its bug assessment on whether arbitrary literals intentionally support only parsing and inspection. Its qualification identifies a material alternative contract rather than merely lowering confidence."
+        },
+        {
+          "id": "F3",
+          "ambiguity_handling": "appropriate",
+          "ambiguity_reason": "The report explicitly acknowledges correct current buffering and limits the finding to missing protection. It also identifies the separate nonempty SpecifierSet prose/doctest conflict without importing that ambiguity into the direct Specifier claim."
+        }
+      ],
+      "grade_sha256": "5c1ab64978294835165cf18da5bf3641643829a5c387b14b404146f73d18e52a",
+      "audit_sha256": "e94410cda264ee940cd04a8dd37a18dbec62f5125d8b15fd0ed7b18872b31371"
+    },
+    {
+      "id": "B",
+      "instructions": "old",
+      "specification": "present",
+      "detection": {
+        "detected": false,
+        "kind": "miss",
+        "finding_ids": [],
+        "reason": "The report never surfaces default membership below an explicit prerelease exclusive bound. Specifier.prereleases excludes '<' at project/src/packaging/specifiers.py:259, causing contains to reject prereleases before the comparator, which permits earlier prereleases below a prerelease bound. Shared comparison assertions force prereleases=True at project/tests/test_specifiers.py:474; separate autodetection assertions expect False for exclusive dev bounds at line 522. The supplied PEP's comparison permission at project/docs/pep-0440.rst:1016 and general prerelease rules at line 1054 warrant reconciliation, without proving that autodetection must return True. The report's compound requirement and nonempty-set fallback discussions address different interactions.",
+        "appropriate_to_supplied_information": false
+      },
+      "counts": {
+        "findings": 3,
+        "claims": 8,
+        "unsupported_claims": 2,
+        "false_positive_claims": 0
+      },
+      "finding_classifications": {
+        "accepted_gap": 2,
+        "unresolved": 1
+      },
+      "ambiguity": [
+        {
+          "id": "F1",
+          "ambiguity_handling": "appropriate",
+          "ambiguity_reason": "The report grounds its suspicion in the explicit-disable contract and distinguishes constructor policy, method arguments, and set forwarding. It accurately states that the outcome was not reproduced."
+        },
+        {
+          "id": "F2",
+          "ambiguity_handling": "mixed",
+          "ambiguity_reason": "The report appropriately acknowledges the undocumented parameter and intentional compatible-bound normalization. However, its required True/False outcomes remain unconditional. Lower-confidence wording does not supply the missing installed-mode contract."
+        },
+        {
+          "id": "F3",
+          "ambiguity_handling": "no_ambiguity",
+          "ambiguity_reason": "The report explicitly identifies missing protection rather than a current implementation failure. Source and existing assertions support that distinction for aggregation, membership, and filtering."
+        }
+      ],
+      "grade_sha256": "d2fad8518f044538f420990063f3ed5961954554c0dc5afd8b0388f150a86f40",
+      "audit_sha256": "00a466f3ff681dfb1d71cc8694e8d26ae78f87a323a1dad22eddfbbd3f719d38"
+    },
+    {
+      "id": "C",
+      "instructions": "new",
+      "specification": "absent",
+      "detection": {
+        "detected": false,
+        "kind": "miss",
+        "finding_ids": [],
+        "reason": "The report never surfaces default membership below an exclusive prerelease bound. Specifier.prereleases excludes '<' from autodetection (project/src/packaging/specifiers.py:259), so contains rejects the prerelease before reaching the comparator (:547-558), although the comparator permits earlier prereleases below a prerelease bound (:443-465). Tests explicitly expect False for exclusive dev-bound autodetection (project/tests/test_specifiers.py:522-532); the shared comparisons force prereleases=True (:473-491) and do not establish default behavior. The report's separate filter-documentation conflict does not address this interaction. Without supplied normative text resolving autodetection, refraining from an unconditional primary bug claim is defensible, but detection remains a miss.",
+        "appropriate_to_supplied_information": true
+      },
+      "counts": {
+        "findings": 3,
+        "claims": 6,
+        "unsupported_claims": 0,
+        "false_positive_claims": 0
+      },
+      "finding_classifications": {
+        "accepted_gap": 3
+      },
+      "ambiguity": [
+        {
+          "id": "F1",
+          "ambiguity_handling": "no_ambiguity",
+          "ambiguity_reason": "The explicit-disable contract provides a supported expectation. 'Appears' and 'suspected' qualify source-only confidence; they are not conditions substituting for a missing policy."
+        },
+        {
+          "id": "F2",
+          "ambiguity_handling": "no_ambiguity",
+          "ambiguity_reason": "The report explicitly identifies regression-protection gaps and acknowledges that current behavior appears correct. Its expectations are supported by source comments, policy documentation, and dispatch, without depending on an external exclusive-bound policy."
+        },
+        {
+          "id": "F3",
+          "ambiguity_handling": "appropriate",
+          "ambiguity_reason": "The report genuinely conditions any behavioral assertion on resolving the conflicting contract. This is substantive uncertainty handling, rather than merely hedged prose."
+        }
+      ],
+      "grade_sha256": "f0ca28bae111f3a9d83e4f39a0ec0ef2b408899efd48b47d4380a9b366bfdeb3",
+      "audit_sha256": "453fe63a1983b6fb02b4f30ca835a84f8206524fee18af5b1d52e7b5fd559a2a"
+    },
+    {
+      "id": "D",
+      "instructions": "new",
+      "specification": "present",
+      "detection": {
+        "detected": false,
+        "kind": "miss",
+        "finding_ids": [],
+        "reason": "Neither finding surfaces default membership below an explicit prerelease exclusive bound. Specifier.prereleases excludes '<' from autodetection (project/src/packaging/specifiers.py:259), so contains rejects the prerelease before comparison (line 557), although the comparator permits earlier prereleases when the bound is itself a prerelease (line 458). Shared comparison assertions force prereleases=True (project/tests/test_specifiers.py:474), while detection assertions expect False for exclusive dev bounds (line 522). The PEP's exclusive-bound example (project/docs/pep-0440.rst:1016) and general prerelease exclusions (line 1054) warrant reconciling this contract interaction; they do not independently prove an autodetection requirement.",
+        "appropriate_to_supplied_information": false
+      },
+      "counts": {
+        "findings": 2,
+        "claims": 3,
+        "unsupported_claims": 2,
+        "false_positive_claims": 0
+      },
+      "finding_classifications": {
+        "unresolved": 1,
+        "accepted_gap": 1
+      },
+      "ambiguity": [
+        {
+          "id": "F1",
+          "ambiguity_handling": "inappropriate",
+          "ambiguity_reason": "The report acknowledges that installed lacks documentation but supplies unconditional expected results. Calling the behavior a high-confidence suspected bug does not make those policy expectations conditional on resolving the contract."
+        },
+        {
+          "id": "F2",
+          "ambiguity_handling": "no_ambiguity",
+          "ambiguity_reason": "The explicit-disable contract supports the expectation. The report correctly distinguishes constructor-level False from a call override and from default-policy fallback."
+        }
+      ],
+      "grade_sha256": "630bd9ef72dfdca9b59019a82888f7852eb66ff3124ef268207ebceb0ebeda67",
+      "audit_sha256": "1cb2b97dd36a38f622b7dbb144c6cbf634f268cc545f8365e6e5db6147c2340c"
+    }
+  ],
+  "graded_unit_note": "C includes two numbered findings and a separately graded substantive contract caveat. Repeated findings across cells are not unique bugs.",
+  "recommendation": "Retain guidance provisionally unchanged; detection and consistent ambiguity handling not demonstrated."
+}

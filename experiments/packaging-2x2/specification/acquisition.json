@@ -1,0 +1,8 @@
+{
+  "query": "https://api.github.com/repos/python/peps/commits?path=peps/pep-0440.rst&until=2024-09-05T18:59:35Z&per_page=1",
+  "commit": "d55eeb1958a4698b7f1fd482d424be869634f1a6",
+  "commit_date": "2023-11-09T05:30:12Z",
+  "raw_url": "https://raw.githubusercontent.com/python/peps/d55eeb1958a4698b7f1fd482d424be869634f1a6/peps/pep-0440.rst",
+  "bytes": 66861,
+  "sha256": "a9dc35b83cd3c8130235aa5c1b54ab75a0663556cf30dded1396ee9e4f6c3127"
+}

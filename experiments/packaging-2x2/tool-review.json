@@ -1,0 +1,1280 @@
+{
+  "review_basis": "Complete command events and their captured stdout; not kernel telemetry or OS isolation proof. Shell command heads are an inventory, not a security parser.",
+  "fresh_session_count": 8,
+  "runs": [
+    {
+      "run": "audits/A",
+      "event_sha256": "36f8805b06c331b70f0ff8cdb702e7bba61886d7282e17f799b7cb11e610a9cc",
+      "command_heads": [
+        "cat",
+        "nl",
+        "rg",
+        "sed"
+      ],
+      "commands": [
+        {
+          "item_id": "item_1",
+          "command": "/bin/zsh -lc 'cat /private/tmp/faultline-2x2-20261020.vfmoEH/stage/SKILL.md'",
+          "exit_code": 0,
+          "output_bytes": 5904,
+          "output_sha256": "9bd02aca93a8450f808e5c23f9313b6a9cdc8f634d1dd6973008161c0a27eafa"
+        },
+        {
+          "item_id": "item_2",
+          "command": "/bin/zsh -lc 'rg --files src tests docs'",
+          "exit_code": 0,
+          "output_bytes": 1040,
+          "output_sha256": "e0f1ec402934a7779028f6c01c32b88591f60481b5451e0fb9ce37a44a797d89"
+        },
+        {
+          "item_id": "item_3",
+          "command": "/bin/zsh -lc \"rg -n 'prerelease|def contains|def filter|def __contains__|class Specifier' src/packaging/specifiers.py tests/test_specifiers.py\"",
+          "exit_code": 0,
+          "output_bytes": 17925,
+          "output_sha256": "978751c0eee65a1e028fafdc06a11d9cb952ab9b126e3d1c685f4f75a86707be"
+        },
+        {
+          "item_id": "item_4",
+          "command": "/bin/zsh -lc \"rg -n 'Specifier|\\\\.contains\\\\(|\\\\.filter\\\\(|prerelease|pre-release' src docs tests --glob '\"'!test_specifiers.py'\"' --glob '\"'!specifiers.py'\"'\"",
+          "exit_code": 0,
+          "output_bytes": 4214,
+          "output_sha256": "e3208443314ce2b72eb3c9cbcc3fbeb14eed18588f3b1392c37122a70313aa38"
+        },
+        {
+          "item_id": "item_5",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '610,880p'\"",
+          "exit_code": 0,
+          "output_bytes": 12263,
+          "output_sha256": "87884a2dd9bdcd461d88328b22ba500f105df63345e44d52c5d820ba802ee041"
+        },
+        {
+          "item_id": "item_6",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '360,690p'\"",
+          "exit_code": 0,
+          "output_bytes": 16406,
+          "output_sha256": "ed35bde64f78cdd031964b0cbc264aabac897ae04dda68506046cf1fa4dada20"
+        },
+        {
+          "item_id": "item_7",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '1,360p'\"",
+          "exit_code": 0,
+          "output_bytes": 14955,
+          "output_sha256": "05228089d611ae17a91eb47a78e979831271a3aeca1786eb8d73b9097a029fb4"
+        },
+        {
+          "item_id": "item_8",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '690,1040p'\"",
+          "exit_code": 0,
+          "output_bytes": 15953,
+          "output_sha256": "302f68ac4563534b885a81f3f40c314502fa30c475b293bfef387563f5a6697d"
+        },
+        {
+          "item_id": "item_9",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '1,610p'\"",
+          "exit_code": 0,
+          "output_bytes": 23973,
+          "output_sha256": "20f34f56557528c81fe0ab4d4a479db9c1cd9e207f0e2535df5f856a38a4f32d"
+        },
+        {
+          "item_id": "item_10",
+          "command": "/bin/zsh -lc \"nl -ba docs/specifiers.rst\nrg -n -C 5 'prerelease|pre-release|Specifier|specifier|filter' docs/changelog.rst\nrg --files --hidden -g '\"'!'\"\\\\.git/**' -g '*conftest*' -g 'pyproject.toml' -g 'pytest.ini' -g 'tox.ini' -g '*specif*' -g '*prerelease*' -g '*assert*' -g '*helper*' .\"",
+          "exit_code": 0,
+          "output_bytes": 2343,
+          "output_sha256": "98d4cc098ad745cf4c60d130ed5ba4f79f97b2c38adb2a7f7f35f296b699483b"
+        },
+        {
+          "item_id": "item_12",
+          "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'!'\"\\\\.git/**' .\"",
+          "exit_code": 0,
+          "output_bytes": 1126,
+          "output_sha256": "2c35a778c83f2f6e2dae80f019f6a84335f0902fd361a08a5abc8549a7cc71c6"
+        },
+        {
+          "item_id": "item_13",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '1,240p'\nnl -ba tests/test_specifiers.py | sed -n '880,1100p'\"",
+          "exit_code": 0,
+          "output_bytes": 8368,
+          "output_sha256": "7dea69ec449ffb85b3c35dfc3f71978df60067f8bcd6881d93e82d4dbdc703f8"
+        },
+        {
+          "item_id": "item_14",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '428,630p'\nnl -ba src/packaging/specifiers.py | sed -n '690,755p'\nnl -ba src/packaging/specifiers.py | sed -n '865,1025p'\"",
+          "exit_code": 0,
+          "output_bytes": 21620,
+          "output_sha256": "9d654c06b7018b3df756fab88160fed067eb13a37e2a5c258c29dba12a0d57c6"
+        },
+        {
+          "item_id": "item_15",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '280,570p'\nnl -ba src/packaging/markers.py | sed -n '155,250p'\nnl -ba tests/test_markers.py | sed -n '1,185p'\"",
+          "exit_code": 0,
+          "output_bytes": 23170,
+          "output_sha256": "b82b86a81ab0cb0cd0ea53a205cc6f64fc0fb01879c948dbf64e21f6061436a3"
+        },
+        {
+          "item_id": "item_16",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/requirements.py | sed -n '1,140p'\nnl -ba tests/test_requirements.py | sed -n '555,675p'\nnl -ba src/packaging/metadata.py | sed -n '590,635p'\nnl -ba tests/test_metadata.py | sed -n '505,555p'\nnl -ba docs/requirements.rst | sed -n '1,110p'\nnl -ba docs/changelog.rst\"",
+          "exit_code": 0,
+          "output_bytes": 16257,
+          "output_sha256": "99b75d5f0a708d18f253b5003d9621d088128fef3aa724397de202d533fb979b"
+        },
+        {
+          "item_id": "item_17",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/version.py | sed -n '185,222p'\nnl -ba src/packaging/version.py | sed -n '345,415p'\nnl -ba tests/test_version.py | sed -n '490,545p'\nrg -n 'specifiers|Specifier|prereleases|filter\\\\(' . --hidden -g '\"'!'\"\\\\.git/**'\"",
+          "exit_code": 0,
+          "output_bytes": 45353,
+          "output_sha256": "f89bcb4e35f6c706dce77da0562ed8e14d314d5a3dc317d7efae715f908f5a33"
+        },
+        {
+          "item_id": "item_18",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/requirements.py | sed -n '1,118p'\nnl -ba tests/test_requirements.py | sed -n '565,630p'\nnl -ba src/packaging/metadata.py | sed -n '608,626p'\nnl -ba tests/test_metadata.py | sed -n '515,550p'\"",
+          "exit_code": 0,
+          "output_bytes": 8289,
+          "output_sha256": "6c32d257d6da9479a1fdea377c45f103d8c19b118affa3410a076542cbe51879"
+        },
+        {
+          "item_id": "item_19",
+          "command": "/bin/zsh -lc \"nl -ba docs/requirements.rst | sed -n '1,104p'\nnl -ba docs/changelog.rst\nrg -n 'rc[0-9]|dev[0-9]|a[0-9]|===[A-Za-z]|prerelease|pre-release' tests/test_requirements.py tests/test_metadata.py docs/markers.rst docs/metadata.rst\"",
+          "exit_code": 0,
+          "output_bytes": 4153,
+          "output_sha256": "1ceeeac8a8f87b2dabf39e6c9d9e5f8c6b3398dee73cf5a51d0f1abbf0d49cad"
+        },
+        {
+          "item_id": "item_21",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/version.py | sed -n '160,208p'\nnl -ba src/packaging/specifiers.py | sed -n '109,128p'\nnl -ba src/packaging/specifiers.py | sed -n '247,274p'\nnl -ba src/packaging/specifiers.py | sed -n '521,624p'\"",
+          "exit_code": 0,
+          "output_bytes": 9672,
+          "output_sha256": "248094e6537bff68b0df02aae6300b8689bb72c37faa44875457f3aee5b32ab5"
+        },
+        {
+          "item_id": "item_22",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '493,569p'\nnl -ba tests/test_specifiers.py | sed -n '571,607p'\nnl -ba tests/test_specifiers.py | sed -n '683,734p'\nrg -n -C 2 '===|specifier' tests/test_requirements.py | sed -n '1,150p'\"",
+          "exit_code": 0,
+          "output_bytes": 12561,
+          "output_sha256": "7a0211d4c28024c18b3ac294003dbeaf2daa7328564d2ae2974b7db81f985f8e"
+        },
+        {
+          "item_id": "item_23",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_requirements.py | sed -n '60,148p'\nnl -ba src/packaging/specifiers.py | sed -n '67,74p'\nnl -ba src/packaging/specifiers.py | sed -n '984,998p'\"",
+          "exit_code": 0,
+          "output_bytes": 4530,
+          "output_sha256": "6afe0e70fb2af57dd572c654e92f7a49a250442da43334ce7563f7e5c9c599df"
+        }
+      ],
+      "coordinator_review": "All commands inspected; file readers/search only within assigned packet. No observed target execution, Docker, history access or external retrieval."
+    },
+    {
+      "run": "grades/A",
+      "event_sha256": "212510c9bddea4050385872b3655b541efc9d5b6632a33a9b272d7a8320bcb19",
+      "command_heads": [
+        "cat",
+        "nl",
+        "rg",
+        "sed"
+      ],
+      "commands": [
+        {
+          "item_id": "item_1",
+          "command": "/bin/zsh -lc 'cat /private/tmp/faultline-2x2-20261020.vfmoEH/grading/rubric.md'",
+          "exit_code": 0,
+          "output_bytes": 3774,
+          "output_sha256": "e92f502e1b1a167bc015a4c94e6b43534e487242e711c7637bf9c2ec245dd69f"
+        },
+        {
+          "item_id": "item_2",
+          "command": "/bin/zsh -lc 'cat /private/tmp/faultline-2x2-20261020.vfmoEH/grading/report.md'",
+          "exit_code": 0,
+          "output_bytes": 3744,
+          "output_sha256": "e94410cda264ee940cd04a8dd37a18dbec62f5125d8b15fd0ed7b18872b31371"
+        },
+        {
+          "item_id": "item_3",
+          "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'!node_modules'\"' -g '\"'!.git'\"' /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project\"",
+          "exit_code": 0,
+          "output_bytes": 3577,
+          "output_sha256": "eee8394f1bfef1dec49dbca4162a1c93be0206afef0b9f7922b5092c966cece2"
+        },
+        {
+          "item_id": "item_4",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '680,1120p'\"",
+          "exit_code": 0,
+          "output_bytes": 16352,
+          "output_sha256": "a605fe04c60c794729e7edde276e97caa89f2e326431ba88e893b5a17d94b993"
+        },
+        {
+          "item_id": "item_5",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '720,1500p'\"",
+          "exit_code": 0,
+          "output_bytes": 7335,
+          "output_sha256": "39c94754c58dba70117f30f97a8b5b1eb6b16adcb9e9a6aed48c003de2dfda38"
+        },
+        {
+          "item_id": "item_6",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '1,680p'\"",
+          "exit_code": 0,
+          "output_bytes": 30884,
+          "output_sha256": "a1175370ea66d2ebb1447b533e7ff0560ae93ca83453cc55e5005f1a6e1016cb"
+        },
+        {
+          "item_id": "item_7",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '1,720p'\"",
+          "exit_code": 0,
+          "output_bytes": 29091,
+          "output_sha256": "70788e31318c80f8087f57b119d2702ba4c9b35decbef36c97a1242c44b48892"
+        },
+        {
+          "item_id": "item_8",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '895,1120p'\"",
+          "exit_code": 0,
+          "output_bytes": 6874,
+          "output_sha256": "1271c7cc307d3d690c512860da9d5d87107a869a7014834d3f7c1e0571ce3daa"
+        },
+        {
+          "item_id": "item_10",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '680,780p'\"",
+          "exit_code": 0,
+          "output_bytes": 4633,
+          "output_sha256": "97a420a95621199f3ea888f9fa8c1ef83af8048c0ed80034b75b41daaa039685"
+        },
+        {
+          "item_id": "item_9",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '431,650p'\"",
+          "exit_code": 0,
+          "output_bytes": 11031,
+          "output_sha256": "7b499950829ba35414c7bc4178e1f68b3cd18bfd752e98a068a0c7f6f05e74b6"
+        },
+        {
+          "item_id": "item_11",
+          "command": "/bin/zsh -lc \"rg -n 'prerelease|pre-release|arbitrary|===|fallback|filter\\\\(|3\\\\.0\\\\.0a[78]|<.*(dev|a[0-9]|b[0-9]|rc)' project/docs project/tests/test_specifiers.py project/tests/test_requirements.py project/tests/test_markers.py project/tests/test_metadata.py project/src/packaging/requirements.py project/src/packaging/markers.py project/src/packaging/metadata.py\"",
+          "exit_code": 0,
+          "output_bytes": 8418,
+          "output_sha256": "a6203e56c3d632b33b64244606d7e6ab624c9e1fd5f02cd0b49d29ca8b8bfc73"
+        },
+        {
+          "item_id": "item_12",
+          "command": "/bin/zsh -lc 'nl -ba project/docs/requirements.rst'",
+          "exit_code": 0,
+          "output_bytes": 3875,
+          "output_sha256": "92367f5c9c0ad7792d678a4194bf1ba21ca431f8203c3c4989110a9fd77780b7"
+        },
+        {
+          "item_id": "item_13",
+          "command": "/bin/zsh -lc 'nl -ba project/docs/specifiers.rst'",
+          "exit_code": 0,
+          "output_bytes": 2264,
+          "output_sha256": "cb024dac0b5d94e47dce596a0a8d5ce802add548f0572d5762005d40e0fcdaf4"
+        },
+        {
+          "item_id": "item_14",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/requirements.py | sed -n '1,150p'\"",
+          "exit_code": 0,
+          "output_bytes": 3584,
+          "output_sha256": "a2bf8fe069c8faa930562398f69e8e507bd84dacb8a34dfc27abd1370656c9c6"
+        },
+        {
+          "item_id": "item_15",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_requirements.py | sed -n '1,180p'\"",
+          "exit_code": 0,
+          "output_bytes": 6332,
+          "output_sha256": "5b95e32d186d9b5e6e627d6be4c436567768f404cb2bcbf0911fb672bcf0c510"
+        },
+        {
+          "item_id": "item_16",
+          "command": "/bin/zsh -lc \"rg -n -i 'prerelease|pre-release|arbitrary|escape hatch|autodetect|exclusive|fallback|\\\\.filter\\\\(|contains\\\\(' project/tests project/docs project/src/packaging/specifiers.py\"",
+          "exit_code": 0,
+          "output_bytes": 25877,
+          "output_sha256": "704fd53c5bad93ee43e5eacbdeb3b621e7538de5e5007c81be777538f4ebd7ac"
+        },
+        {
+          "item_id": "item_18",
+          "command": "/bin/zsh -lc 'nl -ba project/docs/changelog.rst'",
+          "exit_code": 0,
+          "output_bytes": 37,
+          "output_sha256": "fda5a64a2518065bcb5a455ad4d56a00acac9d5577ce7d6b4733e90245db5c38"
+        },
+        {
+          "item_id": "item_19",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '1,180p'\"",
+          "exit_code": 0,
+          "output_bytes": 5818,
+          "output_sha256": "dcaae5236b4838f6755f44eaa3516005a4ae005523bddef237184c002422e7bb"
+        },
+        {
+          "item_id": "item_20",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/version.py | sed -n '140,225p'\"",
+          "exit_code": 0,
+          "output_bytes": 3251,
+          "output_sha256": "8f4ddf07cdefa91591ec54fd3b5e7b13c16c5d65c17b345d4f765e9e14bb4744"
+        },
+        {
+          "item_id": "item_21",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '180,350p'\"",
+          "exit_code": 0,
+          "output_bytes": 7298,
+          "output_sha256": "a948a13b1d363250fb62e056f493a32cc5716e6a2a9b69df0f9e076ea62a650f"
+        },
+        {
+          "item_id": "item_22",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '350,570p'\"",
+          "exit_code": 0,
+          "output_bytes": 9446,
+          "output_sha256": "39aa39e732d12564da2482003be38339482125f01ee116541d0bb38a64344952"
+        },
+        {
+          "item_id": "item_23",
+          "command": "/bin/zsh -lc 'nl -ba report.md'",
+          "exit_code": 0,
+          "output_bytes": 3961,
+          "output_sha256": "4a2e8b4c633bce0b58977310458324bb0887d4d524f6dac5c8880772a4ab6eab"
+        },
+        {
+          "item_id": "item_24",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/version.py | sed -n '99,145p'\"",
+          "exit_code": 0,
+          "output_bytes": 1764,
+          "output_sha256": "4abed33f07b3eba7a7c344d6b2dd7e8c3fa05c25ed40d8db64e59822380b4d18"
+        },
+        {
+          "item_id": "item_25",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '639,734p'\"",
+          "exit_code": 0,
+          "output_bytes": 4584,
+          "output_sha256": "4a54d53314ab2b07980e403d45570d48af9657314b7c0ab9ca31354674a5ecca"
+        },
+        {
+          "item_id": "item_26",
+          "command": "/bin/zsh -lc \"rg -n 'Specifier\\\\(|SpecifierSet\\\\(|specifier\\\\.(contains|filter)|arbitrarystring|lolwat' project/tests/test_requirements.py project/tests/test_markers.py project/tests/test_metadata.py project/docs\"",
+          "exit_code": 0,
+          "output_bytes": 871,
+          "output_sha256": "7e781d70907cd36c52a92c4998b7f163447c3a7941b50ab480455de2b618b424"
+        }
+      ],
+      "coordinator_review": "All commands inspected; file readers/search only within assigned packet. No observed target execution, Docker, history access or external retrieval."
+    },
+    {
+      "run": "audits/B",
+      "event_sha256": "e85d1f2004a55d26ef6d3bb3a7360941238bcb7ef528374eecf22a699ddc95a4",
+      "command_heads": [
+        "cat",
+        "nl",
+        "rg",
+        "sed"
+      ],
+      "commands": [
+        {
+          "item_id": "item_1",
+          "command": "/bin/zsh -lc 'cat /private/tmp/faultline-2x2-20261020.vfmoEH/stage/SKILL.md'",
+          "exit_code": 0,
+          "output_bytes": 5904,
+          "output_sha256": "9bd02aca93a8450f808e5c23f9313b6a9cdc8f634d1dd6973008161c0a27eafa"
+        },
+        {
+          "item_id": "item_3",
+          "command": "/bin/zsh -lc 'rg --files src tests docs'",
+          "exit_code": 0,
+          "output_bytes": 1058,
+          "output_sha256": "23528015ff10d053707880b0a63e505562b53c88a0820e22c2e5f0796d85a0de"
+        },
+        {
+          "item_id": "item_4",
+          "command": "/bin/zsh -lc \"rg -n 'Specifier(Set)?|\\\\.contains\\\\(|\\\\.filter\\\\(|prereleases' src tests docs --glob '*.py' --glob '*.rst' --glob '*.md'\"",
+          "exit_code": 0,
+          "output_bytes": 33958,
+          "output_sha256": "ddb8b941170474cc4e1d3ab980a3cc32322acc9c1245bdc96ea232e4004469c4"
+        },
+        {
+          "item_id": "item_5",
+          "command": "/bin/zsh -lc \"rg -n 'prerelease|def contains|def filter|class Specifier' src/packaging/specifiers.py tests/test_specifiers.py\"",
+          "exit_code": 0,
+          "output_bytes": 17745,
+          "output_sha256": "8b3d3d1d2a1f4ba5b42b490b8f8bf1834950cc93bfe98f781d7325121d9b79ed"
+        },
+        {
+          "item_id": "item_6",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '690,1025p'\"",
+          "exit_code": 0,
+          "output_bytes": 15953,
+          "output_sha256": "302f68ac4563534b885a81f3f40c314502fa30c475b293bfef387563f5a6697d"
+        },
+        {
+          "item_id": "item_7",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '1,100p;280,575p;639,740p;865,895p'\"",
+          "exit_code": 0,
+          "output_bytes": 21804,
+          "output_sha256": "d89a9c28842e48368f0b401d66d7e02046b7047c1b3163e81914d5b6cdaec96a"
+        },
+        {
+          "item_id": "item_8",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '350,640p'\"",
+          "exit_code": 0,
+          "output_bytes": 14829,
+          "output_sha256": "e1cc08203810baee7d182c29373b03c5f09b0da999749baf5f3fc53e644aff00"
+        },
+        {
+          "item_id": "item_9",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '1,290p'\"",
+          "exit_code": 0,
+          "output_bytes": 12241,
+          "output_sha256": "ff7152ca213a582f738938d37f56ccf47745199467cadeb4e607cd843be5b38c"
+        },
+        {
+          "item_id": "item_10",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '467,625p;697,755p;886,1023p'\"",
+          "exit_code": 0,
+          "output_bytes": 18075,
+          "output_sha256": "b0989fd102e3aa5af7993489d66fa4d925927e2c7d0a8ff43b5ea1e119cf10a7"
+        },
+        {
+          "item_id": "item_11",
+          "command": "/bin/zsh -lc \"nl -ba docs/specifiers.rst; rg -n -i 'pre.?release|developmental release|exclusive ordered|inclusive ordered|arbitrary equality' docs/pep-0440.rst docs/changelog.rst; rg -n 'specifier|contains\\\\(|filter\\\\(' src/packaging/markers.py src/packaging/requirements.py src/packaging/metadata.py\"",
+          "exit_code": 0,
+          "output_bytes": 11914,
+          "output_sha256": "bf8a5953551c3cd1e7c04f5c2862d69d0ee7e2c4aeccd8ee308926e6b95d9ab3"
+        },
+        {
+          "item_id": "item_12",
+          "command": "/bin/zsh -lc \"nl -ba docs/pep-0440.rst | sed -n '796,875p;893,1079p'; rg -n -i 'pre.?release|specifier' docs/changelog.rst\"",
+          "exit_code": 1,
+          "output_bytes": 12974,
+          "output_sha256": "166c9f1f2fbe8429900e9bea14b52be710fe079500d2d8d996a597e5036e5852"
+        },
+        {
+          "item_id": "item_13",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/markers.py | sed -n '150,230p;300,345p'; nl -ba src/packaging/requirements.py | sed -n '1,95p'; nl -ba src/packaging/metadata.py | sed -n '600,642p;765,799p'; rg -n 'dev|[0-9][abr]c?[0-9]|prerelease|python_full_version|implementation_version' tests/test_markers.py tests/test_requirements.py tests/test_metadata.py\"",
+          "exit_code": 0,
+          "output_bytes": 13281,
+          "output_sha256": "e4deb7d457a45b1e8fe88a6066f18fa9ff2b86eaf038830d5f438c90b14fd523"
+        },
+        {
+          "item_id": "item_14",
+          "command": "/bin/zsh -lc \"rg --files -g '\"'!docs/pep-0440.rst'\"' -g '\"'!tests/**'\"' -g '\"'!src/**'\"'; nl -ba tests/test_specifiers.py | sed -n '1,95p;493,570p;760,817p'; rg -n 'is_prerelease|base_version|def _cmpkey' src/packaging/version.py; rg -n 'doctest|pytest|conftest|assert' pyproject.toml tox.ini setup.cfg noxfile.py tests/__init__.py\"",
+          "exit_code": 2,
+          "output_bytes": 9933,
+          "output_sha256": "5989785acffd16364f4241ae558e2d09c288d7a966469be5247cd437e235b2c5"
+        },
+        {
+          "item_id": "item_16",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/version.py | sed -n '190,226p;350,407p;521,575p'; nl -ba tests/test_markers.py | sed -n '1,102p;150,230p'; nl -ba tests/test_version.py | sed -n '1,130p'\"",
+          "exit_code": 0,
+          "output_bytes": 17083,
+          "output_sha256": "cf8948fb0649b17b3af11d4a9aafa3513579d420e4408eab36c5814094c95b6c"
+        },
+        {
+          "item_id": "item_17",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_requirements.py | sed -n '555,635p'; nl -ba tests/test_metadata.py | sed -n '498,558p'; nl -ba docs/requirements.rst | sed -n '12,45p;82,107p'; nl -ba docs/markers.rst | sed -n '1,120p'; nl -ba docs/changelog.rst | sed -n '1,100p'\"",
+          "exit_code": 0,
+          "output_bytes": 12071,
+          "output_sha256": "e4cf9031556bbf6b575bd3825cae16440209bd5a3e0a957622977dfca54971dc"
+        },
+        {
+          "item_id": "item_18",
+          "command": "/bin/zsh -lc \"rg -n 'installed|prereleases|\\\\.contains\\\\(|\\\\.filter\\\\(|1\\\\.0rc|==.*[ab]|\"'!=.*dev|!=.*[ab]'\"' tests src docs --glob '*.py' --glob '*.rst' --glob '\"'!pep-0440.rst'\"' --glob '\"'!version.py'\"' --glob '\"'!test_version.py'\"' --glob '\"'!specifiers.py'\"' --glob '\"'!test_specifiers.py'\"'; nl -ba tests/test_specifiers.py | sed -n '90,222p;607,639p;816,865p'; nl -ba tests/__init__.py\"",
+          "exit_code": 0,
+          "output_bytes": 26658,
+          "output_sha256": "721c0b8081a6ad32fb2c38cc4fe0cafc20b388ec2746bb7caf652b3cafd5e0a8"
+        },
+        {
+          "item_id": "item_19",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_metadata.py | sed -n '512,555p'; nl -ba tests/test_requirements.py | sed -n '74,97p;128,147p'; nl -ba docs/requirements.rst | sed -n '15,40p;85,102p'; nl -ba docs/changelog.rst\"",
+          "exit_code": 0,
+          "output_bytes": 5134,
+          "output_sha256": "05f5fabd7072b4e3ae9c3aed48b0a4cd94864f3014160c22caeb281444bec098"
+        },
+        {
+          "item_id": "item_20",
+          "command": "/bin/zsh -lc \"rg -n 'installed' src tests docs; rg -n 'Specifier\\\\([\"'^'\"\\\\n]*prereleases=False|Specifier\\\\([\"'^'\"\\\\n]*prereleases=True|\\\\.prereleases =|filter\\\\(' tests/test_specifiers.py; nl -ba src/packaging/specifiers.py | sed -n '785,825p;865,885p'; nl -ba docs/markers.rst | sed -n '47,100p'\"",
+          "exit_code": 0,
+          "output_bytes": 6790,
+          "output_sha256": "23bd0cd220a7222d387a901783f32875ddc2c06bd1cafa3be1d7f878207bb52c"
+        }
+      ],
+      "coordinator_review": "All commands inspected; file readers/search only within assigned packet. No observed target execution, Docker, history access or external retrieval."
+    },
+    {
+      "run": "grades/B",
+      "event_sha256": "31c2b48e86aa44e798d107affc2c8cbdd5d2b7f789baba55a8c4db4e4b24150a",
+      "command_heads": [
+        "cat",
+        "nl",
+        "rg",
+        "sed",
+        "tail"
+      ],
+      "commands": [
+        {
+          "item_id": "item_1",
+          "command": "/bin/zsh -lc 'cat rubric.md'",
+          "exit_code": 0,
+          "output_bytes": 3774,
+          "output_sha256": "e92f502e1b1a167bc015a4c94e6b43534e487242e711c7637bf9c2ec245dd69f"
+        },
+        {
+          "item_id": "item_2",
+          "command": "/bin/zsh -lc 'cat report.md'",
+          "exit_code": 0,
+          "output_bytes": 4269,
+          "output_sha256": "00a466f3ff681dfb1d71cc8694e8d26ae78f87a323a1dad22eddfbbd3f719d38"
+        },
+        {
+          "item_id": "item_3",
+          "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'!node_modules'\"' -g '\"'!.git'\"' project\"",
+          "exit_code": 0,
+          "output_bytes": 1410,
+          "output_sha256": "0ffed36dead0bf387ae3b426220a2156e9244b7c67f16a7ebc99c6c0f17f9fe7"
+        },
+        {
+          "item_id": "item_4",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '1,660p'\"",
+          "exit_code": 0,
+          "output_bytes": 30100,
+          "output_sha256": "32a4588b1a64152eaf9c2240b18508e3b6bc5f817d6cdf75247735a335683691"
+        },
+        {
+          "item_id": "item_6",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '660,1100p'\"",
+          "exit_code": 0,
+          "output_bytes": 17150,
+          "output_sha256": "582aa5c77943bcbe9a4c41be106958d5af99d124cc29dc29f4898370eb449fa8"
+        },
+        {
+          "item_id": "item_5",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '1,800p'\"",
+          "exit_code": 0,
+          "output_bytes": 32550,
+          "output_sha256": "0a400a33873baaed377f1415971884f37f49ccc07ae2cc5dbc495dcc68adf519"
+        },
+        {
+          "item_id": "item_7",
+          "command": "/bin/zsh -lc \"rg -n 'prerelease|pre-release|installed|exclusive|<3\\\\.0|3\\\\.0\\\\.0a|<.*dev|==1\\\\.0rc1|\"'!=1'\"\\\\.0rc1' project/docs project/tests project/src/packaging/requirements.py project/src/packaging/markers.py project/src/packaging/metadata.py\"",
+          "exit_code": 0,
+          "output_bytes": 12730,
+          "output_sha256": "1dfa73ddfc28efcd334f3f4214aa0a8560559a185f1d22f5effd5a10a9101755"
+        },
+        {
+          "item_id": "item_8",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '684,1035p'\"",
+          "exit_code": 0,
+          "output_bytes": 16131,
+          "output_sha256": "000a264302df2f37913b5d25739f1ea81c0c09fcdc925746c5dc9fb265fcea34"
+        },
+        {
+          "item_id": "item_9",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '431,650p'\"",
+          "exit_code": 0,
+          "output_bytes": 11031,
+          "output_sha256": "7b499950829ba35414c7bc4178e1f68b3cd18bfd752e98a068a0c7f6f05e74b6"
+        },
+        {
+          "item_id": "item_10",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '225,575p'\"",
+          "exit_code": 0,
+          "output_bytes": 15293,
+          "output_sha256": "8b61f4537b1ba834b85494013567d62e1deea15fc945a32642ab10b426aee199"
+        },
+        {
+          "item_id": "item_11",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '1,225p'\"",
+          "exit_code": 0,
+          "output_bytes": 7390,
+          "output_sha256": "9741297aaf38db78c955fc36e50b16ac2b7d7d1fe9f97c5139694035957506cf"
+        },
+        {
+          "item_id": "item_13",
+          "command": "/bin/zsh -lc 'nl -ba project/docs/specifiers.rst\nnl -ba project/src/packaging/requirements.py'",
+          "exit_code": 0,
+          "output_bytes": 5848,
+          "output_sha256": "6d55d0ecafda4dbcb4bfcc351c14a028d9a2bb0e779ccb768fe6b1afde2fb98d"
+        },
+        {
+          "item_id": "item_12",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_requirements.py | sed -n '1,330p'\"",
+          "exit_code": 0,
+          "output_bytes": 11799,
+          "output_sha256": "6a5af1358dbdccde4f2cb069549365afba355fcdf55349b686c3661e36d24104"
+        },
+        {
+          "item_id": "item_14",
+          "command": "/bin/zsh -lc \"nl -ba project/docs/pep-0440.rst | sed -n '800,1098p'\"",
+          "exit_code": 0,
+          "output_bytes": 14267,
+          "output_sha256": "e61ae8731d89941511e784abe9af751af82809f8e1fd2a344109b08fa175fee2"
+        },
+        {
+          "item_id": "item_16",
+          "command": "/bin/zsh -lc \"nl -ba report.md\nnl -ba project/src/packaging/version.py | sed -n '340,435p'\nnl -ba project/src/packaging/version.py | sed -n '530,610p'\"",
+          "exit_code": 0,
+          "output_bytes": 10066,
+          "output_sha256": "97a51a479c90b9d5e17f1147e3ec56ffcc6289d7951b14adc7541c0b7eeb63b2"
+        },
+        {
+          "item_id": "item_17",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '570,870p'\"",
+          "exit_code": 0,
+          "output_bytes": 13246,
+          "output_sha256": "5c1546abc41c2a426a7d882e5f25e27ddff269218d08a998b37af28ac52073c9"
+        },
+        {
+          "item_id": "item_18",
+          "command": "/bin/zsh -lc \"rg -n 'contains\\\\(|\\\\.filter\\\\(|\\\\.prereleases|specifier|installed|rc1|>=1\\\\.0a1|>=.*dev.*,|[<>=~\"'!].*,.*[<>=~!]'\"' project/tests/test_requirements.py project/tests/test_metadata.py project/docs/requirements.rst project/docs/changelog.rst project/src/packaging/version.py project/src/packaging/_parser.py\"",
+          "exit_code": 0,
+          "output_bytes": 11176,
+          "output_sha256": "e17fb4314c842b9d2c108b3d181c90939847a2475ccbaeb5b8c6e028622d2c67"
+        },
+        {
+          "item_id": "item_19",
+          "command": "/bin/zsh -lc \"rg -n 'Specifier\\\\(|SpecifierSet\\\\(|contains\\\\(|\\\\.filter\\\\(|prereleases|installed' project/tests project/docs | tail -n 150\"",
+          "exit_code": 0,
+          "output_bytes": 13059,
+          "output_sha256": "49915f655821a32041dc9cd9a56fbd9765cef9b34ca2d2537d454595fdb53690"
+        },
+        {
+          "item_id": "item_20",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '866,1190p'\"",
+          "exit_code": 0,
+          "output_bytes": 863,
+          "output_sha256": "b8e650491fa88d07f8d8fea00e113dd4ee09fc090f9b132d86244e4df21fd401"
+        },
+        {
+          "item_id": "item_21",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/_parser.py | sed -n '203,247p'\nnl -ba project/docs/pep-0440.rst | sed -n '1520,1545p'\"",
+          "exit_code": 0,
+          "output_bytes": 3301,
+          "output_sha256": "1adcef5e5807333d8953068051c3a02f24ad9a11d1490ac6366459087457ad9e"
+        }
+      ],
+      "coordinator_review": "All commands inspected; file readers/search only within assigned packet. No observed target execution, Docker, history access or external retrieval."
+    },
+    {
+      "run": "audits/C",
+      "event_sha256": "b1e9b051122a97c9c7e416452889d191736f346799ea2bda513064478727cdf1",
+      "command_heads": [
+        "cat",
+        "nl",
+        "rg",
+        "sed"
+      ],
+      "commands": [
+        {
+          "item_id": "item_1",
+          "command": "/bin/zsh -lc 'cat /private/tmp/faultline-2x2-20261020.vfmoEH/stage/SKILL.md'",
+          "exit_code": 0,
+          "output_bytes": 6130,
+          "output_sha256": "9d3d1e8e8c068d5448f8370fcc08eaa9ecfbcc677a9e3100d351953c51f45e35"
+        },
+        {
+          "item_id": "item_3",
+          "command": "/bin/zsh -lc \"rg -n 'prerelease|def contains|def filter|class Specifier' src/packaging/specifiers.py tests/test_specifiers.py\"",
+          "exit_code": 0,
+          "output_bytes": 17745,
+          "output_sha256": "8b3d3d1d2a1f4ba5b42b490b8f8bf1834950cc93bfe98f781d7325121d9b79ed"
+        },
+        {
+          "item_id": "item_5",
+          "command": "/bin/zsh -lc \"rg --files -g '\"'!**/.git/**'\"' -g '*specif*' -g '*require*' -g '*version*' -g '*CHANGE*' -g '*NEWS*' -g '*HISTORY*' -g '*conftest*' -g '*helper*' -g '*assert*'\"",
+          "exit_code": 0,
+          "output_bytes": 261,
+          "output_sha256": "7e74617d165777731e9ed556c3ca703f0eba44ed8ed5627ff61f4cd799611092"
+        },
+        {
+          "item_id": "item_4",
+          "command": "/bin/zsh -lc \"rg -n 'prerelease|\\\\.contains\\\\(|\\\\.filter\\\\(|Specifier\\\\(' src tests docs\"",
+          "exit_code": 0,
+          "output_bytes": 25673,
+          "output_sha256": "243868b96d935e0874ea3df39022a63b61377853a0a92f9f849a1cc24613081d"
+        },
+        {
+          "item_id": "item_6",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '1,290p'\"",
+          "exit_code": 0,
+          "output_bytes": 10287,
+          "output_sha256": "f33fe89041587b8ae682c9d99c219c01f04a87442095a3394808d6ecf24ca82a"
+        },
+        {
+          "item_id": "item_7",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '360,690p'\"",
+          "exit_code": 0,
+          "output_bytes": 16406,
+          "output_sha256": "ed35bde64f78cdd031964b0cbc264aabac897ae04dda68506046cf1fa4dada20"
+        },
+        {
+          "item_id": "item_8",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '1,360p'\"",
+          "exit_code": 0,
+          "output_bytes": 14955,
+          "output_sha256": "05228089d611ae17a91eb47a78e979831271a3aeca1786eb8d73b9097a029fb4"
+        },
+        {
+          "item_id": "item_9",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '690,1030p'\"",
+          "exit_code": 0,
+          "output_bytes": 15953,
+          "output_sha256": "302f68ac4563534b885a81f3f40c314502fa30c475b293bfef387563f5a6697d"
+        },
+        {
+          "item_id": "item_10",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '690,865p'\"",
+          "exit_code": 0,
+          "output_bytes": 7942,
+          "output_sha256": "5dd89e8d86c568c5d06f70106aa8af8a48e288280072a99a21f8cbdf49f2a771"
+        },
+        {
+          "item_id": "item_11",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '428,630p'\"",
+          "exit_code": 0,
+          "output_bytes": 10449,
+          "output_sha256": "f0da4819265a99d1a21d78caa4109f7c60683e25bb8b07a3aebd7b7714a1c139"
+        },
+        {
+          "item_id": "item_12",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '280,572p'\"",
+          "exit_code": 0,
+          "output_bytes": 12702,
+          "output_sha256": "4300585515f8c5d501d5376e33e33fd610fc519367eea39466de14a836e9dd9c"
+        },
+        {
+          "item_id": "item_13",
+          "command": "/bin/zsh -lc 'nl -ba docs/specifiers.rst'",
+          "exit_code": 0,
+          "output_bytes": 2264,
+          "output_sha256": "cb024dac0b5d94e47dce596a0a8d5ce802add548f0572d5762005d40e0fcdaf4"
+        },
+        {
+          "item_id": "item_14",
+          "command": "/bin/zsh -lc \"rg -n --glob '\"'!specifiers.py'\"' --glob '\"'!test_specifiers.py'\"' 'Specifier|specifier|prerelease|pre-release|pre release' src tests docs README* CHANGELOG* pyproject.toml\"",
+          "exit_code": 1,
+          "output_bytes": 33,
+          "output_sha256": "d18d30ed2bcef3c1d4693c2323f522cf4a4c5c85caf5846f0747bf5eb3f9df77"
+        },
+        {
+          "item_id": "item_15",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '572,960p'\"",
+          "exit_code": 0,
+          "output_bytes": 13850,
+          "output_sha256": "91e40b0f0e28a1c797008b88a06aa0a9c9ab6f4ac3bc540d754b16248493e808"
+        },
+        {
+          "item_id": "item_16",
+          "command": "/bin/zsh -lc 'rg --files tests docs src'",
+          "exit_code": 0,
+          "output_bytes": 1040,
+          "output_sha256": "aae8fefcbfbb3375a0867fc7e07e70d422390469f93340f25070fe15692eadaf"
+        },
+        {
+          "item_id": "item_17",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/markers.py | sed -n '130,250p'\"",
+          "exit_code": 0,
+          "output_bytes": 4784,
+          "output_sha256": "af6e62c741312edd2734cde8ab2e2f71dff948189441b3a337aa885168c1540d"
+        },
+        {
+          "item_id": "item_18",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_markers.py | sed -n '1,240p'\"",
+          "exit_code": 0,
+          "output_bytes": 9604,
+          "output_sha256": "11620eb6a11416337bdcbb6e60c9f564af78742e1ab920e88cec3fdc49f41bf4"
+        },
+        {
+          "item_id": "item_19",
+          "command": "/bin/zsh -lc \"rg --files -g '\"'!**/.git/**'\"'\"",
+          "exit_code": 0,
+          "output_bytes": 1040,
+          "output_sha256": "e9007362a1e9521ef80c574409bdc0a7829641a226ad909c07105377c11ecf6f"
+        },
+        {
+          "item_id": "item_20",
+          "command": "/bin/zsh -lc \"rg -n --glob '\"'!specifiers.py'\"' --glob '\"'!test_specifiers.py'\"' 'Specifier|specifier|prerelease|pre-release|pre release' src tests docs\"",
+          "exit_code": 0,
+          "output_bytes": 10074,
+          "output_sha256": "2755a397e44da41c5768ed8190b557032d55ef50c714e340cafeeb870bafe904"
+        },
+        {
+          "item_id": "item_22",
+          "command": "/bin/zsh -lc 'nl -ba docs/changelog.rst; nl -ba docs/markers.rst'",
+          "exit_code": 0,
+          "output_bytes": 4695,
+          "output_sha256": "8bdd232de6d6f21976ce7455cf7701994ca5d582d1909b5b956ba73d5b1c8652"
+        },
+        {
+          "item_id": "item_23",
+          "command": "/bin/zsh -lc 'nl -ba src/packaging/requirements.py; nl -ba docs/requirements.rst'",
+          "exit_code": 0,
+          "output_bytes": 7459,
+          "output_sha256": "50049ff134c53be464c56c759d809d5b6ace6075a280eb11a8a728a1ad1aad7f"
+        },
+        {
+          "item_id": "item_24",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/version.py | sed -n '180,220p'; nl -ba src/packaging/version.py | sed -n '275,415p'; nl -ba tests/test_version.py | sed -n '480,550p'\"",
+          "exit_code": 0,
+          "output_bytes": 9362,
+          "output_sha256": "d39c18ac06759b3572f07e2e51b755dd5e795070eb7df96254b28dac0ad211e2"
+        },
+        {
+          "item_id": "item_25",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_requirements.py | sed -n '1,220p'; nl -ba src/packaging/metadata.py | sed -n '610,630p'; nl -ba tests/test_metadata.py | sed -n '510,550p'; rg -n 'dev|rc|alpha|beta|[0-9]a[0-9]|[0-9]b[0-9]|pre' tests/test_markers.py tests/test_requirements.py docs/changelog.rst\"",
+          "exit_code": 0,
+          "output_bytes": 11190,
+          "output_sha256": "ce864d20b47e18b921a74006214b91151046d4df09ff61590f4c7217a15e7eaa"
+        },
+        {
+          "item_id": "item_26",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '630,689p'; nl -ba src/packaging/_parser.py | sed -n '203,247p'; nl -ba src/packaging/_tokenizer.py | sed -n '64,83p'\"",
+          "exit_code": 0,
+          "output_bytes": 5018,
+          "output_sha256": "5eb1c40493eb9eb2cf997d4a32c3ac9386d692a61ea3b0dc64bb7e5e8c274cec"
+        },
+        {
+          "item_id": "item_27",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_markers.py | sed -n '260,515p'; nl -ba tests/test_requirements.py | sed -n '576,615p'; nl -ba tests/__init__.py\"",
+          "exit_code": 0,
+          "output_bytes": 8117,
+          "output_sha256": "270e837bcb4a9b5c5c344b6f636cdb829759a1bebe8a56ba5b54ab255edfe1b7"
+        },
+        {
+          "item_id": "item_28",
+          "command": "/bin/zsh -lc \"rg -n 'contains|filter|prereleases|installed|SpecifierSet' tests/test_specifiers.py docs/specifiers.rst src/packaging/requirements.py src/packaging/markers.py; rg -n 'doctest|pytest|test' docs/development/getting-started.rst docs/development/submitting-patches.rst\"",
+          "exit_code": 0,
+          "output_bytes": 12275,
+          "output_sha256": "902d04159509cdb83afbbeff08bea99025446a15c956231f251d49f4a2ec5b3a"
+        }
+      ],
+      "coordinator_review": "All commands inspected; file readers/search only within assigned packet. No observed target execution, Docker, history access or external retrieval."
+    },
+    {
+      "run": "grades/C",
+      "event_sha256": "5a859117051e6c6a6829d2fd9f3d5bee5b14da726d3d7541580975b893e8585d",
+      "command_heads": [
+        "cat",
+        "nl",
+        "rg",
+        "sed"
+      ],
+      "commands": [
+        {
+          "item_id": "item_1",
+          "command": "/bin/zsh -lc 'cat /private/tmp/faultline-2x2-20261020.vfmoEH/grading/report.md'",
+          "exit_code": 0,
+          "output_bytes": 3395,
+          "output_sha256": "453fe63a1983b6fb02b4f30ca835a84f8206524fee18af5b1d52e7b5fd559a2a"
+        },
+        {
+          "item_id": "item_2",
+          "command": "/bin/zsh -lc 'cat /private/tmp/faultline-2x2-20261020.vfmoEH/grading/rubric.md'",
+          "exit_code": 0,
+          "output_bytes": 3774,
+          "output_sha256": "e92f502e1b1a167bc015a4c94e6b43534e487242e711c7637bf9c2ec245dd69f"
+        },
+        {
+          "item_id": "item_3",
+          "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'!.git/**'\"' /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project\"",
+          "exit_code": 0,
+          "output_bytes": 3577,
+          "output_sha256": "eee8394f1bfef1dec49dbca4162a1c93be0206afef0b9f7922b5092c966cece2"
+        },
+        {
+          "item_id": "item_4",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/src/packaging/specifiers.py | sed -n '1,410p'\"",
+          "exit_code": 0,
+          "output_bytes": 17676,
+          "output_sha256": "66c331b516446ba6ff10457418b1bb0a81052c6f126b73bbd6be54775026e1da"
+        },
+        {
+          "item_id": "item_5",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/tests/test_specifiers.py | sed -n '1,820p'\"",
+          "exit_code": 0,
+          "output_bytes": 33382,
+          "output_sha256": "13bca87bbf266ec4c8bd87777470ab320fb2f1e52361bd79fc3665bdeb46ae17"
+        },
+        {
+          "item_id": "item_6",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/src/packaging/specifiers.py | sed -n '410,1030p'\"",
+          "exit_code": 0,
+          "output_bytes": 29615,
+          "output_sha256": "53601c27dda7323225f4283d30547d35edc4d6f061b61758e54718400a4f26b2"
+        },
+        {
+          "item_id": "item_7",
+          "command": "/bin/zsh -lc \"rg -n -i 'prerelease|pre.release|pep.?440|exclusive|fallback|specifier' /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/docs /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/tests/test_requirements.py /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/tests/test_markers.py /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/tests/test_metadata.py\"",
+          "exit_code": 0,
+          "output_bytes": 9301,
+          "output_sha256": "a578fe59fe32f1046dd4bbc440f623aaae4167d772a0b5073484027b86b3eacc"
+        },
+        {
+          "item_id": "item_9",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/src/packaging/specifiers.py | sed -n '428,650p'\"",
+          "exit_code": 0,
+          "output_bytes": 11186,
+          "output_sha256": "f9fddc71373dbb9842f87f49ca493c54a408546b3fd4c775d6cad6c830db82f3"
+        },
+        {
+          "item_id": "item_8",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/src/packaging/specifiers.py | sed -n '690,775p;865,1050p'\"",
+          "exit_code": 0,
+          "output_bytes": 12078,
+          "output_sha256": "ae78fa694d404cc19a60d6298c54722491e62410f89e80615d924af7ece6a348"
+        },
+        {
+          "item_id": "item_10",
+          "command": "/bin/zsh -lc \"rg -n 'prerelease|dev|filter|contains|a[0-9]|rc[0-9]|b[0-9]' /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/tests/test_specifiers.py\"",
+          "exit_code": 0,
+          "output_bytes": 9406,
+          "output_sha256": "814fd747e5f22a22052deed3bc2d0321850414442bbbf588974c1d6fcd517d17"
+        },
+        {
+          "item_id": "item_13",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/docs/specifiers.rst | sed -n '1,100p'\"",
+          "exit_code": 0,
+          "output_bytes": 2264,
+          "output_sha256": "cb024dac0b5d94e47dce596a0a8d5ce802add548f0572d5762005d40e0fcdaf4"
+        },
+        {
+          "item_id": "item_12",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/src/packaging/requirements.py | sed -n '1,130p'\"",
+          "exit_code": 0,
+          "output_bytes": 3584,
+          "output_sha256": "a2bf8fe069c8faa930562398f69e8e507bd84dacb8a34dfc27abd1370656c9c6"
+        },
+        {
+          "item_id": "item_11",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/tests/test_specifiers.py | sed -n '1,92p;195,295p;460,575p;816,920p'\"",
+          "exit_code": 0,
+          "output_bytes": 15225,
+          "output_sha256": "2cf5989bbf7e8279cd4e102fb41b288781fd1d69ddf947a7007a0717c3bbdec8"
+        },
+        {
+          "item_id": "item_14",
+          "command": "/bin/zsh -lc \"rg -n 'Specifier(Set)?|\\\\.contains\\\\(|\\\\.filter\\\\(|\\\\.prereleases|1\\\\.0a|>=.*a[0-9]|<.*a[0-9]|>=.*dev' /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/tests /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/src/packaging/markers.py /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/src/packaging/metadata.py\"",
+          "exit_code": 0,
+          "output_bytes": 41103,
+          "output_sha256": "6c141b6b63933c5a6ef01345a98e064f19fe772d9734651eb1eb6ebdf7e662ee"
+        },
+        {
+          "item_id": "item_16",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/tests/test_requirements.py | sed -n '1,155p;575,615p'\"",
+          "exit_code": 0,
+          "output_bytes": 7062,
+          "output_sha256": "56b3b501574d6ac7bd3cf4515818f959c3f594a095a3030c486450761cd1e6af"
+        },
+        {
+          "item_id": "item_17",
+          "command": "/bin/zsh -lc 'nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/report.md'",
+          "exit_code": 0,
+          "output_bytes": 3542,
+          "output_sha256": "65e00ec919713a5c5a5277251ceeb833d04fb959eb66492f10e91735a46b69dc"
+        },
+        {
+          "item_id": "item_18",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/tests/test_markers.py | sed -n '75,100p'\"",
+          "exit_code": 0,
+          "output_bytes": 948,
+          "output_sha256": "73be76077157cbd261d4a31834e321093bc3ddfc2fe3777a846415d20892dfd9"
+        },
+        {
+          "item_id": "item_19",
+          "command": "/bin/zsh -lc \"nl -ba /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/src/packaging/version.py | sed -n '395,465p;510,580p';\"",
+          "exit_code": 0,
+          "output_bytes": 5374,
+          "output_sha256": "d04c7eac575103f5a655e7e18d4aa1ecaa8ed33e50dd9cf79d2436104a3f606a"
+        },
+        {
+          "item_id": "item_20",
+          "command": "/bin/zsh -lc \"rg -n -i -g '\"'!test_version.py'\"' 'pre.?release|pep.?440|exclusive|fallback' /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/docs /private/tmp/faultline-2x2-20261020.vfmoEH/grading/project/tests\"",
+          "exit_code": 0,
+          "output_bytes": 8818,
+          "output_sha256": "e38acee74c2f89a7f6d34d8718a8cf9e43c43f9e3d7ffa3206919bc15bc64ab2"
+        }
+      ],
+      "coordinator_review": "All commands inspected; file readers/search only within assigned packet. No observed target execution, Docker, history access or external retrieval."
+    },
+    {
+      "run": "audits/D",
+      "event_sha256": "2960a8ba084078c49221c6eb20de9e584f4b3df3319d2d8bdd9530e609fcf489",
+      "command_heads": [
+        "cat",
+        "nl",
+        "rg",
+        "sed"
+      ],
+      "commands": [
+        {
+          "item_id": "item_1",
+          "command": "/bin/zsh -lc 'cat /private/tmp/faultline-2x2-20261020.vfmoEH/stage/SKILL.md'",
+          "exit_code": 0,
+          "output_bytes": 6130,
+          "output_sha256": "9d3d1e8e8c068d5448f8370fcc08eaa9ecfbcc677a9e3100d351953c51f45e35"
+        },
+        {
+          "item_id": "item_2",
+          "command": "/bin/zsh -lc \"rg -n 'def (prereleases|contains|filter)|class (Specifier|SpecifierSet)|prerelease' src/packaging/specifiers.py\"",
+          "exit_code": 0,
+          "output_bytes": 9058,
+          "output_sha256": "3060540ecb22b1f5e68ce13785cfe15145415f62940e80e75e76d9947d60c6d0"
+        },
+        {
+          "item_id": "item_3",
+          "command": "/bin/zsh -lc \"rg -n 'prerelease|pre.release|Specifier|\\\\.contains\\\\(|\\\\.filter\\\\(' tests/test_specifiers.py\"",
+          "exit_code": 0,
+          "output_bytes": 7784,
+          "output_sha256": "a598ccd245f5842c4d62753bdec3a62adb5242cea95bfde46398f76ccee402e9"
+        },
+        {
+          "item_id": "item_4",
+          "command": "/bin/zsh -lc \"rg -n 'prereleases|pre-releases|pre-release|prerelease|Specifier\\\\(' src docs tests --glob '\"'!test_specifiers.py'\"' --glob '\"'!specifiers.py'\"'\"",
+          "exit_code": 0,
+          "output_bytes": 6450,
+          "output_sha256": "e143bd0612aeb051b693bc466bb777def1337952b2f9ecedfbe92108b5f176ee"
+        },
+        {
+          "item_id": "item_5",
+          "command": "/bin/zsh -lc \"rg --files -g '\"'!*.lock'\"' -g '\"'!*.svg'\"' -g '\"'!*.png'\"' -g '\"'!*.jpg'\"' -g '\"'!*.jpeg'\"' -g '\"'!*.ico'\"' -g '\"'!*.pdf'\"'\"",
+          "exit_code": 0,
+          "output_bytes": 1058,
+          "output_sha256": "d36d44d100a6405c88cbb0b639c5587b2ab9e25f3567baafdb57b3d892dd2293"
+        },
+        {
+          "item_id": "item_7",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '355,690p'\"",
+          "exit_code": 0,
+          "output_bytes": 16603,
+          "output_sha256": "5f7a055716b7431eb1703c28c69c010b27da3d1796bf27ec7de8617e5979aac7"
+        },
+        {
+          "item_id": "item_9",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '1,280p'\"",
+          "exit_code": 0,
+          "output_bytes": 9883,
+          "output_sha256": "949a3575d4130656f3919039b6f34d61e3cc860a0d3421c27bcd05767a3c00c1"
+        },
+        {
+          "item_id": "item_8",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '690,1030p'\"",
+          "exit_code": 0,
+          "output_bytes": 15953,
+          "output_sha256": "302f68ac4563534b885a81f3f40c314502fa30c475b293bfef387563f5a6697d"
+        },
+        {
+          "item_id": "item_10",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '1,355p'\"",
+          "exit_code": 0,
+          "output_bytes": 14734,
+          "output_sha256": "6b713d69ff468ede04b3a8a50e99d9b65b6e11dde5305832623c8a9d016d9c63"
+        },
+        {
+          "item_id": "item_11",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '428,627p'\"",
+          "exit_code": 0,
+          "output_bytes": 10379,
+          "output_sha256": "79c7e7707502961142419c008e5183ab4b80610abaa4d675af00004e482d8018"
+        },
+        {
+          "item_id": "item_12",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '280,575p'\"",
+          "exit_code": 0,
+          "output_bytes": 12793,
+          "output_sha256": "0b52c40230737c50747c3b8cfb5f88647678148e79a43663d0b4e39b2b713267"
+        },
+        {
+          "item_id": "item_13",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '575,890p'\"",
+          "exit_code": 0,
+          "output_bytes": 13766,
+          "output_sha256": "45849a7f32ec31a97ada846cb8a02832eded0f6736f0a1577bfb8191af43f981"
+        },
+        {
+          "item_id": "item_14",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '627,825p'\"",
+          "exit_code": 0,
+          "output_bytes": 8692,
+          "output_sha256": "85133ab9524f6362937c6d658dcd522d8c322182cc7a6581d2c43a988b8e56ab"
+        },
+        {
+          "item_id": "item_15",
+          "command": "/bin/zsh -lc 'nl -ba docs/specifiers.rst; nl -ba docs/requirements.rst; nl -ba docs/markers.rst'",
+          "exit_code": 0,
+          "output_bytes": 10797,
+          "output_sha256": "f1d75914103934fa2f8061114d3cd635e77b2158674dfee8986c5766090436b3"
+        },
+        {
+          "item_id": "item_16",
+          "command": "/bin/zsh -lc \"nl -ba docs/pep-0440.rst | sed -n '790,880p'; nl -ba docs/pep-0440.rst | sed -n '975,1105p'\"",
+          "exit_code": 0,
+          "output_bytes": 10128,
+          "output_sha256": "b126733f4d2ed435e1dbbf43b19e7629c12374612fc9b037e9690b84b1cddb96"
+        },
+        {
+          "item_id": "item_17",
+          "command": "/bin/zsh -lc \"rg -n -i 'pre.?release|specifier|installed|arbitrary' docs/changelog.rst\"",
+          "exit_code": 1,
+          "output_bytes": 0,
+          "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "item_id": "item_18",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/version.py | sed -n '180,220p'; nl -ba src/packaging/version.py | sed -n '325,420p'; nl -ba tests/test_version.py | sed -n '475,545p'\"",
+          "exit_code": 0,
+          "output_bytes": 7885,
+          "output_sha256": "255993d62264aef8d7237968b9ecc714e43c032d79b67a0b4b0226f609c3416a"
+        },
+        {
+          "item_id": "item_19",
+          "command": "/bin/zsh -lc \"rg -n 'Specifier|specifier|\\\\.filter\\\\(|\\\\.contains\\\\(' src tests docs --glob '\"'!specifiers.py'\"' --glob '\"'!test_specifiers.py'\"' --glob '\"'!pep-0440.rst'\"' --glob '\"'!changelog.rst'\"'; nl -ba src/packaging/markers.py | sed -n '140,255p'; nl -ba src/packaging/requirements.py | sed -n '1,160p'; nl -ba tests/test_markers.py | sed -n '1,180p'\"",
+          "exit_code": 0,
+          "output_bytes": 23694,
+          "output_sha256": "c54bbdda07ca503180ee03c6331ea74e4cff6c78e0904c1f40491aec9e468f4d"
+        },
+        {
+          "item_id": "item_21",
+          "command": "/bin/zsh -lc \"rg -n --hidden --glob '\"'!.git/**'\"' --glob '\"'!AGENTS.md'\"' --glob '\"'!*.svg'\"' --glob '\"'!*.png'\"' --glob '\"'!*.jpg'\"' --glob '\"'!*.jpeg'\"' --glob '\"'!*.ico'\"' --glob '\"'!*.pdf'\"' 'prereleases|\\\\.contains\\\\(|\\\\.filter\\\\(' .\"",
+          "exit_code": 0,
+          "output_bytes": 19544,
+          "output_sha256": "8f1e53d06012a1d841cd851bd226db78ff39af840da823cfa97e7bfbfd978d97"
+        },
+        {
+          "item_id": "item_22",
+          "command": "/bin/zsh -lc \"nl -ba tests/test_requirements.py | sed -n '1,215p'; nl -ba tests/test_requirements.py | sed -n '578,615p'; rg -n 'a[0-9]|b[0-9]|rc[0-9]|dev|installed|prereleases|filter|contains' tests/test_markers.py tests/test_requirements.py tests/test_metadata.py\"",
+          "exit_code": 0,
+          "output_bytes": 9450,
+          "output_sha256": "350a1b1a9126411db197f85ca8cf2ea8109c0feafbfc66d3d0e85b1594e380a0"
+        },
+        {
+          "item_id": "item_23",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/markers.py | sed -n '165,195p'; nl -ba src/packaging/markers.py | sed -n '275,345p'; nl -ba src/packaging/metadata.py | sed -n '600,630p'; nl -ba tests/test_metadata.py | sed -n '510,552p'\"",
+          "exit_code": 0,
+          "output_bytes": 6595,
+          "output_sha256": "164bc120ec52d2b5a982875f114827a4bd6f1537a6bd275191191b5e348c2443"
+        },
+        {
+          "item_id": "item_24",
+          "command": "/bin/zsh -lc \"nl -ba docs/changelog.rst | sed -n '1,180p'; nl -ba src/packaging/_parser.py | sed -n '203,247p'; nl -ba src/packaging/_tokenizer.py | sed -n '60,91p'; nl -ba src/packaging/utils.py | sed -n '65,112p'\"",
+          "exit_code": 0,
+          "output_bytes": 4840,
+          "output_sha256": "65a4b5f961746006e1c0df83f6a11ee9718cdb2994387d19a53801c80859a3a3"
+        },
+        {
+          "item_id": "item_25",
+          "command": "/bin/zsh -lc \"nl -ba docs/pep-0440.rst | sed -n '940,978p'; nl -ba src/packaging/specifiers.py | sed -n '65,75p'; nl -ba src/packaging/specifiers.py | sed -n '919,941p'\"",
+          "exit_code": 0,
+          "output_bytes": 3808,
+          "output_sha256": "9f7bf6ba1804fa31a218aafe63b9487cbfedd4bab0dab0c02600fc3b32cfa32a"
+        },
+        {
+          "item_id": "item_26",
+          "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '830,849p'; nl -ba tests/test_specifiers.py | sed -n '550,569p'; nl -ba tests/test_specifiers.py | sed -n '683,734p'\"",
+          "exit_code": 0,
+          "output_bytes": 4557,
+          "output_sha256": "e894818625dc7a0cfae14b8b0a1837b501322b9e2681c12d03903b45417f3cc2"
+        }
+      ],
+      "coordinator_review": "All commands inspected; file readers/search only within assigned packet. No observed target execution, Docker, history access or external retrieval."
+    },
+    {
+      "run": "grades/D",
+      "event_sha256": "49f3436ee6ecbdee6b04b1c92bd11eb84d127ad76eee5f5da109e5ddc8bbf992",
+      "command_heads": [
+        "cat",
+        "nl",
+        "rg",
+        "sed"
+      ],
+      "commands": [
+        {
+          "item_id": "item_1",
+          "command": "/bin/zsh -lc 'cat report.md rubric.md'",
+          "exit_code": 0,
+          "output_bytes": 6118,
+          "output_sha256": "04246f162c18aba276d1d0bda3cfccddc72b3f73f404c1a1ecd3d0eaeaf32bb8"
+        },
+        {
+          "item_id": "item_2",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '1,280p'\"",
+          "exit_code": 0,
+          "output_bytes": 11972,
+          "output_sha256": "c2682bd114c9fd2dbdd286467b43f0de940bb97d8ebdd5e4c2578b8665ac33ab"
+        },
+        {
+          "item_id": "item_3",
+          "command": "/bin/zsh -lc 'rg --files project/src project/tests project/docs'",
+          "exit_code": 0,
+          "output_bytes": 1410,
+          "output_sha256": "9d66d43b9299af26fc120037d10c574ee2ddc2c05f8d82027064e6d4713713cb"
+        },
+        {
+          "item_id": "item_4",
+          "command": "/bin/zsh -lc \"rg -n 'installed|prerelease|exclusive|1\\\\.0a1|3\\\\.0\\\\.0a|dev' project/tests/test_specifiers.py project/docs/pep-0440.rst project/docs/specifiers.rst\"",
+          "exit_code": 0,
+          "output_bytes": 19274,
+          "output_sha256": "1c31c7ea5d00bb9939e9c1ad4781c8326d0b252a41f6ffa55aa984e6db7db8fd"
+        },
+        {
+          "item_id": "item_5",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '1,60p;260,575p;620,738p'\"",
+          "exit_code": 0,
+          "output_bytes": 20928,
+          "output_sha256": "dc42ae1b0579d01f62163001434ed6ea93c44c8a4e2d769b5d4a6543f33c2b4c"
+        },
+        {
+          "item_id": "item_6",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '660,1050p'\"",
+          "exit_code": 0,
+          "output_bytes": 17150,
+          "output_sha256": "582aa5c77943bcbe9a4c41be106958d5af99d124cc29dc29f4898370eb449fa8"
+        },
+        {
+          "item_id": "item_7",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '340,660p'\"",
+          "exit_code": 0,
+          "output_bytes": 16026,
+          "output_sha256": "f60f01383c9e57586ba8ec210a590eb9a73313391c6ca364e3c6d52fcd366f85"
+        },
+        {
+          "item_id": "item_8",
+          "command": "/bin/zsh -lc \"nl -ba project/docs/pep-0440.rst | sed -n '810,1100p'\nnl -ba project/docs/specifiers.rst\"",
+          "exit_code": 0,
+          "output_bytes": 16236,
+          "output_sha256": "6f8c204c4e48903cd40ec119c7f947fcddbfd24e3978683a9a1fbe13a08fd811"
+        },
+        {
+          "item_id": "item_9",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '719,765p;865,1040p'\"",
+          "exit_code": 0,
+          "output_bytes": 10377,
+          "output_sha256": "1fe476969c87b70c0d44017cbb740a96c50d18da599641bcdf867246b91f2857"
+        },
+        {
+          "item_id": "item_10",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '1,55p;455,573p;620,704p'\"",
+          "exit_code": 0,
+          "output_bytes": 10071,
+          "output_sha256": "349dc4ef1a99f06eb6418aa19b6a06f00c3b81f7a2d0fe4bc0bb255a91fd332e"
+        },
+        {
+          "item_id": "item_11",
+          "command": "/bin/zsh -lc \"rg -n '\\\\.filter\\\\(|installed\\\\s*=|prereleases\\\\s*=|prereleases|installed' project/src project/tests project/docs/changelog.rst project/docs/version.rst project/docs/requirements.rst project/docs/metadata.rst project/docs/markers.rst\nrg -n 'def base_version|def is_prerelease|def __eq__|def __lt__|def _cmpkey' project/src/packaging/version.py\"",
+          "exit_code": 0,
+          "output_bytes": 19030,
+          "output_sha256": "8f0b0c42e8ad816b56568232f109fb2ec739a4bf19ab236f44207190ba3077b0"
+        },
+        {
+          "item_id": "item_13",
+          "command": "/bin/zsh -lc \"nl -ba project/src/packaging/version.py | sed -n '65,110p;345,405p;521,582p'\"",
+          "exit_code": 0,
+          "output_bytes": 6396,
+          "output_sha256": "3c62621db7df2c9201a99c3fe80d2575ed9ba3d278610869c16018601e4e174e"
+        },
+        {
+          "item_id": "item_14",
+          "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '264,377p;703,735p'\nrg -n 'installed|pre.?release|specifier|filter' project/docs/changelog.rst\"",
+          "exit_code": 1,
+          "output_bytes": 6922,
+          "output_sha256": "5677d17a8b46ee2b26c6fdc06330d87e5eb29b69220fe6184902dbb0b776ddfd"
+        },
+        {
+          "item_id": "item_15",
+          "command": "/bin/zsh -lc \"rg -n 'Specifier|contains\\\\(|filter\\\\(|prerelease|installed' project/tests/test_markers.py project/tests/test_requirements.py project/tests/test_metadata.py project/src/packaging/requirements.py project/src/packaging/metadata.py project/src/packaging/markers.py\nnl -ba project/tests/test_specifiers.py | sed -n '815,910p'\"",
+          "exit_code": 0,
+          "output_bytes": 4790,
+          "output_sha256": "4a90fdb573520f1ede16f2b8b1be0421fdeea2dc62d4d353b24c066fb735dac1"
+        }
+      ],
+      "coordinator_review": "All commands inspected; file readers/search only within assigned packet. No observed target execution, Docker, history access or external retrieval."
+    }
+  ]
+}

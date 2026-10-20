@@ -97,6 +97,12 @@ Control-selection limitations and the missed gap limit reliability claims.
 The [follow-up diagnosis](experiments/audit-quality-diagnostics/REPORT.md) separates
 visibility, contract and timing limits; improved future outcomes remain unmeasured.
 
+A [four-cell packaging comparison](experiments/packaging-2x2/REPORT.md) on
+2026-10-20 crossed old/new instructions with absent/present historical specification
+text. All four reports missed the targeted interaction; both specification-present
+reports retained unsupported installed-mode assertions. Keep the guidance
+provisionally unchanged; one run per cell establishes no reliability or speed gain.
+
 ## Maintainer notes
 
 [Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md) ·

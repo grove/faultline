@@ -1,0 +1,57 @@
+{
+  "frozen_utc": "2026-10-20T05:14:44.398478+00:00",
+  "base_pr21_commit": "0c21de7f8723494e78cfcd194e8962209953174d",
+  "source_commit": "a716c52b5f3ca9b4a512f538b80ced8ee01b2775",
+  "source_files": 43,
+  "cells": [
+    {
+      "id": "A",
+      "instructions": "old",
+      "specification": "absent"
+    },
+    {
+      "id": "B",
+      "instructions": "old",
+      "specification": "present"
+    },
+    {
+      "id": "C",
+      "instructions": "new",
+      "specification": "absent"
+    },
+    {
+      "id": "D",
+      "instructions": "new",
+      "specification": "present"
+    }
+  ],
+  "order": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "order_method": "random.Random(20261020).shuffle before outcomes",
+  "runs_per_cell": 1,
+  "retries": 0,
+  "model": "gpt-6.1-sol",
+  "effort": "xhigh",
+  "cli": "0.163.0",
+  "execution": "NO_GO / UNAVAILABLE; no Docker, target imports/tests/scripts/builds/install/network",
+  "session_configuration": "fresh ephemeral; ignore user config; read-only sandbox; approval never; web disabled; multi-agent disabled",
+  "isolation": "staged files only by instruction and observed tool audit; shared filesystem, not an OS read barrier",
+  "audit_prompt_sha256": "2726b43598ed73299fb9e1945c1b8ec0355ea458e4cc97733f94d399bce3d7f3",
+  "instructions_sha256": {
+    "old": "9bd02aca93a8450f808e5c23f9313b6a9cdc8f634d1dd6973008161c0a27eafa",
+    "new": "9d3d1e8e8c068d5448f8370fcc08eaa9ecfbcc677a9e3100d351953c51f45e35"
+  },
+  "specification_sha256": "a9dc35b83cd3c8130235aa5c1b54ab75a0663556cf30dded1396ee9e4f6c3127",
+  "timeout_seconds": 600,
+  "grading": "four fresh independent model reviewers, same model/effort, treatment labels and instructions withheld; grade each supplied packet only; same frozen rubric; all claims retained",
+  "latency": "descriptive timing only; not a speed experiment",
+  "publication": "additive follow-up to PR21, preserve prior evidence; no merge; no skill edit",
+  "grading_rubric_sha256": "e92f502e1b1a167bc015a4c94e6b43534e487242e711c7637bf9c2ec245dd69f",
+  "grade_prompt_sha256": "c2fccc9c761afd8f8eb4d79badb8ffb16ab01a075b3bbbab155d3586b10b55e0",
+  "collector_sha256": "8bbfb53abaaf719171fe105539908269331af668777576e9b8de6d45d6ed43c0",
+  "host_os": "macOS-27.0.1-arm64-arm-64bit-Mach-O"
+}
