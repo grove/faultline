@@ -46,3 +46,5 @@ jobs:
           python -B -m unittest discover -s tests -p 'test_install_delivery.py' -v
       - name: Check actual skills CLI project installation
         run: python -B scripts/check_install.py --skills-version latest
+      - name: Check published repository shorthand
+        run: python -B scripts/check_install.py --source grove/faultline --skills-version latest
