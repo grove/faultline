@@ -1,0 +1,273 @@
+{
+  "limits": "Presence in captured stdout is not proof of attention or complete model-context delivery.",
+  "probes": {
+    "autodetection": "if operator in [\"==\", \">=\", \"<=\", \"~=\", \"===\"]",
+    "forced_test_policy": "spec = Specifier(spec, prereleases=True)",
+    "exclusive_bound_counterexpectation": "(\"<1.0.dev1\", False)",
+    "comparison_exception": "if not spec.is_prerelease and prospective.is_prerelease:",
+    "normative_rule": "Allowing pre-releases that are earlier than, but not equal to a specific"
+  },
+  "cells": {
+    "A": {
+      "autodetection": [
+        {
+          "item_id": "item_7",
+          "received_seconds": 17.117980833,
+          "output_sha256": "05228089d611ae17a91eb47a78e979831271a3aeca1786eb8d73b9097a029fb4"
+        },
+        {
+          "item_id": "item_21",
+          "received_seconds": 121.828369375,
+          "output_sha256": "248094e6537bff68b0df02aae6300b8689bb72c37faa44875457f3aee5b32ab5"
+        }
+      ],
+      "forced_test_policy": [
+        {
+          "item_id": "item_3",
+          "received_seconds": 9.919095916,
+          "output_sha256": "978751c0eee65a1e028fafdc06a11d9cb952ab9b126e3d1c685f4f75a86707be"
+        },
+        {
+          "item_id": "item_9",
+          "received_seconds": 17.118660458,
+          "output_sha256": "20f34f56557528c81fe0ab4d4a479db9c1cd9e207f0e2535df5f856a38a4f32d"
+        },
+        {
+          "item_id": "item_15",
+          "received_seconds": 42.609424541,
+          "output_sha256": "b82b86a81ab0cb0cd0ea53a205cc6f64fc0fb01879c948dbf64e21f6061436a3"
+        },
+        {
+          "item_id": "item_17",
+          "received_seconds": 42.619401708,
+          "output_sha256": "f89bcb4e35f6c706dce77da0562ed8e14d314d5a3dc317d7efae715f908f5a33"
+        }
+      ],
+      "exclusive_bound_counterexpectation": [
+        {
+          "item_id": "item_9",
+          "received_seconds": 17.118660458,
+          "output_sha256": "20f34f56557528c81fe0ab4d4a479db9c1cd9e207f0e2535df5f856a38a4f32d"
+        },
+        {
+          "item_id": "item_15",
+          "received_seconds": 42.609424541,
+          "output_sha256": "b82b86a81ab0cb0cd0ea53a205cc6f64fc0fb01879c948dbf64e21f6061436a3"
+        },
+        {
+          "item_id": "item_22",
+          "received_seconds": 121.831121916,
+          "output_sha256": "7a0211d4c28024c18b3ac294003dbeaf2daa7328564d2ae2974b7db81f985f8e"
+        }
+      ],
+      "comparison_exception": [
+        {
+          "item_id": "item_3",
+          "received_seconds": 9.919095916,
+          "output_sha256": "978751c0eee65a1e028fafdc06a11d9cb952ab9b126e3d1c685f4f75a86707be"
+        },
+        {
+          "item_id": "item_6",
+          "received_seconds": 17.117721,
+          "output_sha256": "ed35bde64f78cdd031964b0cbc264aabac897ae04dda68506046cf1fa4dada20"
+        },
+        {
+          "item_id": "item_14",
+          "received_seconds": 24.911100916,
+          "output_sha256": "9d654c06b7018b3df756fab88160fed067eb13a37e2a5c258c29dba12a0d57c6"
+        }
+      ],
+      "normative_rule": []
+    },
+    "B": {
+      "autodetection": [
+        {
+          "item_id": "item_9",
+          "received_seconds": 16.2748105,
+          "output_sha256": "ff7152ca213a582f738938d37f56ccf47745199467cadeb4e607cd843be5b38c"
+        }
+      ],
+      "forced_test_policy": [
+        {
+          "item_id": "item_4",
+          "received_seconds": 12.06030225,
+          "output_sha256": "ddb8b941170474cc4e1d3ab980a3cc32322acc9c1245bdc96ea232e4004469c4"
+        },
+        {
+          "item_id": "item_5",
+          "received_seconds": 12.065521625,
+          "output_sha256": "8b3d3d1d2a1f4ba5b42b490b8f8bf1834950cc93bfe98f781d7325121d9b79ed"
+        },
+        {
+          "item_id": "item_7",
+          "received_seconds": 16.2694485,
+          "output_sha256": "d89a9c28842e48368f0b401d66d7e02046b7047c1b3163e81914d5b6cdaec96a"
+        },
+        {
+          "item_id": "item_20",
+          "received_seconds": 82.903718125,
+          "output_sha256": "23bd0cd220a7222d387a901783f32875ddc2c06bd1cafa3be1d7f878207bb52c"
+        }
+      ],
+      "exclusive_bound_counterexpectation": [
+        {
+          "item_id": "item_7",
+          "received_seconds": 16.2694485,
+          "output_sha256": "d89a9c28842e48368f0b401d66d7e02046b7047c1b3163e81914d5b6cdaec96a"
+        },
+        {
+          "item_id": "item_14",
+          "received_seconds": 31.624528875,
+          "output_sha256": "5989785acffd16364f4241ae558e2d09c288d7a966469be5247cd437e235b2c5"
+        }
+      ],
+      "comparison_exception": [
+        {
+          "item_id": "item_5",
+          "received_seconds": 12.065521625,
+          "output_sha256": "8b3d3d1d2a1f4ba5b42b490b8f8bf1834950cc93bfe98f781d7325121d9b79ed"
+        },
+        {
+          "item_id": "item_8",
+          "received_seconds": 16.271901542,
+          "output_sha256": "e1cc08203810baee7d182c29373b03c5f09b0da999749baf5f3fc53e644aff00"
+        }
+      ],
+      "normative_rule": [
+        {
+          "item_id": "item_11",
+          "received_seconds": 21.464507792,
+          "output_sha256": "bf8a5953551c3cd1e7c04f5c2862d69d0ee7e2c4aeccd8ee308926e6b95d9ab3"
+        },
+        {
+          "item_id": "item_12",
+          "received_seconds": 31.6088105,
+          "output_sha256": "166c9f1f2fbe8429900e9bea14b52be710fe079500d2d8d996a597e5036e5852"
+        }
+      ]
+    },
+    "C": {
+      "autodetection": [
+        {
+          "item_id": "item_8",
+          "received_seconds": 17.221776875,
+          "output_sha256": "05228089d611ae17a91eb47a78e979831271a3aeca1786eb8d73b9097a029fb4"
+        }
+      ],
+      "forced_test_policy": [
+        {
+          "item_id": "item_3",
+          "received_seconds": 13.561089792,
+          "output_sha256": "8b3d3d1d2a1f4ba5b42b490b8f8bf1834950cc93bfe98f781d7325121d9b79ed"
+        },
+        {
+          "item_id": "item_4",
+          "received_seconds": 13.562647834,
+          "output_sha256": "243868b96d935e0874ea3df39022a63b61377853a0a92f9f849a1cc24613081d"
+        },
+        {
+          "item_id": "item_12",
+          "received_seconds": 21.507712084,
+          "output_sha256": "4300585515f8c5d501d5376e33e33fd610fc519367eea39466de14a836e9dd9c"
+        },
+        {
+          "item_id": "item_28",
+          "received_seconds": 76.238373125,
+          "output_sha256": "902d04159509cdb83afbbeff08bea99025446a15c956231f251d49f4a2ec5b3a"
+        }
+      ],
+      "exclusive_bound_counterexpectation": [
+        {
+          "item_id": "item_12",
+          "received_seconds": 21.507712084,
+          "output_sha256": "4300585515f8c5d501d5376e33e33fd610fc519367eea39466de14a836e9dd9c"
+        }
+      ],
+      "comparison_exception": [
+        {
+          "item_id": "item_3",
+          "received_seconds": 13.561089792,
+          "output_sha256": "8b3d3d1d2a1f4ba5b42b490b8f8bf1834950cc93bfe98f781d7325121d9b79ed"
+        },
+        {
+          "item_id": "item_4",
+          "received_seconds": 13.562647834,
+          "output_sha256": "243868b96d935e0874ea3df39022a63b61377853a0a92f9f849a1cc24613081d"
+        },
+        {
+          "item_id": "item_7",
+          "received_seconds": 17.221633292,
+          "output_sha256": "ed35bde64f78cdd031964b0cbc264aabac897ae04dda68506046cf1fa4dada20"
+        },
+        {
+          "item_id": "item_11",
+          "received_seconds": 21.507603917,
+          "output_sha256": "f0da4819265a99d1a21d78caa4109f7c60683e25bb8b07a3aebd7b7714a1c139"
+        }
+      ],
+      "normative_rule": []
+    },
+    "D": {
+      "autodetection": [
+        {
+          "item_id": "item_10",
+          "received_seconds": 16.984118708,
+          "output_sha256": "6b713d69ff468ede04b3a8a50e99d9b65b6e11dde5305832623c8a9d016d9c63"
+        }
+      ],
+      "forced_test_policy": [
+        {
+          "item_id": "item_3",
+          "received_seconds": 10.8367135,
+          "output_sha256": "a598ccd245f5842c4d62753bdec3a62adb5242cea95bfde46398f76ccee402e9"
+        },
+        {
+          "item_id": "item_12",
+          "received_seconds": 21.376298875,
+          "output_sha256": "0b52c40230737c50747c3b8cfb5f88647678148e79a43663d0b4e39b2b713267"
+        },
+        {
+          "item_id": "item_21",
+          "received_seconds": 75.120166708,
+          "output_sha256": "8f1e53d06012a1d841cd851bd226db78ff39af840da823cfa97e7bfbfd978d97"
+        }
+      ],
+      "exclusive_bound_counterexpectation": [
+        {
+          "item_id": "item_12",
+          "received_seconds": 21.376298875,
+          "output_sha256": "0b52c40230737c50747c3b8cfb5f88647678148e79a43663d0b4e39b2b713267"
+        }
+      ],
+      "comparison_exception": [
+        {
+          "item_id": "item_2",
+          "received_seconds": 10.83646125,
+          "output_sha256": "3060540ecb22b1f5e68ce13785cfe15145415f62940e80e75e76d9947d60c6d0"
+        },
+        {
+          "item_id": "item_7",
+          "received_seconds": 16.98117,
+          "output_sha256": "5f7a055716b7431eb1703c28c69c010b27da3d1796bf27ec7de8617e5979aac7"
+        },
+        {
+          "item_id": "item_11",
+          "received_seconds": 21.376204583,
+          "output_sha256": "79c7e7707502961142419c008e5183ab4b80610abaa4d675af00004e482d8018"
+        }
+      ],
+      "normative_rule": [
+        {
+          "item_id": "item_4",
+          "received_seconds": 10.837902042,
+          "output_sha256": "e143bd0612aeb051b693bc466bb777def1337952b2f9ecedfbe92108b5f176ee"
+        },
+        {
+          "item_id": "item_16",
+          "received_seconds": 43.862656375,
+          "output_sha256": "b126733f4d2ed435e1dbbf43b19e7629c12374612fc9b037e9690b84b1cddb96"
+        }
+      ]
+    }
+  }
+}

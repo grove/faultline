@@ -1,0 +1,51 @@
+{
+  "original_43_files": "supplied unchanged in every cell",
+  "root_files": [
+    {
+      "path": "pyproject.toml",
+      "state": "deliberately withheld in every cell",
+      "sha256": "9f0b98683ba43616e7cf05176752b4718f31f75094b24a1cf2cf2ee32b0b7335"
+    },
+    {
+      "path": "noxfile.py",
+      "state": "deliberately withheld in every cell",
+      "sha256": "a0f98a3fbb87dc803a2c6c73651a43df3764c6970337136b19a10ab4e534f8b6"
+    },
+    {
+      "path": "pytest.ini",
+      "state": "absent upstream",
+      "sha256": null
+    },
+    {
+      "path": "tox.ini",
+      "state": "absent upstream",
+      "sha256": null
+    },
+    {
+      "path": "setup.cfg",
+      "state": "absent upstream",
+      "sha256": null
+    },
+    {
+      "path": "conftest.py",
+      "state": "absent upstream",
+      "sha256": null
+    },
+    {
+      "path": "CHANGELOG.rst",
+      "state": "deliberately withheld in every cell",
+      "sha256": "a01333e52a02a6ce3dffd01f3e8a1bb5909c7a073d40e830ba61d782338dcfae"
+    }
+  ],
+  "normative_references": [
+    {
+      "reference": "Historical PEP 440 full text; existing docs/specifiers.rst and specifiers.py refer to PEP 440",
+      "state": "supplied only in specification-present cells at project/docs/pep-0440.rst",
+      "sha256": "a9dc35b83cd3c8130235aa5c1b54ab75a0663556cf30dded1396ee9e4f6c3127"
+    },
+    {
+      "reference": "PEP canonical PyPA specification pointer and all further linked documents/issues/fixes",
+      "state": "absent; no external retrieval or Git history in any cell"
+    }
+  ]
+}
