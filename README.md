@@ -6,14 +6,35 @@ Faultline helps your existing coding agent read code and tests, explain realisti
 bugs the tests may miss, and suggest the smallest useful test. Audit works without
 Docker, dependencies, infrastructure setup, or running your project's code.
 
-## Find weak tests
+## 1. Install the skill
 
-Ask your agent:
+Open a terminal in the project you want to audit and run:
+
+```sh
+npx skills@latest add grove/faultline
+```
+
+Follow the installer prompts to choose your coding agent and installation scope.
+The installer requires [Node.js 22.20.0 or newer](https://www.skills.sh/docs/cli)
+and Git; **running an Audit does not require Node.js, Docker, or any project setup**.
+This command installs the advice-only `faultline-audit` skill, not an executable
+test runner. Installation does not authorize test execution or lift
+**NO_GO / UNAVAILABLE**.
+
+## 2. Find weak tests
+
+With your project open in your coding agent, ask:
 
 ```text
-Read /absolute/path/to/faultline/faultline-audit/SKILL.md and find weak tests
-in this repository.
+Use faultline-audit to find weak tests in this repository.
+Don't change files or run tests. Explain the findings and suggest the smallest useful tests.
 ```
+
+In Codex, you can explicitly invoke `$faultline-audit`. For other agents,
+follow their skill invocation instructions. You can also inspect discovery with
+`npx skills@latest add grove/faultline --list`. If an agent does not immediately
+see the installed skill, start a new agent session.
+
 
 You can also name a directory, changed files, or a behavior to focus on. You do
 not need to identify test commands, supply hashes, or configure a runner.
@@ -63,11 +84,11 @@ integration risks; it is not a safe place for arbitrary hostile code. See
 No Docker execution path ships in this release. Enabling it requires a separate,
 explicitly reviewed scope change and approval.
 
-## Optional skill discovery
+## Manual installation (optional)
 
-The direct-file prompt above needs no installation. To make the skill discoverable
-in another project, run this from your Faultline checkout, replacing the target.
-It refuses to overwrite an existing installation:
+If you cannot use the `npx` installer but already have a Faultline checkout,
+copy the same standalone skill into another project. Run this from the Faultline
+checkout, replacing the target. It refuses to overwrite an existing installation:
 
 ```sh
 target=/absolute/path/to/your/project
@@ -77,9 +98,9 @@ mkdir -p "$target/.agents/skills" &&
   cp -R faultline-audit "$target/.agents/skills/faultline-audit"
 ```
 
-Invoke `$faultline-audit` with “Find weak tests” and optional paths. Installed
-copies are user-owned; recopy deliberately for updates. The repository keeps
-[one canonical skill](faultline-audit/SKILL.md). No sibling project is required.
+Installed copies are user-owned; recopy deliberately for updates. The repository
+keeps [one canonical skill](faultline-audit/SKILL.md), also used by the `skills` CLI.
+No sibling project, hidden runtime, or installation-time code execution is required.
 
 Copy/discovery was checked on 2026-10-18 with Codex CLI 0.163.0 on macOS 27.0.1
 arm64. A [live six-case synthetic evaluation](experiments/audit-evaluation/REPORT.md)

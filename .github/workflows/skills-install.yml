@@ -1,0 +1,50 @@
+name: Skill installation
+
+on:
+  pull_request:
+    paths:
+      - 'README.md'
+      - 'faultline-audit/**'
+      - 'scripts/check_install.py'
+      - 'tests/test_skill.py'
+      - 'tests/test_install_delivery.py'
+      - '.github/workflows/skills-install.yml'
+  push:
+    paths:
+      - 'README.md'
+      - 'faultline-audit/**'
+      - 'scripts/check_install.py'
+      - 'tests/test_skill.py'
+      - 'tests/test_install_delivery.py'
+      - '.github/workflows/skills-install.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22.20.0', '24']
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Run offline skill and delivery checks
+        run: |
+          python -B -m unittest discover -s tests -p 'test_skill.py' -v
+          python -B -m unittest discover -s tests -p 'test_install_delivery.py' -v
+      - name: Check actual skills CLI project installation
+        run: python -B scripts/check_install.py --skills-version latest
+      - name: Check published repository shorthand
+        run: python -B scripts/check_install.py --source grove/faultline --skills-version latest
