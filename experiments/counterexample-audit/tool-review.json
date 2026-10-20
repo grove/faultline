@@ -1,0 +1,5184 @@
+{
+  "method": "Captured command events reviewed as source readers/search. Not kernel telemetry or OS answer-access enforcement.",
+  "commands": [
+    {
+      "session": "known-regression",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-known/stage/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2dca9f9ff3400b6a5de4b91637794e2e7dd71d71f8649536819cfe8a5270d3d7",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc \"rg --files -g '*.py' -g '*.rst' -g '*.md' -g '*.toml' -g '*.txt' -g '\"'!*.egg-info/**'\"' .\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "02e057957db278077b056507c1e01236c950227800426e0f005b3467bdef1cd8",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc \"rg -n 'prerelease|def contains|def filter|class Specifier' src/packaging/specifiers.py tests/test_specifiers.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "8b3d3d1d2a1f4ba5b42b490b8f8bf1834950cc93bfe98f781d7325121d9b79ed",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc \"rg -n 'prerelease|pre-release|Specifier' docs src/packaging --glob '\"'!specifiers.py'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "03fbd27bdbf9ac53d55605050269c35e5e2b4b0b45b28160b0319786863a5188",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '1,285p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "5f0a21746b23dcf870c111fedfedfffc4d309eba032ffa083113716b8627e2a7",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '1,265p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "a708408486328b654921aa206f4f9ca79652109249e47eb0d63c7b4e798211b9",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '680,1030p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "a605fe04c60c794729e7edde276e97caa89f2e326431ba88e893b5a17d94b993",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '350,640p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "e1cc08203810baee7d182c29373b03c5f09b0da999749baf5f3fc53e644aff00",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '495,625p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "0105476fcec31e52196cce16592765146fd46d0b4d9bfd00ce70f176c87ead3e",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '690,755p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "c2413c25f2522db8a84425f5f5c4e63ca519c6787f7ce89754256e2d0ac488dc",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '280,599p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "5066bc4bfafb6d794bc1724dee80e72131d8c3a230fb433933c31778285c02df",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc 'nl -ba docs/specifiers.rst'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cb024dac0b5d94e47dce596a0a8d5ce802add548f0572d5762005d40e0fcdaf4",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_specifiers.py | sed -n '590,900p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "0ba359bf66c849eaea9f3c14a264539f3d277870e300085258dde24afea8299e",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba docs/pep-0440.rst | sed -n '800,880p;980,1090p;1330,1370p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "8ee589806f219237af8b1c8749b90dbc6bf0e5419765831e12d9e18b6d6fdf12",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"rg -n 'Specifier|\\\\.contains\\\\(|\\\\.filter\\\\(|prereleases|pre-release' src tests docs --glob '*.py' --glob '*.rst' --glob '\"'!src/packaging/specifiers.py'\"' --glob '\"'!tests/test_specifiers.py'\"' --glob '\"'!docs/pep-0440.rst'\"' --glob '\"'!src/packaging/version.py'\"' --glob '\"'!tests/test_version.py'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "644a95c6bfc195fcc6fd2250d0be66046344613f70c246b233458f8b7f770b76",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"nl -ba src/packaging/markers.py | sed -n '155,220p;310,365p'\nnl -ba src/packaging/requirements.py | sed -n '1,100p'\nnl -ba src/packaging/metadata.py | sed -n '605,630p;770,792p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "396d193f560fec9f54008fcd66fc54fd6fbd17951e7a62b5f09b45cb5a5ef62b",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"rg -n 'dev|alpha|beta|rc|python_full_version|python_version|implementation_version|version_compare' tests/test_markers.py\nnl -ba tests/test_requirements.py | sed -n '550,625p'\nnl -ba tests/test_metadata.py | sed -n '510,550p'\"",
+      "read_verbs": [
+        "rg",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "0dc46f20941efe5962f3898ea4bdb4bdbd08061a81f516215c8484674e25203a",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"rg -n '\\\\.contains\\\\(|\\\\.filter\\\\(|\\\\.prereleases|Specifier\\\\(|SpecifierSet\\\\(' . --glob '*.py' --glob '*.rst' --glob '\"'!tests/test_specifiers.py'\"' --glob '\"'!src/packaging/specifiers.py'\"' --glob '\"'!docs/changelog.rst'\"' --glob '\"'!docs/pep-0440.rst'\"' --glob '\"'!tests/test_version.py'\"' --glob '\"'!src/packaging/version.py'\"'\nrg --files tests -g '*conftest*' -g '*specifier*'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "18543fb01874aa4331a02dbe485e8ce0fdbffbb8dd58b714b26d01056318d10d",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"rg -n -i 'pre.?release|specifier|installed|filter' docs/changelog.rst docs/requirements.rst docs/markers.rst\nnl -ba src/packaging/version.py | sed -n '190,228p;335,403p;515,555p'\nnl -ba src/packaging/__init__.py\"",
+      "read_verbs": [
+        "rg",
+        "sed"
+      ],
+      "stdout_sha256": "d44e4bcaf3aded11c643620b6d40123318a5b2b9fdfaff07a00a7f89d70dca7a",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_22",
+      "command": "/bin/zsh -lc \"nl -ba src/packaging/specifiers.py | sed -n '443,499p;943,1020p'\nnl -ba src/packaging/version.py | sed -n '60,114p;550,574p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "bab82a0f818747f38708b1e36b4ce53df2d194fc7f393610a9dc279c562dfdda",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_23",
+      "command": "/bin/zsh -lc \"rg -n 'prereleases|filter\\\\(|contains\\\\(|dev[0-9]|rc[0-9]|a[0-9]|b[0-9]' tests/test_specifiers.py\nrg -n 'pre-release|prerelease|<V|< V|>V|explicitly|inclusive' docs/pep-0440.rst\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "2694c582f785e0cba50d35c98450fa484637785b0dbec326869e7130270f6ca4",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_24",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_markers.py | sed -n '55,102p;250,278p'\nnl -ba tests/test_requirements.py | sed -n '1,118p'\nnl -ba docs/requirements.rst | sed -n '12,44p;85,100p'\nnl -ba docs/markers.rst | sed -n '58,105p'\nnl -ba docs/changelog.rst | sed -n '1,100p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "2f68eb93a3eb37fd6d28115ea55e2d44accbb901d2b85761903b9a68939b202f",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_26",
+      "command": "/bin/zsh -lc \"rg -n -i 'pre.?release|specifier|installed|filter|24\\\\.2' CHANGELOG.rst\nnl -ba CHANGELOG.rst | sed -n '1,120p'\"",
+      "read_verbs": [
+        "rg",
+        "sed"
+      ],
+      "stdout_sha256": "debeab77acb94e9f897f22c85305926428e62dc72013fd23019e1edf4bf56822",
+      "exit_code": 0
+    },
+    {
+      "session": "known-regression",
+      "item_id": "item_25",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_requirements.py | sed -n '117,170p'\nnl -ba docs/pep-0440.rst | sed -n '1520,1558p'\nnl -ba src/packaging/specifiers.py | sed -n '626,687p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "b7b5c0b29110314efe6ab3d8c8d885ee5c4b1870b58b738ef2654717ea8099d7",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc \"pwd && rg --files -g '\"'!AGENTS.md'\"' -g '\"'!**/AGENTS.md'\"' -g '\"'!**/SKILL.md'\"' -g '\"'!**/node_modules/**'\"' -g '\"'!**/.git/**'\"' .\"",
+      "read_verbs": [
+        "pwd",
+        "rg"
+      ],
+      "stdout_sha256": "19c2cbdb050a3981f68495c102a23ee6011ef9a028f52fddcfaeef72b5672f2f",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'cat report.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "3282e9a8600e644fb482acdc4ffd9733252aa1b8a09510879e3f44d8714e004c",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'cat rubric.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "e92f502e1b1a167bc015a4c94e6b43534e487242e711c7637bf9c2ec245dd69f",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '1,820p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "13bca87bbf266ec4c8bd87777470ab320fb2f1e52361bd79fc3665bdeb46ae17",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '680,1070p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "a605fe04c60c794729e7edde276e97caa89f2e326431ba88e893b5a17d94b993",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '1,330p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "289040845f13c0c3365bb4e4f482f0b3b07841a15352b3e4cf9133b1f19e2671",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '330,680p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "e6bc54c13b6ee1caed378d0a32ffcea2a6ef399d79959d1b6807e739ecc7d254",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"rg -n -i 'prerelease|pre-release|exclusive|filter|contains' project/docs/specifiers.rst project/docs/pep-0440.rst project/docs/changelog.rst project/src/packaging/requirements.py project/tests/test_requirements.py project/src/packaging/metadata.py project/src/packaging/markers.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "15dbc9028113aa388e11896b1590a54260370f0a476abec2863984089e11eb9c",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '430,625p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "a3d32fecc67941a7734b0cf19e60872e21b047570af87c5d1de082e347f7344a",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '1,160p;330,570p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "87cd5d885d51c32c29e3ca4c656538670a1d2e3c72fc904b2a65798400c4a7e5",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba project/src/packaging/specifiers.py | sed -n '690,750p;865,1040p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "666065e4a9aef6d3ae08dedd2743196396c31363abe3447aadda967173eab074",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba project/docs/pep-0440.rst | sed -n '790,840p;970,1098p;1335,1368p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "1a0776a61777d3cc9f4d03abcd7ca232e38318594362023ddd51fce7b4e724df",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba project/src/packaging/requirements.py | sed -n '1,110p'\nnl -ba project/tests/test_specifiers.py | sed -n '880,1140p'\nnl -ba project/docs/specifiers.rst | sed -n '1,115p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "79ce611195d6d920f61034572c7fe3c99f257ec2773e66ba3ef51cde319072dc",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"rg -n 'prereleases|filter\\\\(|<.*(dev|rc|a[0-9])|contains\\\\(' project/tests/test_specifiers.py project/tests/test_requirements.py project/docs/specifiers.rst project/docs/changelog.rst project/src/packaging/requirements.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "92e0bbd9ca9af878ea8514654c605bd755516725d944663d7e687466910d65a3",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc 'nl -ba report.md'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "1d19a79b354b6b75f59a59b74a64a67922f7299fc363ce859396b01c06d1e5cf",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba project/tests/test_specifiers.py | sed -n '650,735p;835,880p'\nnl -ba project/src/packaging/version.py | sed -n '380,425p;540,600p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "0626891d62c2f658c02a171ebe60cfe54c3a82405fec3b14fc25735629ed713c",
+      "exit_code": 0
+    },
+    {
+      "session": "known-grade",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"rg -n -i 'prerelease|pre-release|specifier|doctest' project/docs/changelog.rst project/tests project/src/packaging/version.py project/docs/requirements.txt project/tests/requirements.txt\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "c0343cf096332e396a66014c0c8ea015c502e5b3c4228774f4926844373b7bda",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c05/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "9d3d1e8e8c068d5448f8370fcc08eaa9ecfbcc677a9e3100d351953c51f45e35",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!node_modules'\"' -g '\"'!vendor'\"' -g '\"'!dist'\"' -g '\"'!build'\"' -g '\"'!package-lock.json'\"' -g '\"'!yarn.lock'\"' -g '\"'!pnpm-lock.yaml'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "b283e335370bb70dc22bd3c8f600a16c27a02343946f22f6b162fa6bfab1f0ec",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba tests/conftest.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cc1d6e785b602355a4c0f1cc17411acc191a5398263ca4e2b2cfeebf1d241872",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba flask/json/__init__.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "c424d7dc8cb99233d24527b1d5f8e9ed143fc59a634165f2f8b69472e1c79adf",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba tests/test_helpers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "e9f1a6ec9c302dfc99cecaab2af1b6c6baea413b344d8743faa8b12b7d886b97",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'nl -ba setup.cfg'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "9fd04433c175b151280e098460ffd3814c9056f7544f08f3f638f90481d47173",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc 'nl -ba docs/api.rst'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "aac74f18359807e6d57dbabea3ff000a332196285f970dbb60c706f8ecf3f348",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc 'nl -ba flask/wrappers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "e32705d79522c8f84315f1d338155bd65483fe99a61d040847aad53f727ac331",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc 'nl -ba tests/conftest.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cc1d6e785b602355a4c0f1cc17411acc191a5398263ca4e2b2cfeebf1d241872",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_helpers.py | sed -n '1,280p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "1e5234724cbaa6e3aaaa6cedd893a97ae791df85ff914559325e7c92ec7b0a18",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"rg -n 'json|request_class|response_class|test_client|def (handle|dispatch|full_dispatch|finalize|process|preprocess|do_teardown|wsgi_app|test_request_context|request_context)|TRAP_BAD|PROPAGATE_EXCEPTIONS' flask/app.py flask/ctx.py flask/testing.py flask/globals.py docs/api.rst tests\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "c7ca771ab68076b1699c0152797758e67b47c13a7a7534f2ec5295385701fa00",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc 'nl -ba flask/globals.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cd9db61cbe04ba96a057b40a4a1c4c2fde4ffd06bd38109b2f5185bd2a745dd1",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc 'nl -ba flask/testing.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "bfe0ff34a5118dbb42c4a7ad3af664d44ae2665f2b5e34e71f429921a72d4c28",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_helpers.py | sed -n '268,520p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "4f1bebf05575aa7465c72f8ac11283b6a07c66dae7eee4236dc074e88fd5bc02",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"nl -ba flask/ctx.py | sed -n '220,450p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "962ed0aadd7b548381c36faa365685272bea460bcfcf8fc613f0664a91db1f4e",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba docs/api.rst | sed -n '35,120p;280,352p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "622d9327245e2c9d6814d078b03f552994aa876b189d4ce9a9585fce5b648562",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'!.git/**'\"' -g '\"'!node_modules/**'\"' -g '\"'!vendor/**'\"' -g '\"'!dist/**'\"' -g '\"'!build/**'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "b283e335370bb70dc22bd3c8f600a16c27a02343946f22f6b162fa6bfab1f0ec",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '1870,2010p;2050,2160p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "86b4d1689bb31da7a549ab8a5b70f7224d1298f04976a2485c3a51036e91ab20",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '2180,2330p;580,620p;940,1005p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "27cd0e36314cd5733a5890f219d0674a31ea7e085e8a693f5a39d8bd622541de",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '1560,1850p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "97095d616cb3bdc5b1f4bea24093d07f42bab0ef9bf108eb8f2fd7249f7d1b27",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_22",
+      "command": "/bin/zsh -lc \"rg -n '(\"'^class |''^    def test_|get_json|'\"\\\\.json\\\\b|on_json_loading_failed|force=|cache=|before_request|after_request|teardown|errorhandler|request_started|request_finished|json_decoder|app_context|Response\\\\()' tests/test_helpers.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "f2a3ce3743da611d150c199bcf7cb1f4cbbc179fa1823fa79fd58795f2a28e79",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_24",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_helpers.py | sed -n '784,860p;929,950p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "ec491526b8fa53ec1ccaede15e8b2985494d4706e0dda5d310c90011d5b94aae",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_25",
+      "command": "/bin/zsh -lc \"nl -ba flask/wrappers.py | sed -n '19,111p;184,202p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "df8b038341d73b068975b20b4cf1fdd0f955fb3a02aa907a32d6b14c6cec2246",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_27",
+      "command": "/bin/zsh -lc \"nl -ba flask/json/__init__.py | sed -n '110,170p;248,282p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "8f269bdd744cc74d259c477667a7dd3d9777a59fefe00ad24fcfd329b61ff696",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r01",
+      "item_id": "item_26",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '195,225p;260,310p;1640,1671p;2050,2110p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "72769725a6ba39a690710590c8c37922ca8572c7eca7cd948f539bc2372fb2e5",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c05/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2dca9f9ff3400b6a5de4b91637794e2e7dd71d71f8649536819cfe8a5270d3d7",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!node_modules'\"' -g '\"'!vendor'\"' -g '\"'!dist'\"' -g '\"'!build'\"' -g '\"'!package-lock.json'\"' -g '\"'!yarn.lock'\"' -g '\"'!pnpm-lock.yaml'\"' -g '\"'!poetry.lock'\"' -g '\"'!uv.lock'\"' -g '\"'!Cargo.lock'\"' -g '\"'!Gemfile.lock'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "b283e335370bb70dc22bd3c8f600a16c27a02343946f22f6b162fa6bfab1f0ec",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba flask/json/__init__.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "c424d7dc8cb99233d24527b1d5f8e9ed143fc59a634165f2f8b69472e1c79adf",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba setup.cfg'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "9fd04433c175b151280e098460ffd3814c9056f7544f08f3f638f90481d47173",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba tests/conftest.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cc1d6e785b602355a4c0f1cc17411acc191a5398263ca4e2b2cfeebf1d241872",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'nl -ba flask/wrappers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "e32705d79522c8f84315f1d338155bd65483fe99a61d040847aad53f727ac331",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc 'nl -ba tests/test_helpers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "e9f1a6ec9c302dfc99cecaab2af1b6c6baea413b344d8743faa8b12b7d886b97",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc 'nl -ba docs/api.rst'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "aac74f18359807e6d57dbabea3ff000a332196285f970dbb60c706f8ecf3f348",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc 'nl -ba tests/conftest.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cc1d6e785b602355a4c0f1cc17411acc191a5398263ca4e2b2cfeebf1d241872",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"rg -n '\"'^(def test_|class Test)|json|request|response|debug|testing'\"' tests/test_helpers.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "4ab9130d8f289a75ba26a97830c94c922c0bb8e3a80f7002ffb4675743572d8f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"rg -n 'json|request_class|response_class|BadRequest|full_dispatch_request|dispatch_request|preprocess_request|finalize_request|process_response|handle_user_exception|handle_http_exception|trap_http_exception|wsgi_app|test_request_context|before_request|after_request|teardown_request' flask/app.py flask/ctx.py flask/testing.py flask/globals.py docs/api.rst\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "1f71b7e924e3b12921a1e40b57833a86f109b8e2e37872a6b127dbc896b6437d",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc 'nl -ba flask/globals.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cd9db61cbe04ba96a057b40a4a1c4c2fde4ffd06bd38109b2f5185bd2a745dd1",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"sed -n '1,250p' tests/test_helpers.py | nl -ba\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "bb304f94a55014424ce7c960f4a26414e67e0e1e4101e14f7181b9dd2632be10",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba flask/testing.py | sed -n '1,260p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "bfe0ff34a5118dbb42c4a7ad3af664d44ae2665f2b5e34e71f429921a72d4c28",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_helpers.py | sed -n '251,427p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "259e06db3b5b9fbea571780c8db50a9e194f544c859023eb585a752ae2d2dfef",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '2045,2155p;2180,2300p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "6ef631883894cb49601062eb1b4abcb71f802ff86bdc1852eee0cf09fe458196",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"nl -ba flask/ctx.py | sed -n '245,445p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "82b60a025ff36950e7d2d1095a2e097643f58997f3a310035ec5ffac7487eb6b",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"nl -ba docs/api.rst | sed -n '1,100p;280,350p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "18ec7830021166f5bbd0ef0adcd8236b08c36a8bb46d5ca8f2afa8d89b2149e9",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '1445,1530p;1600,1750p;1760,1840p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "d965a1e6bbd5b0cc6fd66556f59d3012809a995d75f533a81e5175aadd6a9231",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"rg -n 'get_json|\\\\.json\\\\b|is_json|on_json_loading_failed|cache=False|TRAP_BAD_REQUEST_ERRORS|before_request|after_request|teardown_request|errorhandler|request_started|request_finished|app_ctx|app_context|_cached_json' .\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "b46adbfefba814c458d9760a148cf06e1734cd8efae824772098d2775e8df326",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_23",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '275,315p;555,615p;945,1005p;2190,2252p;2270,2298p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "d19ee9b0a6149eb31801ed2803892e261ac47ee592df16b46785c8e57849fb89",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_24",
+      "command": "/bin/zsh -lc \"nl -ba flask/ctx.py | sed -n '250,305p;330,435p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "208d84fdf47819898059af3fc783a2d1096ccf048db52f729282f4b7e9a2d63c",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_25",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '2108,2142p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "13b0b4c41b31e15bf446d052400a9d97788ff74a2dabcdfb51b2623b02d3923e",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_26",
+      "command": "/bin/zsh -lc \"rg -n 'def propagate_exceptions|def preserve_context_on_exception|PROPAGATE_EXCEPTIONS|PRESERVE_CONTEXT_ON_EXCEPTION|TESTING|DEBUG|def test_' flask/app.py tests/test_helpers.py tests/conftest.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "d38d49f4f65c635754140a47e2488950d3738bb3f00a1920608d8e19663a82d7",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r02",
+      "item_id": "item_27",
+      "command": "/bin/zsh -lc \"nl -ba flask/ctx.py | sed -n '300,340p';\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "d5ea42d81cf3bbe589ebf686707ea8d95e78aa3004372c63e59a019be355d321",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c01/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2dca9f9ff3400b6a5de4b91637794e2e7dd71d71f8649536819cfe8a5270d3d7",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!vendor'\"' -g '\"'!node_modules'\"' -g '\"'!dist'\"' -g '\"'!build'\"' -g '\"'!'\"\\\\.git'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "946d74004bd788ab93a37b354966d13b821cdc0a07eb67f77bc5f39b290836b0",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc \"rg -n 'class Retry|Retry-After|status_forcelist|backoff|raise_on_status|respect_retry_after_header' . -g '*.py' -g '*.rst' -g '*.md' -g '\"'!vendor/**'\"' -g '\"'!node_modules/**'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "e6e4e9506bfa9cb623163025c79c6fbf878a5f29788f6f2ee03f0beca5dfb219",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba src/urllib3/util/retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "45cd53bedbb564582b53d7cfc4512649dddd36ec0128897baac3eb8ab9344278",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "35606c61eca01e28d2aa68308d8155372fe8129505ca10e7c4e16fb3622ac2bc",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"rg -n 'Retry|retries|retry|urlopen|PoolManager|HTTPConnectionPool' docs src/urllib3/poolmanager.py src/urllib3/connectionpool.py src/urllib3/response.py setup.cfg\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "3aed4189863b9d26e5a959037c0347d3068e8df03d430634493f7ff1b9dbe92b",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/poolmanager.py | sed -n '129,372p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "4985dd134fe14334d2766e56a6a08e870cd0ed7c0442c58cff099af2883f6bef",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba test/test_retry.py | sed -n '1,180p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "3fdce7a11689d945499d50fbe9c25997dc2f1b38e95e0d24d39ca82033d0a025",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/connectionpool.py | sed -n '98,220p;488,840p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "231b7a675ed51d3caf95fde4525ac5cf929a4da6b0f273dae72baaee767b0621",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba test/test_retry.py | sed -n '181,350p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "8112b77397998425e8a7ffcdec380a3c1a1e10dccc90022b2b95fa81d0751042",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba docs/user-guide.rst | sed -n '300,415p'; nl -ba setup.cfg\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "59d45114bfb99a5be78c86de2f70918502659f3cd82cba630681df2ed9315b1f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/connectionpool.py | sed -n '640,837p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "12a73949bef60a8489f106b76140315132c71f44b7bd22913f90e243c02f82ac",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/connectionpool.py | sed -n '1,98p;160,215p;488,640p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "b968eb2ab724874b3683448b59072dd1172f5f2a60a1ac3dab31a2504d0048c6",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/response.py | sed -n '135,275p;320,420p;480,585p;730,785p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "09637bf956385d0d6ab6d0e74030854d84522a93d753c5aed91b77ceea46e7e1",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/util/retry.py | sed -n '29,62p;90,144p;199,229p;249,303p;326,353p;374,440p'; nl -ba src/urllib3/exceptions.py | sed -n '65,105p;180,210p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "0353ba00328fb8e61d90e1953966f6e991177785b486c05356b5b6a27e53f90c",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r03",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"rg -n 'retry|Retry|sleep|backoff|timeout|release_conn|preload_content|chunked' docs/advanced-usage.rst src/urllib3/response.py src/urllib3/exceptions.py test/test_retry.py; rg --files --hidden -g '\"'!'\"\\\\.git/**'\"",
+      "read_verbs": [
+        "rg",
+        "rg"
+      ],
+      "stdout_sha256": "ae7097205c252c4fa4ac6f212f9eee35daee614b734dc12442fa6aaa3351ce6f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c01/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "9d3d1e8e8c068d5448f8370fcc08eaa9ecfbcc677a9e3100d351953c51f45e35",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!node_modules'\"' -g '\"'!vendor'\"' -g '\"'!dist'\"' -g '\"'!build'\"' -g '\"'!package-lock.json'\"' -g '\"'!yarn.lock'\"' -g '\"'!pnpm-lock.yaml'\"' .\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "5c609fb3f9e39ed004facc274f2dbfc8c742e0ec127a9987698e689afb7a64c8",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "35606c61eca01e28d2aa68308d8155372fe8129505ca10e7c4e16fb3622ac2bc",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'nl -ba src/urllib3/connectionpool.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "2359c0f47bda0673c2906b2637b72ccdbc76a54ed515fa1fae45bc85699a95eb",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba src/urllib3/util/retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "45cd53bedbb564582b53d7cfc4512649dddd36ec0128897baac3eb8ab9344278",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/connectionpool.py | sed -n '460,855p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "4420aec52a7d15e95c75be95521e1f96549d5ca984ca64aa844623d21e5df668",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/connectionpool.py | sed -n '1,215p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "138c435c2eeca7b87c55f16d242b1d880f6bea6a2240c0d6c7af863d6c8cc624",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"rg -n 'Retry|retri|backoff|Retry-After|urlopen|raise_on_status|status_forcelist|method_whitelist' docs src/urllib3/poolmanager.py src/urllib3/response.py src/urllib3/exceptions.py setup.cfg test\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "124bdd18c40cc8db97611a42f733b78ce8703d1617db0002b0293e447133cbae",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/response.py | sed -n '120,290p;370,485p;610,675p;745,785p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "ec8ffc241fb7ccf6fe91070fbd942d0b013446e0f4e66561c5a08900cdde2556",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba docs/user-guide.rst | sed -n '275,425p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "94e94a5e4367d2f7bf2a229417d36b198ba2571f514596cf085ac5785837f4d5",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/poolmanager.py | sed -n '1,205p;265,375p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "f6c57d40c92aeac9bd61ca9277f8f8a88316cd7ef33565c5907d35e28ca68155",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba setup.cfg; rg -n 'retry|Retry|backoff|time|pool|release' docs/advanced-usage.rst; nl -ba src/urllib3/exceptions.py | sed -n '25,105p;145,170p'\"",
+      "read_verbs": [
+        "nl",
+        "rg",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "be59584e0ebaa7fcff559e896cf1ed6ce3def032c8ac2a64e4df0a59aca2f74d",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/poolmanager.py | sed -n '317,371p'; nl -ba src/urllib3/response.py | sed -n '170,185p;485,595p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "23cc2f1889b4a934020ff4cac7bf221767565e5da6db21c7cb337c550ceeb91d",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r04",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba docs/advanced-usage.rst | sed -n '1,112p'; rg --files --hidden -g '\"'!.git'\"' .; rg -n 'def test_|\\\\.new\\\\(|\\\\.sleep\\\\(|is_retry\\\\(|raise_on_status|from_int|urlopen|HTTPConnectionPool' test/test_retry.py\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "rg",
+        "rg"
+      ],
+      "stdout_sha256": "414b96a83829a5d878aec758b6cef3fb2e53e40a7291bb0052feffcab4f5c1fa",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c06/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "9d3d1e8e8c068d5448f8370fcc08eaa9ecfbcc677a9e3100d351953c51f45e35",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!node_modules'\"' -g '\"'!vendor'\"' -g '\"'!dist'\"' -g '\"'!build'\"' -g '\"'!target'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "1dc29a8d1774759c90916c1954ce78998d9ab04054c62de7ccf953a33048bb19",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba src/_pytest/skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "4e3892057f51f9a66fbf092c69a3507723d0da399b475f14b98b83a2ca00208b",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba doc/en/skipping.rst'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "5e57b5be41e092a497ce1848c3c99cc7fec2bdbe7eb16e28579d89dd3cc1545a",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba testing/test_skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "afeffae7bd8c6b4fa81f8ad9b2b7fea836617de4ce31bab6168998b36443977f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'cat setup.cfg\ncat testing/conftest.py'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "c5af7449ded23a307b981cf9f73fdfbfed6961979231404e28cb4a519f6fe321",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc 'nl -ba src/_pytest/outcomes.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "826ecb79959c27076e7f1c05112144ec42a86609372cb23efc454b4e355d7771",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/runner.py | sed -n '1,360p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "ad6cbd1e32110d5d3f26803e2dfdc50397a37ddf048b89e37661310ec16d3788",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"rg -n '\"'^class |''^    def test_|''^def test_|runxfail|strict|raises|teardown|setup|add_marker|applymarker|wasxfail|condition'\"' testing/test_skipping.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "7d2dbe336f89f8f99a7756159c3031c2cefc79f8f46826e7468dfb9d461026e7",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"rg -n 'skip|xfail|report|marker|failed|exit|summary' src/_pytest/nodes.py src/_pytest/reports.py src/_pytest/terminal.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "cbe0f2e2ccf75142eb52cd2a23077a3f0e9a05d4623ec48513be4aa7958be6c8",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '400,655p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "1f06dfad65fab7c086e72f0ed5e63e9c24c219a5c8248eb554a540c86117d673",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '150,410p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "48e30ce0e3b83c4e1d4de46fb27d44095ca394019e8d951e06d6d9a4f5ef2652",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '930,1220p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "8e7d1dc18b5bd35c6ceca8f957e08916d77989fee6a4e6273212ca479f5e9eee",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '650,940p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "6994b4841aa33a24159ae7040e12787367c4140da397bb2f77cb525594e95433",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/outcomes.py | sed -n '1,240p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "826ecb79959c27076e7f1c05112144ec42a86609372cb23efc454b4e355d7771",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/reports.py | sed -n '1,390p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "d8f1e56108662858e6b500ca227043afadf0b1e13d8a2f6fab91dd5d4e988940",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/nodes.py | sed -n '240,330p'\nnl -ba src/_pytest/nodes.py | sed -n '610,675p'\nnl -ba src/_pytest/runner.py | sed -n '265,350p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "d6dca371af96011a3248ace1af28c5589932df5f2dc92c6210f41b92d7efb2d7",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"nl -ba doc/en/skipping.rst | sed -n '1,168p'\nnl -ba doc/en/skipping.rst | sed -n '295,362p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "c9d828766002d07086d705b854bd24a543a573adc5d71b938a2e7abadf0c64e6",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/runner.py | sed -n '347,454p'\nnl -ba src/_pytest/nodes.py | sed -n '415,510p'\nnl -ba testing/test_skipping.py | sed -n '1,150p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "5008e2b5091b120aabdb81a549e8e5f547f2ee740b6309bb1f6b7823aafb6510",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r05",
+      "item_id": "item_22",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/terminal.py | sed -n '260,277p'\nnl -ba src/_pytest/terminal.py | sed -n '518,575p'\nnl -ba src/_pytest/terminal.py | sed -n '1084,1153p'\nnl -ba src/_pytest/terminal.py | sed -n '1240,1271p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "039c1b8d3ff6fa06b621d4348e7dc30e5272740d6c9fa4d00fb59b9b592619d6",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c06/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2dca9f9ff3400b6a5de4b91637794e2e7dd71d71f8649536819cfe8a5270d3d7",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc \"rg -n \\\"xfail|expected.failure|expected_failure|skipif|Skip|execution.policy|runxfail\\\" . -g '*.py' -g '*.rst' -g '*.md' -g '*.toml' -g '\"'!vendor/**'\"' -g '\"'!node_modules/**'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "9a50d4e6bb167d08310af32e2ac62faff5f3e9b44395b7b66910022979892179",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!vendor/**'\"' -g '\"'!node_modules/**'\"' -g '\"'!'\"\\\\.git/**' -g '\"'!dist/**'\"' -g '\"'!build/**'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "1dc29a8d1774759c90916c1954ce78998d9ab04054c62de7ccf953a33048bb19",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'cat setup.cfg\n'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2a19d93cbd0ca3fdccb08a04f943097c58fbcff1b0234638b5c691dfcd2e2810",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba src/_pytest/skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "4e3892057f51f9a66fbf092c69a3507723d0da399b475f14b98b83a2ca00208b",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba doc/en/skipping.rst | sed -n '1,365p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "bdaad4bc79839a96bc5609870e6bc305bf97bd70ef7996e846f234ffe6924df8",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '1,560p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "24a77d7840e4d68517964938eed419dc44b3d0e7f33674f055e440fff9bb8828",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '140,425p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "426f9abbad7375562a93883cdb4bd3f7ccfb947509ec8218edc5fdeb64e5aa18",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '555,895p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "dc38237a58a4b258ca3959a16f36807b8fcfda5deb8ab47aef3bc3b33a67a81d",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '894,1240p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "131f4de68c28cc3416c60d490355827418fab5ee2da01812a16d7cdc8d2e0c44",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/runner.py | sed -n '1,370p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "a94634538ceaaa2d8c921ab58b787449f19ea00cbfd4f8b28f15a66711b393c5",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba testing/conftest.py\nnl -ba src/_pytest/outcomes.py | sed -n '1,230p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "953dd285a6baae11ee30472848fa463773d2a01e70c3607a613aac39e145856a",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/runner.py | sed -n '204,345p'\nnl -ba testing/test_skipping.py | sed -n '425,554p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "0ea73393224d987d6e4322fc91af92401af887c62e33c68e2aabd9184986cdbf",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc 'rg -n \"def (add_marker|iter_markers|iter_markers_with_node|get_closest_marker|_repr_failure_py|reportinfo)|def pytest_|def from_item|Skipped|skip|wasxfail|folded_skips|location\" src/_pytest/nodes.py src/_pytest/reports.py src/_pytest/terminal.py'",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "a3b68cf468e2d2a10bbe5685209c462484233cdea9a2fde7123e798d2867ea67",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/nodes.py | sed -n '250,330p'\nnl -ba src/_pytest/nodes.py | sed -n '350,422p'\nnl -ba src/_pytest/nodes.py | sed -n '590,670p'\nnl -ba src/_pytest/reports.py | sed -n '230,338p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "b2d296f478271f646d824e724fb55851f4cd8a18b9c76e466b267cf09610ac6b",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/terminal.py | sed -n '250,278p'\nnl -ba src/_pytest/terminal.py | sed -n '520,580p'\nnl -ba src/_pytest/terminal.py | sed -n '1050,1150p'\nnl -ba src/_pytest/terminal.py | sed -n '1240,1285p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "741d87e2ba24a153fb07d93ee586625b26d483037153fd65b65f7fafbe6614ba",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"rg -n -C 3 -- 'runxfail|reportinfo|add_marker|dynamic_xfail|skipped_reasons_functional|skipif_reporting' testing/test_skipping.py testing/conftest.py doc/en/skipping.rst\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "a804887e56f346e7c1a4b06e195bcd9ae973b91a19c2c013d452a141a743863c",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r06",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/skipping.py | sed -n '225,314p'\nnl -ba src/_pytest/reports.py | sed -n '126,146p'\nnl -ba src/_pytest/nodes.py | sed -n '650,666p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "8e7ef8e62d417ebc60c87480667bf22038b2c15b138d556be447cd873fc8e251",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c02/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2dca9f9ff3400b6a5de4b91637794e2e7dd71d71f8649536819cfe8a5270d3d7",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'!.git'\"' -g '\"'!node_modules'\"' -g '\"'!vendor'\"' /private/tmp/faultline-counterexample-evaluation/stage/c02/project\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "a7474fc80cc0d130ebe5beb30757b25380800103e2ce6302b9616b2cbc838773",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba tests/conftest.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cc1d6e785b602355a4c0f1cc17411acc191a5398263ca4e2b2cfeebf1d241872",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba flask/json/__init__.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "c424d7dc8cb99233d24527b1d5f8e9ed143fc59a634165f2f8b69472e1c79adf",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'nl -ba tests/test_helpers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7f781773cd9607f180f3de4987afef1f630c0d99e08d73381addf08c120d5c18",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba flask/wrappers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "f74928ecaa900bd7ba0a961b317df999bcdbbdba3d1a55a6457a3fcc52448319",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"rg -n 'json|JSON|request|Request|response|Response|error|exception|preprocess|process_response|finalize' flask/app.py flask/ctx.py flask/testing.py docs/api.rst setup.cfg flask/globals.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "42003f7dcb66ef175e3d5b5b4bc3aa22d4edb05adffce916f82428604fb33bcf",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc 'nl -ba setup.cfg'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "9fd04433c175b151280e098460ffd3814c9056f7544f08f3f638f90481d47173",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc 'nl -ba tests/conftest.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cc1d6e785b602355a4c0f1cc17411acc191a5398263ca4e2b2cfeebf1d241872",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba docs/api.rst | sed -n '1,260p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "55bf4061c61264c91df20f745a4f1003958a201498c658c0f26f24a26ebbb244",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_helpers.py | sed -n '1,260p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "73d5ea2ed3f9c192170dec192c758a205edcfdb75421ec5eec10c6b02b07a4a2",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"rg -n '\"'^def test_|get_json|'\"\\\\.json|JSON|json|BadRequest|before_request|after_request|teardown' tests/test_helpers.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "53541a253ecb01835880b65e3132bf62d394a974b47c8cba6c601bf706a3fc4b",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc 'nl -ba flask/globals.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cd9db61cbe04ba96a057b40a4a1c4c2fde4ffd06bd38109b2f5185bd2a745dd1",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"nl -ba flask/ctx.py | sed -n '250,470p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "47a858249f4eeaa01f9a77d76913cdcada4c640e9cf6695773db8f53446ebba8",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '1600,1840p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "e8f587abd60b272b9e76aed68ddbc06ff44441e463a06b635eea07f8fb847eba",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba flask/testing.py | sed -n '1,270p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "bfe0ff34a5118dbb42c4a7ad3af664d44ae2665f2b5e34e71f429921a72d4c28",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_helpers.py | sed -n '250,420p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "8e0c5788fbc625a170e7f2dc53456c058366719c17727e4169ca310eb1381e48",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"rg -n 'request_class|response_class|json_decoder|PROPAGATE_EXCEPTIONS|TRAP_BAD_REQUEST_ERRORS|TRAP_HTTP_EXCEPTIONS|DEBUG|def propagate_exceptions|preserve_context|def test_client|Response|get_json|force=|silent=|cache=|after_request|teardown' flask/app.py flask/testing.py flask/ctx.py tests/test_helpers.py docs/api.rst\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "cb5d20b14a7ef5234e6e96868e76838e2dd2e0142dd0a24d9e5afacf3991e8db",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc 'nl -ba flask/globals.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cd9db61cbe04ba96a057b40a4a1c4c2fde4ffd06bd38109b2f5185bd2a745dd1",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '150,310p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "c383ca3751a99379e752b6767e19a79494c164f72dd494f2a2f6043541731844",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_22",
+      "command": "/bin/zsh -lc \"nl -ba flask/ctx.py | sed -n '175,470p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "7a8ffe1ec9bd44841f56851ea80b2c7cc8353af77c10d8314e24aca81aecc1a8",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_23",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '580,615p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "32ac0db635c95b77f0bbe9f3e131e51e479eeeb2587b4b728fd6cafbae84fe38",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_24",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '2055,2165p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "222b41a8bb5c4536720501b4db2df4f84b754e1e53881b867fb90ee42e116218",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_25",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '1600,1675p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "00cecb84531638b2d44664a3e9f61eac867e2bca92d513e0c60fcb6435f8061a",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_26",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '940,1005p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "2c10c224b0a738d1874d3a322a5c189075ae800000049f5b5c315356b1ee01ac",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_27",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '2195,2305p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "8f88e268544cf01b5785ba626e7b262d6add2afa72f10f34ad83f1e6322c936f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_29",
+      "command": "/bin/zsh -lc \"rg -n 'JSON|json|context|request_finished|request_started|got_request_exception' docs/api.rst\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "8653c852c617515e81e8e8658463d2a0f97c6895888251a5ea0e71442b093b9c",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_28",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '1445,1495p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "2591a60fa937a91077d1db53b383dcd4cc46c9d60817fe01d652fd57629bc263",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_30",
+      "command": "/bin/zsh -lc \"nl -ba flask/json/__init__.py | sed -n '250,290p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "cdb70c68493f117130eceab72e6b068f9a6f78050d1a9e7621622f41cee2745e",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r07",
+      "item_id": "item_31",
+      "command": "/bin/zsh -lc \"rg -n --glob '*.py' --glob '*.rst' 'get_json|on_json_loading_failed|_cached_json|TRAP_BAD_REQUEST_ERRORS|response\\\\.json|rv\\\\.json|resp\\\\.json' .\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "fd9067e66b7c8f0d3d52c3165cb5595af81e1c95d4221dd6e72df852685fe60f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c02/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "9d3d1e8e8c068d5448f8370fcc08eaa9ecfbcc677a9e3100d351953c51f45e35",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!node_modules'\"' -g '\"'!vendor'\"' -g '\"'!dist'\"' -g '\"'!build'\"' -g '\"'!package-lock.json'\"' -g '\"'!yarn.lock'\"' -g '\"'!pnpm-lock.yaml'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "b283e335370bb70dc22bd3c8f600a16c27a02343946f22f6b162fa6bfab1f0ec",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'nl -ba flask/json/__init__.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "c424d7dc8cb99233d24527b1d5f8e9ed143fc59a634165f2f8b69472e1c79adf",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba tests/conftest.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cc1d6e785b602355a4c0f1cc17411acc191a5398263ca4e2b2cfeebf1d241872",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba docs/api.rst'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "aac74f18359807e6d57dbabea3ff000a332196285f970dbb60c706f8ecf3f348",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba setup.cfg'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "9fd04433c175b151280e098460ffd3814c9056f7544f08f3f638f90481d47173",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'nl -ba flask/wrappers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "f74928ecaa900bd7ba0a961b317df999bcdbbdba3d1a55a6457a3fcc52448319",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc 'nl -ba tests/test_helpers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7f781773cd9607f180f3de4987afef1f630c0d99e08d73381addf08c120d5c18",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc 'nl -ba tests/conftest.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cc1d6e785b602355a4c0f1cc17411acc191a5398263ca4e2b2cfeebf1d241872",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_helpers.py | sed -n '1,260p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "73d5ea2ed3f9c192170dec192c758a205edcfdb75421ec5eec10c6b02b07a4a2",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"rg -n 'json|request|response|teardown|before_request|after_request|exception|preserve_context|def (test_|[a-z_]*dispatch|wsgi_app|make_response|process_response|handle_)' flask/app.py flask/ctx.py flask/testing.py flask/globals.py docs/api.rst tests/test_helpers.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "3b110d704cbd57a3bb2d79bd1c823fc9f14d20f59ac9c064f99f3e898f5abd0b",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc 'nl -ba flask/globals.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cd9db61cbe04ba96a057b40a4a1c4c2fde4ffd06bd38109b2f5185bd2a745dd1",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_helpers.py | sed -n '250,490p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "eeb66004f86210316a8c2caafce67554ed6f1da1ab033977dbd05d7ec04f7cb2",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba flask/testing.py | sed -n '1,290p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "bfe0ff34a5118dbb42c4a7ad3af664d44ae2665f2b5e34e71f429921a72d4c28",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"rg -n '(\"'^class |''^    def test_|get_json|'\"\\\\.json\\\\b|json_decoder|before_request|after_request|teardown)' tests/test_helpers.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "b447068d321994b46ca6aeba574f77dc30eb07690a29ef944050467201cbda00",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '2180,2305p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "6c7b3bc0badfaf926b2efbdda60e1c0cf7a11545d22c313a48488892b2db7341",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '1590,1833p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "8e02d3d719dbe7c8f7de8d7ab872cbed5a110c0cfbb29d571e3bc2d2d9825439",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"rg -n 'request_class|response_class|json_decoder|def test_client|PROPAGATE_EXCEPTIONS|TRAP_BAD_REQUEST_ERRORS|PRESERVE_CONTEXT_ON_EXCEPTION|MAX_CONTENT_LENGTH' flask/app.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "6c6979f068bc262f5930c2f0e71cea5a04955960c18e182eaf6a69a780609d66",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '2050,2160p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "ace3dffbd7197a918c338780efbbc4b6b704f3291bc2c495307558f2a285cf09",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_22",
+      "command": "/bin/zsh -lc \"nl -ba docs/api.rst | sed -n '245,352p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "61c5b853ba622368eb3295d95b232653e4dff7892405cabd6cf3f83fc2450a73",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"nl -ba flask/ctx.py | sed -n '180,435p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "e5d590d465f698595031ee9c8228fc4fd668f7e6e731a9c839e1b103389bfde9",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_23",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '940,1005p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "2c10c224b0a738d1874d3a322a5c189075ae800000049f5b5c315356b1ee01ac",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_24",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '1440,1530p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "bf037aafcf4c40e4782d215acd2eb85875da0808a47835ce44c6948a6b677a13",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_25",
+      "command": "/bin/zsh -lc \"nl -ba docs/api.rst | sed -n '1,110p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "001b3f51fec6df79172fbfcf70cc423f4a04eb4bf4ae324aaa959d32acb29200",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_26",
+      "command": "/bin/zsh -lc \"nl -ba tests/test_helpers.py | sed -n '750,845p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "5a78006bbfefef5e57bb1723f157cc7f5ee406aa02264314cf223b9e13b4ca2d",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_27",
+      "command": "/bin/zsh -lc \"nl -ba flask/ctx.py | sed -n '1,182p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "612813972170d2d93dc94e9655fe2eebbffbcb728504ecd9354c1abd0eef9e22",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_28",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '158,178p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "477ec2c3880aba1e11395eb8549677a46318e195e9686cf6312f521c4c93d428",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_29",
+      "command": "/bin/zsh -lc \"nl -ba flask/app.py | sed -n '580,614p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "45688c2a7793d527d025f83a749fb808157c3ba11e49edc9de6cf9cd0437cfe3",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r08",
+      "item_id": "item_30",
+      "command": "/bin/zsh -lc \"rg -n --glob '*.py' --glob '*.rst' 'on_json_loading_failed|_cached_json|get_json\\\\(|\\\\.json\\\\b|JSONMixin|has_app_context|TRAP_BAD_REQUEST_ERRORS' flask tests docs\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "d8d460952811eed872819f9bd0f53894ef2c7660948cf6695e6a1e6e899e9554",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c03/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "9d3d1e8e8c068d5448f8370fcc08eaa9ecfbcc677a9e3100d351953c51f45e35",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!node_modules'\"' -g '\"'!vendor'\"' -g '\"'!dist'\"' -g '\"'!build'\"' -g '\"'!'\"\\\\.git' .\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "5476978a4c5071783601960eb67a56775e21e5a3134516cb2bd310b5ca3600e1",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'nl -ba src/_pytest/outcomes.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "826ecb79959c27076e7f1c05112144ec42a86609372cb23efc454b4e355d7771",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba src/_pytest/skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "c023253b16178c737265341f3ccd69d6988480a51465676bcfbaf2f94c296c61",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba doc/en/skipping.rst'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "5e57b5be41e092a497ce1848c3c99cc7fec2bdbe7eb16e28579d89dd3cc1545a",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba src/_pytest/runner.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "bfc45d7bfc5e02687e54d570861684f6b8782d66c0c6166b0fe00ffaeabcbdfe",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"rg -n '\"'^(def test_|class Test|    def test_|@pytest)|skip|xfail|xpass|runxfail|strict|raises'\"' testing/test_skipping.py testing/conftest.py setup.cfg\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "34a231778ae3e9222f435acba99a28d1d5cdd60cb620f5c93ea39d4431dffb6b",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc 'nl -ba doc/en/skipping.rst'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "5e57b5be41e092a497ce1848c3c99cc7fec2bdbe7eb16e28579d89dd3cc1545a",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '1,280p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "28220064848f7a8ce34f90a77b625209abdaedc20f7512fc98f0b7b1eb82ba5d",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '280,580p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "6a62127cea76ac2318a79b35b6b1bdf5060b079d6da83ffc1b0821ffdda03b52",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/runner.py | sed -n '1,360p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "ad6cbd1e32110d5d3f26803e2dfdc50397a37ddf048b89e37661310ec16d3788",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '580,919p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "1c89d3b198442f0400def0f5fad2b4ac91bad2747a451f590832800958e89fc9",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc 'nl -ba testing/conftest.py; cat setup.cfg'",
+      "read_verbs": [
+        "nl",
+        "cat"
+      ],
+      "stdout_sha256": "62a8da591416a1ee28b48de4ad4b2c931769dfeb1223ff0338f1eeac4f0bd44d",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"rg -n 'skip|xfail|xpass|report|marker|def add_marker|iter_markers' src/_pytest/nodes.py src/_pytest/reports.py src/_pytest/terminal.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "ba7876fcf24c70b6aafb35abbb275f8b996b21bce5cc3832875188284ca10c47",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '919,1240p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "39c5baf1019a9156e08576451564246d43e6debd5a71770720a39101ca9bc9f9",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/reports.py | sed -n '230,337p'; nl -ba src/_pytest/nodes.py | sed -n '225,305p'; nl -ba src/_pytest/outcomes.py | sed -n '145,260p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "cf71ea374349858cd2ec4ee24c3494fa009dbcdb399845240d612db2ae35aa95",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/terminal.py | sed -n '470,610p'; nl -ba src/_pytest/terminal.py | sed -n '1070,1240p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "395b6169aea21e883121e8460210cad3187802477ff23c81fb6164c445d20bfe",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '580,706p'; rg -n 'xfail|xpass|skip|pytest_runtest_logreport|short_test_summary|folded_skips' src/_pytest/terminal.py\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "rg"
+      ],
+      "stdout_sha256": "d1af1cf81d657980a63fae332ef215dd506221714457b85aedc82f6816bd8e02",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/runner.py | sed -n '347,465p'; nl -ba src/_pytest/nodes.py | sed -n '530,650p'; nl -ba src/_pytest/reports.py | sed -n '414,485p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "7f5ee0e2789e3047dc6ad5a013a5a888204c097e44ecfdb11b95263233f1a7b8",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_22",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/skipping.py | sed -n '200,315p'; nl -ba src/_pytest/terminal.py | sed -n '1242,1278p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "5f2270ce88b2e2e1e6b1874df09665e2848785332ece421fa149c21d1f8191b8",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r09",
+      "item_id": "item_23",
+      "command": "/bin/zsh -lc \"rg -n 'runxfail|run=False|applymarker|add_marker|strict|raises|request|dynamic|skipif' testing/test_skipping.py doc/en/skipping.rst src/_pytest/nodes.py; nl -ba src/_pytest/reports.py | sed -n '128,166p'; nl -ba src/_pytest/nodes.py | sed -n '88,148p'\"",
+      "read_verbs": [
+        "rg",
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "ad61f770c7a0c449d7c629e9c0d7309a6f15f2a19df833b046d62c3b1fe7260c",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c03/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2dca9f9ff3400b6a5de4b91637794e2e7dd71d71f8649536819cfe8a5270d3d7",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!*.lock'\"' -g '\"'!vendor/**'\"' -g '\"'!node_modules/**'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "1dc29a8d1774759c90916c1954ce78998d9ab04054c62de7ccf953a33048bb19",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc \"rg -n 'xfail|skipif|expected.failure|expected_failure|Skip|XFail' -g '\"'!*.lock'\"' -g '\"'!vendor/**'\"' -g '\"'!node_modules/**'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "f778196884db67f9b0a210960eb1cf1e5efccc8e08e86c9f7f3cf0d4c8bccbd3",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba src/_pytest/skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "c023253b16178c737265341f3ccd69d6988480a51465676bcfbaf2f94c296c61",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '1,550p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "e779f8c4bdcec81d2158b5c3809236955392444036b10905cb7cb636915f6154",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba doc/en/skipping.rst | sed -n '1,365p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "bdaad4bc79839a96bc5609870e6bc305bf97bd70ef7996e846f234ffe6924df8",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '548,920p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "b6c699036152adfa821ef6d99be4f6cb44b3cb6fb4edff0e8c32262eabc1eccb",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '140,430p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "a258b640cac6c7878da38e7969b0d3e94adb58da4732e9f63fd324c41a39c63f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba testing/test_skipping.py | sed -n '919,1260p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "39c5baf1019a9156e08576451564246d43e6debd5a71770720a39101ca9bc9f9",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/runner.py | sed -n '1,365p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "b60e296c42b54ca2c61207c83521ce6bbed3de43b64daf01f6525e0e1d10baab",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc 'nl -ba testing/conftest.py; nl -ba setup.cfg'",
+      "read_verbs": [
+        "nl",
+        "nl"
+      ],
+      "stdout_sha256": "aba261a2fa2981ade47d4f38466ef1855609632ba527c09810a48908df989f72",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/reports.py | sed -n '1,390p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "d8f1e56108662858e6b500ca227043afadf0b1e13d8a2f6fab91dd5d4e988940",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"rg -n 'skip|xfail|reportinfo|add_marker|iter_markers|repr_failure|def location|def listchain|own_markers' src/_pytest/nodes.py src/_pytest/reports.py src/_pytest/terminal.py src/_pytest/outcomes.py src/_pytest/runner.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "463ba836fa4bf52a206ca6c9ec0a6e61f3f2724e75b448410eb8fedc9ea49dac",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/nodes.py | sed -n '245,330p'; nl -ba src/_pytest/nodes.py | sed -n '595,680p'; nl -ba src/_pytest/outcomes.py | sed -n '1,178p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "4560972de12b52a96b7e1953c4ee7490405748a79adc9cdf873fc90a80962608",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/terminal.py | sed -n '240,280p'; nl -ba src/_pytest/terminal.py | sed -n '495,565p'; nl -ba src/_pytest/terminal.py | sed -n '1060,1165p'; nl -ba src/_pytest/terminal.py | sed -n '1240,1280p'; nl -ba src/_pytest/runner.py | sed -n '204,241p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "24b41a52b7921f67863257d067a7143c93a0c3d724eaf0897178c2f011085c59",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"nl -ba src/_pytest/nodes.py | sed -n '70,190p'; nl -ba src/_pytest/nodes.py | sed -n '350,420p'; nl -ba src/_pytest/runner.py | sed -n '347,450p'; nl -ba doc/en/skipping.rst | sed -n '365,445p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "be6b4773db806f9313b3201b43f769457215c9e3f221dbcd47fa5227b582f56b",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r10",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"rg -n --hidden --glob '\"'!.git/**'\"' 'runxfail|dynamic|add_marker|reportinfo|NOTRUN|xfail_strict|unexpectedsuccess|raises=' .\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "27ad4cdf097fff66a1e595723788d3c40e24b18196a5a9e123d0d3ed25ad8f74",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c04/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2dca9f9ff3400b6a5de4b91637794e2e7dd71d71f8649536819cfe8a5270d3d7",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!package-lock.json'\"' -g '\"'!yarn.lock'\"' -g '\"'!pnpm-lock.yaml'\"' -g '\"'!Cargo.lock'\"' -g '\"'!poetry.lock'\"' -g '\"'!uv.lock'\"' .\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "5c609fb3f9e39ed004facc274f2dbfc8c742e0ec127a9987698e689afb7a64c8",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba src/urllib3/util/retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "3b2e34500ddd75434709f12b5f22f2dcd05e48b60a046f6eda9ceae62c4278df",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7bd6291bd09dfc756c08eb7236b3a76a1537b15e4efbc06398e3b90e14d0d23f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba src/urllib3/connectionpool.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "2359c0f47bda0673c2906b2637b72ccdbc76a54ed515fa1fae45bc85699a95eb",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"rg -n -i 'retry|retries|backoff|429|503|413|status|redirect' src/urllib3/poolmanager.py src/urllib3/response.py src/urllib3/exceptions.py docs/user-guide.rst docs/advanced-usage.rst setup.cfg\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "6b480ae91c4d33296a5fc3de7b5240e4a66dbf60e3573662d5ae187712285eac",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"sed -n '300,375p' src/urllib3/poolmanager.py | nl -ba -v 300\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "23581eb51d071cde21997c23a3f96768dd4b4b38722909af8c0dd342ce091de4",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"sed -n '340,405p' docs/user-guide.rst | nl -ba -v 340\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "bd8b8c2697a3c669ade17c4b8eccd4bb94409876010a3f8de6a9e2f5316ac6ba",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"sed -n '435,850p' src/urllib3/connectionpool.py | nl -ba -v 435\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "8fa5f41175e6bb9a9068cf420d9081a58491462f97bfb0b24b1e1893a604f7ea",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"sed -n '1,120p' test/test_retry.py | nl -ba\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "f6789fd9c2654f22f0521632dcd6dfd3da531a6ad7279d0ca7f03ae6c81b019b",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"sed -n '120,220p' src/urllib3/connectionpool.py | nl -ba -v 120\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "0fe08492032ad20c7860f3896eb9fa76a338e1ce22f5f78e38ae3f1e110ce6df",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"sed -n '114,290p' test/test_retry.py | nl -ba -v 114\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "b424d43c404b26d66c92efeb506221bdbd5964211260853db1c9e2af145fbc57",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"sed -n '135,300p' src/urllib3/poolmanager.py | nl -ba -v 135\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "c420c503bfaab0437a95a6c83e1328ca8ea35572b641b5b3e93416eb3d896aa6",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"sed -n '130,285p' src/urllib3/response.py | nl -ba -v 130\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "52ce459f9e1b67211befd37b985b543b5fb2a30c7f96740a05a2d53a33ba71a4",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"sed -n '563,615p' src/urllib3/response.py | nl -ba -v 563\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "9e6b5308d2ec4c4afc29731c0270f51bdade8b0cb92b74fad637ea61438aff3f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"rg -n 'def getheader|def __bool__|def __nonzero__|respect_retry_after_header|sleep_for_retry|sleep\\\\(|def test_|urlopen|Retry-After|retry' test src docs setup.cfg\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "23297f8dfef4daf1ce56ffcd3f41140eb136e4a6a33cd56a597e6462a5d7b395",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"sed -n '248,343p' src/urllib3/util/retry.py | nl -ba -v 248\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "dd3806bb9dd964b7dfb1de82d6b4c1ef510b95ab11d9a9bd31e9f7b423e4112c",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"sed -n '563,605p' src/urllib3/response.py | nl -ba -v 563\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "c815dbce0e64b9aa3b2ffe3de8b7e8c6284a2d001b104683650cba445149b145",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"sed -n '29,61p' src/urllib3/util/retry.py | nl -ba -v 29\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "108767148a024a231ce28c78e9c84e4a11bd6b26ee1be6f35ed4c5508bf04ab9",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_22",
+      "command": "/bin/zsh -lc \"sed -n '1,110p' src/urllib3/connectionpool.py | nl -ba\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "ed7e8c071a5ca90ad2fb1dd609450a668f5b2065845581b4298ea65947a81460",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_23",
+      "command": "/bin/zsh -lc \"sed -n '213,270p' src/urllib3/response.py | nl -ba -v 213\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "44bc80681dca19190deec4e2b63cdb1ec8336c2de52404a83f2be274abfc5d51",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_24",
+      "command": "/bin/zsh -lc \"sed -n '131,215p' src/urllib3/util/retry.py | nl -ba -v 131\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "e28854b465f87b3d4828130b61c0753de0a0dbebe958a8167f140d79a346ecb7",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r11",
+      "item_id": "item_25",
+      "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'!.git'\"' -g '\"'!AGENTS.md'\"' test src docs\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "c96fb673abd5df178ac38fcaba0dd5987a9ac73399cdf177fb72e56015dcf269",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat /private/tmp/faultline-counterexample-evaluation/stage/c04/SKILL.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "9d3d1e8e8c068d5448f8370fcc08eaa9ecfbcc677a9e3100d351953c51f45e35",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc \"rg --files -g '\"'!*.lock'\"' -g '\"'!vendor/**'\"' -g '\"'!node_modules/**'\"' -g '\"'!'\"\\\\.git/**'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "946d74004bd788ab93a37b354966d13b821cdc0a07eb67f77bc5f39b290836b0",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc \"rg -n \\\"class Retry|Retry\\\\(|status_forcelist|Retry-After|status_retries|respect_retry_after|retries\\\" --glob '*.py' --glob '*.rst' --glob '*.md' --glob '\"'!vendor/**'\"' --glob '\"'!node_modules/**'\"'\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "91536d013fc5206fd4b16a011972da65f999f937d1c892ebfe1a6b103c4bda30",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7bd6291bd09dfc756c08eb7236b3a76a1537b15e4efbc06398e3b90e14d0d23f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba src/urllib3/util/retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "3b2e34500ddd75434709f12b5f22f2dcd05e48b60a046f6eda9ceae62c4278df",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/connectionpool.py | sed -n '1,220p;470,840p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "15a8a476543f6f08aa64bc1b1d43e1848da6eaf5fdbf974ee565d0735b5cad6a",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc 'nl -ba test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7bd6291bd09dfc756c08eb7236b3a76a1537b15e4efbc06398e3b90e14d0d23f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/poolmanager.py | sed -n '1,145p;270,385p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "f4075381f8731db4ee9c09358b4023cc7e9860d74f1be6bb526a1440bfcd1a6e",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba docs/user-guide.rst | sed -n '330,420p'\nnl -ba setup.cfg\nrg -n \\\"retry|Retry|backoff|sleep|timeout|status\\\" docs/advanced-usage.rst src/urllib3/response.py src/urllib3/exceptions.py\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "ab72e4924c0d859aeeaf1ca407319336805269f0e90e201d2afdde7768d13f2f",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/response.py | sed -n '130,300p;360,445p;450,540p;560,635p'\nnl -ba src/urllib3/exceptions.py | sed -n '55,85p;150,170p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "1016a7fd241b6e4120f7afefd5ff3a2e15d4ba5544e48d0e37a5916a6cd42841",
+      "exit_code": 0
+    },
+    {
+      "session": "audits/r12",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba src/urllib3/connectionpool.py | sed -n '1,65p;222,305p;335,385p'\nnl -ba src/urllib3/poolmanager.py | sed -n '145,215p'\nrg -n --hidden --glob '\"'!'\"\\\\.git/**' \\\"respect_retry_after_header|Retry-After|sleep_for_retry|parse_retry_after|time\\\\.sleep|\\\\.new\\\\(\\\" .\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "723150308966f693af23e34d939ad700711e4944940ef71148045c43d51b8c8c",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g01",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat report.md rubric.json oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "586b9ca5d5ff117c65350602ddf7f5b5ba98bcb66bfa6a2b7e06a3abc17c2ebc",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g01",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'rg --files project'",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "02f1f8a9f9d91582a650260d1b88f436e1e7499139f0d28af03fef24bc7f1aed",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g01",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'nl -ba project/src/urllib3/util/retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "3b2e34500ddd75434709f12b5f22f2dcd05e48b60a046f6eda9ceae62c4278df",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g01",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba project/test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7bd6291bd09dfc756c08eb7236b3a76a1537b15e4efbc06398e3b90e14d0d23f",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g01",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc \"rg -n -C 10 'retries|is_retry|Retry-After' project/src/urllib3/connectionpool.py project/src/urllib3/poolmanager.py project/src/urllib3/response.py project/docs/user-guide.rst project/docs/advanced-usage.rst project/setup.cfg\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "f463756e45d3fb891225e1bf61dfb20d57c5d02077aa3dfff31df0be10f908ee",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g01",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba project/src/urllib3/connectionpool.py | sed -n '645,682p;753,837p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "1be7e4f363610e0b4ddfc47cd334748c53f444b1e50e5bb71d32151133cae173",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g01",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba project/test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7bd6291bd09dfc756c08eb7236b3a76a1537b15e4efbc06398e3b90e14d0d23f",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g01",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"rg -n -C 4 'Retrying requests|Retry\\\\(|retries|Retry-After|respect_retry_after_header|def getheader|def __bool__|def __nonzero__' project/docs/user-guide.rst project/docs/advanced-usage.rst project/src/urllib3/response.py project/src/urllib3/poolmanager.py project/test/test_retry.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "03ff2d2b01347d74ea02e0ba58d1c6c75ada95eab6ae3545702498f256fab1f2",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g01",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba project/src/urllib3/response.py | sed -n '1,220p;465,495p;625,690p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "93fe6c9f154a136de903b97ca566d878c1827c7a8c3ba9f5c940f68998ba181e",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g01",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba project/docs/user-guide.rst | sed -n '341,400p'\nnl -ba project/src/urllib3/poolmanager.py | sed -n '316,410p'\nrg -n 'respect_retry_after_header|Retry-After|sleep_for_retry|\\\\.sleep\\\\(' project/test project/setup.cfg\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "6b99cf4871f965e90e0a4f28d676ca0375a3259b9caee45f9e1561ce28f57357",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat report.md rubric.json oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "060c95494fbe1faa5fc88cbc794815466e43986f682e5cd2d7994fc58d2544ca",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'nl -ba project/src/_pytest/skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "4e3892057f51f9a66fbf092c69a3507723d0da399b475f14b98b83a2ca00208b",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/nodes.py | sed -n '1,210p;520,740p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "97b117f154c5c694269bdca030309878a4e8208fb9d9a785b3605ee730264b26",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc \"rg -n 'runxfail|reportinfo|skipif_reporting|skip.*report|custom|skipped_by_mark|eval_skip|xfail_run_anyway|1 / 0|1/0' project/testing/test_skipping.py project/src/_pytest/runner.py project/src/_pytest/terminal.py project/doc/en/skipping.rst project/conftest.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "9192067b01e6e837274324675b5223f11f4a27a6b726f949e64d498f1fbebee3",
+      "exit_code": 2
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/reports.py | sed -n '1,380p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "d3cf52acd5f474b6afe25a8d73cc650ecf1885848108c3f601f96ffb6577e54e",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'nl -ba project/src/_pytest/runner.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "bfc45d7bfc5e02687e54d570861684f6b8782d66c0c6166b0fe00ffaeabcbdfe",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba project/doc/en/skipping.rst | sed -n '1,220p;245,375p';\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "133a53350a64f59458fe7d7d9c577c3e84cb5bcaed1b02e220bff1aed1128607",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba project/testing/test_skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "afeffae7bd8c6b4fa81f8ad9b2b7fea836617de4ce31bab6168998b36443977f",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '490,725p;780,975p;1080,1170p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "78229f257470f05c392a8989b1a00274ca4c5bb463fb4e564b9fa96cc280a9a8",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/runner.py | sed -n '85,310p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "59b20b92e9cbd6467ae9c0acb2b7105fc9f9c1f716cf3a5035d0ee1cb65203cc",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"rg -n 'summary_skips|_folded_skips|longrepr|pytest_internalerror|skipped|reprcrash' project/src/_pytest/terminal.py project/src/_pytest/main.py project/src/_pytest/outcomes.py project/src/_pytest/_code/code.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "3ede3e230005325daf0f106168d4aa6f9ae6bdebed2e6fb1c73ae02995929f51",
+      "exit_code": 2
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/terminal.py | sed -n '470,495p;1080,1150p;1240,1290p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "05d5ce73a54986931c54c9e1982b8aff4badf97125463f36d9e6d0812c1e53c9",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"rg -n --glob '*.py' 'runxfail|test_mark_xfail_item|reportinfo|skipped_by_mark_key|INTERNALERROR|pytest_internalerror' project/testing project/src/_pytest/config project/src/_pytest/runner.py project/src/_pytest/reports.py project/src/_pytest/skipping.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "026d248235b77cffbd7ad750010e78a9c5693b44fdc5b8986943c64a169f79b3",
+      "exit_code": 2
+    },
+    {
+      "session": "grades/g02",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/outcomes.py | sed -n '1,205p'; nl -ba project/src/_pytest/nodes.py | sed -n '265,350p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "9dddaec88a9a462b1474997e0507a2a49e580bb29e1b87e1af615c3232a385f5",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc \"pwd && rg --files -g 'report.md' -g 'rubric.json' -g 'oracle.json' -g 'project/**' -g '\"'!project/**/node_modules/**'\"' -g '\"'!project/**/.git/**'\"'\"",
+      "read_verbs": [
+        "pwd",
+        "rg"
+      ],
+      "stdout_sha256": "75152ecaba612a424138d904e52d2013dfc8b58672e658e54a0fe258e707bacb",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'cat oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "ba2bef0160a12bb6192de8c909021878caabdf47097aefb872152162861548af",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'cat rubric.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2366f6ae3d6d982973bfd12b298e40f1636f916993c119d13eb8663527fe86c8",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'cat report.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "8138a01e2360ef85ce02f45c8d4acab006f023dd0a306626002ffeb1a729570b",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba project/doc/en/skipping.rst'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "5e57b5be41e092a497ce1848c3c99cc7fec2bdbe7eb16e28579d89dd3cc1545a",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba project/src/_pytest/skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "4e3892057f51f9a66fbf092c69a3507723d0da399b475f14b98b83a2ca00208b",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '1,340p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "8cad9c7bd021db122779215be1c8002fe3aedbcd73cc3c0be2a925de0aaf4304",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/nodes.py | sed -n '480,720p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "e9fec7ca7cdc41514d2c63de9534ec06136849dd51b4f2736688e3ee6bcfbb4e",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '780,1300p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "4edb08264fa195dfcaf836318c36fc056289119b2ec6096ccdb66ea2368ea753",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/runner.py | sed -n '90,340p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "876e9d5460f53dbcd20619c0cd5843371b1579b88d804a7c80f9882fe6e3538d",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/nodes.py | sed -n '1,200p;300,390p;610,700p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "54478ee75ce73e608b2103406ea011133c8af29d9f13ceaba10723b53d328b75",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"rg -n 'skip|longrepr|from_item_and_call|_getreprcrash|location' project/src/_pytest/reports.py project/src/_pytest/terminal.py project/src/_pytest/outcomes.py project/testing/test_skipping.py project/testing/conftest.py project/setup.cfg\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "3046c664cd6db037c2b7162be33970a7b8b664bacf98658974e592dade45bcdd",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '155,310p;750,790p;894,950p;1045,1086p;1139,1207p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "4d1ccd2866d0e1d732eea14a55d5e1b087ec61f8e4999676401371b86c7bb4bf",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/runner.py | sed -n '187,286p;324,336p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "b030b08d5cc793f303b4125caa4c00c7885a06d1c5372b203b7024bde4063c14",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/reports.py | sed -n '292,338p'; nl -ba project/src/_pytest/outcomes.py | sed -n '1,125p'; nl -ba project/src/_pytest/terminal.py | sed -n '1110,1130p;1245,1275p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "6beef099af076eb4e702788547f4171098b5774dd163246164c7921a4e8e68db",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc 'nl -ba project/testing/conftest.py; nl -ba project/setup.cfg'",
+      "read_verbs": [
+        "nl",
+        "nl"
+      ],
+      "stdout_sha256": "aba261a2fa2981ade47d4f38466ef1855609632ba527c09810a48908df989f72",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"rg -n -- 'runxfail|reportinfo|MyItem|pytest\\\\.Item|pytest_runtest_makereport|skipped_by_mark_key|--runxfail' project\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "fba211c064f5197dc79a057f36294442d968181217052c73fd785b7a309ff8c5",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/nodes.py | sed -n '255,306p'; nl -ba project/src/_pytest/runner.py | sed -n '276,311p'; nl -ba project/src/_pytest/outcomes.py | sed -n '122,175p'; nl -ba project/src/_pytest/terminal.py | sed -n '1116,1136p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "fc0176a074439747b90d17ba5ed77551404fc73ecc384dc16b05eca435ac43bc",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g03",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '309,375p;790,831p'; nl -ba project/src/_pytest/runner.py | sed -n '311,317p'; nl -ba report.md\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "nl",
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "49373b0ef1d88ec0dac20a6f98c6ee2c84d099f46579f0b183ed56bb80116f0d",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat rubric.json oracle.json report.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "7b668a09f1b4bce2f601495c66815d396dce68e9b0742cafef756a7195bdedee",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'rg --files project'",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "02c184790b2e8059ae9673db2f865d11688433f203de43fa133108d522cb439e",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/wrappers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "f74928ecaa900bd7ba0a961b317df999bcdbbdba3d1a55a6457a3fcc52448319",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/globals.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cd9db61cbe04ba96a057b40a4a1c4c2fde4ffd06bd38109b2f5185bd2a745dd1",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba project/tests/test_helpers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7f781773cd9607f180f3de4987afef1f630c0d99e08d73381addf08c120d5c18",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/testing.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "bfe0ff34a5118dbb42c4a7ad3af664d44ae2665f2b5e34e71f429921a72d4c28",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'nl -ba project/tests/conftest.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cc1d6e785b602355a4c0f1cc17411acc191a5398263ca4e2b2cfeebf1d241872",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc 'nl -ba project/setup.cfg'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "9fd04433c175b151280e098460ffd3814c9056f7544f08f3f638f90481d47173",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/json/__init__.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "c424d7dc8cb99233d24527b1d5f8e9ed143fc59a634165f2f8b69472e1c79adf",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"rg -n 'get_json|on_json_loading_failed|silent|cache|BadRequest|Response|response_class|request_class|full_dispatch_request|preprocess_request|wsgi_app|before_request|test_client|auto_pop|PRESERVE_CONTEXT' project/flask/app.py project/flask/ctx.py project/flask/json/__init__.py project/tests/conftest.py project/docs/api.rst project/setup.cfg project/tests/test_helpers.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "d4f8f2e8ceb289f41a3fdafc7e68183e26c2ca0410193170cb001c7245469ec7",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"sed -n '155,180p;595,612p;947,1003p;1445,1463p;1769,1810p;2050,2084p;2253,2301p' project/flask/app.py\"",
+      "read_verbs": [
+        "sed"
+      ],
+      "stdout_sha256": "8d09628b129e5cce366b979dc24ea310437b5a9cba9a9e195c8d2b6f23ec39f6",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/ctx.py | sed -n '228,455p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "a84979c53c0d90b7564bcf907a707699159cbd6ee0ba0673d8eb00be1bc77964",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba project/tests/test_helpers.py | sed -n '200,365p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "26be12a1b25038107ec42ad17b61b2d88cc560492c56f55e5ceb1011e71e0764",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba project/docs/api.rst | sed -n '1,125p;415,535p;555,635p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "fd3c7d4ecd4b3584cd2692120b31330d14e9a7e2dc536b0cec2596a66ebffbe0",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/ctx.py | sed -n '190,245p;383,450p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "187635981113694e8602d0d678d7fbb31fa718b2e0d2bef6f55ade01e65f1742",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"rg -n -C 10 'current_app|notes-on-proxies|_get_current_object|proxy' project/docs/api.rst\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "a99f544d0632395553454ce434cb48d1cebe6714b7178aedee5091d64a54f508",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"rg -n 'json|BadRequest|malformed|application/json|app_context|request_context|Response' project/tests/test_helpers.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "9b24bed5a7639c4e18f7cfc4c5a2d05a30b8bcd5a06f9714f19ac6942b900084",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/app.py | sed -n '165,174p;995,1002p;1778,1809p;2055,2081p;2276,2295p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "fd1c2e37eac6fedb2ed37388478e3dd03676414bd0debfaa348c3dc89de588db",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"nl -ba project/tests/test_helpers.py | sed -n '57,99p;135,144p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "c0050e6cd7de87e7554ba1e9c107b27d988dfaffeca8c6731805119dfb719f4f",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g04",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/ctx.py | sed -n '175,196p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "776c7f201f81c0a96646e6a9d07078a2cdf430a8381ce638ca725d34406b2b52",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc \"pwd; rg --files -g 'report.md' -g 'rubric.json' -g 'oracle.json' -g 'project/**' -g '\"'!project/**/.git/**'\"'\"",
+      "read_verbs": [
+        "pwd",
+        "rg"
+      ],
+      "stdout_sha256": "fec4b578e40d62db26c4ea11fc3ffeca2f24cde01b11cd3e768d3526bc95a467",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'cat oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2d30e22a98a597b3ea1638c207bfec8739fa8243bae585933178f9a145465dc2",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'cat report.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "98597f71f1eee419c04540d46ab3083e1def9211ea69d1debed2e53ca87b07d8",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'cat rubric.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2366f6ae3d6d982973bfd12b298e40f1636f916993c119d13eb8663527fe86c8",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/globals.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cd9db61cbe04ba96a057b40a4a1c4c2fde4ffd06bd38109b2f5185bd2a745dd1",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba project/tests/test_helpers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "e9f1a6ec9c302dfc99cecaab2af1b6c6baea413b344d8743faa8b12b7d886b97",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'nl -ba project/tests/conftest.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cc1d6e785b602355a4c0f1cc17411acc191a5398263ca4e2b2cfeebf1d241872",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/wrappers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "e32705d79522c8f84315f1d338155bd65483fe99a61d040847aad53f727ac331",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/json/__init__.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "c424d7dc8cb99233d24527b1d5f8e9ed143fc59a634165f2f8b69472e1c79adf",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/testing.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "bfe0ff34a5118dbb42c4a7ad3af664d44ae2665f2b5e34e71f429921a72d4c28",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"rg -n 'json|JSON|get_json|BadRequest|TRAP_BAD|DEBUG|context' project/docs/api.rst project/setup.cfg project/tests/test_helpers.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "957940a73b68be120d79fe3be50c8283383cc88c7d51096e397b3575499d1174",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"rg -n -C 5 'TRAP_BAD_REQUEST_ERRORS|PROPAGATE_EXCEPTIONS|PRESERVE_CONTEXT_ON_EXCEPTION|def propagate_exceptions|def preserve_context_on_exception|def handle_user_exception|def handle_exception|def full_dispatch_request|def finalize_request|def trap_http_exception|def wsgi_app|def test_client|request_class =|response_class =' project/flask/app.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "7ec9bd1bd39f6ef32728c0d36fb05a5e1890dde9036b5767c09de09a3372e560",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"sed -n '1635,1750p' project/flask/app.py\"",
+      "read_verbs": [
+        "sed"
+      ],
+      "stdout_sha256": "0f12d1e0f26c57c78a13bc452756d0aff2567917afe2d5d2cb71c21e52d78b37",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"sed -n '2253,2325p' project/flask/app.py\"",
+      "read_verbs": [
+        "sed"
+      ],
+      "stdout_sha256": "2909f1440b639d16b4312fe35a24e7dba48cd9adf42e01a211e48423fab6a564",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"sed -n '1780,1840p' project/flask/app.py\"",
+      "read_verbs": [
+        "sed"
+      ],
+      "stdout_sha256": "2152fdb148f2349a09bbb27109978ce58234b47c80dd67512536071c5853d87a",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"rg -n -C 12 'def __init__|def push|def pop|def auto_pop|def __exit__' project/flask/ctx.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "b9edb8b5b9e605f4203e86fb6e35e6d10830727d19c9972c760c9a62dbbbcdf5",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc 'cat project/setup.cfg'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "c8905362815ec544ba15dd8aa2863c255cc369c0b202e2fd5dd3a0c82c9cf582",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"sed -n '1,105p' project/docs/api.rst\"",
+      "read_verbs": [
+        "sed"
+      ],
+      "stdout_sha256": "3a75010d55e6f61a738bf77e17a404e6deb1640a0f96aca0ee6befb1d304d6e5",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"sed -n '235,388p' project/tests/test_helpers.py\"",
+      "read_verbs": [
+        "sed"
+      ],
+      "stdout_sha256": "dda341c94ef048cce086fcbde73e9e27196d742ebbbdfd1f06bfbec7b226d547",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g05",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"rg -n -C 3 'get_json|on_json_loading_failed|_cached_json|cache=False|TRAP_BAD_REQUEST_ERRORS' project\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "3c39d83df4920ea39761c0599a5c25905082081eb4388b631b915cd3ce3ee0e8",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc \"pwd && rg --files -g 'report.md' -g 'rubric.json' -g 'oracle.json' -g 'project/**' -g '\"'!project/**/node_modules/**'\"' -g '\"'!project/**/.git/**'\"'\"",
+      "read_verbs": [
+        "pwd",
+        "rg"
+      ],
+      "stdout_sha256": "7f9df57a464d6dc4559a8832aaf8b647bbadb5fe6671c9ab94a3e8dcff251ecf",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'cat report.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "155ce8c73aff99e2c9919c8a4cb5d119f0f93f8cdb5c5c7ceecd340b0d85cf99",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'cat rubric.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2366f6ae3d6d982973bfd12b298e40f1636f916993c119d13eb8663527fe86c8",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'cat oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "43c6b5e02a2780ba7fb798d2696caa4ce69db51369fd480e848295bd1c933129",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba project/src/urllib3/poolmanager.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "15a70d4bf2285256f5b5ba4ffb128c994e49ddf968118303b58a60a68323dd21",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba project/src/urllib3/util/retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "45cd53bedbb564582b53d7cfc4512649dddd36ec0128897baac3eb8ab9344278",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'nl -ba project/test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "35606c61eca01e28d2aa68308d8155372fe8129505ca10e7c4e16fb3622ac2bc",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba project/src/urllib3/poolmanager.py | sed -n '1,380p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "726a22680566c7e5f8a0031ab6455543fe414f53b60bb95ad774db517cead6c1",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba project/src/urllib3/connectionpool.py | sed -n '1,250p;480,850p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "6f8c3226e09a44c2838c00d0ce59757f77e1c7baca315063e113e8ac832fd90a",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"rg -n 'retry|Retry|redirect|Retry-After|GMT|UTC' project/docs/user-guide.rst project/docs/advanced-usage.rst project/src/urllib3/response.py project/src/urllib3/exceptions.py project/setup.cfg\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "1bf7283c6c7bd40c5022c8e45a8ee0bb50a4ef4e374e5020c625dd97afd5ab8b",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba project/docs/user-guide.rst | sed -n '341,406p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "8171ce1191edb7f292d7262e39faa2e21171ae7e593ab46af6003a519d225772",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba project/src/urllib3/response.py | sed -n '145,280p;600,650p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "f617c9ee537e0443461b3d471a22b005aaf70603ad5b865393d10b0f24d17ee4",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"nl -ba project/src/urllib3/connectionpool.py | sed -n '120,230p;480,510p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "c01f2d357604a8a251229fefabef7d740104296c1669d3455e2b2d14582f812c",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g06",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"cat project/setup.cfg && rg -n 'Retry|retry|PoolManager|urlopen|mktime|time\\\\.time|sleep' project/test/test_retry.py project/docs/advanced-usage.rst\"",
+      "read_verbs": [
+        "cat",
+        "rg"
+      ],
+      "stdout_sha256": "348c5dd4678c94bfb9ac9b080b7ff1331c80eb940988917c8d4664a9e5ce75ee",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat report.md rubric.json oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "55dad290c11f05e16cf43730deac979b83bbd44ec163d9b12ea73131373fc384",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'rg --files project'",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "02f1f8a9f9d91582a650260d1b88f436e1e7499139f0d28af03fef24bc7f1aed",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'nl -ba project/src/urllib3/util/retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "45cd53bedbb564582b53d7cfc4512649dddd36ec0128897baac3eb8ab9344278",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba project/test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "35606c61eca01e28d2aa68308d8155372fe8129505ca10e7c4e16fb3622ac2bc",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc \"nl -ba project/src/urllib3/connectionpool.py | sed -n '1,240p;450,875p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "c3df34e42cf16b63c66ff3cacc1a8a55161a05cd820acee6aa6b2dabef284ac2",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc \"rg -n -C 8 'Retry|retri|Retry-After|status_forcelist|respect_retry|timezone|UTC|GMT' project/docs/user-guide.rst project/docs/advanced-usage.rst project/src/urllib3/poolmanager.py project/src/urllib3/response.py project/setup.cfg project/src/urllib3/exceptions.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "054e70c24f8897556baa55406812b49042c3da6a71533d6dce9c97b7ab2f72b6",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'cat project/setup.cfg'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "0012c2736de3136af1b874fb1c85823abac61e38fc6a759560d601b68def0c7b",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc 'nl -ba project/test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "35606c61eca01e28d2aa68308d8155372fe8129505ca10e7c4e16fb3622ac2bc",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba project/src/urllib3/connectionpool.py | sed -n '470,625p;660,850p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "1911f67fd4b2d4058b0ee40ce7f6f40f3fcc59025da25642ae658853be7bc7ca",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"rg -n -C 3 'total|Retry-After|respect_retry_after_header|status_forcelist|HTTPConnectionPool|PoolManager|urlopen|sleep\\\\(|\\\\.new\\\\(|is_retry' project/test/test_retry.py project/src/urllib3/util/retry.py project/docs/user-guide.rst project/docs/advanced-usage.rst\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "f392a46dd30dc6fa1c946d82c6088ad05ce323c2d034c6cbff1552d30396f468",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g07",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba project/src/urllib3/poolmanager.py | sed -n '145,180p;275,333p'\nnl -ba project/src/urllib3/response.py | sed -n '205,225p;255,280p;570,625p'\nnl -ba project/src/urllib3/connectionpool.py | sed -n '168,205p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "e21a85645d81ae8aaf53f0556d1ba10b47b931bd347ccdb86c80c8a22f1a9b66",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "ddaf3a95f1d60680becf725bcf8cb66737fe5199cfed9b2086fb54ad0f97b9e6",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'cat rubric.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2366f6ae3d6d982973bfd12b298e40f1636f916993c119d13eb8663527fe86c8",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'cat report.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "af6d6b48c1baf3cf00698afc12b160ab17273202c3194ef0da8340af0d989d3d",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'rg --files project'",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "02f1f8a9f9d91582a650260d1b88f436e1e7499139f0d28af03fef24bc7f1aed",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba project/test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7bd6291bd09dfc756c08eb7236b3a76a1537b15e4efbc06398e3b90e14d0d23f",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba project/src/urllib3/util/retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "3b2e34500ddd75434709f12b5f22f2dcd05e48b60a046f6eda9ceae62c4278df",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"rg -n -C 14 'is_retry|retries\\\\.increment|retries\\\\.sleep|response\\\\.retries|Retry\\\\.from_int|def urlopen' project/src/urllib3/connectionpool.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "be81b72fbf11074281fcc69fd642740a528c4cf68b18a9b6356b909a12bbb230",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"rg -n -C 12 'Retrying requests|respect_retry_after|Retry\\\\(|retries|Retry-After' project/docs/user-guide.rst project/docs/advanced-usage.rst project/src/urllib3/poolmanager.py project/src/urllib3/response.py project/setup.cfg project/src/urllib3/exceptions.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "a603ebc18a1886014a7d9d01cab3e2e38eb6f1406b90014268e5ea716e5ee88b",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc 'nl -ba project/test/test_retry.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7bd6291bd09dfc756c08eb7236b3a76a1537b15e4efbc06398e3b90e14d0d23f",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"sed -n '470,840p' project/src/urllib3/connectionpool.py | nl -ba -v 470\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "d9aaace3ce38dd42af970bee86bccfbfffa96d0ac3eeb2e06b3f107c9f8b04e5",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc 'cat project/setup.cfg'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "0012c2736de3136af1b874fb1c85823abac61e38fc6a759560d601b68def0c7b",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"sed -n '240,285p' project/src/urllib3/response.py | nl -ba -v 240\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "3bdce154f9141341ee84ecf5ccfdb2172d6a9f961f58b8984172a555622ccab7",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"sed -n '1,180p' project/src/urllib3/response.py | nl -ba -v 1\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "2351c0851ebb4e9982c703b2d3c4ee3cbaddda91b1f50e0d253bf16efc351715",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"sed -n '550,655p' project/src/urllib3/response.py | nl -ba -v 550\"",
+      "read_verbs": [
+        "sed",
+        "nl"
+      ],
+      "stdout_sha256": "75852cd03142955a73bdcc32002f100c8abbe6bda6d604df4cbed366626f4f0e",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g08",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"rg -n 'Retry-After|respect_retry_after_header|has_retry_after|def __bool__|def __nonzero__|def __len__|def getheader|def get_redirect_location|def from_httplib|class HTTPResponse' project\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "546096bc488c998e470dadf814a90e1ca7ea6fa02ddbba78a358c21f6e584cf4",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat report.md rubric.json oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "c16334453178383e11f0362f1c79713b0927dfa5692274d90ba8d49312b788bf",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/wrappers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "e32705d79522c8f84315f1d338155bd65483fe99a61d040847aad53f727ac331",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'nl -ba project/tests/test_helpers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "e9f1a6ec9c302dfc99cecaab2af1b6c6baea413b344d8743faa8b12b7d886b97",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/globals.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "cd9db61cbe04ba96a057b40a4a1c4c2fde4ffd06bd38109b2f5185bd2a745dd1",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc \"rg -n 'get_json|on_json_loading_failed|TRAP_BAD_REQUEST_ERRORS|trap_http_exception|BadRequest|JSONMixin|Response Objects|Request Objects|preserve_context|request_context|request_class|response_class' project\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "390c781174a4031741d39e6ee957ca249abd951767d2a33ca51dd01bcaf56282",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc \"sed -n '270,320p;575,625p;965,1005p;1600,1770p;1800,1845p;2250,2320p' project/flask/app.py\"",
+      "read_verbs": [
+        "sed"
+      ],
+      "stdout_sha256": "40e2490189b9cf4e64cf232656eb7094b6b28f4d5dfa44bf5f79d355082f9673",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/testing.py | sed -n '90,220p'\nnl -ba project/flask/ctx.py | sed -n '190,245p;250,305p;335,445p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "5ae5895e4f38fff82c34359637370fd90b170470bd30f5abdac27df42fdc8576",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/json/__init__.py | sed -n '15,45p;100,145p;180,225p'\nnl -ba project/tests/conftest.py | sed -n '1,130p'\nnl -ba project/docs/api.rst | sed -n '1,110p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "d38be99d0129b8554778f3a230d9e0ed1b46699cbed09c5ffe86b444ac2b81d1",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba project/tests/test_helpers.py | sed -n '220,355p'\nrg -n -i 'trap|bad.request|badrequest|silent|cache|app_ctx|autouse|response' project/docs project/tests/conftest.py\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "3b6459ca6d8a39312dbdcead47c32150959c67dea6cf3c09de84f10b147a0452",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/testing.py | sed -n '171,218p'\nnl -ba project/flask/ctx.py | sed -n '340,440p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "cbcdc082dce3b2d87cb73548dcbf1916e6370cc4856fc71041f9afadb1b45e06",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/json/__init__.py | sed -n '10,30p;149,177p'\nnl -ba project/tests/conftest.py | sed -n '175,220p'\nnl -ba project/flask/app.py | sed -n '580,610p;1638,1736p;1787,1813p;2274,2300p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "3b5bdf4f539fb1faebd2fe4632e9c22a7c731216cf084720c918519d552ef74f",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g09",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"rg -n 'get_json|on_json_loading_failed|TRAP_BAD_REQUEST_ERRORS|trap_http_exception|_cached_json|cache=False|response.*json|json.*response' project/tests project/docs project/flask\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "bf97210ff574a574be9190dff2b34e21a3229841b264c544e49456813a5e8804",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat report.md'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "3898bc17b20e639168c84cd8ab2f5fb239f1b743dfdfb63ef629237e0a4978f5",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'cat oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "8f24eb8921e32fe72f55e61b96e6a8aed1fd1a231beba791f1544cad936a7881",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'cat rubric.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "2366f6ae3d6d982973bfd12b298e40f1636f916993c119d13eb8663527fe86c8",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba project/src/_pytest/skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "c023253b16178c737265341f3ccd69d6988480a51465676bcfbaf2f94c296c61",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/conftest.py | sed -n '1,230p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "3bf82645833616c17bed188e1d41091af97f4d9bc2f54098a4aaad33e0a50938",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc \"nl -ba project/doc/en/skipping.rst | sed -n '1,430p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "5e57b5be41e092a497ce1848c3c99cc7fec2bdbe7eb16e28579d89dd3cc1545a",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '1,360p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "4edeaf29d50ca4fc19aa795fd988a0131f5388de8bce282fcd4d761e77d47388",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/nodes.py | sed -n '400,730p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "d467d21e1e7c384e6a29bee6ac80fdff1497a8c6a780da05ee482d9613995e7a",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '160,300p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "a8a8f51c0261b8eb150fe572a3ea0512e23bb14097881c37eb67911bff3658a0",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_10",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/nodes.py | sed -n '550,730p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "1c14961411028ee0e44d5063956b808a8e91c5022a55a6a7cdce9e7e15945c9b",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/conftest.py | sed -n '1,145p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "765c706f03da7a485eabff59ba179f4b8be8ce9b9497996dc614e913a0aef685",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"rg -n 'runxfail|YamlItem|reportinfo|condition_probe|skipped_by_mark|pytest_runtest_call|pytest_runtest_makereport' project\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "f76d1f588bc33d60211002a5b7a19b51b47861017021ff1fda318638067ec5f5",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/nodes.py | sed -n '60,145p;240,295p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "4c86eb05fa635d7bfedcb2d1fa5255d488b24fc36a0c4c9563a57b541a10a1b4",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '820,1225p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "6fa0f133f127d92fa72a54740daccfe61b9c66ad70d56bfd49f559b07c0a3bf8",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/runner.py | sed -n '70,325p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "32bfc59e32247c570d9ff052b82510946263482b5261688d3e35e40a189a036c",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '292,420p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "0b6dcdcfb790d259311e143d3e7ee53b5d002c237eb6101f8c253c66e2382efa",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"rg -n -C 9 'from_item_and_call|longrepr =|Skipped|location|folded_skips|short_test_summary' project/src/_pytest/reports.py project/src/_pytest/terminal.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "c8e5a0871058a89cbe7755e0230859901c1e9f2468c28982c6ddca8619c57788",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '292,405p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "49b950c06d622778dbcb8183cae79ef2e8a838611c65d1e61f60f3e777b5dfff",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/reports.py | sed -n '291,365p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "ad42fb19dcaa908a193c0b7090dd4722c7917b1d985c61c57eee641895e8e8db",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"rg -n -C 6 '_get_line_with_reprcrash_message|_folded_skips|folded_skips|SKIPPED|longrepr\\\\[|report.longrepr|rep.longrepr' project/src/_pytest/terminal.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "b6f487362de1319f3b472eaa95a3bcd1c51b207f7a021c5a597fc2f275821613",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_22",
+      "command": "/bin/zsh -lc \"rg -n '(\"'^[[:space:]]*def test_|dummy_yaml_custom_test|skip.*item|item.*skip|lineno|line.*None|None.*line|condition.*[Ee]rror|class Failed|def fail'\"\\\\(|def skip\\\\()' project/testing/test_skipping.py project\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "84a4532afedc13163522fd3330da6bce84dc650fb06e0ca220d9801ac650095a",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_23",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/terminal.py | sed -n '1116,1140p;1245,1278p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "3bc19e95c602bd378ec2b6830904aec58f8e70dfe56c3b4a26e09bdf11c93d60",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_24",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '420,820p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "375355667d9d07dab09f67e69a6191da8251865850cca05a54d23f2f41e1c81f",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g10",
+      "item_id": "item_25",
+      "command": "/bin/zsh -lc \"rg -n 'pytest\\\\.Item|\\\\bItem\\\\b|dummy_yaml_custom_test|runxfail|reportinfo|condition_probe|evaluate_xfail_marks|evaluate_condition' project/testing project/doc\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "49a228a2647156d955fadd0623696fdae932b4ac40254a32dff3c88ba7011316",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat report.md rubric.json oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "33a8515f5448e068c6b5bb4197ed4d179926ebec33fefe29f50729a438fe6ab1",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'rg --files project'",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "02c184790b2e8059ae9673db2f865d11688433f203de43fa133108d522cb439e",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/wrappers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "f74928ecaa900bd7ba0a961b317df999bcdbbdba3d1a55a6457a3fcc52448319",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'nl -ba project/tests/test_helpers.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "7f781773cd9607f180f3de4987afef1f630c0d99e08d73381addf08c120d5c18",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/globals.py\nnl -ba project/flask/json/__init__.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "217a3473d767bf2a0faa948ed2997d18adb31693d631a1f528a942cac349f446",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc \"rg -n 'TRAP_BAD_REQUEST_ERRORS|PROPAGATE_EXCEPTIONS|request_class|response_class|def (trap_http_exception|handle_user_exception|handle_http_exception|handle_exception|preprocess_request|full_dispatch_request|dispatch_request|wsgi_app|process_response)|BadRequestKeyError|bad requests' project/flask/app.py\nrg -n 'get_json|\\\\.json|Request Objects|Response Objects|TRAP_BAD_REQUEST_ERRORS|json' project/docs/api.rst project/tests/conftest.py project/setup.cfg project/flask/testing.py project/flask/ctx.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "5e5ca1d1fa83198d578fc2a65ed87b1c51214d62a0a42804f4e88848a38a5201",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc 'nl -ba project/flask/testing.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "bfe0ff34a5118dbb42c4a7ad3af664d44ae2665f2b5e34e71f429921a72d4c28",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/ctx.py | sed -n '170,450p'\nnl -ba project/tests/conftest.py\ncat project/setup.cfg\nnl -ba project/docs/api.rst | sed -n '45,95p'\nrg -n -C 3 'get_json|\\\\.json\\\\b|TRAP_|DEBUG|BadRequest' project/tests/test_helpers.py\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "01ba26bce9d19bc956ed28669769ade8795479f8296536120bdcf5e0080ffc2a",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"sed -n '150,225p' project/flask/app.py\nsed -n '270,310p' project/flask/app.py\nsed -n '580,605p' project/flask/app.py\nsed -n '960,1005p' project/flask/app.py\nsed -n '1620,1755p' project/flask/app.py\nsed -n '1765,1820p' project/flask/app.py\nsed -n '2050,2085p' project/flask/app.py\nsed -n '2250,2310p' project/flask/app.py\"",
+      "read_verbs": [
+        "sed"
+      ],
+      "stdout_sha256": "81c743eb6b33d5b00d80c04e2b13955c04fd2940b96f0febbee5347a2ffb907a",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/testing.py | sed -n '90,210p'\nnl -ba project/flask/ctx.py | sed -n '180,300p'\nnl -ba project/flask/ctx.py | sed -n '325,435p'\nnl -ba project/docs/api.rst | sed -n '20,42p'\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "8c8865375497705f1951d1d60e1163960248e13cff382a17c6ced2bb830212ed",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g11",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba project/flask/testing.py | sed -n '203,225p'\nnl -ba project/flask/app.py | sed -n '1640,1744p'\nnl -ba project/flask/app.py | sed -n '2280,2304p'\nrg -n 'get_json|on_json_loading_failed|silent|cache=False|TRAP_BAD_REQUEST_ERRORS|TRAP_HTTP_EXCEPTIONS|before_request' project/tests project/docs project/setup.cfg\"",
+      "read_verbs": [
+        "nl",
+        "sed",
+        "sed",
+        "sed"
+      ],
+      "stdout_sha256": "60632e421218f77047d46db51d9869f4124143d237d206f775e75f5c357c1eb5",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_1",
+      "command": "/bin/zsh -lc 'cat report.md rubric.json oracle.json'",
+      "read_verbs": [
+        "cat"
+      ],
+      "stdout_sha256": "65bf758f57550485f8c1d4cac8aede2c3103040d18f5e92b008b1d7f86c6ccf5",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_2",
+      "command": "/bin/zsh -lc 'rg --files project'",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "3796a4dbdc120850852fcc6ac78dbcb65b148aca0c9f5d4bd41698ab72f5b6c3",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_3",
+      "command": "/bin/zsh -lc 'nl -ba project/src/_pytest/skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "c023253b16178c737265341f3ccd69d6988480a51465676bcfbaf2f94c296c61",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_4",
+      "command": "/bin/zsh -lc 'nl -ba project/doc/en/skipping.rst'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "5e57b5be41e092a497ce1848c3c99cc7fec2bdbe7eb16e28579d89dd3cc1545a",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_5",
+      "command": "/bin/zsh -lc 'nl -ba project/testing/test_skipping.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "835e28a9082978b801d4cd40bd41d7135d1d5f0b4f507fc9fd9bbafbfd366d76",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_6",
+      "command": "/bin/zsh -lc 'nl -ba project/src/_pytest/nodes.py'",
+      "read_verbs": [
+        "nl"
+      ],
+      "stdout_sha256": "0690ed0dbdb37848b6073353718afa070604446787cb533ee99e7d14904b0b37",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_7",
+      "command": "/bin/zsh -lc \"nl -ba project/doc/en/skipping.rst | sed -n '170,375p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "c33ebfd4ce817e0f221a4278b5113a3953a210dd6b6866cc15d1bd7f9cc2ce55",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_8",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '460,760p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "be077eb7e6a8683f5b18ac014e166c2871fed9c8f89831a7a0541f80722bbb93",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_9",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '185,460p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "18688fab0c5441d8386bf31cc13cf4b55e8edf13a4b77dcc5fc39784d3101d0f",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_12",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/runner.py | sed -n '1,310p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "ef5b53a18f4a1758b5bc3b9b34af3ec7ba146a6768bb97e94e7a3404682418af",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_11",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '760,1110p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "774a369824c6a67285bbeb8f9ce5e37f077d5d420d6398acb4cd3caf285c3d1f",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_13",
+      "command": "/bin/zsh -lc \"rg -n 'xfail|applymarker|runxfail|pytest_runtest|skip|setup' project/testing/conftest.py project/src/_pytest/outcomes.py project/src/_pytest/reports.py project/src/_pytest/terminal.py project/setup.cfg project/doc/en/skipping.rst project/src/_pytest/nodes.py\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "959d957cc091d59450c2527fed6f96f2aa52f9b34759a65d99afb660194b3dc9",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_14",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '1110,1400p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "b630683d87b5c7743494ed7685e67a82c56fc0fc2aed4463edb6d966a1c5d952",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_15",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/conftest.py | sed -n '1,145p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "765c706f03da7a485eabff59ba179f4b8be8ce9b9497996dc614e913a0aef685",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_16",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/runner.py | sed -n '310,475p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "f94d744c38a1c6ea7098ce380cc3d7645897957140059795736be68e5d6f9658",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_17",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/terminal.py | sed -n '1090,1135p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "e1d06155f0d68af0c09d692f006c8e4522c3118afd1d484b2f8064a96fc3a222",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_18",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/outcomes.py | sed -n '85,178p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "cb14fd024463922be4f4add99a0d5912138b38de8ebb0395ab9986648da28c70",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_19",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/reports.py | sed -n '290,339p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "2f03d1ab0b341a94269d9adf3608995540356760c9e75c8c5880dbedf65d9d8e",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_20",
+      "command": "/bin/zsh -lc \"nl -ba project/setup.cfg | sed -n '1,160p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "760a6a78c500cd1e7ac46b015178875308cf707c68ee790d45d866968ff471a6",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_21",
+      "command": "/bin/zsh -lc \"nl -ba project/testing/test_skipping.py | sed -n '135,190p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "1d4764d2b2efb2c9fa55ca5103afe308208ead3a0f7818b579d5db127da49300",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_22",
+      "command": "/bin/zsh -lc \"nl -ba project/src/_pytest/terminal.py | sed -n '1240,1278p'\"",
+      "read_verbs": [
+        "nl",
+        "sed"
+      ],
+      "stdout_sha256": "b822f5189f533d0caf7a0ee97f2865e65bd3aedf32ebfc6ff6d42b6cab810023",
+      "exit_code": 0
+    },
+    {
+      "session": "grades/g12",
+      "item_id": "item_23",
+      "command": "/bin/zsh -lc \"rg -n -- 'runxfail|applymarker|pytestmark|xfail\\\\(.*run=False|xfail.*condition|xfail.*[\\\"\\\\x27]1 / 0' project\"",
+      "read_verbs": [
+        "rg"
+      ],
+      "stdout_sha256": "87a0a8a223212c024ad97f026ea5f30e670be37e609b9cffa008a19c5af969ef",
+      "exit_code": 0
+    }
+  ],
+  "verbs": {
+    "cat": 44,
+    "rg": 105,
+    "nl": 363,
+    "sed": 314,
+    "pwd": 4
+  },
+  "needs_review": [],
+  "absolute_arguments_outside_session_packet": [],
+  "observed_target_execution": false,
+  "observed_history_network_or_oracle_access_by_auditors": false
+}

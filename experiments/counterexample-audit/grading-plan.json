@@ -1,0 +1,79 @@
+{
+  "frozen_utc": "2026-10-20T06:13:01.362301+00:00",
+  "runs": [
+    {
+      "id": "g01",
+      "audit": "r12"
+    },
+    {
+      "id": "g02",
+      "audit": "r06"
+    },
+    {
+      "id": "g03",
+      "audit": "r05"
+    },
+    {
+      "id": "g04",
+      "audit": "r08"
+    },
+    {
+      "id": "g05",
+      "audit": "r02"
+    },
+    {
+      "id": "g06",
+      "audit": "r03"
+    },
+    {
+      "id": "g07",
+      "audit": "r04"
+    },
+    {
+      "id": "g08",
+      "audit": "r11"
+    },
+    {
+      "id": "g09",
+      "audit": "r01"
+    },
+    {
+      "id": "g10",
+      "audit": "r10"
+    },
+    {
+      "id": "g11",
+      "audit": "r07"
+    },
+    {
+      "id": "g12",
+      "audit": "r09"
+    }
+  ],
+  "workers": [
+    [
+      "g01",
+      "g04",
+      "g07",
+      "g10"
+    ],
+    [
+      "g02",
+      "g05",
+      "g08",
+      "g11"
+    ],
+    [
+      "g03",
+      "g06",
+      "g09",
+      "g12"
+    ]
+  ],
+  "order_method": "Random(20261021).shuffle audit IDs before any reports were read; three fixed grader workers only after all audits complete",
+  "prompt_sha256": "6d0556940390043ba69564416da24ca3d16a70768d56e11b7c41d0d1624623cd",
+  "rubric_sha256": "2366f6ae3d6d982973bfd12b298e40f1636f916993c119d13eb8663527fe86c8",
+  "settings": "same model/effort/collector as audits; fresh ephemeral session; arm labels and skill bytes withheld",
+  "timeout_seconds": 300,
+  "retries": 0
+}

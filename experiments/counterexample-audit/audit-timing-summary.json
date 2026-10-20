@@ -1,0 +1,19 @@
+{
+  "baseline": {
+    "median_seconds": 135.880883375,
+    "range_seconds": [
+      97.323405791,
+      160.883415667
+    ],
+    "all_six_completed": true
+  },
+  "revised": {
+    "median_seconds": 117.5043936875,
+    "range_seconds": [
+      101.674943875,
+      153.954274791
+    ],
+    "all_six_completed": true
+  },
+  "ratio": 0.8647603015886708
+}

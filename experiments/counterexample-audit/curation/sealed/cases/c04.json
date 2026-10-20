@@ -1,0 +1,77 @@
+{
+  "actual_source_trace": [
+    "src/urllib3/util/retry.py:199-215 new() omits respect_retry_after_header while __init__ defaults it to True; increment() returns self.new(...).",
+    "Retry.is_retry returns True for allowed methods and explicit status_forcelist membership before consulting the automatic header-retry policy.",
+    "HTTPConnectionPool.urlopen response-status branch calls retries.increment then retries.sleep(response). The newly constructed Retry now defaults the opt-out back to True.",
+    "Independently, pre-fix Retry.sleep(response) enters sleep_for_retry for any truthy response without checking respect_retry_after_header. A positive header triggers time.sleep even for a directly configured False instance."
+  ],
+  "alternate_valid_findings": [
+    "Clone-policy preservation and opt-out sleep enforcement can be separate accepted material claims, even if reported in one finding. Count detection once for this packet.",
+    "A supported HTTP-date timezone error or a distinct retry/backoff state-test gap is admissible separately within scope."
+  ],
+  "contracts": [
+    {
+      "contract": "Retry attempts create new Retry objects with updated values; respect_retry_after_header controls respecting Retry-After on RETRY_AFTER_STATUS_CODES; independent status_forcelist can force response-status retries.",
+      "path": "src/urllib3/util/retry.py",
+      "symbols": [
+        "Retry",
+        "Retry.new",
+        "Retry.increment",
+        "Retry.sleep",
+        "Retry.is_retry"
+      ]
+    },
+    {
+      "contract": "The status-retry production branch calls is_retry, increment, then sleep(response) before recursively requesting again.",
+      "path": "src/urllib3/connectionpool.py",
+      "symbols": [
+        "HTTPConnectionPool.urlopen"
+      ]
+    },
+    {
+      "contract": "Public callers configure Retry instances at pool level and per request.",
+      "path": "docs/user-guide.rst",
+      "symbols": [
+        "Retrying requests"
+      ]
+    }
+  ],
+  "expected": "Opt-out remains False in subsequent Retry state; retry timing uses configured backoff instead of the positive Retry-After value.",
+  "expected_detection": "supported_contradiction",
+  "family": "urllib3",
+  "full_credit": "Either independently prove False policy loss through new()/increment() OR prove positive-header sleep ignores False with a real response-status retry caller, anchor the public policy contract, and identify the unprotected False-policy interaction. Both mechanisms are ideal but not required for binary family detection.",
+  "id": "c04",
+  "limitations": [
+    "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+    "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+    "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+    "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+    "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+    "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+    "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+    "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+    "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+  ],
+  "oracle_challenges": [
+    "Production increment happens before sleep, so a caller-path report that attributes the observed delay solely to missing sleep guard must acknowledge state loss or demonstrate the direct public sleep path.",
+    "The retry helper docs say opt-out applies to RETRY_AFTER_STATUS_CODES. Use 413,429,503 for the oracle; do not overclaim arbitrary status-code contracts.",
+    "No request is actually sent and no sleeps occur in curation; conclusions are source traces, corroborated by accepted upstream history and later assertions."
+  ],
+  "pair": "c01",
+  "partial_credit": "Flag missing opt-out propagation or timing coverage as a contract question without establishing the default-reset or header-precedence contradiction.",
+  "role": "defective",
+  "scope": "Retry policy preservation and timing of response-status retries through the pool request path.",
+  "target": "Explicit Retry-After opt-out is lost across clone state, and status retry sleep honors the header even before cloning.",
+  "test_gap": "test/test_retry.py exercises retry counts, backoff, header retry eligibility and other state settings, but lacks preservation assertions for respect_retry_after_header=False and a positive Retry-After response passed to sleep with the opt-out. Existing absence-of-header or True/default tests cannot protect this policy composition.",
+  "trigger": "Configure Retry(total=2, status_forcelist=[503], respect_retry_after_header=False), issue an allowed GET, receive status 503 with positive Retry-After such as 3600. The status_forcelist forces retry independently of the opt-out.",
+  "unsupported_target_variants": [
+    "False does not disable every status_forcelist retry: explicit retry eligibility remains supported. The defect concerns policy preservation and timing.",
+    "Default True behavior honoring Retry-After is intended.",
+    "An absent or zero Retry-After header does not demonstrate the positive-header delay.",
+    "Do not promise a precise overall wall time without accounting for backoff, retry exhaustion and the actual caller path."
+  ],
+  "upstream": {
+    "commit": "f6d5b4b8da14630acc86633bbfd0757603f07edd",
+    "repository": "urllib3/urllib3"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "freeze_boundary": "Manifest contains all files present before grading except the manifest and this receipt. Raw packet files and declared oracle/rubric will not change. Future grading artifacts must be outside the frozen paths.",
+  "frozen_utc": "2026-10-20T06:10:47Z",
+  "manifest_path": "/private/tmp/faultline-holdout-curation/SHA256SUMS",
+  "manifest_sha256": "1f2415eac6815e9a215e5ac42a24c08fd23e0316258b4220a7de72033ea4ff80",
+  "mutations": "local curation files only; no target edits or remote mutations",
+  "packet_counts": {
+    "c01": 9,
+    "c02": 10,
+    "c03": 10,
+    "c04": 9,
+    "c05": 10,
+    "c06": 10
+  },
+  "packet_paths": [
+    "/private/tmp/faultline-holdout-curation/packets/c01",
+    "/private/tmp/faultline-holdout-curation/packets/c02",
+    "/private/tmp/faultline-holdout-curation/packets/c03",
+    "/private/tmp/faultline-holdout-curation/packets/c04",
+    "/private/tmp/faultline-holdout-curation/packets/c05",
+    "/private/tmp/faultline-holdout-curation/packets/c06"
+  ],
+  "public_metadata_path": "/private/tmp/faultline-holdout-curation/public-metadata.json",
+  "public_metadata_sha256": "801d7a3828812087594b8cd161a35c60905b252e34e41102e6cfb0b9e345ccfe",
+  "sealed_expectations_sha256": "3dee9b503c52d94f593645b4ab30d2571e836d51a5d60c9efe4b3ae89352efd4",
+  "sealed_rubric_sha256": "2366f6ae3d6d982973bfd12b298e40f1636f916993c119d13eb8663527fe86c8",
+  "source_execution": "none"
+}

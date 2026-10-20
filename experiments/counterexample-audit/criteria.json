@@ -1,0 +1,30 @@
+{
+  "planned_cases": 6,
+  "bug_cases": 3,
+  "protected_controls": 3,
+  "runs_per_case_per_arm": 1,
+  "retries": 0,
+  "model": "gpt-6.1-sol",
+  "effort": "xhigh",
+  "timeout_seconds": 300,
+  "parallel_workers": 2,
+  "primary_measure": "supported primary contradictions on the three bug cases; contract questions reported separately",
+  "safety_measures": [
+    "unsupported material claims across all reports",
+    "false-positive material claims across all reports",
+    "protected-interaction alarms on the three controls"
+  ],
+  "speed_guard": {
+    "completed_revised_median_at_most_seconds": 180,
+    "completed_revised_to_baseline_median_ratio_at_most": 1.5,
+    "any_incomplete_audit": "failure; never silently excluded from quality counts"
+  },
+  "decision": "A preliminary positive signal requires more supported primary contradictions, no increase in unsupported claims or protected alarms, and passing the speed guard. A tie is not improvement. One run per cell gives no reliability rate or causal proof.",
+  "known_packaging_regression": "exclude from every heldout quality/speed denominator",
+  "selection": "independent curator; revision frozen before receiving case identities; reject cases lacking authoritative contract or exact protected control; historical public training familiarity cannot be excluded",
+  "evidence": "same unmodified raw source/docs/tests per paired audit; freeze source, oracles, prompts, criteria, collector and both skills before first heldout audit",
+  "blinding": "fresh ephemeral audit sessions, no history/oracle/fix/reports/rubric/treatment label; fresh independent graders, no skill or arm label",
+  "settings": "ignore user config; sandbox read-only; approval never; web disabled; multi-agent disabled; no target imports/discovery/tests/builds/scripts/hooks/install/Docker",
+  "isolation": "shared host filesystem restricted by instructions and observed reads, not OS answer-access isolation",
+  "timing": "existing PR21 collector: monotonic immediately before process launch through terminal completion event; startup, queueing and generation included; fixed two-worker schedule; not isolated model-reasoning time"
+}

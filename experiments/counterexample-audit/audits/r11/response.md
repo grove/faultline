@@ -1,0 +1,17 @@
+Two actionable findings from source inspection.
+
+**1. A retry silently re-enables the disabled Retry-After policy**
+
+- **What could go wrong:** With `Retry(total=2, status_forcelist=[500], respect_retry_after_header=False)`, a GET receiving `500`, then `429` with `Retry-After: 10`, should return the 429. Instead, [`Retry.new()`](/private/tmp/faultline-counterexample-evaluation/stage/c04/project/src/urllib3/util/retry.py:199) omits the flag, restoring its default `True`. The [pool’s recursive status-retry path](/private/tmp/faultline-counterexample-evaluation/stage/c04/project/src/urllib3/connectionpool.py:804) can consequently wait ten seconds and send an unwanted third request.
+- **Why these tests may miss it:** [`test_history`](/private/tmp/faultline-counterexample-evaluation/stage/c04/project/test/test_retry.py:234) exercises successive increments using the default flag. [`test_status_forcelist`](/private/tmp/faultline-counterexample-evaluation/stage/c04/project/test/test_retry.py:166) checks decisions on freshly constructed policies. Neither checks preservation of this nondefault option.
+- **Smallest useful test:** Stub transport responses as the sequence above and record `time.sleep` calls. Call the real pool `urlopen`; assert two requests, a returned 429, no sleep, and `response.retries.respect_retry_after_header is False`. Leave retry helpers intact.
+- **Confidence and uncertainty:** **High-confidence suspected implementation bug.** The [option’s documented meaning](/private/tmp/faultline-counterexample-evaluation/stage/c04/project/src/urllib3/util/retry.py:140) supports preserving the opt-out across attempts. No exception allowing it to reset was found.
+
+**2. Response retry timing ignores the opt-out independently of copying**
+
+- **What could go wrong:** A forced 503 retry remains eligible when `respect_retry_after_header=False`; its delay should follow configured backoff. However, [`Retry.sleep(response)`](/private/tmp/faultline-counterexample-evaluation/stage/c04/project/src/urllib3/util/retry.py:288) reads Retry-After unconditionally. A first forced retry with `Retry-After: 10` therefore waits ten seconds despite zero initial backoff. Preserving the flag in `new()` alone would leave this defect.
+- **Why these tests may miss it:** [`test_sleep`](/private/tmp/faultline-counterexample-evaluation/stage/c04/project/test/test_retry.py:159) passes no response and makes no timing assertion. [`test_backoff`](/private/tmp/faultline-counterexample-evaluation/stage/c04/project/test/test_retry.py:114) verifies calculated values without exercising the pool’s response-driven sleep.
+- **Smallest useful test:** Replace `time.sleep` with a recorder. Call `Retry(respect_retry_after_header=False).sleep()` with a 503 response containing `Retry-After: 10`; assert no sleep. This isolates timing from the copying defect. Add a pool case returning `503`, `503`, `200`, with that header, `status_forcelist=[503]`, and `backoff_factor=0.2`; expect three requests and sleep calls exactly `[0.4]`.
+- **Confidence and uncertainty:** **High-confidence suspected implementation bug**, based on the documented flag. Forced retry eligibility should remain enabled; the header-driven delay should be disabled.
+
+Reviewed the supplied retry implementation, pool and manager call paths, relevant response handling, retry tests, and user-guide documentation. Conclusions are limited to those supplied files and static inspection. **Tests were not run.**

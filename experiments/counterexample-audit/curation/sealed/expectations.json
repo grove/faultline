@@ -1,0 +1,483 @@
+{
+  "cases": {
+    "c01": {
+      "alternate_valid_findings": [
+        "A precise supported gap in composition of caller increment and sleep, distinct from existing primitive assertions, may be accepted; absence of a composed test alone is not evidence of the historical bug.",
+        "A documented, material UTC-versus-local-time gap in absolute Retry-After handling may be accepted if the report proves the contract and explains why the clock mocks hide it. Do not require external history to credit a sound source argument.",
+        "Other scope-bound Retry cloning or status-timing defects/test gaps may be accepted when independently grounded."
+      ],
+      "contracts": [
+        {
+          "contract": "Retry attempts create new Retry objects with updated values; respect_retry_after_header controls respecting Retry-After on RETRY_AFTER_STATUS_CODES; independent status_forcelist can force response-status retries.",
+          "path": "src/urllib3/util/retry.py",
+          "symbols": [
+            "Retry",
+            "Retry.new",
+            "Retry.increment",
+            "Retry.sleep",
+            "Retry.is_retry"
+          ]
+        },
+        {
+          "contract": "The status-retry production branch calls is_retry, increment, then sleep(response) before recursively requesting again.",
+          "path": "src/urllib3/connectionpool.py",
+          "symbols": [
+            "HTTPConnectionPool.urlopen"
+          ]
+        },
+        {
+          "contract": "Public callers configure Retry instances at pool level and per request.",
+          "path": "docs/user-guide.rst",
+          "symbols": [
+            "Retrying requests"
+          ]
+        }
+      ],
+      "expected_detection": "protected",
+      "family": "urllib3",
+      "limitations": [
+        "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+        "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+        "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+        "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+        "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+        "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+        "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+        "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+        "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+      ],
+      "oracle_challenges": [
+        "The fixed regression assertions cover cloning and sleeping separately, not a full network status-retry cycle. A report must not be penalized solely for asking for a justified composition test.",
+        "Header-date tests mock local-time conversions. This control is not a claim that HTTP-date timezone handling is correct.",
+        "Redirect sleep_for_retry bypass paths are outside the declared response-status timing target; do not generalize the control to redirects."
+      ],
+      "pair": "c04",
+      "protected_evidence": [
+        "src/urllib3/util/retry.py:199-216 copies respect_retry_after_header in new(), and increment() calls new().",
+        "src/urllib3/util/retry.py:289-305 checks self.respect_retry_after_header before honoring response Retry-After; otherwise backoff applies.",
+        "test/test_retry.py:293-299 parametrizes both True and False and asserts propagation through new().",
+        "test/test_retry.py:301-347 uses positive numeric and absolute-date Retry-After values, both policy settings, mocked clock/sleep, and asserts calls versus no calls.",
+        "src/urllib3/connectionpool.py:806-821 is the real status-retry caller of increment() then sleep(response)."
+      ],
+      "protected_false_alarms": [
+        "Claiming that False is omitted from new() and therefore resets to the True default.",
+        "Claiming sleep(response) ignores respect_retry_after_header=False on the response-status retry path.",
+        "Claiming there are no assertions covering False-policy clone propagation or positive Retry-After with False-policy sleep."
+      ],
+      "role": "protected",
+      "scope": "Retry policy preservation and timing of response-status retries through the pool request path.",
+      "target": "Explicit Retry-After policy survives cloning and governs status retry sleep.",
+      "upstream": {
+        "commit": "728d9244665ef5b03103cb74d7b409ebe4f23b43",
+        "repository": "urllib3/urllib3"
+      }
+    },
+    "c02": {
+      "actual_source_trace": [
+        "flask/wrappers.py:26 uses one scalar _cached_json sentinel.",
+        "get_json catches ValueError, sets rv=None for silent=True, then stores None in that scalar cache.",
+        "The next default-cache call returns the cached None before parsing or evaluating the silent policy, so default BadRequest is bypassed.",
+        "Flask hooks and views can access the same contextual request object, making the interaction production reachable without direct private-field manipulation."
+      ],
+      "alternate_valid_findings": [
+        "The equivalent response JSONMixin interaction is admissible if the report traces the response path and contract.",
+        "A credible unprotected custom on_json_loading_failed return-value interaction can be accepted separately if grounded; do not invent handler semantics.",
+        "Other material scope-bound JSON validation/cache/encoding gaps may be accepted with evidence and actual missed assertion."
+      ],
+      "contracts": [
+        {
+          "contract": "silent silences parse errors and returns None; absent silence, failed parsing delegates to on_json_loading_failed, whose default raises BadRequest. cache stores parsed JSON.",
+          "path": "flask/wrappers.py",
+          "symbols": [
+            "JSONMixin.get_json",
+            "JSONMixin.on_json_loading_failed",
+            "JSONMixin.json",
+            "Request"
+          ]
+        },
+        {
+          "contract": "Default request wrapper and hooks/view execution belong to the request lifecycle.",
+          "path": "flask/app.py",
+          "symbols": [
+            "Flask.request_class",
+            "Flask.preprocess_request",
+            "Flask.full_dispatch_request"
+          ]
+        },
+        {
+          "contract": "A request context holds the request instance used by hooks and view code.",
+          "path": "flask/ctx.py",
+          "symbols": [
+            "RequestContext"
+          ]
+        },
+        {
+          "contract": "Published API autodoc includes Request methods and attributes.",
+          "path": "docs/api.rst",
+          "symbols": [
+            "Request Objects"
+          ]
+        }
+      ],
+      "expected": "First call returns None; second call invokes the default failure handler and raises BadRequest.",
+      "expected_detection": "supported_contradiction",
+      "family": "flask",
+      "full_credit": "Identify the silent-then-non-silent same-request interaction, cached None fast path, BadRequest contract, and why the existing cache=False second call does not protect it. A concrete regression preserving the second cache default suffices; patch not required.",
+      "limitations": [
+        "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+        "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+        "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+        "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+        "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+        "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+        "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+        "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+        "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+      ],
+      "oracle_challenges": [
+        "The first upstream issue example omitted content_type=application/json and is not itself a valid contract counterexample in this snapshot; the oracle uses the actual accepted regression input.",
+        "Maintainer initially considered this behavior acceptable, then acknowledged extension/before_request effects. The packet contract and accepted fix substantiate the oracle; broad universal cache purity is not assumed.",
+        "Werkzeug get_data and external JSON implementations are not bundled; source tests and the wrapper contract establish the target, but unrelated dependency edge cases may remain unresolvable source-only."
+      ],
+      "pair": "c05",
+      "partial_credit": "Ask how cache and silent policies should compose, grounded in this early return, but stop short of proving the documented failure behavior or actual outcome.",
+      "role": "defective",
+      "scope": "Request and response JSON parsing, request lifecycle integration and related test protection.",
+      "target": "A silent failed parse cached on the request suppresses a later non-silent parse error.",
+      "test_gap": "tests/test_helpers.py:58-63 test_ignore_cached_json explicitly uses cache=False on the second non-silent call; it proves the bypass-cache path while missing default-cache policy interaction. Single malformed-request tests do not exercise prior silent access.",
+      "trigger": "One request with content_type=application/json and malformed body. Call get_json(silent=True) with default cache=True, then get_json() with default silent=False and cache=True.",
+      "unsupported_target_variants": [
+        "No-JSON-mimetype input without force=True is not a valid proof of expected BadRequest: this snapshot explicitly returns None for non-JSON mimetypes.",
+        "Valid JSON null returning None is correct and is not evidence of the parse-error defect.",
+        "An independent later request is not affected by the prior request cache.",
+        "The report must not allege all cache=False second calls fail to raise: that existing tested path bypasses the parsed cache."
+      ],
+      "upstream": {
+        "commit": "8c0d8c1c147a2534c8ed60f7dc62080371126c18",
+        "repository": "pallets/flask"
+      }
+    },
+    "c03": {
+      "alternate_valid_findings": [
+        "A material distinct skip/xfail state or reporting gap can be accepted when traced to a production branch and not covered by current assertions.",
+        "A precise missing skipif combination can be assessed independently, but absence of that spelling alone does not establish an unprotected shared normalization path: the fixed assertion covers the same skipped_by_mark normalization branch."
+      ],
+      "contracts": [
+        {
+          "contract": "--runxfail forces running/reporting xfail-marked tests as though not marked and makes imperative xfail have no effect.",
+          "path": "doc/en/skipping.rst",
+          "symbols": [
+            "Ignoring xfail"
+          ]
+        },
+        {
+          "contract": "runxfail option is xfail-specific; mark skip reports are normalized to the test item definition.",
+          "path": "src/_pytest/skipping.py",
+          "symbols": [
+            "pytest_addoption",
+            "pytest_runtest_setup",
+            "pytest_runtest_makereport"
+          ]
+        },
+        {
+          "contract": "Production runtest report creation is passed through the skipping hook.",
+          "path": "src/_pytest/runner.py",
+          "symbols": [
+            "pytest_runtest_makereport"
+          ]
+        },
+        {
+          "contract": "Terminal summaries display locations from skipped reports.",
+          "path": "src/_pytest/terminal.py",
+          "symbols": [
+            "TerminalReporter"
+          ]
+        }
+      ],
+      "expected_detection": "protected",
+      "family": "pytest",
+      "limitations": [
+        "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+        "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+        "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+        "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+        "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+        "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+        "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+        "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+        "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+      ],
+      "oracle_challenges": [
+        "The targeted new regression explicitly spells mark.skip, not every mark.skipif variant or plugin report type. Do not claim complete marking coverage.",
+        "Other hook wrappers and custom items can alter reports. Claims depending on omitted third-party behavior should remain unresolved unless the supplied source proves the necessary contract."
+      ],
+      "pair": "c06",
+      "protected_evidence": [
+        "src/_pytest/skipping.py:295 onward uses an independent if for skip location normalization after the xfail-policy chain.",
+        "testing/test_skipping.py:238-264 test_xfail_run_with_skip_mark parametrizes both -rs and -rs --runxfail, checks the exact user test path and line, and checks one skipped result.",
+        "The generated test has @pytest.mark.skip and a failing body; this assertion genuinely exercises the mark/option/reporting interaction rather than inspecting a helper in isolation."
+      ],
+      "protected_false_alarms": [
+        "Claiming --runxfail still prevents location normalization for ordinary skip marks because the normalization is elif-connected to that option.",
+        "Claiming tests never combine --runxfail and mark.skip or never assert the user location in that combination."
+      ],
+      "role": "protected",
+      "scope": "Skip and expected-failure marking, execution policy and result reporting.",
+      "target": "Xfail execution policy does not bypass normalization of skip-mark report locations.",
+      "upstream": {
+        "commit": "c3e2b11a62234c283b4ed4a7bfe5edf7eb6f3d4d",
+        "repository": "pytest-dev/pytest"
+      }
+    },
+    "c04": {
+      "actual_source_trace": [
+        "src/urllib3/util/retry.py:199-215 new() omits respect_retry_after_header while __init__ defaults it to True; increment() returns self.new(...).",
+        "Retry.is_retry returns True for allowed methods and explicit status_forcelist membership before consulting the automatic header-retry policy.",
+        "HTTPConnectionPool.urlopen response-status branch calls retries.increment then retries.sleep(response). The newly constructed Retry now defaults the opt-out back to True.",
+        "Independently, pre-fix Retry.sleep(response) enters sleep_for_retry for any truthy response without checking respect_retry_after_header. A positive header triggers time.sleep even for a directly configured False instance."
+      ],
+      "alternate_valid_findings": [
+        "Clone-policy preservation and opt-out sleep enforcement can be separate accepted material claims, even if reported in one finding. Count detection once for this packet.",
+        "A supported HTTP-date timezone error or a distinct retry/backoff state-test gap is admissible separately within scope."
+      ],
+      "contracts": [
+        {
+          "contract": "Retry attempts create new Retry objects with updated values; respect_retry_after_header controls respecting Retry-After on RETRY_AFTER_STATUS_CODES; independent status_forcelist can force response-status retries.",
+          "path": "src/urllib3/util/retry.py",
+          "symbols": [
+            "Retry",
+            "Retry.new",
+            "Retry.increment",
+            "Retry.sleep",
+            "Retry.is_retry"
+          ]
+        },
+        {
+          "contract": "The status-retry production branch calls is_retry, increment, then sleep(response) before recursively requesting again.",
+          "path": "src/urllib3/connectionpool.py",
+          "symbols": [
+            "HTTPConnectionPool.urlopen"
+          ]
+        },
+        {
+          "contract": "Public callers configure Retry instances at pool level and per request.",
+          "path": "docs/user-guide.rst",
+          "symbols": [
+            "Retrying requests"
+          ]
+        }
+      ],
+      "expected": "Opt-out remains False in subsequent Retry state; retry timing uses configured backoff instead of the positive Retry-After value.",
+      "expected_detection": "supported_contradiction",
+      "family": "urllib3",
+      "full_credit": "Either independently prove False policy loss through new()/increment() OR prove positive-header sleep ignores False with a real response-status retry caller, anchor the public policy contract, and identify the unprotected False-policy interaction. Both mechanisms are ideal but not required for binary family detection.",
+      "limitations": [
+        "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+        "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+        "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+        "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+        "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+        "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+        "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+        "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+        "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+      ],
+      "oracle_challenges": [
+        "Production increment happens before sleep, so a caller-path report that attributes the observed delay solely to missing sleep guard must acknowledge state loss or demonstrate the direct public sleep path.",
+        "The retry helper docs say opt-out applies to RETRY_AFTER_STATUS_CODES. Use 413,429,503 for the oracle; do not overclaim arbitrary status-code contracts.",
+        "No request is actually sent and no sleeps occur in curation; conclusions are source traces, corroborated by accepted upstream history and later assertions."
+      ],
+      "pair": "c01",
+      "partial_credit": "Flag missing opt-out propagation or timing coverage as a contract question without establishing the default-reset or header-precedence contradiction.",
+      "role": "defective",
+      "scope": "Retry policy preservation and timing of response-status retries through the pool request path.",
+      "target": "Explicit Retry-After opt-out is lost across clone state, and status retry sleep honors the header even before cloning.",
+      "test_gap": "test/test_retry.py exercises retry counts, backoff, header retry eligibility and other state settings, but lacks preservation assertions for respect_retry_after_header=False and a positive Retry-After response passed to sleep with the opt-out. Existing absence-of-header or True/default tests cannot protect this policy composition.",
+      "trigger": "Configure Retry(total=2, status_forcelist=[503], respect_retry_after_header=False), issue an allowed GET, receive status 503 with positive Retry-After such as 3600. The status_forcelist forces retry independently of the opt-out.",
+      "unsupported_target_variants": [
+        "False does not disable every status_forcelist retry: explicit retry eligibility remains supported. The defect concerns policy preservation and timing.",
+        "Default True behavior honoring Retry-After is intended.",
+        "An absent or zero Retry-After header does not demonstrate the positive-header delay.",
+        "Do not promise a precise overall wall time without accounting for backoff, retry exhaustion and the actual caller path."
+      ],
+      "upstream": {
+        "commit": "f6d5b4b8da14630acc86633bbfd0757603f07edd",
+        "repository": "urllib3/urllib3"
+      }
+    },
+    "c05": {
+      "alternate_valid_findings": [
+        "A grounded distinct custom on_json_loading_failed, body-consumption, encoding or public JSONMixin coverage gap can be accepted without triggering a control false alarm.",
+        "A concern about response-side coverage may be accepted if the report proves materially different response behavior; the shared JSONMixin means missing a response spelling alone is not a demonstrated regression gap."
+      ],
+      "contracts": [
+        {
+          "contract": "silent silences parse errors and returns None; absent silence, failed parsing delegates to on_json_loading_failed, whose default raises BadRequest. cache stores parsed JSON.",
+          "path": "flask/wrappers.py",
+          "symbols": [
+            "JSONMixin.get_json",
+            "JSONMixin.on_json_loading_failed",
+            "JSONMixin.json",
+            "Request"
+          ]
+        },
+        {
+          "contract": "Default request wrapper and hooks/view execution belong to the request lifecycle.",
+          "path": "flask/app.py",
+          "symbols": [
+            "Flask.request_class",
+            "Flask.preprocess_request",
+            "Flask.full_dispatch_request"
+          ]
+        },
+        {
+          "contract": "A request context holds the request instance used by hooks and view code.",
+          "path": "flask/ctx.py",
+          "symbols": [
+            "RequestContext"
+          ]
+        },
+        {
+          "contract": "Published API autodoc includes Request methods and attributes.",
+          "path": "docs/api.rst",
+          "symbols": [
+            "Request Objects"
+          ]
+        }
+      ],
+      "expected_detection": "protected",
+      "family": "flask",
+      "limitations": [
+        "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+        "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+        "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+        "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+        "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+        "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+        "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+        "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+        "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+      ],
+      "oracle_challenges": [
+        "The silent cache index assumes the documented boolean silent input; arbitrary integers or custom objects are outside the declared parameter contract unless the report establishes a supported caller.",
+        "Two entries fix the accepted interaction, not every conceivable combination of force, cache, custom loaders or body reads."
+      ],
+      "pair": "c02",
+      "protected_evidence": [
+        "flask/wrappers.py:26,63-64 stores two cache entries indexed by silent; failed silent parsing updates only the silent entry, and successful parsing fills both.",
+        "tests/test_helpers.py:65-71 test_different_silent_on_bad_request supplies malformed application/json, calls silent=True and then silent=False with default caching, and asserts BadRequest.",
+        "tests/test_helpers.py:73-78 test_different_silent_on_normal_request checks that valid JSON results remain shared across both policies with identity and content assertions.",
+        "Existing test_ignore_cached_json still protects the cache=False alternate path."
+      ],
+      "protected_false_alarms": [
+        "Claiming silent cached None still causes default non-silent parsing to return None for the malformed application/json sequence.",
+        "Claiming all tests force cache=False for the second non-silent parse or never exercise mixed silent settings with default caching.",
+        "Treating valid JSON null returning None or successful-result identity sharing as a defect."
+      ],
+      "role": "protected",
+      "scope": "Request and response JSON parsing, request lifecycle integration and related test protection.",
+      "target": "Cached JSON parse outcomes preserve silent versus non-silent error behavior.",
+      "upstream": {
+        "commit": "0cbe698958f81efe202e71ac07446b87ad694789",
+        "repository": "pallets/flask"
+      }
+    },
+    "c06": {
+      "actual_source_trace": [
+        "pytest_runtest_setup sets skipped_by_mark_key=True and raises the skip exception inside the framework.",
+        "pytest_runtest_makereport selects elif item.config.option.runxfail: pass.",
+        "The later skip-location normalization is part of that same elif chain and is therefore never reached under --runxfail.",
+        "Terminal output consequently uses the internal skip-raising location in src/_pytest/skipping.py instead of the user test location. The test does not run and the outcome remains skipped."
+      ],
+      "alternate_valid_findings": [
+        "Equivalent evidence for true skipif marks is accepted because they share skipped_by_mark_key and the reporting path.",
+        "Other supported materially distinct xfail/skip execution or report-state gaps may be accepted separately within the neutral scope."
+      ],
+      "contracts": [
+        {
+          "contract": "--runxfail forces running/reporting xfail-marked tests as though not marked and makes imperative xfail have no effect.",
+          "path": "doc/en/skipping.rst",
+          "symbols": [
+            "Ignoring xfail"
+          ]
+        },
+        {
+          "contract": "runxfail option is xfail-specific; mark skip reports are normalized to the test item definition.",
+          "path": "src/_pytest/skipping.py",
+          "symbols": [
+            "pytest_addoption",
+            "pytest_runtest_setup",
+            "pytest_runtest_makereport"
+          ]
+        },
+        {
+          "contract": "Production runtest report creation is passed through the skipping hook.",
+          "path": "src/_pytest/runner.py",
+          "symbols": [
+            "pytest_runtest_makereport"
+          ]
+        },
+        {
+          "contract": "Terminal summaries display locations from skipped reports.",
+          "path": "src/_pytest/terminal.py",
+          "symbols": [
+            "TerminalReporter"
+          ]
+        }
+      ],
+      "expected": "The test remains skipped and the displayed skip location points to the user test item in both runs. --runxfail changes xfail behavior only.",
+      "expected_detection": "supported_contradiction",
+      "family": "pytest",
+      "full_credit": "Trace the skip mark through setup/report normalization and the runxfail elif gate, cite the xfail-only option contract and user-location reporting intent, and propose a location assertion with and without --runxfail. A generic outcome-only test is insufficient to expose this bug.",
+      "limitations": [
+        "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+        "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+        "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+        "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+        "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+        "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+        "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+        "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+        "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+      ],
+      "oracle_challenges": [
+        "The option docs specify xfail semantics but do not explicitly promise the precise skip filename. The local production comment, existing location tests, and accepted historical regression establish the stronger location contract.",
+        "Do not infer an execution or outcome failure from this reporting-only bug.",
+        "The pre-fix code contains an explanatory comment on location normalization. This is unmodified upstream source, not a curation-inserted hint."
+      ],
+      "pair": "c03",
+      "partial_credit": "Question the independence of skip report normalization from runxfail or the missing option/mark crossing without stating a grounded concrete wrong location.",
+      "role": "defective",
+      "scope": "Skip and expected-failure marking, execution policy and result reporting.",
+      "target": "--runxfail unexpectedly suppresses user-location normalization for tests skipped by a skip mark.",
+      "test_gap": "testing/test_skipping.py has runxfail coverage for xfail outcomes and skip location/reporting coverage, but no assertion crossing an ordinary skip mark, --runxfail and the displayed user-location invariant. Checking skipped counts alone would miss the defect.",
+      "trigger": "An ordinary test marked @pytest.mark.skip (or a true skipif) is reported with -rs, then with -rs --runxfail.",
+      "unsupported_target_variants": [
+        "--runxfail does not run ordinary skip-marked tests in this snapshot; it changes only where the skip is reported.",
+        "The count is still skipped, not failed or xpassed, for this case.",
+        "Exact terminal column syntax is not required, but attributing the location to a user code line is wrong for the buggy option combination."
+      ],
+      "upstream": {
+        "commit": "678c1a0745f1cf175c442c719906a1f13e496910",
+        "repository": "pytest-dev/pytest"
+      }
+    }
+  },
+  "declared_before_audits": true,
+  "exclusions": "No packaging, Requests, Click, attrs, CPython urllib.parse, or authored quote/cart/checkout cases. urllib3 is a distinct upstream project; no Requests code is staged. No prior audited packet/report was read.",
+  "family_pairs": [
+    [
+      "c01",
+      "c04"
+    ],
+    [
+      "c02",
+      "c05"
+    ],
+    [
+      "c03",
+      "c06"
+    ]
+  ],
+  "selection_notes": "A custom-transport environment-policy candidate was rejected before freeze because its immediate fixed snapshot had no assertions protecting the exact interaction. It was replaced with the retry-policy family. No candidate audit was run during selection."
+}

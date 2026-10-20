@@ -1,0 +1,15 @@
+{
+  "oracle.json": "8f24eb8921e32fe72f55e61b96e6a8aed1fd1a231beba791f1544cad936a7881",
+  "project/doc/en/skipping.rst": "9eb9b8282840720da1d4965d918d9131d67ca716ca56a75b6cf8a43c453a5c79",
+  "project/setup.cfg": "2a19d93cbd0ca3fdccb08a04f943097c58fbcff1b0234638b5c691dfcd2e2810",
+  "project/src/_pytest/nodes.py": "702f8e4c963093847fac9502b0dc12dcffbd8c2d53a926799a6beee9ea97ec7d",
+  "project/src/_pytest/outcomes.py": "a5049d04b7df4924ce019a84c490d7c890a0bfc6a06e18c80783fbb361213a38",
+  "project/src/_pytest/reports.py": "d2006fd1faabec8c3fbf2df64f2b4ee7d34582870e8b5bdab372545bd9f95677",
+  "project/src/_pytest/runner.py": "7d42662836c3b0f6707a5246b7aef64526063bf462eaac1a117e5a44623757df",
+  "project/src/_pytest/skipping.py": "da78594559dc6c278919034d8cf45eb25a02a7ada76bab68276a3e2a0dcf114f",
+  "project/src/_pytest/terminal.py": "7f4b965e21eef33fd63a9d4e74f56f1e42d76615d361af701c7dcebf537ec99b",
+  "project/testing/conftest.py": "3b51d2924cd1104b4bdc2db504d7715b2371f5bc7c76b952096d3523a2749261",
+  "project/testing/test_skipping.py": "eba8c8728da90328dc93074063adf19f951da8e62b3a0ac19b6a197af884536d",
+  "report.md": "0c3ec0f90aaa3b70f1e4332de3c6342031ea1afc99784d45fa398a8404b75545",
+  "rubric.json": "2366f6ae3d6d982973bfd12b298e40f1636f916993c119d13eb8663527fe86c8"
+}

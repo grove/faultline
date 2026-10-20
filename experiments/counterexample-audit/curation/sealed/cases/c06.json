@@ -1,0 +1,81 @@
+{
+  "actual_source_trace": [
+    "pytest_runtest_setup sets skipped_by_mark_key=True and raises the skip exception inside the framework.",
+    "pytest_runtest_makereport selects elif item.config.option.runxfail: pass.",
+    "The later skip-location normalization is part of that same elif chain and is therefore never reached under --runxfail.",
+    "Terminal output consequently uses the internal skip-raising location in src/_pytest/skipping.py instead of the user test location. The test does not run and the outcome remains skipped."
+  ],
+  "alternate_valid_findings": [
+    "Equivalent evidence for true skipif marks is accepted because they share skipped_by_mark_key and the reporting path.",
+    "Other supported materially distinct xfail/skip execution or report-state gaps may be accepted separately within the neutral scope."
+  ],
+  "contracts": [
+    {
+      "contract": "--runxfail forces running/reporting xfail-marked tests as though not marked and makes imperative xfail have no effect.",
+      "path": "doc/en/skipping.rst",
+      "symbols": [
+        "Ignoring xfail"
+      ]
+    },
+    {
+      "contract": "runxfail option is xfail-specific; mark skip reports are normalized to the test item definition.",
+      "path": "src/_pytest/skipping.py",
+      "symbols": [
+        "pytest_addoption",
+        "pytest_runtest_setup",
+        "pytest_runtest_makereport"
+      ]
+    },
+    {
+      "contract": "Production runtest report creation is passed through the skipping hook.",
+      "path": "src/_pytest/runner.py",
+      "symbols": [
+        "pytest_runtest_makereport"
+      ]
+    },
+    {
+      "contract": "Terminal summaries display locations from skipped reports.",
+      "path": "src/_pytest/terminal.py",
+      "symbols": [
+        "TerminalReporter"
+      ]
+    }
+  ],
+  "expected": "The test remains skipped and the displayed skip location points to the user test item in both runs. --runxfail changes xfail behavior only.",
+  "expected_detection": "supported_contradiction",
+  "family": "pytest",
+  "full_credit": "Trace the skip mark through setup/report normalization and the runxfail elif gate, cite the xfail-only option contract and user-location reporting intent, and propose a location assertion with and without --runxfail. A generic outcome-only test is insufficient to expose this bug.",
+  "id": "c06",
+  "limitations": [
+    "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+    "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+    "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+    "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+    "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+    "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+    "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+    "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+    "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+  ],
+  "oracle_challenges": [
+    "The option docs specify xfail semantics but do not explicitly promise the precise skip filename. The local production comment, existing location tests, and accepted historical regression establish the stronger location contract.",
+    "Do not infer an execution or outcome failure from this reporting-only bug.",
+    "The pre-fix code contains an explanatory comment on location normalization. This is unmodified upstream source, not a curation-inserted hint."
+  ],
+  "pair": "c03",
+  "partial_credit": "Question the independence of skip report normalization from runxfail or the missing option/mark crossing without stating a grounded concrete wrong location.",
+  "role": "defective",
+  "scope": "Skip and expected-failure marking, execution policy and result reporting.",
+  "target": "--runxfail unexpectedly suppresses user-location normalization for tests skipped by a skip mark.",
+  "test_gap": "testing/test_skipping.py has runxfail coverage for xfail outcomes and skip location/reporting coverage, but no assertion crossing an ordinary skip mark, --runxfail and the displayed user-location invariant. Checking skipped counts alone would miss the defect.",
+  "trigger": "An ordinary test marked @pytest.mark.skip (or a true skipif) is reported with -rs, then with -rs --runxfail.",
+  "unsupported_target_variants": [
+    "--runxfail does not run ordinary skip-marked tests in this snapshot; it changes only where the skip is reported.",
+    "The count is still skipped, not failed or xpassed, for this case.",
+    "Exact terminal column syntax is not required, but attributing the location to a user code line is wrong for the buggy option combination."
+  ],
+  "upstream": {
+    "commit": "678c1a0745f1cf175c442c719906a1f13e496910",
+    "repository": "pytest-dev/pytest"
+  }
+}

@@ -29,14 +29,23 @@ conversation; writing a report requires caller authority for its destination.
    existing tests, and expected behavior from authorized requirements,
    documentation, or caller contracts. Do not require the user to supply hashes,
    a commit, a test list, or a formal guarantee before starting.
-2. Read enough to trace a plausible input or failure sequence through the actual
-   caller and assertions. For a large repository, start with one consequential
-   behavior and state the reviewed scope. Prefer realistic negative, boundary,
-   retry, state-transition, or dependency-failure cases over generic coverage advice.
+2. For one consequential behavior, try a concrete boundary counterexample against
+   its authoritative contract; existing test expectations are evidence, not
+   definitive requirements. Trace the full decision path from the caller through
+   defaults and early returns to downstream special cases, including branches
+   prevented from running. Compare relevant policy modes or entry points against
+   their own supported expectations; a difference alone is not a defect. Check
+   whether tests exercise this exact path or bypass it through explicit overrides,
+   mocks, or fixtures, and whether their expectations contradict the contract.
+   Keep this source-only probe internal and bounded to a few concrete inputs;
+   do not enumerate combinations or add report sections.
 3. Check whether fixtures, shared assertions, callers, or valid alternative
    behavior already address the concern. Missing assertions alone do not establish
    a bug. If expected behavior is unclear, state that uncertainty; ask only when
    clarification materially changes the finding. Do not invent a contract.
+   Report a contradiction only with source support for both the expectation and
+   the reachable result; otherwise surface a concise contract question with
+   conditional expectations, not an unsupported bug claim.
 4. Return up to three actionable findings, ordered by consequence and confidence.
    Prefer one useful finding over filling a quota. For documentation-only,
    mechanical, low-risk, or already-protected scope, say

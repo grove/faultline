@@ -1,0 +1,78 @@
+{
+  "alternate_valid_findings": [
+    "A grounded distinct custom on_json_loading_failed, body-consumption, encoding or public JSONMixin coverage gap can be accepted without triggering a control false alarm.",
+    "A concern about response-side coverage may be accepted if the report proves materially different response behavior; the shared JSONMixin means missing a response spelling alone is not a demonstrated regression gap."
+  ],
+  "contracts": [
+    {
+      "contract": "silent silences parse errors and returns None; absent silence, failed parsing delegates to on_json_loading_failed, whose default raises BadRequest. cache stores parsed JSON.",
+      "path": "flask/wrappers.py",
+      "symbols": [
+        "JSONMixin.get_json",
+        "JSONMixin.on_json_loading_failed",
+        "JSONMixin.json",
+        "Request"
+      ]
+    },
+    {
+      "contract": "Default request wrapper and hooks/view execution belong to the request lifecycle.",
+      "path": "flask/app.py",
+      "symbols": [
+        "Flask.request_class",
+        "Flask.preprocess_request",
+        "Flask.full_dispatch_request"
+      ]
+    },
+    {
+      "contract": "A request context holds the request instance used by hooks and view code.",
+      "path": "flask/ctx.py",
+      "symbols": [
+        "RequestContext"
+      ]
+    },
+    {
+      "contract": "Published API autodoc includes Request methods and attributes.",
+      "path": "docs/api.rst",
+      "symbols": [
+        "Request Objects"
+      ]
+    }
+  ],
+  "expected_detection": "protected",
+  "family": "flask",
+  "id": "c05",
+  "limitations": [
+    "Source-only: no target imports, tests, discovery, build, install, Docker, or execution occurred.",
+    "Each packet is a bounded selection of complete raw upstream files, not a runnable checkout. External dependencies and unrelated modules are absent.",
+    "Contracts, production callers, related tests and root test configuration are visible. Authoritative history and exact fixed-parent relations remain sealed from auditors.",
+    "Each packet is internally from one exact upstream commit. No authored target code, excerpt substitutions, injected comments, issue summaries, diffs, or targeted failure prompts are in packets.",
+    "Fixed controls deliberately include upstream regression assertions, while pre-fix twins naturally do not; the comparison uses identical packets across skill arms.",
+    "Public historical cases may have appeared in model training. Prior familiarity cannot be excluded, and packets disclose project identity through their unmodified contents.",
+    "Blinding is an instructed filesystem boundary, not an OS-enforced sandbox. Auditors must receive only one staged packet and must not browse history, sibling packets, rubric, or oracle.",
+    "Only the permitted prior protocol was inspected for exclusions. Prior audit outputs and the revised skill were not read.",
+    "Control means protected against the declared historical interaction, not proven defect-free or immune to other material test gaps."
+  ],
+  "oracle_challenges": [
+    "The silent cache index assumes the documented boolean silent input; arbitrary integers or custom objects are outside the declared parameter contract unless the report establishes a supported caller.",
+    "Two entries fix the accepted interaction, not every conceivable combination of force, cache, custom loaders or body reads."
+  ],
+  "pair": "c02",
+  "protected_evidence": [
+    "flask/wrappers.py:26,63-64 stores two cache entries indexed by silent; failed silent parsing updates only the silent entry, and successful parsing fills both.",
+    "tests/test_helpers.py:65-71 test_different_silent_on_bad_request supplies malformed application/json, calls silent=True and then silent=False with default caching, and asserts BadRequest.",
+    "tests/test_helpers.py:73-78 test_different_silent_on_normal_request checks that valid JSON results remain shared across both policies with identity and content assertions.",
+    "Existing test_ignore_cached_json still protects the cache=False alternate path."
+  ],
+  "protected_false_alarms": [
+    "Claiming silent cached None still causes default non-silent parsing to return None for the malformed application/json sequence.",
+    "Claiming all tests force cache=False for the second non-silent parse or never exercise mixed silent settings with default caching.",
+    "Treating valid JSON null returning None or successful-result identity sharing as a defect."
+  ],
+  "role": "protected",
+  "scope": "Request and response JSON parsing, request lifecycle integration and related test protection.",
+  "target": "Cached JSON parse outcomes preserve silent versus non-silent error behavior.",
+  "upstream": {
+    "commit": "0cbe698958f81efe202e71ac07446b87ad694789",
+    "repository": "pallets/flask"
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "classification": {
+    "accepted_gap": "A material test weakness or behavior defect grounded in supplied contract/caller/implementation/assertions. Correct control code may still have other accepted gaps. A precise test weakness can be accepted without claiming a current production bug if it shows a meaningful regression that existing assertions would miss.",
+    "duplicate": "Same substantive claim already graded, with no independent defect or coverage gap.",
+    "false_positive": "A confident material claim contradicted by the staged source or a relevant existing assertion, based on an unsupported assumed contract, or requiring an input outside the documented API. Name the counterevidence. Generic requests to add already-present exact protection are false positives only if they materially allege the protection is absent.",
+    "out_of_scope": "A concern outside the neutral behavior domain. Still flag materially unsupported factual assertions when present, but do not turn legitimate unrelated defects into scope-bound accepted detections.",
+    "unresolved": "A plausible conditional concern that cannot be decided from the bounded source, including absent dependency/plugin behavior or an explicitly unresolved contract. Never silently promote this to accepted or false positive."
+  },
+  "counts": {
+    "claims": "Number of unique material factual claims after duplicate consolidation.",
+    "false_positive_claims": "Unique material factual claims classified false_positive. Do not count every sentence of the same false allegation.",
+    "findings": "Number of materially independent top-level findings in the report, including out-of-scope and duplicates if separately presented; a clean report has zero.",
+    "unsupported_claims": "Unique material factual claims with unsupported=true, regardless of finding classification."
+  },
+  "declared_before_audits": true,
+  "detection": {
+    "contract_question": "For a defective packet, the report identifies the relevant interaction and a grounded policy/coverage ambiguity, but does not establish the actual documented wrong result or necessary input. This is partial, not full detection.",
+    "detected_boolean": "true only for supported_contradiction; false for contract_question, miss, protected. These kinds must be reported separately in aggregate to preserve partial credit.",
+    "evidence_required": [
+      "contract anchor",
+      "reachable production branch/caller",
+      "actual wrong behavior versus expected",
+      "existing test assertion or absence boundary",
+      "oracle target matched or clear reason for partial/miss"
+    ],
+    "miss": "For a defective packet, neither target supported contradiction nor relevant grounded contract question appears. An unrelated valid finding does not convert a target miss into a detection.",
+    "protected": "For a protected packet, use this kind regardless of unrelated valid findings. Set detected=false; decide control_alarm separately by the exact protected criteria.",
+    "supported_contradiction": "For a defective packet, the report proves a declared target behavior conflict by linking a supported input/policy sequence, production path, contract, actual wrong behavior, and a material missing test assertion. Wording or exact regression code need not match the oracle. A demonstrated target defect with an accurately explained assertion gap is full detection."
+  },
+  "grading_unit": "One ordinary Audit report for one blinded packet. Grade only source-bound claims in the neutral scope; do not infer the skill arm, intent, or quality from style, length, or wording.",
+  "material_claim_segmentation": [
+    "Findings are the report top-level independent recommendations, not every bullet or sentence. Claims are materially separate factual assertions that can differ in truth: behavior, contract, coverage, or reachability. Do not split harmless paraphrases, line citations, headings, or one causal chain into many unsupported claims.",
+    "Two different production mistakes may be separate claims inside one finding. Clone-policy loss and missing sleep opt-out guard are separate claims but only one target case detection.",
+    "Count every materially asserted in-scope factual claim, including accepted claims. A recommendation or uncertainty explicitly posed as a question is not automatically a factual assertion.",
+    "Duplicates repeat an already assessed substantive claim, not independent evidence. Retain them with duplicate classification but exclude from unique claim counts."
+  ],
+  "output_json_schema": {
+    "properties": {
+      "case_id": {
+        "type": "string"
+      },
+      "control_alarm": {
+        "type": "boolean"
+      },
+      "counts": {
+        "properties": {
+          "claims": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "false_positive_claims": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "findings": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "unsupported_claims": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "findings",
+          "claims",
+          "unsupported_claims",
+          "false_positive_claims"
+        ],
+        "type": "object"
+      },
+      "detection": {
+        "properties": {
+          "detected": {
+            "type": "boolean"
+          },
+          "evidence": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "kind": {
+            "enum": [
+              "supported_contradiction",
+              "contract_question",
+              "miss",
+              "protected"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "target_claim_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "detected",
+          "kind",
+          "reason",
+          "evidence"
+        ],
+        "type": "object"
+      },
+      "findings": {
+        "items": {
+          "properties": {
+            "claims": {
+              "items": {
+                "properties": {
+                  "claim": {
+                    "type": "string"
+                  },
+                  "classification": {
+                    "enum": [
+                      "accepted_gap",
+                      "false_positive",
+                      "unresolved",
+                      "duplicate",
+                      "out_of_scope"
+                    ]
+                  },
+                  "duplicate_of": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "evidence": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "unsupported": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "claim",
+                  "classification",
+                  "unsupported",
+                  "evidence"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "classification": {
+              "enum": [
+                "accepted_gap",
+                "false_positive",
+                "unresolved",
+                "duplicate",
+                "out_of_scope"
+              ]
+            },
+            "evidence": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "id": {
+              "type": "string"
+            },
+            "summary": {
+              "type": "string"
+            },
+            "unsupported": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "summary",
+            "classification",
+            "unsupported",
+            "evidence",
+            "claims"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "limitations": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "case_id",
+      "detection",
+      "findings",
+      "counts",
+      "control_alarm",
+      "limitations"
+    ],
+    "type": "object"
+  },
+  "permitted_grader_inputs": "One staged packet, that packet per-case oracle, this rubric, and its raw report. No sibling reports, skill-arm labels, skills, or unprovided history are needed. Do not execute target code.",
+  "protected_control_alarm": [
+    "true only when a protected packet report materially asserts the declared historical defect persists, claims the exact protected interaction is untested despite the supplied meaningful regression assertion, or otherwise meets a listed protected_false_alarm with source counterevidence.",
+    "A valid distinct gap is accepted_gap and does not set control_alarm. A reasoned uncertainty or optional future coverage suggestion does not automatically set control_alarm.",
+    "Controls are not certified perfect. Evaluate alternate findings and oracle challenges on their merits, and record limitations when the bounded evidence cannot settle them."
+  ],
+  "rubric_challenge": "The expected target is a frozen oracle, not permission to reject a stronger source argument. Record and credit alternate valid findings; preserve unresolved judgments rather than inventing certainty. Report detection, unsupported claims and control alarms separately.",
+  "unsupported": "A material factual assertion lacks source support, assumes a policy contrary to evidence, overstates reachable behavior/coverage, or asserts execution results that were not obtained. False positives are generally unsupported; an unresolved honest question need not be. Record the precise unsupported subclaim instead of marking an entire sound finding unsupported for one overstatement.",
+  "version": 1
+}

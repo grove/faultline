@@ -1,0 +1,9 @@
+{
+  "frozen_utc": "2026-10-20T06:13:12.753107+00:00",
+  "files": {
+    "grade.py": "8e7239952356088da2ec476e448a913f11a79e247583b1f6d8141f0bd6d27010",
+    "grade-prompt.txt": "6d0556940390043ba69564416da24ca3d16a70768d56e11b7c41d0d1624623cd",
+    "grading-plan.json": "3446c2e59cd368af343cd577b78c92df942b14cce1672fae0f82b48679540b7a",
+    "curation/sealed/grading-rubric.json": "2366f6ae3d6d982973bfd12b298e40f1636f916993c119d13eb8663527fe86c8"
+  }
+}
