@@ -1,5 +1,8 @@
 # RO-1: ordinary review versus Faultline
 
+The separately authorized [two-case pilot](PILOT-RESULTS.md) ran on 2026-10-21.
+It does not execute this six-case protocol or change its future requirements.
+
 **DRAFT — NOT FROZEN — NOT RUN (2026-10-20). Decision: INCONCLUSIVE.**
 This is a proposed six-case, source-only comparison of the shipped Audit skill
 with ordinary AI-assisted code and test review. It measures additional useful

@@ -1,5 +1,8 @@
 # RO-1 results and evidence record
 
+Actual results from the separately authorized four-review pilot are in
+[PILOT-RESULTS.md](PILOT-RESULTS.md). The six-case study below remains NOT RUN.
+
 **PLANNED — NOT FROZEN — NOT RUN (2026-10-20). Product decision: INCONCLUSIVE.**
 This is a prepared template, not a completed study. No RO-1 audit, independent
 grade, token charge or runtime observation is available. No additional model
