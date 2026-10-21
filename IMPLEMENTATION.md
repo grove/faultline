@@ -72,6 +72,17 @@ useful findings, false positives, developer effort, and time to a useful test
 against ordinary direct review. Do not build a benchmark harness or make
 unmeasured effectiveness claims.
 
+Prepare [RO-1: ordinary review versus Faultline](experiments/ordinary-review-comparison/PROTOCOL.md)
+as a separately tracked read-only phase: six prepared candidate scopes, matched
+budgets and an all-outcomes results sheet. The sole human serves as curator and
+grader by explicit instruction; keep those roles separate from audit workers and
+disclose selection bias. This draft is **NOT FROZEN / NOT RUN**. Qualify existing
+budget enforcement and complete case curation/configuration, then obtain
+explicit approval of the frozen bundle and finite budget before any model
+dispatch. No new runner, schema, AI reviewer or skill change is needed. Preserve
+issue #6's original #4/#5 dependencies and #2 safety gate for its conditional
+executable study; RO-1 does not complete those acceptance criteria.
+
 ## 4. Separately review Docker scope before implementation
 
 No Docker launcher is part of this change. Before adding or enabling one, obtain
