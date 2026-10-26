@@ -1,13 +1,14 @@
 ---
 name: faultline-audit
-description: Find realistic bugs that existing tests may miss by reading code, callers, and tests. Use for finding weak tests in a repository or selected paths; return plain-English findings and the smallest useful test without executing project code.
+description: Find important, realistic failures that existing tests may miss by reading code, contracts, callers, and tests. Use for finding important bugs or weak test protection in a repository or selected paths; return plain-English findings and the smallest useful test without executing project code.
 ---
 
 # Faultline audit
 
-Help the developer find weak tests in minutes using the already-running coding
-agent. Audit is the default experience. No Docker, runtime setup, extra model,
-sibling skill, CLI, or mutation engine is required.
+Help the developer find the most consequential mistakes their tests might let
+through, using the already-running coding agent. Audit is the default experience.
+No Docker, runtime setup, extra model, sibling skill, CLI, or mutation engine is
+required.
 
 **Release boundary: advice-only.** Do not run project code, test discovery, imports,
 tests, mutants, package scripts, builds, installs, or sandbox qualification through
@@ -24,24 +25,45 @@ conversation; writing a report requires caller authority for its destination.
 
 ## Find weak tests
 
+Use the **Critical Failure Challenge Loop** internally: establish important
+promises, imagine credible failures, prioritize their impact, inspect protections,
+challenge them, and recommend the smallest repeatable improvement. Start from
+promises, not weak assertions or mutation opportunities. Keep this reasoning
+bounded; it does not require extra report sections or a formal risk assessment.
+
 1. Accept a repository, selected paths, or a behavior question. If the current
-   repository is clear, start there. Identify relevant production code, callers,
-   existing tests, and expected behavior from authorized requirements,
-   documentation, or caller contracts. Do not require the user to supply hashes,
-   a commit, a test list, or a formal guarantee before starting.
-2. For one consequential behavior, try a concrete boundary counterexample against
-   its authoritative contract; existing test expectations are evidence, not
-   definitive requirements. Trace the full decision path from the caller through
-   defaults and early returns to downstream special cases, including branches
-   prevented from running. Compare relevant policy modes or entry points against
-   their own supported expectations; a difference alone is not a defect. Check
-   whether tests exercise this exact path or bypass it through explicit overrides,
-   mocks, or fixtures, and whether their expectations contradict the contract.
-   Keep this source-only probe internal and bounded to a few concrete inputs;
-   do not enumerate combinations or add report sections.
-3. Check whether fixtures, shared assertions, callers, or valid alternative
-   behavior already address the concern. Missing assertions alone do not establish
-   a bug. If expected behavior is unclear, state that uncertainty; ask only when
+   repository is clear, start there. Infer its important behavioral promises from
+   authorized requirements, documentation, production code, and caller contracts:
+   for example, confirmed data survives a restart, retries do not duplicate a
+   charge, or unauthorized callers cannot read protected data. Use only promises
+   supported in this scope. Do not require the user to supply hashes, a commit,
+   a test list, or a formal guarantee before starting.
+2. Imagine a few realistic ways those promises could fail: interruptions, retries,
+   wrong ordering, partial changes, concurrent operations, boundary inputs,
+   invalid state transitions, missing validation, or silent errors across
+   components. Require a credible connection to the implementation, not merely
+   a catastrophic possibility. Prioritize by severity, plausibility, evidence of
+   weak detection, and whether a focused test could expose the failure. Give
+   silent or hard-to-reverse harm special attention; a credible data-integrity
+   failure generally deserves attention before a formatting weakness. Do not
+   manufacture severe scenarios in low-risk code or assign numerical risk scores.
+3. For the highest-value candidates, trace the full decision path from the caller
+   through defaults and early returns to downstream special cases, including branches
+   prevented from running. Try a concrete boundary counterexample against the
+   authoritative contract; existing test expectations are evidence, not definitive
+   requirements. Compare relevant policy modes or entry points against their own
+   supported expectations; a difference alone is not a defect. Inspect safeguards,
+   test setup, helpers, mocks, fixtures, and assertions. Does the test reach the
+   behavior or bypass it through overrides or fabricated results? Could the wrong
+   outcome satisfy the assertion? Check intermediate or recovered state when it
+   matters. State what a mocked or artificial-error test does establish as well
+   as what it leaves untested.
+   Actively seek refutation in other tests, shared assertions, callers, safeguards,
+   and valid alternative behavior. Simple assertions can fully protect a promise;
+   recognize that protection instead of proposing a redundant test. Missing
+   assertions alone do not establish a bug. An implementation defect alone is
+   not a test-protection finding: identify why the existing tests might miss it.
+   If expected behavior is unclear, state that uncertainty; ask only when
    clarification materially changes the finding. Do not invent a contract.
    Report a contradiction only with source support for both the expectation and
    the reachable result; otherwise surface a concise contract question with
@@ -51,21 +73,35 @@ conversation; writing a report requires caller authority for its destination.
    when available. If they conflict, keep the behavior-level test but make the
    exact value a **contract question**, not a verified assertion. Do not expand
    this into a repository-wide consistency audit.
-4. Return up to three actionable findings, ordered by consequence and confidence.
+4. Challenge each remaining protection with one small source-grounded experiment:
+   a concrete input, interruption, or state change and an independently meaningful
+   expected outcome. For example, interrupt immediately after success is reported,
+   restart from durable state, and check all acknowledged records if durability is
+   promised. A deliberate source mutation may clarify the challenge, but remains
+   a prose proposal, never an applied change or an observed result. Recommend the
+   smallest added assertion or regression test using existing test hooks and style.
+   Explain how it would expose the mistake and prevent its silent return in the
+   existing regression suite. Do not enumerate combinations or design a framework.
+5. Return up to three actionable findings, ordered by consequence and confidence.
    Prefer one useful finding over filling a quota. For documentation-only,
    mechanical, low-risk, or already-protected scope, say
-   **No actionable finding in the reviewed scope**, with a short reason.
+   **No actionable finding in the reviewed scope.** Give the scope and a short
+   reason, including the protection found when relevant.
 
 ## Explain each finding
 
 Use a short title and these fields, linking to the code and tests actually read:
 
-- **What could go wrong:** concrete input/state, reachable sequence, and impact.
-- **Why these tests may miss it:** the relevant test/fixture/assertion and its gap;
-  say when tests were not located rather than implying exhaustive inspection.
+- **What could go wrong:** concrete input/state and a credible source path that
+  breaks a supported promise.
+- **Why it matters:** the concrete consequence for users or data; keep the impact
+  proportionate to the reviewed responsibility.
+- **Why the existing tests may miss it:** the relevant test/fixture/assertion and
+  its gap; say when tests were not located rather than implying exhaustive inspection.
 - **Smallest useful test:** setup, action, and observable expected result, allowing
   contract-consistent alternatives. Reuse the project's test style and test hooks;
-  avoid introducing a framework or mutation plan for an ordinary assertion.
+  explain how this protects the promise when the mistake returns. Avoid introducing
+  a framework or mutation plan for an ordinary assertion.
 - **Confidence and uncertainty:** distinguish **suspected implementation bug** from
   **missing test protection**. Explain the source supporting the expectation and
   what would refute the concern. When an expected result is unsettled, label it a

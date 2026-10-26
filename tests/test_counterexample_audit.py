@@ -21,12 +21,14 @@ def sha(path):
 
 
 class CounterexampleAuditTests(unittest.TestCase):
-    def test_frozen_skill_source_and_execution_boundaries(self):
+    def test_frozen_instruction_sources_and_execution_boundaries(self):
         protocol = read("protocol.json")
         baseline = (ROOT / "instructions/baseline.md").read_bytes()
         revised = (ROOT / "instructions/revised.md").read_bytes()
-        self.assertEqual(revised, (REPO / "faultline-audit/SKILL.md").read_bytes())
-        # Only the internal reasoning steps change; ordinary output and fences stay.
+        # The trial's instruction bytes are bound to its frozen hashes below.
+        # The live skill can evolve; test_skill checks its current contract.
+        # In this historical trial only internal reasoning changed; output and
+        # execution fences stayed identical between its two archived arms.
         for data in (baseline, revised):
             self.assertEqual(data.split(b"## Find weak tests")[0],
                              baseline.split(b"## Find weak tests")[0])

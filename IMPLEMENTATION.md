@@ -10,12 +10,18 @@ Keep one canonical `faultline-audit/SKILL.md`. Change the skill, README, design,
 implementation plan, and packaging/instruction checks together. No runtime,
 dependency, service, CLI, additional skill, or sibling integration is needed.
 
-- Accept a repository or paths; infer callers/tests and expected behavior.
+- Accept a repository or paths; infer supported behavioral promises from code,
+  documentation, and callers before looking for weak assertions or mutations.
+- Use the Critical Failure Challenge Loop internally: consider credible failures,
+  prioritize severity, plausibility, detection weakness, and actionability, then
+  trace safeguards and tests and actively seek evidence that refutes each concern.
 - Read files as data without imports, discovery, tests, builds, scripts, Docker
   inspection, installs, or edits.
-- Return up to three realistic, source-linked findings with the smallest useful
-  test, confidence, uncertainty, and a distinction between suspected bugs and
-  missing test protection. Say that tests were not run.
+- Return up to three realistic, source-linked findings ordered by consequence and
+  confidence. Explain the consequence and why tests could miss it; propose the
+  smallest independently meaningful assertion or repeatable regression test.
+  Distinguish suspected bugs, missing test protection, and unresolved contract
+  questions. Say that tests were not run.
 - Allow no actionable finding with a scope and reason. Do not invent a guarantee,
   measured coverage, reproduced failure, or passing test result.
 - Keep available candidate identity internally. Remove mutation protocols,
@@ -40,6 +46,15 @@ controls. No skill change was justified. The fixtures are reusable manual
 regression cases; offline checks preserve evidence and do not test model compliance.
 Real-repository value, independent grading, repeatability, and exact end-to-end
 latency remain unestablished.
+
+The [six impact-first cases](tests/fixtures/impact-first.json) add authored
+regression expectations for acknowledgement before durability, complete recovery
+protection, integrity before formatting, unsettled contracts, fabricated errors,
+and no meaningful finding. Offline maintainer checks parse these packets as data;
+they do not execute fixture code or observe an agent following the revised skill.
+The archived counterexample trial stays bound to its frozen instruction hashes,
+not byte equality with the evolving live skill. All historical records remain
+unchanged; the current execution fences remain byte-identical.
 
 ## 2. Preserve research; retire its build order
 
@@ -79,9 +94,32 @@ grader by explicit instruction; keep those roles separate from audit workers and
 disclose selection bias. This draft is **NOT FROZEN / NOT RUN**. Qualify existing
 budget enforcement and complete case curation/configuration, then obtain
 explicit approval of the frozen bundle and finite budget before any model
-dispatch. No new runner, schema, AI reviewer or skill change is needed. Preserve
+dispatch. No new runner, schema, or AI reviewer is needed. Preserve
 issue #6's original #4/#5 dependencies and #2 safety gate for its conditional
 executable study; RO-1 does not complete those acceptance criteria.
+
+**Impact-first improvement hypothesis — unmeasured:** the
+[counterexample trial](experiments/counterexample-audit/REPORT.md) supplied a small
+positive signal for full-path tracing, which this change retains. The
+[packaging comparison](experiments/packaging-2x2/REPORT.md) still missed its target
+and retained unsupported policy assertions; more instructions alone did not
+establish better reasoning. The later [two-case ordinary-review pilot](experiments/ordinary-review-comparison/PILOT-RESULTS.md)
+reported **NO CLEAR BENEFIT**, with human grading pending. Its observer noted
+concrete failure hooks and careful uncertainty in Faultline's reports, but no
+unique weakness. The hypothesis is that explicitly selecting supported promises
+and ranking consequences will direct limited attention toward more consequential,
+independently defensible test gaps while preserving those strengths.
+
+No new model evaluation is performed by this implementation. After separate
+approval of a concrete comparison and finite budget, compare the previous and
+revised skill with ordinary review on the same source packets. Withhold authored
+expectations from reviewers; retain all first responses and assess consequential
+defensible gaps, false positives and unsupported claims, clarity, latency/cost,
+recognition of protected behavior, and conditional treatment of unclear contracts.
+The six new examples are reviewable expectations, not measured results or held-out
+evidence. Preserve all prior experiments. Do not claim better detection, accuracy,
+clarity, speed, or cost without measurements; prefer the simpler instructions if
+the added reasoning shows no meaningful benefit.
 
 ## 4. Separately review Docker scope before implementation
 
