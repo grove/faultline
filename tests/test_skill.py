@@ -93,7 +93,7 @@ class SkillTests(unittest.TestCase):
             "Missing assertions alone do not establish a bug",
             "Do not invent a contract",
             "Return up to three actionable findings",
-            "**No actionable finding in the reviewed scope**",
+            "**No actionable finding in the reviewed scope.**",
             "linking to the code and tests actually read",
             "**suspected implementation bug**",
             "**missing test protection**",
@@ -103,10 +103,32 @@ class SkillTests(unittest.TestCase):
             self.assertIn(instruction, text)
         # The public example and the skill must agree on what a finding explains.
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        for field in ("What could go wrong", "Why these tests may miss it",
+        for field in ("What could go wrong", "Why it matters", "Why the existing tests may miss it",
                       "Smallest useful test", "Confidence and uncertainty"):
             self.assertIn(f"**{field}:**", text)
             self.assertIn(f"**{field}:**", readme)
+
+    def test_impact_first_loop_preserves_refutation_and_repeatable_challenges(self):
+        """Instruction contract only; model behavior requires a separate evaluation."""
+        text = " ".join(SKILL.read_text(encoding="utf-8").split())
+        for instruction in (
+            "**Critical Failure Challenge Loop** internally",
+            "Start from promises, not weak assertions or mutation opportunities",
+            "Use only promises supported in this scope",
+            "Prioritize by severity, plausibility, evidence of weak detection",
+            "whether a focused test could expose the failure",
+            "Do not manufacture severe scenarios in low-risk code",
+            "Actively seek refutation in other tests",
+            "Simple assertions can fully protect a promise",
+            "An implementation defect alone is not a test-protection finding",
+            "what a mocked or artificial-error test does establish",
+            "one small source-grounded experiment",
+            "independently meaningful expected outcome",
+            "a prose proposal, never an applied change or an observed result",
+            "prevent its silent return in the existing regression suite",
+        ):
+            with self.subTest(instruction=instruction):
+                self.assertIn(instruction, text)
 
 
 if __name__ == "__main__":

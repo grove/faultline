@@ -7,7 +7,7 @@ and disabled. The existing execution decision remains **NO_GO / UNAVAILABLE**.
 
 ## One simple workflow
 
-**Find weak tests → understandable findings → Verify this finding? → clear result.**
+**Identify important promises → challenge test protection → understandable findings.**
 
 Use the existing portable `faultline-audit` skill and the developer's existing
 coding agent. No new application, model controller, service, CLI, or framework.
@@ -17,23 +17,45 @@ never a mandatory PR gate or a dependency on another project.
 ## Default: Audit
 
 Input is a repository or selected paths, optionally a behavior question. Infer
-relevant callers and tests from source. Start with a consequential behavior and
-state the scope; do not require a formal guarantee or candidate manifest from the
-developer. Missing requirements become explicit uncertainty or a focused question,
-not an invented contract.
+important promises from source, documentation, and callers, then locate the tests
+and safeguards that protect them. State the scope; do not require configuration,
+a formal guarantee, risk scores, or a candidate manifest from the developer.
+Missing requirements become explicit uncertainty or a focused question, not an
+invented contract.
+
+The **Critical Failure Challenge Loop** guides internal reasoning: identify the
+promises, imagine consequential failures, prioritize by impact, inspect existing
+protections, challenge them, recommend the smallest meaningful improvement, and
+make that protection repeatable in the existing regression suite. It refines the
+existing bounded counterexample and contract-tracing approach, not seven required
+report sections. Rank credible candidates by severity, plausibility, detection
+weakness, and actionability; favor silent or hard-to-reverse harm without inventing
+severe responsibilities for low-risk code.
+
+Trace the full source path, including defaults, early returns, cross-component
+effects, and test overrides. Actively look for refuting tests and safeguards. A
+simple assertion can be sufficient; a fabricated error can test error handling
+without establishing production failure behavior. A suspected implementation bug
+needs its own evidence of weak test protection. Propose one precise challenge with
+an independently supported outcome, such as interrupting after acknowledgement
+and checking complete recovered state. A mutation can explain the challenge but
+remains an unexecuted prose proposal. Unsettled requirements produce conditional
+tests. Prefer an existing hook or one assertion over a new framework.
 
 Read files as data; do not execute project imports, discovery, tests, builds,
 plugins, package scripts, or installs. Do not probe Docker or start infrastructure.
 Do not edit code, tests, or reports without separate write authority.
 
-Return up to three findings: what could go wrong, why these tests may miss it,
-the smallest useful test, and confidence and uncertainty. Link the code/tests
-actually read and the source of the expected behavior. Distinguish suspected
+Return up to three findings, ordered by consequence and confidence: what could go
+wrong, why it matters, why the existing tests may miss it, the smallest useful test,
+and confidence and uncertainty. Link the code/tests actually read and the source
+of the expected behavior. Distinguish suspected
 implementation bugs from missing test protection; check valid alternatives and
 possible refutation. Missing assertions do not establish defects or passing tests.
 Say **Tests were not run.** A useful negative result is **No actionable finding in
-the reviewed scope**, with the scope and reason. Avoid scores, generic coverage
-advice, mandatory mutation plans, and claims of overall correctness.
+the reviewed scope.** Give the scope and reason, including protection found.
+Avoid scores, generic coverage advice, mandatory mutation plans, and claims of
+overall correctness.
 
 Keep available snapshot identity (including relevant dirty content), source/test
 locations, and evidence distinctions in internal working notes. Unknown identity
@@ -129,3 +151,12 @@ tests this question directly with matched ordinary-review and actual-skill arms.
 It is **NOT FROZEN / NOT RUN**; existing evidence supports **INCONCLUSIVE** on
 incremental value. It adds no product machinery and does not replace issue #6's
 separately gated executable study.
+
+The separately authorized [two-case pilot](experiments/ordinary-review-comparison/PILOT-RESULTS.md)
+recorded provisional **NO CLEAR BENEFIT**, with human grading pending. The current
+impact-first revision targets consequence-based selection and focused regression
+advice; its added value is unmeasured. [Authored examples](tests/fixtures/impact-first.json)
+and instruction checks establish intended behavior, not LLM reasoning quality.
+A later authorized comparison must retain protected controls and contract
+uncertainty, measure clarity and time/cost as well as consequential gaps, and
+prefer simpler instructions if they are equally useful.

@@ -1,10 +1,12 @@
 # Faultline
 
-**Find weak tests before they miss a real bug.**
+**Find the important failures your tests might miss.**
 
-Faultline helps your existing coding agent read code and tests, explain realistic
-bugs the tests may miss, and suggest the smallest useful test. Audit works without
-Docker, dependencies, infrastructure setup, or running your project's code.
+Faultline helps your existing coding agent identify important promises in your
+code, challenge how they could fail, and check whether your tests would notice.
+It explains realistic consequences and suggests the smallest useful regression
+test. Audit works without Docker, dependencies, infrastructure setup, or running
+your project's code.
 
 ## 1. Install the skill
 
@@ -21,12 +23,12 @@ This command installs the advice-only `faultline-audit` skill, not an executable
 test runner. Installation does not authorize test execution or lift
 **NO_GO / UNAVAILABLE**.
 
-## 2. Find weak tests
+## 2. Find important failures
 
 With your project open in your coding agent, ask:
 
 ```text
-Use faultline-audit to find weak tests in this repository.
+Use faultline-audit to find important bugs my tests might miss.
 Don't change files or run tests. Explain the findings and suggest the smallest useful tests.
 ```
 
@@ -39,32 +41,52 @@ see the installed skill, start a new agent session.
 You can also name a directory, changed files, or a behavior to focus on. You do
 not need to identify test commands, supply hashes, or configure a runner.
 
-Expect a few findings with linked code and test evidence, a plain-English failure
-scenario, and a concrete test suggestion. A missing assertion is not automatically
-an implementation bug. Faultline distinguishes suspected bugs from missing test
-protection, states uncertainty, and always says that tests were not run.
+No configuration or formal risk assessment is needed. Faultline starts from
+promises supported by the source, documentation, and callers, then prioritizes
+credible failures by consequence, plausibility, weak detection, and whether a
+small test would help. Losing confirmed data deserves attention before a minor
+formatting gap; low-risk code does not need an invented catastrophe.
 
-Illustrative finding only; no repository was reviewed or test run for this example:
+Expect up to three findings, ordered by consequence and confidence, with linked
+code and test evidence, a plain-English failure scenario, and a concrete test
+suggestion. Faultline checks for existing protections and evidence that refutes
+each concern. A missing assertion is not automatically an implementation bug.
+It distinguishes suspected bugs, missing test protection, and unresolved contract
+questions, and always says that tests were not run.
 
-> **A retry may charge twice** — suspected implementation bug.
+Illustrative finding based on [authored packet A](tests/fixtures/impact-first.json);
+this is an expected report, not a model evaluation or an executed test:
+
+> **Confirmed data may disappear after a restart** — suspected implementation bug
+> and missing recovery protection.
 >
-> **What could go wrong:** a charge succeeds, its acknowledgement is lost, and the
-> caller retries the same operation. The retry path appears to record a second
-> charge despite the caller's one-charge requirement.
+> **What could go wrong:** `Journal.save` calls `acknowledge` before `Disk.sync`.
+> A crash in that interval could lose a confirmed record despite the packet's
+> documented promise that acknowledged saves survive a restart.
 >
-> **Why these tests may miss it:** the selected test covers only the first
-> successful request.
+> **Why it matters:** users could rely on a successful save and later discover
+> that their data is gone.
 >
-> **Smallest useful test:** lose the acknowledgement after recording a charge,
-> retry with the same key, and assert that only one charge was recorded.
+> **Why the existing tests may miss it:** `test_successful_save` checks the
+> acknowledgement and the complete recovered value only after `save` finishes.
+> It never interrupts the interval before `sync`.
 >
-> **Confidence and uncertainty:** check whether a shared deduplication layer
-> prevents the second effect; that would refute the suspected bug.
+> **Smallest useful test:** seed one confirmed record. In the next acknowledgement
+> callback, record confirmation, call `Disk.power_loss`, and interrupt `save`
+> before it can sync. Reopen a `Journal` on the same `Disk` and assert that both
+> complete records are recovered. Keep this in the recovery suite to catch a
+> future move of acknowledgement ahead of the durable write.
+>
+> **Confidence and uncertainty:** the contract, ordering, and modeled storage
+> support a suspected bug and protection gap in this packet. Real storage behavior
+> and tests outside the packet remain unreviewed. The crash has not been reproduced.
 >
 > Tests were not run.
 
-If the reviewed scope has no useful finding, Faultline says so. It does not invent
-findings to fill a report or claim the whole repository is correct.
+If the reviewed scope has no useful finding, Faultline says **No actionable finding
+in the reviewed scope.** It gives the scope and reason, including existing
+protection where relevant. It does not invent findings to fill a report or claim
+the whole repository is correct.
 
 ## 3. Turn a finding into a GitHub issue (optional)
 
@@ -157,8 +179,9 @@ visibility, contract and timing limits; improved future outcomes remain unmeasur
 A [four-cell packaging comparison](experiments/packaging-2x2/REPORT.md) on
 2026-10-20 crossed old/new instructions with absent/present historical specification
 text. All four reports missed the targeted interaction; both specification-present
-reports retained unsupported installed-mode assertions. Keep the guidance
-provisionally unchanged; one run per cell establishes no reliability or speed gain.
+reports retained unsupported installed-mode assertions. That experiment did not
+justify further instructions; one run per cell establishes no reliability or
+speed gain.
 
 ## Maintainer notes
 
@@ -169,6 +192,16 @@ decision is **INCONCLUSIVE**. Six candidate scopes are prepared. The user serves
 as both human curator and grader; grading is independent of audit workers, not
 curation. Budget enforcement and the complete study freeze remain prerequisites.
 This phase preserves issue #6's original executable study and dependencies.
+
+A separately authorized [two-case pilot](experiments/ordinary-review-comparison/PILOT-RESULTS.md)
+completed four reviews on 2026-10-21 with provisional **NO CLEAR BENEFIT** over
+ordinary review; case-level human grading remains pending. The current
+**Critical Failure Challenge Loop** is a targeted, unmeasured revision: it makes
+promise selection, consequence ranking, and repeatable recovery challenges
+explicit while retaining source tracing and active refutation. The
+[evaluation hypothesis and next comparison](IMPLEMENTATION.md#3-check-that-audit-helps)
+do not claim better detection, accuracy, clarity, speed, or cost. Historical
+evaluation instructions and results are preserved unchanged.
 
 [Design](DESIGN.md) · [Implementation plan](IMPLEMENTATION.md) ·
 [Security research and unchanged execution gate](ISOLATION.md) ·
@@ -184,15 +217,22 @@ Focused maintainer checks (Python standard library only):
 
 ```sh
 python3 -B -m unittest discover -s tests -p test_skill.py -v
+python3 -B -m unittest discover -s tests -p test_install_delivery.py -v
 python3 -B -m unittest discover -s tests -p test_spike_design.py -v
 python3 -B -m unittest discover -s tests -p test_audit_evaluation.py -v
 python3 -B -m unittest discover -s tests -p test_real_repository_evaluation.py -v
 python3 -B -m unittest discover -s tests -p test_audit_diagnostics.py -v
+python3 -B -m unittest discover -s tests -p test_counterexample_audit.py -v
+python3 -B -m unittest discover -s tests -p test_impact_first.py -v
 ```
 
 These inspect packaging, instruction boundaries, links, and frozen fixture
-hashes/syntax and evaluation records. They do not execute target-project code,
-the frozen scenario, Docker, or qualification procedures. Historical research has
-separate maintainer tests; it is not part of the Audit workflow.
+hashes/syntax and evaluation records. The six [impact-first examples](tests/fixtures/impact-first.json)
+specify weak and strong recovery protection, consequence ordering, unclear
+contracts, artificial-error tests, and useful negative results. Their checks
+validate authored examples and instructions, not observed model reasoning.
+These checks do not execute target-project code, the frozen scenario, Docker,
+or qualification procedures. Historical research has separate maintainer tests;
+it is not part of the Audit workflow.
 
 Apache-2.0; see [LICENSE](LICENSE).

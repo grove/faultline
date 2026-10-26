@@ -1,0 +1,416 @@
+{
+  "status": "NOT RUN: maintainer expectations, not observed model behavior",
+  "usage": "Each case is a separate review scope. Files are arrays of source lines. For a future authorized read-only evaluation, provide only the case files and a neutral Audit request; withhold expectations. Do not import or execute these snippets.",
+  "cases": {
+    "A": {
+      "files": {
+        "CONTRACT.md": [
+          "Calling acknowledge(key) confirms that the key and its complete value are durable.",
+          "After power loss and restart, recover() must return every confirmed key/value.",
+          "Disk.sync is the persistence boundary; buffered writes alone are not durable."
+        ],
+        "disk.py": [
+          "from copy import deepcopy",
+          "",
+          "",
+          "class Disk:",
+          "    \"\"\"In-memory test double: only sync survives power_loss.\"\"\"",
+          "    def __init__(self):",
+          "        self.buffered = {}",
+          "        self.durable = {}",
+          "",
+          "    def write(self, key, value):",
+          "        self.buffered[key] = deepcopy(value)",
+          "",
+          "    def sync(self):",
+          "        self.durable = deepcopy(self.buffered)",
+          "",
+          "    def power_loss(self):",
+          "        self.buffered = deepcopy(self.durable)",
+          "",
+          "    def read_all(self):",
+          "        return deepcopy(self.durable)"
+        ],
+        "journal.py": [
+          "class Journal:",
+          "    def __init__(self, disk):",
+          "        self.disk = disk",
+          "",
+          "    def save(self, key, value, acknowledge):",
+          "        self.disk.write(key, value)",
+          "        acknowledge(key)",
+          "        self.disk.sync()",
+          "",
+          "    def recover(self):",
+          "        return self.disk.read_all()"
+        ],
+        "test_journal.py": [
+          "from disk import Disk",
+          "from journal import Journal",
+          "",
+          "",
+          "def test_successful_save():",
+          "    disk = Disk()",
+          "    acknowledged = []",
+          "    journal = Journal(disk)",
+          "    journal.save(\"invoice-7\", {\"amount\": 7}, acknowledged.append)",
+          "    assert acknowledged == [\"invoice-7\"]",
+          "    assert Journal(disk).recover() == {\"invoice-7\": {\"amount\": 7}}"
+        ]
+      },
+      "expectation": {
+        "result": "actionable finding",
+        "distinction": "Suspected implementation bug and missing test protection; not reproduced.",
+        "evidence": [
+          "CONTRACT.md",
+          "journal.py:Journal.save",
+          "disk.py:Disk.sync",
+          "disk.py:Disk.power_loss",
+          "test_journal.py:test_successful_save"
+        ],
+        "consequence": "A power loss inside the acknowledgement callback occurs before sync; the newly confirmed value is absent after restart.",
+        "protection": "The happy-path test checks the complete recovered result only after save finishes. It never interrupts the interval between acknowledgement and sync.",
+        "smallest_test": "Seed one confirmed record. In the next acknowledgement callback, record the confirmation, simulate power loss and interrupt save before sync. Construct a new Journal using the same Disk and compare every confirmed key and complete value, including the seeded record. Keep this regression in the existing suite to catch acknowledgement being moved before sync.",
+        "uncertainty": "Source-grounded proposal using the existing Disk double; actual storage and process-crash behavior remain unverified."
+      }
+    },
+    "B": {
+      "files": {
+        "CONTRACT.md": [
+          "Calling acknowledge(key) confirms that the key and its complete value are durable.",
+          "After power loss and restart, recover() must return every confirmed key/value.",
+          "Disk.sync is the persistence boundary; buffered writes alone are not durable."
+        ],
+        "disk.py": [
+          "from copy import deepcopy",
+          "",
+          "",
+          "class Disk:",
+          "    \"\"\"In-memory test double: only sync survives power_loss.\"\"\"",
+          "    def __init__(self):",
+          "        self.buffered = {}",
+          "        self.durable = {}",
+          "",
+          "    def write(self, key, value):",
+          "        self.buffered[key] = deepcopy(value)",
+          "",
+          "    def sync(self):",
+          "        self.durable = deepcopy(self.buffered)",
+          "",
+          "    def power_loss(self):",
+          "        self.buffered = deepcopy(self.durable)",
+          "",
+          "    def read_all(self):",
+          "        return deepcopy(self.durable)"
+        ],
+        "journal.py": [
+          "class Journal:",
+          "    def __init__(self, disk):",
+          "        self.disk = disk",
+          "",
+          "    def save(self, key, value, acknowledge):",
+          "        self.disk.write(key, value)",
+          "        self.disk.sync()",
+          "        acknowledge(key)",
+          "",
+          "    def recover(self):",
+          "        return self.disk.read_all()"
+        ],
+        "test_journal.py": [
+          "import unittest",
+          "from disk import Disk",
+          "from journal import Journal",
+          "",
+          "",
+          "class PowerLoss(Exception):",
+          "    pass",
+          "",
+          "",
+          "class JournalTests(unittest.TestCase):",
+          "    def test_confirmed_values_survive_power_loss(self):",
+          "        disk = Disk()",
+          "        journal = Journal(disk)",
+          "        journal.save(\"existing\", {\"amount\": 4}, lambda key: None)",
+          "        acknowledged = []",
+          "",
+          "        def after_ack(key):",
+          "            acknowledged.append(key)",
+          "            disk.power_loss()",
+          "            raise PowerLoss()",
+          "",
+          "        with self.assertRaises(PowerLoss):",
+          "            journal.save(\"new\", {\"amount\": 7}, after_ack)",
+          "        self.assertEqual(acknowledged, [\"new\"])",
+          "        self.assertEqual(Journal(disk).recover(),",
+          "                         {\"existing\": {\"amount\": 4}, \"new\": {\"amount\": 7}})"
+        ]
+      },
+      "expectation": {
+        "result": "No actionable finding in the reviewed scope.",
+        "distinction": "Recognize existing protection; do not claim the test passed.",
+        "evidence": [
+          "CONTRACT.md",
+          "journal.py:Journal.save",
+          "disk.py:Disk.power_loss",
+          "test_journal.py:JournalTests.test_confirmed_values_survive_power_loss"
+        ],
+        "protection": "Sync precedes acknowledgement. The test interrupts at acknowledgement, reopens the same backing Disk, and compares both complete recovered records. Moving acknowledgement before sync would violate its expected result.",
+        "uncertainty": "The source supports this protection within the modeled disk semantics; it does not establish real hardware durability."
+      }
+    },
+    "C": {
+      "files": {
+        "CONTRACT.md": [
+          "Calling acknowledge(key) confirms that the key and its complete value are durable.",
+          "After power loss and restart, recover() must return every confirmed key/value.",
+          "Disk.sync is the persistence boundary; buffered writes alone are not durable.",
+          "Error messages should be exactly 'Save failed: ' followed by the error text; display has no storage effect."
+        ],
+        "disk.py": [
+          "from copy import deepcopy",
+          "",
+          "",
+          "class Disk:",
+          "    \"\"\"In-memory test double: only sync survives power_loss.\"\"\"",
+          "    def __init__(self):",
+          "        self.buffered = {}",
+          "        self.durable = {}",
+          "",
+          "    def write(self, key, value):",
+          "        self.buffered[key] = deepcopy(value)",
+          "",
+          "    def sync(self):",
+          "        self.durable = deepcopy(self.buffered)",
+          "",
+          "    def power_loss(self):",
+          "        self.buffered = deepcopy(self.durable)",
+          "",
+          "    def read_all(self):",
+          "        return deepcopy(self.durable)"
+        ],
+        "journal.py": [
+          "class Journal:",
+          "    def __init__(self, disk):",
+          "        self.disk = disk",
+          "",
+          "    def save(self, key, value, acknowledge):",
+          "        self.disk.write(key, value)",
+          "        acknowledge(key)",
+          "        self.disk.sync()",
+          "",
+          "    def recover(self):",
+          "        return self.disk.read_all()"
+        ],
+        "display.py": [
+          "def error_message(error):",
+          "    return f\"Save failed: {error}\""
+        ],
+        "test_journal.py": [
+          "from disk import Disk",
+          "from journal import Journal",
+          "",
+          "",
+          "def test_successful_save():",
+          "    disk = Disk()",
+          "    acknowledged = []",
+          "    journal = Journal(disk)",
+          "    journal.save(\"invoice-7\", {\"amount\": 7}, acknowledged.append)",
+          "    assert acknowledged == [\"invoice-7\"]",
+          "    assert Journal(disk).recover() == {\"invoice-7\": {\"amount\": 7}}"
+        ],
+        "test_display.py": [
+          "from display import error_message",
+          "",
+          "",
+          "def test_error_label():",
+          "    assert \"failed\" in error_message(OSError(\"offline\"))"
+        ]
+      },
+      "expectation": {
+        "result": "actionable finding",
+        "distinction": "Prioritize confirmed data loss over a possible display-format regression.",
+        "evidence": [
+          "CONTRACT.md",
+          "journal.py:Journal.save",
+          "test_journal.py:test_successful_save",
+          "display.py:error_message",
+          "test_display.py:test_error_label"
+        ],
+        "first_finding": "The acknowledgement-before-sync recovery gap from case A.",
+        "protection": "The display assertion accepts extra or missing text, but the credible irreversible consequence is loss of confirmed data. Do not elevate formatting to data loss or fill the report with cosmetic findings.",
+        "smallest_test": "Use the precise interrupted-acknowledgement recovery test from case A before considering a stricter display assertion."
+      }
+    },
+    "D": {
+      "files": {
+        "CONTRACT.md": [
+          "save(key, value, acknowledge) calls acknowledge with the key and returns None.",
+          "recover() returns the disk's durable mapping.",
+          "The callback is used to update a progress indicator."
+        ],
+        "disk.py": [
+          "from copy import deepcopy",
+          "",
+          "",
+          "class Disk:",
+          "    \"\"\"In-memory test double: only sync survives power_loss.\"\"\"",
+          "    def __init__(self):",
+          "        self.buffered = {}",
+          "        self.durable = {}",
+          "",
+          "    def write(self, key, value):",
+          "        self.buffered[key] = deepcopy(value)",
+          "",
+          "    def sync(self):",
+          "        self.durable = deepcopy(self.buffered)",
+          "",
+          "    def power_loss(self):",
+          "        self.buffered = deepcopy(self.durable)",
+          "",
+          "    def read_all(self):",
+          "        return deepcopy(self.durable)"
+        ],
+        "journal.py": [
+          "class Journal:",
+          "    def __init__(self, disk):",
+          "        self.disk = disk",
+          "",
+          "    def save(self, key, value, acknowledge):",
+          "        self.disk.write(key, value)",
+          "        acknowledge(key)",
+          "        self.disk.sync()",
+          "",
+          "    def recover(self):",
+          "        return self.disk.read_all()"
+        ],
+        "test_journal.py": [
+          "from disk import Disk",
+          "from journal import Journal",
+          "",
+          "",
+          "def test_successful_save():",
+          "    disk = Disk()",
+          "    acknowledged = []",
+          "    journal = Journal(disk)",
+          "    journal.save(\"invoice-7\", {\"amount\": 7}, acknowledged.append)",
+          "    assert acknowledged == [\"invoice-7\"]",
+          "    assert Journal(disk).recover() == {\"invoice-7\": {\"amount\": 7}}"
+        ]
+      },
+      "expectation": {
+        "result": "contract question",
+        "distinction": "No authoritative durability promise for acknowledgement is available; do not assert a confirmed bug.",
+        "evidence": [
+          "CONTRACT.md",
+          "journal.py:Journal.save",
+          "test_journal.py:test_successful_save"
+        ],
+        "protection": "The happy-path test establishes post-return recovery in the example, not what the acknowledgement promises.",
+        "smallest_test": "If acknowledgement promises durability, interrupt at that callback and assert full recovery from the same backing store. If it means accepted in memory, losing an interrupted pending value may be allowed; test the documented completion boundary once clarified.",
+        "uncertainty": "Clarify whether acknowledgement means durable completion or acceptance. Do not invent that guarantee from the test name or from the implementation."
+      }
+    },
+    "E": {
+      "files": {
+        "CONTRACT.md": [
+          "Calling acknowledge(key) confirms that the key and its complete value are durable.",
+          "After power loss and restart, recover() must return every confirmed key/value.",
+          "Disk.sync is the persistence boundary; buffered writes alone are not durable.",
+          "error_message formats an existing exception for display."
+        ],
+        "disk.py": [
+          "from copy import deepcopy",
+          "",
+          "",
+          "class Disk:",
+          "    \"\"\"In-memory test double: only sync survives power_loss.\"\"\"",
+          "    def __init__(self):",
+          "        self.buffered = {}",
+          "        self.durable = {}",
+          "",
+          "    def write(self, key, value):",
+          "        self.buffered[key] = deepcopy(value)",
+          "",
+          "    def sync(self):",
+          "        self.durable = deepcopy(self.buffered)",
+          "",
+          "    def power_loss(self):",
+          "        self.buffered = deepcopy(self.durable)",
+          "",
+          "    def read_all(self):",
+          "        return deepcopy(self.durable)"
+        ],
+        "journal.py": [
+          "class Journal:",
+          "    def __init__(self, disk):",
+          "        self.disk = disk",
+          "",
+          "    def save(self, key, value, acknowledge):",
+          "        self.disk.write(key, value)",
+          "        acknowledge(key)",
+          "        self.disk.sync()",
+          "",
+          "    def recover(self):",
+          "        return self.disk.read_all()"
+        ],
+        "display.py": [
+          "def error_message(error):",
+          "    return f\"Save failed: {error}\""
+        ],
+        "test_display.py": [
+          "from display import error_message",
+          "",
+          "",
+          "def test_error_message():",
+          "    error = OSError(\"offline\")",
+          "    assert error_message(error) == \"Save failed: offline\""
+        ]
+      },
+      "expectation": {
+        "result": "actionable finding",
+        "distinction": "Missing protection for Journal.save and a source-grounded suspected durability bug; the display test remains useful.",
+        "evidence": [
+          "CONTRACT.md",
+          "journal.py:Journal.save",
+          "display.py:error_message",
+          "test_display.py:test_error_message"
+        ],
+        "protection": "Constructing OSError('offline') and formatting it checks error_message for that input. It never calls Journal.save, triggers a storage error, checks acknowledgement ordering, or reads recovered state. Do not describe the whole test as useless.",
+        "smallest_test": "Exercise the real Journal.save through the existing Disk double, interrupt inside acknowledgement before sync, then reopen the same Disk and assert the complete confirmed key/value mapping.",
+        "uncertainty": "The reviewed packet contains only the display test; do not imply an exhaustive search beyond this scope."
+      }
+    },
+    "F": {
+      "files": {
+        "CONTRACT.md": [
+          "error_message(error) returns 'Save failed: ' followed by str(error), including an empty string.",
+          "This helper is display-only and does not save data or control access."
+        ],
+        "display.py": [
+          "def error_message(error):",
+          "    return f\"Save failed: {error}\""
+        ],
+        "test_display.py": [
+          "from display import error_message",
+          "",
+          "",
+          "def test_error_message():",
+          "    for error, expected in ((OSError(\"offline\"), \"Save failed: offline\"),",
+          "                            (ValueError(\"\"), \"Save failed: \")):",
+          "        assert error_message(error) == expected"
+        ]
+      },
+      "expectation": {
+        "result": "No actionable finding in the reviewed scope.",
+        "distinction": "Acknowledge the exact display assertions and limited responsibility without inventing a severe scenario.",
+        "evidence": [
+          "CONTRACT.md",
+          "display.py:error_message",
+          "test_display.py:test_error_message"
+        ],
+        "protection": "Both ordinary and empty error text are checked against the documented full output.",
+        "uncertainty": "A useful negative result is scoped to this helper; it is not a claim of overall project correctness."
+      }
+    }
+  }
+}

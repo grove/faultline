@@ -18,7 +18,7 @@ class InstallDeliveryTests(unittest.TestCase):
     def test_public_install_instructions_match_one_standalone_skill(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("npx skills@latest add grove/faultline", readme)
-        self.assertIn("Use faultline-audit to find weak tests", readme)
+        self.assertIn("Use faultline-audit to find important bugs my tests might miss", readme)
         self.assertIn("NO_GO / UNAVAILABLE", readme)
         self.assertEqual(install_check.SKILL_NAME, "faultline-audit")
         self.assertEqual(
