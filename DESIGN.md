@@ -7,7 +7,7 @@ and disabled. The existing execution decision remains **NO_GO / UNAVAILABLE**.
 
 ## One simple workflow
 
-**Identify important promises → challenge test protection → understandable findings.**
+**Check my changes → understand the risk → see the test to add.**
 
 Use the existing portable `faultline-audit` skill and the developer's existing
 coding agent. No new application, model controller, service, CLI, or framework.
@@ -16,12 +16,26 @@ never a mandatory PR gate or a dependency on another project.
 
 ## Default: Audit
 
-Input is a repository or selected paths, optionally a behavior question. Infer
-important promises from source, documentation, and callers, then locate the tests
-and safeguards that protect them. State the scope; do not require configuration,
-a formal guarantee, risk scores, or a candidate manifest from the developer.
-Missing requirements become explicit uncertainty or a focused question, not an
-invented contract.
+The primary request is “Use faultline-audit to check my changes.” Honor explicit
+paths, behaviors, repositories, commit ranges, or supplied PR diffs first.
+Otherwise inspect staged and unstaged changes and relevant untracked source/tests.
+With a clean feature branch, use its merge base with the locally identifiable
+default branch; an upstream tracking branch is not automatically that base.
+Never fetch or require GitHub just to start. If there are no changes, no Git
+metadata, or an unclear comparison, ask one short scope question. A missing diff
+is not a clean result, and never triggers a silent whole-repository audit.
+
+Report the comparison and paths actually reviewed. Follow relevant callers and
+tests beyond changed lines without expanding into unrelated areas. Disable Git
+external diff/textconv helpers and configured filesystem monitors during scope
+inspection. Do not open untracked secrets, ignored files, or generated output.
+
+A selected critical behavior is the secondary use case; broader repository
+exploration remains available on request. Infer important promises from source,
+documentation, and callers, then locate their safeguards and tests. Do not require
+configuration, a formal guarantee, risk scores, or a candidate manifest. Missing
+requirements become explicit uncertainty or a focused question, not an invented
+contract.
 
 The **Critical Failure Challenge Loop** guides internal reasoning: identify the
 promises, imagine consequential failures, prioritize by impact, inspect existing
@@ -46,12 +60,13 @@ Read files as data; do not execute project imports, discovery, tests, builds,
 plugins, package scripts, or installs. Do not probe Docker or start infrastructure.
 Do not edit code, tests, or reports without separate write authority.
 
-Return up to three findings, ordered by consequence and confidence: what could go
-wrong, why it matters, why the existing tests may miss it, the smallest useful test,
-and confidence and uncertainty. Link the code/tests actually read and the source
-of the expected behavior. Distinguish suspected
-implementation bugs from missing test protection; check valid alternatives and
-possible refutation. Missing assertions do not establish defects or passing tests.
+Return up to three findings, strongest first. Each uses a consequence-based title,
+a short linked explanation of the failure and why tests could miss it,
+**Suggested test**, and **Status**. Show “suspected bug,” “test gap,” or “contract
+question,” with material uncertainty and possible refutation. Preserve impact,
+source-supported expectations, and test evidence in the concise explanation;
+these do not require five separate fields or methodology in the response.
+Missing assertions do not establish defects or passing tests.
 Say **Tests were not run.** A useful negative result is **No actionable finding in
 the reviewed scope.** Give the scope and reason, including protection found.
 Avoid scores, generic coverage advice, mandatory mutation plans, and claims of
@@ -63,6 +78,17 @@ does not block advice. Keep hashes, VM details, launchd, lifecycle operations,
 qualification receipts, and accounting ledgers out of ordinary reports; expose
 technical detail on request. No new report store or receipt schema is needed for
 Audit, and no private material is exported implicitly.
+
+“Explain this finding” and “Show me the proposed test” continue from the current
+finding, without restarting a broad audit. An unexecuted test sketch can be shown
+in chat on request; files are never written through Audit. Issue drafting is
+optional, with separate authorization for publication.
+
+The README is the complete first-use path: benefit, install, one primary prompt,
+one short example, and the read-only boundary. Optional workflows and installation
+help live in [usage](docs/usage.md); research, evidence limits, and maintainer
+checks live in the [maintainer guide](docs/maintaining.md). Unavailable verification
+is not a getting-started step. The skill retains its execution safeguards.
 
 ## Optional: Verify with Docker — proposed, disabled
 
