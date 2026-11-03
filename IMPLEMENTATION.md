@@ -10,18 +10,26 @@ Keep one canonical `faultline-audit/SKILL.md`. Change the skill, README, design,
 implementation plan, and packaging/instruction checks together. No runtime,
 dependency, service, CLI, additional skill, or sibling integration is needed.
 
-- Accept a repository or paths; infer supported behavioral promises from code,
+- Make “check my changes” the default. Honor explicit scope; otherwise inspect
+  staged/unstaged changes and relevant untracked source/tests, or a clean feature
+  branch against the locally identifiable default branch's merge base. Never
+  fetch, assume the tracking branch is the base, or silently audit the repository.
+  Ask one short question if changes or a reliable comparison are unavailable.
+  State the actual paths and comparison; disable external Git helpers and monitors.
+- Keep a critical-behavior review as the secondary example; allow explicit paths
+  and repository reviews. Infer supported behavioral promises from code,
   documentation, and callers before looking for weak assertions or mutations.
 - Use the Critical Failure Challenge Loop internally: consider credible failures,
   prioritize severity, plausibility, detection weakness, and actionability, then
   trace safeguards and tests and actively seek evidence that refutes each concern.
 - Read files as data without imports, discovery, tests, builds, scripts, Docker
   inspection, installs, or edits.
-- Return up to three realistic, source-linked findings ordered by consequence and
-  confidence. Explain the consequence and why tests could miss it; propose the
-  smallest independently meaningful assertion or repeatable regression test.
-  Distinguish suspected bugs, missing test protection, and unresolved contract
-  questions. Say that tests were not run.
+- Return up to three realistic, source-linked findings, strongest first: a title,
+  short failure/test-gap explanation, Suggested test, and Status. Preserve concrete
+  consequences, source evidence, and material uncertainty without five repeated
+  report fields. Distinguish suspected bugs, test gaps, and contract questions.
+  Say that tests were not run. Continue from a selected finding when asked to
+  explain it or show the unexecuted proposed test in chat.
 - Allow no actionable finding with a scope and reason. Do not invent a guarantee,
   measured coverage, reproduced failure, or passing test result.
 - Keep available candidate identity internally. Remove mutation protocols,
@@ -33,6 +41,24 @@ Acceptance: direct-file use and standalone copying need no setup; packaging,
 links, report essentials, and execution refusal remain checked. Use read-only
 walkthroughs too: instruction checks alone cannot prove an agent follows the
 skill. Packaging success is not proof of usefulness.
+
+The README now serves the first-use path only. Preserve installation help and
+optional issue handoff in [usage](docs/usage.md), and evaluation history,
+qualification context, and checks in [the maintainer guide](docs/maintaining.md).
+Keep unavailable verification out of onboarding while retaining the skill's
+execution fence. Check local documentation links after moving content.
+
+Ship `agents/openai.yaml` with the same standalone skill: the Codex skill picker
+shows “Faultline,” a short benefit, and the default “check my changes” prompt.
+Keep automatic discovery enabled. Both files must survive standalone copying.
+
+Usability acceptance: one install and one prompt; no mode selection, formal
+requirements, hashes, runner configuration, or sibling skill needed to start.
+Review scope must distinguish dirty changes, a clean feature branch, explicit
+paths, and an unavailable comparison. Results must make the risk, missing test,
+uncertainty, and next useful assertion understandable at a glance. Offline checks
+verify packaging and instruction boundaries; they do not establish usability or
+better detection by themselves.
 
 The [initial source-only walkthrough](experiments/audit-walkthrough.md) records
 two known historical bugs, a clean control, and execution-refusal checks. It is
@@ -110,8 +136,11 @@ unique weakness. The hypothesis is that explicitly selecting supported promises
 and ranking consequences will direct limited attention toward more consequential,
 independently defensible test gaps while preserving those strengths.
 
-No new model evaluation is performed by this implementation. After separate
-approval of a concrete comparison and finite budget, compare the previous and
+The impact-first change performed no new model evaluation. The later
+[UX smoke checks](docs/maintaining.md#current-ux-checks) exercise scope selection
+and the shorter response on small authored inputs; they do not compare detection,
+usability, latency, or cost. After separate approval of a concrete comparison and
+finite budget, compare the previous and
 revised skill with ordinary review on the same source packets. Withhold authored
 expectations from reviewers; retain all first responses and assess consequential
 defensible gaps, false positives and unsupported claims, clarity, latency/cost,

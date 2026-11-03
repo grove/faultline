@@ -1,0 +1,4 @@
+interface:
+  display_name: "Faultline"
+  short_description: "Find important bugs your tests might miss"
+  default_prompt: "Use $faultline-audit to check my changes."

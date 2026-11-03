@@ -1,14 +1,13 @@
 ---
 name: faultline-audit
-description: Find important, realistic failures that existing tests may miss by reading code, contracts, callers, and tests. Use for finding important bugs or weak test protection in a repository or selected paths; return plain-English findings and the smallest useful test without executing project code.
+description: Check changes for important bugs the tests might miss. Also use for a selected behavior, directory, or repository; read code and tests and suggest the smallest useful test without changing files or running project code.
 ---
 
 # Faultline audit
 
-Help the developer find the most consequential mistakes their tests might let
-through, using the already-running coding agent. Audit is the default experience.
-No Docker, runtime setup, extra model, sibling skill, CLI, or mutation engine is
-required.
+Help the developer check their changes before merging. Use their existing coding
+agent to find important failures the tests could miss and suggest a focused test.
+Start from “Use faultline-audit to check my changes.” No setup or modes to choose.
 
 **Release boundary: advice-only.** Do not run project code, test discovery, imports,
 tests, mutants, package scripts, builds, installs, or sandbox qualification through
@@ -25,11 +24,36 @@ conversation; writing a report requires caller authority for its destination.
 
 ## Find weak tests
 
-Use the **Critical Failure Challenge Loop** internally: establish important
-promises, imagine credible failures, prioritize their impact, inspect protections,
-challenge them, and recommend the smallest repeatable improvement. Start from
-promises, not weak assertions or mutation opportunities. Keep this reasoning
-bounded; it does not require extra report sections or a formal risk assessment.
+### Choose the scope
+
+Honor an explicit repository, path, behavior, commit range, or supplied PR diff.
+For “check my changes” or an invocation with no scope:
+
+- Start with staged and unstaged changes and relevant untracked source/tests.
+  Check Git status and both diffs; do not overlook staged-only changes. Do not
+  open untracked credentials, ignored files, generated output, or unrelated data.
+- If the working tree is clean on a feature branch, compare against the merge
+  base with the locally identifiable default branch. Prefer the local remote-HEAD
+  reference or unambiguous local main/master ref; an upstream tracking branch is
+  not necessarily the default branch. Do not fetch or require a GitHub connection.
+- If there are no changes, no Git metadata, an unavailable base, or an ambiguous
+  comparison, ask one short question offering a path, behavior, or comparison.
+  Do not silently expand to the whole repository, choose the latest commit, or
+  report no actionable finding merely because a diff is missing.
+
+Use host file readers/search and read-only Git inspection. Disable external diff
+and textconv helpers (for example, `git --no-pager -c core.fsmonitor=false diff
+--no-ext-diff --no-textconv`) and repository-configured filesystem monitors for
+status inspection. Do not run repository helpers to discover scope. Follow
+relevant callers and tests beyond the diff; do not widen into unrelated code.
+State the paths and comparison actually reviewed, including staged/unstaged or
+branch base as applicable. Honor a broader repository review when requested.
+
+### Look for a useful finding
+
+Keep the reasoning internal. Start from promises, not weak assertions or mutation
+opportunities. No named methodology, numerical score, or formal risk assessment
+is needed in the response.
 
 1. Accept a repository, selected paths, or a behavior question. If the current
    repository is clear, start there. Infer its important behavioral promises from
@@ -90,29 +114,35 @@ bounded; it does not require extra report sections or a formal risk assessment.
 
 ## Explain each finding
 
-Use a short title and these fields, linking to the code and tests actually read:
+Lead with the strongest finding. Use a short consequence-based title and a compact
+paragraph explaining the concrete input/state, reachable failure, user impact,
+and why the existing test could miss it, linking to the code and tests actually
+read. Say when tests were not located; do not imply exhaustive inspection.
 
-- **What could go wrong:** concrete input/state and a credible source path that
-  breaks a supported promise.
-- **Why it matters:** the concrete consequence for users or data; keep the impact
-  proportionate to the reviewed responsibility.
-- **Why the existing tests may miss it:** the relevant test/fixture/assertion and
-  its gap; say when tests were not located rather than implying exhaustive inspection.
-- **Smallest useful test:** setup, action, and observable expected result, allowing
-  contract-consistent alternatives. Reuse the project's test style and test hooks;
-  explain how this protects the promise when the mistake returns. Avoid introducing
-  a framework or mutation plan for an ordinary assertion.
-- **Confidence and uncertainty:** distinguish **suspected implementation bug** from
-  **missing test protection**. Explain the source supporting the expectation and
-  what would refute the concern. When an expected result is unsettled, label it a
-  **contract question** and make the suggested assertion conditional on that policy.
-  Keep expectations for different APIs or lifecycle phases separate and support
-  each one. Never claim tests passed or a bug was reproduced
-  from source inspection alone.
+- **Suggested test:** setup, action, and observable expected result. Reuse existing
+  test style and hooks; allow contract-consistent alternatives. Prefer one useful
+  assertion over a framework or mutation plan.
+- **Status:** in plain language distinguish a **suspected implementation bug**
+  (shown as “suspected bug”) from **missing test protection** (shown as “test gap”).
+  Include material uncertainty and what could refute the concern. An unsettled
+  expectation is a **contract question**, with conditional assertions. Support
+  each API or lifecycle expectation separately.
+
+Prefer a few sentences per finding; expand only when needed to avoid a misleading
+claim or when asked. Do not repeat five report sections, internal reasoning,
+methodology names, or a follow-up menu for each finding. Never claim tests passed
+or a bug was reproduced from source inspection alone.
 
 Finish with the reviewed scope, material limitations, and **Tests were not run.**
 Do not claim overall correctness, acceptance, coverage measurements, a mutation
 score, or superiority over ordinary code review.
+
+For “Explain this finding” or “Show me the proposed test,” use the finding already
+in the conversation. Recheck its relevant evidence without restarting a broad
+audit. An unexecuted test sketch in chat is fine when requested; do not write
+files or imply it ran. Do not offer verification as an available action. Draft an
+issue in chat only if requested; publishing requires a separate authorized
+workflow. No sibling skill or integration is required to understand a finding.
 
 Keep available source/snapshot identity, relevant dirty-content identity, test
 paths, and evidence distinctions in internal working notes for traceability.

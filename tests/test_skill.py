@@ -1,5 +1,6 @@
 """Portable packaging checks; these do not qualify experiment isolation."""
 
+import json
 import re
 import shutil
 import tempfile
@@ -13,6 +14,17 @@ SKILL = ROOT / "faultline-audit" / "SKILL.md"
 
 
 class SkillTests(unittest.TestCase):
+    def test_picker_prompt_invokes_the_canonical_skill(self):
+        # The UI contract is three quoted strings, with no runtime dependency.
+        metadata = (SKILL.parent / "agents/openai.yaml").read_text(encoding="utf-8")
+        self.assertTrue(metadata.startswith("interface:\n"))
+        interface = dict((name, json.loads(value)) for name, value in
+                         re.findall(r'^  ([a-z_]+): (".*")$', metadata, re.M))
+        self.assertEqual(interface["display_name"], "Faultline")
+        self.assertTrue(25 <= len(interface["short_description"]) <= 64)
+        self.assertEqual(interface["default_prompt"],
+                         f"Use ${SKILL.parent.name} to check my changes.")
+
     def test_single_canonical_skill_and_metadata(self):
         self.assertEqual(list(ROOT.rglob("SKILL.md")), [SKILL])
         text = SKILL.read_text(encoding="utf-8")
@@ -36,7 +48,13 @@ class SkillTests(unittest.TestCase):
             installed.parent.mkdir(parents=True)
             shutil.copytree(SKILL.parent, installed)
             self.assertEqual((installed / "SKILL.md").read_bytes(), SKILL.read_bytes())
-            self.assertEqual(list(installed.iterdir()), [installed / "SKILL.md"])
+            self.assertEqual(
+                {p.relative_to(installed).as_posix() for p in installed.rglob("*")
+                 if p.is_file()},
+                {"SKILL.md", "agents/openai.yaml"},
+            )
+            self.assertEqual((installed / "agents/openai.yaml").read_bytes(),
+                             (SKILL.parent / "agents/openai.yaml").read_bytes())
             links = re.findall(r"\[[^\]]+\]\(([^)]+)\)",
                                (installed / "SKILL.md").read_text(encoding="utf-8"))
             self.assertTrue(links)
@@ -103,8 +121,7 @@ class SkillTests(unittest.TestCase):
             self.assertIn(instruction, text)
         # The public example and the skill must agree on what a finding explains.
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        for field in ("What could go wrong", "Why it matters", "Why the existing tests may miss it",
-                      "Smallest useful test", "Confidence and uncertainty"):
+        for field in ("Suggested test", "Status"):
             self.assertIn(f"**{field}:**", text)
             self.assertIn(f"**{field}:**", readme)
 
@@ -112,7 +129,7 @@ class SkillTests(unittest.TestCase):
         """Instruction contract only; model behavior requires a separate evaluation."""
         text = " ".join(SKILL.read_text(encoding="utf-8").split())
         for instruction in (
-            "**Critical Failure Challenge Loop** internally",
+            "Keep the reasoning internal",
             "Start from promises, not weak assertions or mutation opportunities",
             "Use only promises supported in this scope",
             "Prioritize by severity, plausibility, evidence of weak detection",
